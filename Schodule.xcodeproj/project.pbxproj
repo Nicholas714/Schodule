@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4319BF5A1FF8010E00272197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4319BF591FF8010E00272197 /* Assets.xcassets */; };
+		4319BF5B1FF8010E00272197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4319BF591FF8010E00272197 /* Assets.xcassets */; };
+		4319BF5C1FF8010E00272197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4319BF591FF8010E00272197 /* Assets.xcassets */; };
 		433551AE1F6A10B00028A25C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B2651F69D9FC00540DCC /* Schedule.swift */; };
 		43A7B22F1F69D9D200540DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B22E1F69D9D200540DCC /* AppDelegate.swift */; };
 		43A7B2311F69D9D200540DCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B2301F69D9D200540DCC /* ViewController.swift */; };
 		43A7B2341F69D9D200540DCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43A7B2321F69D9D200540DCC /* Main.storyboard */; };
-		43A7B2361F69D9D200540DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43A7B2351F69D9D200540DCC /* Assets.xcassets */; };
 		43A7B2391F69D9D200540DCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43A7B2371F69D9D200540DCC /* LaunchScreen.storyboard */; };
 		43A7B23E1F69D9D200540DCC /* Schodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43A7B23D1F69D9D200540DCC /* Schodule WatchKit App.app */; };
 		43A7B2441F69D9D200540DCC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43A7B2421F69D9D200540DCC /* Interface.storyboard */; };
@@ -67,11 +69,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4319BF591FF8010E00272197 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43A7B22B1F69D9D200540DCC /* Schodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A7B22E1F69D9D200540DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43A7B2301F69D9D200540DCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43A7B2331F69D9D200540DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		43A7B2351F69D9D200540DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43A7B2381F69D9D200540DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43A7B23A1F69D9D200540DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43A7B23D1F69D9D200540DCC /* Schodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,8 +143,8 @@
 			children = (
 				43A7B22E1F69D9D200540DCC /* AppDelegate.swift */,
 				43A7B2301F69D9D200540DCC /* ViewController.swift */,
+				4319BF591FF8010E00272197 /* Assets.xcassets */,
 				43A7B2321F69D9D200540DCC /* Main.storyboard */,
-				43A7B2351F69D9D200540DCC /* Assets.xcassets */,
 				43A7B2371F69D9D200540DCC /* LaunchScreen.storyboard */,
 				43A7B23A1F69D9D200540DCC /* Info.plist */,
 			);
@@ -282,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43A7B2391F69D9D200540DCC /* LaunchScreen.storyboard in Resources */,
-				43A7B2361F69D9D200540DCC /* Assets.xcassets in Resources */,
+				4319BF5A1FF8010E00272197 /* Assets.xcassets in Resources */,
 				43A7B2341F69D9D200540DCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43A7B2461F69D9D200540DCC /* Assets.xcassets in Resources */,
+				4319BF5B1FF8010E00272197 /* Assets.xcassets in Resources */,
 				43A7B2441F69D9D200540DCC /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4319BF5C1FF8010E00272197 /* Assets.xcassets in Resources */,
 				43A7B2561F69D9D200540DCC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,7 +562,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -572,7 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
