@@ -20,31 +20,12 @@ class ScheduleComplicationController: NSObject, CLKComplicationDataSource {
         }
     }
     
-    
     // actual schedule which will be generated based on classPeriodTime and hallTime
     var schedule: Schedule {
         return Schedule(start: morningStart, classPeriodTime: 40, hallTime: 5, periods: "Intro to Criminology", "Electronics 1", "AP Statistics", "Lunch", "AP Calculus", "AP Comp Science", "AP Literature", "Physical Education", "AP Physics")
     }
     
-    // MARK - Model functions
-    
-    func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
-        handler(morningStart.addingTimeInterval(86405))
-    }
-    
-    func requestedUpdateDidBegin() {
-        let server=CLKComplicationServer.sharedInstance()
-        
-        guard let active = server.activeComplications else {
-            return
-        }
-        
-        for complication in active {
-            server.reloadTimeline(for: complication)
-        }
-    }
-    
-    // given a date and compliation type, this will send back the current template
+    // given a date and compliation type, this will send back the current complication template
     func complicationTemplate(_ complication: CLKComplication, from date: Date = Date(), blank: Bool = false) -> CLKComplicationTemplate? {
         switch complication.family {
         case .modularLarge:
@@ -86,24 +67,53 @@ class ScheduleComplicationController: NSObject, CLKComplicationDataSource {
         }
     }
     
-    // MARK: WatchKit functions
+    
+    
+    
+
+    
+    // MARK: Time Travel Support
     
     // supports backwards and forwards for seeing schedule
     func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
         handler([.backward, .forward])
     }
+    
+    // callback to after date since they use the same functions for displaying past time in time travel mode
+    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+        getTimelineEntries(for: complication, after: date, limit: limit, withHandler: handler)
+    }
+    
+    // block time travel for anything after the last schedule entry
+    func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
+        if let finishDate = schedule.periods.last?.finishDate {
+            handler(finishDate.addingTimeInterval(2)) // adds 1 min to account for last entry that disables timer
+        }
+    }
+    
+    // block time travel for anything before the start of the schedule
+    func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
+        handler(schedule.start.addingTimeInterval(-2))
+    }
 
+    
+    
+    
+    
+    
+    // MARK: Timeline Creation
+    
+    // returns the sample template with default values when first installing complication
+    func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
+        handler(complicationTemplate(complication, from: Date(), blank: true))
+    }
+    
     // returns the template for the current date
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void)
     {
         if let template = complicationTemplate(complication) {
            handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
         }
-    }
-
-    // returns the sample template with default values when first installing complication
-    func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        handler(complicationTemplate(complication, from: Date(), blank: true))
     }
     
     // makes timeline for the day
@@ -135,23 +145,6 @@ class ScheduleComplicationController: NSObject, CLKComplicationDataSource {
         }
         
         handler(timelineEntires)
-    }
-    
-    // callback to after date since they use the same functions for displaying past time in time travel mode
-    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        getTimelineEntries(for: complication, after: date, limit: limit, withHandler: handler)
-    }
-    
-    // block time travel for anything before the start of the schedule
-    func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(schedule.start.addingTimeInterval(-2))
-    }
-    
-    // block time travel for anything after the last schedule entry
-    func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        if let finishDate = schedule.periods.last?.finishDate {
-            handler(finishDate.addingTimeInterval(2)) // adds 1 min to account for last entry that disables timer
-        }
     }
     
 }
