@@ -11,6 +11,7 @@
 		4319BF5B1FF8010E00272197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4319BF591FF8010E00272197 /* Assets.xcassets */; };
 		4319BF5C1FF8010E00272197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4319BF591FF8010E00272197 /* Assets.xcassets */; };
 		433551AE1F6A10B00028A25C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B2651F69D9FC00540DCC /* Schedule.swift */; };
+		434342422017CFF600223B13 /* MainRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434342402017CE5800223B13 /* MainRowType.swift */; };
 		43A7B22F1F69D9D200540DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B22E1F69D9D200540DCC /* AppDelegate.swift */; };
 		43A7B2311F69D9D200540DCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B2301F69D9D200540DCC /* ViewController.swift */; };
 		43A7B2341F69D9D200540DCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43A7B2321F69D9D200540DCC /* Main.storyboard */; };
@@ -70,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		4319BF591FF8010E00272197 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4343423F2017CE5800223B13 /* Schodule WatchKit App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Schodule WatchKit App-Bridging-Header.h"; sourceTree = "<group>"; };
+		434342402017CE5800223B13 /* MainRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowType.swift; sourceTree = "<group>"; };
 		43A7B22B1F69D9D200540DCC /* Schodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A7B22E1F69D9D200540DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43A7B2301F69D9D200540DCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,10 +168,12 @@
 			isa = PBXGroup;
 			children = (
 				43A7B2AE1F69DC6100540DCC /* ScheduleComplicationController.swift */,
+				434342402017CE5800223B13 /* MainRowType.swift */,
 				43A7B2511F69D9D200540DCC /* InterfaceController.swift */,
 				43A7B2531F69D9D200540DCC /* ExtensionDelegate.swift */,
 				43A7B2551F69D9D200540DCC /* Assets.xcassets */,
 				43A7B2571F69D9D200540DCC /* Info.plist */,
+				4343423F2017CE5800223B13 /* Schodule WatchKit App-Bridging-Header.h */,
 			);
 			path = "Schodule WatchKit Extension";
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 					};
 					43A7B23C1F69D9D200540DCC = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0920;
 					};
 					43A7B24B1F69D9D200540DCC = {
 						CreatedOnToolsVersion = 9.0;
@@ -325,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434342422017CFF600223B13 /* MainRowType.swift in Sources */,
 				43A7B2541F69D9D200540DCC /* ExtensionDelegate.swift in Sources */,
 				43A7B2B31F69DCDF00540DCC /* ScheduleComplicationController.swift in Sources */,
 				433551AE1F6A10B00028A25C /* Schedule.swift in Sources */,
@@ -521,13 +528,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				IBSC_MODULE = Schodule_WatchKit_Extension;
 				INFOPLIST_FILE = "Schodule WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schodule.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Schodule WatchKit Extension/Schodule WatchKit App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -539,13 +550,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				IBSC_MODULE = Schodule_WatchKit_Extension;
 				INFOPLIST_FILE = "Schodule WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schodule.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Schodule WatchKit Extension/Schodule WatchKit App-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
