@@ -1,9 +1,9 @@
 //
-//  Schdule.swift
-//  Schodule
+//  Schedule.swift
+//  Schoodule
 //
-//  Created by Nicholas Grana on 9/13/17.
-//  Copyright © 2017 Nicholas Grana. All rights reserved.
+//  Created by Nicholas Grana on 1/28/18.
+//  Copyright © 2018 Nicholas Grana. All rights reserved.
 //
 
 import Foundation
@@ -69,3 +69,4 @@ class Period {
     }
     
 }
+
