@@ -10,9 +10,11 @@ import WatchKit
 
 class ClassEditController: WKInterfaceController {
     
+    var period: Period! = nil
+    
     override func awake(withContext context: Any?) {
-        let name = context as! String
-        setTitle(name)
+        period = context as! Period
+        setTitle("\(period.className)")
     }
     
     @IBAction func editClassName() {

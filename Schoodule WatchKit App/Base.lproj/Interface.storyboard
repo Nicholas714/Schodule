@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <scenes>
-        <!--Schoodule-->
+        <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Schoodule" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
                     <items>
                         <table alignment="left" pagingScroll="YES" id="BzL-93-Fiw">
                             <items>
@@ -20,6 +20,7 @@
                                     <group key="rootItem" width="1" alignment="left" spacing="4" id="Ybr-pq-Kkh">
                                         <items>
                                             <label width="13" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
+                                                <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
                                             </label>
                                             <separator height="30" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
@@ -28,7 +29,7 @@
                                             <group width="85" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
                                                 <items>
                                                     <label width="1" alignment="left" text="English" id="BPc-qV-4Ke">
-                                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="40 min" id="ukE-2s-Ejl">
@@ -39,6 +40,9 @@
                                             </group>
                                         </items>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="EvA-Rf-vpd" kind="push" id="CoI-Up-KQf"/>
+                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="durationLabel" destination="ukE-2s-Ejl" id="lab-9A-G2S"/>
@@ -72,4 +76,5 @@
             <point key="canvasLocation" x="273" y="288"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
