@@ -32,7 +32,7 @@
                                                         <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                                     </label>
-                                                    <label width="1" alignment="left" text="40 min" id="ukE-2s-Ejl">
+                                                    <label width="1" alignment="left" text="7:05 AM" id="ukE-2s-Ejl">
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
                                                     </label>
@@ -41,7 +41,7 @@
                                         </items>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <segue destination="EvA-Rf-vpd" kind="push" id="CoI-Up-KQf"/>
+                                            <segue destination="kdc-Nx-vgh" kind="push" identifier="rowSelect" id="wGz-Ie-ATc"/>
                                         </connections>
                                     </group>
                                     <connections>
@@ -53,6 +53,11 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <button width="1" alignment="left" title="New" id="c9I-Zy-rXo">
+                            <connections>
+                                <segue destination="kdc-Nx-vgh" kind="push" identifier="newPeriod" id="zjk-p5-8rE"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="scheduleTable" destination="BzL-93-Fiw" id="BXX-xP-j7q"/>
@@ -60,21 +65,57 @@
                 </controller>
             </objects>
         </scene>
-        <!--Class Edit-->
-        <scene sceneID="7ff-PP-Gas">
+        <!--Class Create Controller-->
+        <scene sceneID="Yps-AZ-nS8">
             <objects>
-                <controller identifier="Class Edit" id="EvA-Rf-vpd" customClass="ClassEditController" customModule="Schoodule_WatchKit_Extension">
+                <controller id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
                     <items>
-                        <button width="1" alignment="left" title="Edit" id="ylI-hC-j0b">
+                        <label alignment="left" text="Name" id="Fo8-TC-TMe"/>
+                        <button width="1" alignment="left" title="Set Name" id="g8g-K0-Gmi">
                             <connections>
-                                <action selector="editClassName" destination="EvA-Rf-vpd" id="Z66-mO-pNY"/>
+                                <action selector="pickName" destination="kdc-Nx-vgh" id="Rsn-mw-8Fb"/>
                             </connections>
                         </button>
+                        <label alignment="left" text="Start" textAlignment="left" id="zZZ-69-mww"/>
+                        <group width="1" height="46" alignment="left" id="Glv-2X-g1L" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
+                            <items>
+                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qn6-sz-pGj"/>
+                                <label height="46" alignment="left" text=":" id="hbS-oh-ZaR"/>
+                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gci-oz-Gda"/>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="IYJ-1j-Wrv"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="End" textAlignment="left" id="vab-aq-fjT"/>
+                        <group width="1" height="46" alignment="left" id="SOT-Ne-p6k" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
+                            <items>
+                                <picker width="34" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F"/>
+                                <label height="46" alignment="left" text=":" id="vhu-d2-hlL"/>
+                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gUJ-kC-pxN"/>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qWO-vG-TWr"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
+                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o">
+                            <connections>
+                                <action selector="pickColor:" destination="kdc-Nx-vgh" id="AYx-2y-KSB"/>
+                            </connections>
+                        </picker>
+                        <button width="1" alignment="left" title="Save" id="TQd-6A-b8a"/>
                     </items>
+                    <connections>
+                        <outlet property="colorPicker" destination="8Mb-8a-51o" id="ilZ-0Z-GIq"/>
+                        <outlet property="currentName" destination="Fo8-TC-TMe" id="x6M-eF-bCs"/>
+                        <outlet property="hourPicker" destination="qn6-sz-pGj" id="Ssj-Pw-KiU"/>
+                        <outlet property="minutePicker" destination="gci-oz-Gda" id="xMb-54-i6j"/>
+                        <outlet property="noonPicker" destination="IYJ-1j-Wrv" id="QcH-dX-ygE"/>
+                    </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="273" y="288"/>
+            <point key="canvasLocation" x="489" y="-56.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zjk-p5-8rE"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

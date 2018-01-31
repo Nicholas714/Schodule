@@ -21,6 +21,16 @@ class InterfaceController: WKInterfaceController {
     // MARK: WKInterfaceController functions
     
     override func didAppear() {
+        if let currentPeriod = schoodule.classFrom(date: Date()) {
+            scheduleTable.scrollToRow(at: currentPeriod.index)
+            print(currentPeriod.index)
+        } else if let nextPeriod = schoodule.nextClassFrom(date: Date()) {
+            scheduleTable.scrollToRow(at: nextPeriod.index)
+            print(nextPeriod.index)
+        }
+    }
+    
+    override func awake(withContext context: Any?) {
         createTable()
     }
     
@@ -33,8 +43,6 @@ class InterfaceController: WKInterfaceController {
     func createTable() {
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
         
-        let generator = ColorGenerator()
-        
         for (index, _) in schoodule.periods.enumerated() {
             let period = schoodule.periods[index]
             let row = scheduleTable.rowController(at: index) as! ClassRow            
@@ -43,13 +51,12 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setText("\(index + 1)")
             row.nameLabel?.setText("\(period.className)")
             
-            row.seperator?.setColor(generator.currentColor)
-            row.indexLabel?.setTextColor(generator.currentColor)
-            row.nameLabel?.setTextColor(generator.currentColor)
-            
-            generator.nextColor()
+            row.seperator?.setColor(period.color)
+            row.indexLabel?.setTextColor(period.color)
+            row.nameLabel?.setTextColor(period.color)
             
         }
+        
     }
 
 }

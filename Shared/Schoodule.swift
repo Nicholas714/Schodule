@@ -38,22 +38,35 @@ class Schoodule {
         }
     }
     
+    func indexOf(period: Period) -> Int? {
+        return periods.index(of: period)
+    }
+    
     func saveSchedule() {
         
     }
     
     func loadScheudle() {
-        let elct1 = Calendar.current.date(bySetting: .second, value: 0, of: Date())!
-        let elct2 = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(40 * 60))!
-        let stat1 = Calendar.current.date(bySetting: .second, value: 0, of: elct2.addingTimeInterval(10 * 60))!
-        let stat2 = Calendar.current.date(bySetting: .second, value: 0, of: stat1.addingTimeInterval(90 * 60))!
-        
-        let period = Period(className: "electronics", start: elct1, end: elct2)
-        periods.append(period)
-        periods.append(Period(className: "stats", start: stat1, end: stat2))
-        /*for (index, name) in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"].enumerated() {
-            periods.append(Periodz(index: index, className: name, duration: 40))
-        }*/
+        var prev = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(-9600))!
+        for (index, name) in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"].enumerated() {
+            let start = Calendar.current.date(bySetting: .second, value: 0, of: prev)!
+            let end = Calendar.current.date(bySetting: .second, value: 0, of: prev.addingTimeInterval(40.min))!
+            
+            let period = Period(index: index, className: name, color: UIColor.orange, start: start, end: end)
+            periods.append(period)
+            
+            prev = end.addingTimeInterval(5.min)
+        }
+    }
+    
+}
+
+extension Int {
+    
+    var min: TimeInterval {
+        get {
+            return TimeInterval(self * 60)
+        }
     }
     
 }

@@ -41,7 +41,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 template.headerTextProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: [.minute])
                 template.body1TextProvider = CLKSimpleTextProvider(text: period.className)
             } else {
-                if let nextClass = schoodule.nextClassFrom(date: date) {
+                if let nextClass = schoodule.nextClassFrom(date: date), nextClass.index != 0 {
                     template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: [.minute])
                     template.body1TextProvider = CLKSimpleTextProvider(text: "Next Class")
                 } else {
@@ -64,7 +64,11 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
             if let period = schoodule.classFrom(date: date) {
                 template.textProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: .minute)
             } else {
-                template.textProvider = CLKSimpleTextProvider(text: "")
+                if let nextClass = schoodule.nextClassFrom(date: date), nextClass.index != 0 {
+                    template.textProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: .minute)
+                } else {
+                    template.textProvider = CLKSimpleTextProvider(text: "")
+                }
             }
             
             return template
@@ -92,12 +96,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // block time travel for anything after the last schedule entry
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(scheduleEnd?.addingTimeInterval(2)) // adds 1 min to account for last entry that disables timer
+        handler(scheduleEnd?.addingTimeInterval(3)) // adds 1 min to account for last entry that disables timer
     }
     
     // block time travel for anything before the start of the schedule
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(scheduleStart?.addingTimeInterval(-2))
+        handler(scheduleStart?.addingTimeInterval(-3))
     }
     
     
@@ -129,7 +133,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         }
         
         // adds start entry to disable timer when it goes before
-        let padOne = scheduleStart.addingTimeInterval(-1)
+        let padOne = scheduleStart.addingTimeInterval(-2)
         timelineEntires.append(CLKComplicationTimelineEntry(date: padOne, complicationTemplate: complicationTemplate(complication, from: padOne)!))
         
         var i = 0
@@ -144,7 +148,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 
                 // if not the last class, put an entry to tell the time until the next class
                 if scheduleEnd != period.end {
-                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.addingTimeInterval(1), complicationTemplate: complicationTemplate(complication, from: period.end.addingTimeInterval(1))!)
+                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.addingTimeInterval(0.01), complicationTemplate: complicationTemplate(complication, from: period.end.addingTimeInterval(0.01))!)
                     timelineEntires.append(nextClassTimelineEntry)
                 }
                 
@@ -156,7 +160,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         }
         
         // adds final entry to disable timer when it goes past
-        timelineEntires.append(CLKComplicationTimelineEntry(date: scheduleEnd.addingTimeInterval(1), complicationTemplate: complicationTemplate(complication, from: scheduleEnd.addingTimeInterval(1))!))
+        timelineEntires.append(CLKComplicationTimelineEntry(date: scheduleEnd.addingTimeInterval(1), complicationTemplate: complicationTemplate(complication, from: scheduleEnd.addingTimeInterval(2))!))
         
         handler(timelineEntires)
     }
