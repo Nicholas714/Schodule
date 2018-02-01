@@ -17,6 +17,8 @@ class ClassCreateController: WKInterfaceController {
     @IBOutlet var minutePicker: WKInterfacePicker!
     @IBOutlet var noonPicker: WKInterfacePicker!
     
+    var schoodule: Schoodule!
+    
     var calendar: Calendar {
         return Calendar.current
     }
@@ -56,7 +58,10 @@ class ClassCreateController: WKInterfaceController {
         minutePicker.setItems(min)
         colorPicker.setItems(items)
         
-        if let period = context as? Period {
+        if let (schoodule, rowIndex) = context as? (Schoodule, Int) {
+            self.schoodule = schoodule
+            let period = schoodule.periods[rowIndex]
+            
             setTitle("\(period.className)")
             
             let hourIndexStart = calendar.component(.hour, from: period.start) - 1

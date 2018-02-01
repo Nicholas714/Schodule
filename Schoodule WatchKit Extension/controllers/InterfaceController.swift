@@ -31,11 +31,12 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func awake(withContext context: Any?) {
+        schoodule.storage.loadScheudle()
         createTable()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
-        return schoodule.periods[rowIndex]
+        return (schoodule, rowIndex)
     }
  
     // MARK: Functions

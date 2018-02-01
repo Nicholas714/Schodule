@@ -8,22 +8,29 @@
 
 import Foundation
 import UIKit
-import ClockKit
 
 class Schoodule {
-    
+
     var periods = [Period]()
     
-    init() {
-        loadScheudle()
-    }
+    lazy var storage: Storage = {
+        let store = Storage(schoodule: self)
+        store.loadScheudle()
+        return store
+    }()
     
     func removePeriod(at index: Int) {
-        
+        storage.saveSchedule()
     }
     
     func renamePeriod(at index: Int, with newName: Period) {
-        
+        storage.saveSchedule()
+    }
+    
+    func addPeriod(period: Period) {
+        // TODO: find index automatically
+        periods.append(period)
+        storage.saveSchedule()
     }
     
     func classFrom(date: Date) -> Period? {
@@ -40,23 +47,6 @@ class Schoodule {
     
     func indexOf(period: Period) -> Int? {
         return periods.index(of: period)
-    }
-    
-    func saveSchedule() {
-        
-    }
-    
-    func loadScheudle() {
-        var prev = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(-9600))!
-        for (index, name) in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"].enumerated() {
-            let start = Calendar.current.date(bySetting: .second, value: 0, of: prev)!
-            let end = Calendar.current.date(bySetting: .second, value: 0, of: prev.addingTimeInterval(40.min))!
-            
-            let period = Period(index: index, className: name, color: UIColor.orange, start: start, end: end)
-            periods.append(period)
-            
-            prev = end.addingTimeInterval(5.min)
-        }
     }
     
 }
