@@ -184,8 +184,8 @@
 		43988740201FB8D900E5BD60 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				433E09AA201E9AC500902BB8 /* InterfaceController.swift */,
 				433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */,
+				433E09AA201E9AC500902BB8 /* InterfaceController.swift */,
 				43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */,
 			);
 			path = controllers;

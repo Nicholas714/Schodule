@@ -9,81 +9,65 @@
 import WatchKit
 
 class ClassCreateController: WKInterfaceController {
-
-    @IBOutlet var classSeperator: WKInterfaceSeparator!
-    @IBOutlet var currentName: WKInterfaceLabel!
-    @IBOutlet var colorPicker: WKInterfacePicker!
-    @IBOutlet var hourPicker: WKInterfacePicker!
-    @IBOutlet var minutePicker: WKInterfacePicker!
-    @IBOutlet var noonPicker: WKInterfacePicker!
+    
+    // MARK: Properties
     
     var schoodule: Schoodule!
+    var period: Period!
+    var periodStartIndex: Int!
+        
+    // MARK: UI Outlets
+    
+    @IBOutlet var deleteButton: WKInterfaceButton!
     
     var calendar: Calendar {
         return Calendar.current
     }
     
     override func awake(withContext context: Any?) {
-        let items = ["Red", "Green", "Blue", "Orange", "Purple"].map { (name) -> WKPickerItem in
-            let item = WKPickerItem()
-            item.title = name
-            return item
-        }
-        
-        let hours = (1...12).map { (num) -> WKPickerItem in
-            let item = WKPickerItem()
-            item.title = "\(num)"
-            return item
-        }
-        
-        let min = (0...59).map { (num) -> WKPickerItem in
-            let numberFormatter = NumberFormatter()
-            numberFormatter.paddingCharacter = "0"
-            numberFormatter.paddingPosition = .beforePrefix
-            numberFormatter.formatWidth = 2
-            
-            let item = WKPickerItem()
-            item.title = numberFormatter.string(from: NSNumber(value: num))
-            return item
-        }
-        
-        let zones = [calendar.amSymbol, calendar.pmSymbol].map { (noon) -> WKPickerItem in
-            let item = WKPickerItem()
-            item.title = noon
-            return item
-        }
-        
-        noonPicker.setItems(zones)
-        hourPicker.setItems(hours)
-        minutePicker.setItems(min)
-        colorPicker.setItems(items)
-        
-        if let (schoodule, rowIndex) = context as? (Schoodule, Int) {
+        if let (schoodule, period) = context as? (Schoodule, Period) {
             self.schoodule = schoodule
-            let period = schoodule.periods[rowIndex]
+            self.period = period
+            self.periodStartIndex = period.index
             
             setTitle("\(period.className)")
             
-            let hourIndexStart = calendar.component(.hour, from: period.start) - 1
-            let minIndexStart = calendar.component(.minute, from: period.start)
             
-            hourPicker.setSelectedItemIndex(hourIndexStart)
-            minutePicker.setSelectedItemIndex(minIndexStart)
-        }
-    }
-    
-    @IBAction func pickColor(_ value: Int) {
-        let colors: [UIColor] = [.red, .green, .blue, .orange, .purple]
-        classSeperator.setColor(colors[value])
-        currentName.setTextColor(colors[value])
-    }
-    
-    @IBAction func pickName() {
-        presentTextInputController(withSuggestions: ["English", "Math", "History", "Gym"], allowedInputMode: .plain) { (results) in
-            if let array = results, array.count > 0 {
-                self.setTitle(array[0] as? String)
+            // if no name is set, it cannot be deleted so remove delete button
+            if period.index == -1 {
+                periodStartIndex = 0
+                deleteButton.setHidden(true)
             }
         }
     }
+    
+    // MARK: Button Events
+    
+    @IBAction func save() {
+        //schoodule.replace(period: periodStartIndex, with: period)
+        period.index = 0
+        schoodule.add(with: period)
+        popToRootController()
+    }
+    
+    @IBAction func cancel() {
+        popToRootController()
+    }
+    
+    @IBAction func delete() {
+        schoodule.removePeriod(at: periodStartIndex)
+        popToRootController()
+    }
+    
+    @IBAction func pickName() {
+        presentTextInputController(withSuggestions: ["English", "Math", "Science", "History", "Technology", "Gym", "Language", "Lunch", "Afterschool"], allowedInputMode: .plain) { (results) in
+            if let array = results, array.count > 0 {
+                self.setTitle(array[0] as? String)
+                self.period.className = array[0] as! String
+            }
+        }
+    }
+    
+    
     
 }

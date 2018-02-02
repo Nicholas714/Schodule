@@ -14,23 +14,23 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <table alignment="left" pagingScroll="YES" id="BzL-93-Fiw">
+                        <table alignment="left" id="BzL-93-Fiw">
                             <items>
                                 <tableRow identifier="classRow" id="5Zl-nu-DE8" customClass="ClassRow" customModule="Schoodule_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" spacing="4" id="Ybr-pq-Kkh">
                                         <items>
-                                            <label width="13" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
+                                            <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
                                                 <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
+                                                <fontDescription key="font" type="system" pointSize="16"/>
                                             </label>
                                             <separator height="30" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
                                                 <color key="color" red="0.85882352941176465" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </separator>
-                                            <group width="85" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
+                                            <group alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
                                                 <items>
                                                     <label width="1" alignment="left" text="English" id="BPc-qV-4Ke">
                                                         <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
+                                                        <fontDescription key="font" type="system" pointSize="15"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="7:05 AM" id="ukE-2s-Ejl">
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,22 +40,20 @@
                                             </group>
                                         </items>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <segue destination="kdc-Nx-vgh" kind="push" identifier="rowSelect" id="wGz-Ie-ATc"/>
-                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="durationLabel" destination="ukE-2s-Ejl" id="lab-9A-G2S"/>
                                         <outlet property="indexLabel" destination="Ju4-cE-dTb" id="6gP-ki-7aq"/>
                                         <outlet property="nameLabel" destination="BPc-qV-4Ke" id="J6V-u3-LqI"/>
                                         <outlet property="seperator" destination="1M5-fQ-mq7" id="njP-Kr-hQ1"/>
+                                        <segue destination="kdc-Nx-vgh" kind="push" identifier="editSegue" id="y68-AT-Jbf"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
                         <button width="1" alignment="left" title="New" id="c9I-Zy-rXo">
                             <connections>
-                                <segue destination="kdc-Nx-vgh" kind="push" identifier="newPeriod" id="zjk-p5-8rE"/>
+                                <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
                             </connections>
                         </button>
                     </items>
@@ -88,34 +86,39 @@
                         <label alignment="left" text="End" textAlignment="left" id="vab-aq-fjT"/>
                         <group width="1" height="46" alignment="left" id="SOT-Ne-p6k" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
                             <items>
-                                <picker width="34" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F"/>
+                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F"/>
                                 <label height="46" alignment="left" text=":" id="vhu-d2-hlL"/>
                                 <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gUJ-kC-pxN"/>
                                 <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qWO-vG-TWr"/>
                             </items>
                         </group>
                         <label alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
-                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o">
+                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o"/>
+                        <button width="1" alignment="left" title="Save" id="TQd-6A-b8a">
                             <connections>
-                                <action selector="pickColor:" destination="kdc-Nx-vgh" id="AYx-2y-KSB"/>
+                                <action selector="save" destination="kdc-Nx-vgh" id="kLY-xO-fwY"/>
                             </connections>
-                        </picker>
-                        <button width="1" alignment="left" title="Save" id="TQd-6A-b8a"/>
+                        </button>
+                        <button width="1" alignment="left" title="Cancel" id="paw-lv-IWc">
+                            <connections>
+                                <action selector="cancel" destination="kdc-Nx-vgh" id="Nax-m1-guL"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Delete" id="TPb-vB-ZMp">
+                            <connections>
+                                <action selector="delete" destination="kdc-Nx-vgh" id="J8j-OA-0YO"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
-                        <outlet property="colorPicker" destination="8Mb-8a-51o" id="ilZ-0Z-GIq"/>
-                        <outlet property="currentName" destination="Fo8-TC-TMe" id="x6M-eF-bCs"/>
-                        <outlet property="hourPicker" destination="qn6-sz-pGj" id="Ssj-Pw-KiU"/>
-                        <outlet property="minutePicker" destination="gci-oz-Gda" id="xMb-54-i6j"/>
-                        <outlet property="noonPicker" destination="IYJ-1j-Wrv" id="QcH-dX-ygE"/>
+                        <outlet property="deleteButton" destination="TPb-vB-ZMp" id="Ku0-hf-au7"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="489" y="-56.5"/>
+            <point key="canvasLocation" x="553" y="-107"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zjk-p5-8rE"/>
+        <segue reference="y68-AT-Jbf"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

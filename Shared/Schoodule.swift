@@ -14,16 +14,21 @@ class Schoodule {
     var periods = [Period]()
     
     lazy var storage: Storage = {
-        let store = Storage(schoodule: self)
-        store.loadScheudle()
-        return store
+        return Storage(schoodule: self)
     }()
     
-    func removePeriod(at index: Int) {
+    func replace(period index: Int, with newPeriod: Period) {
+        periods[index] = newPeriod
         storage.saveSchedule()
     }
     
-    func renamePeriod(at index: Int, with newName: Period) {
+    func add(with newPeriod: Period) {
+        periods.append(newPeriod)
+        storage.saveSchedule()
+    }
+    
+    func removePeriod(at index: Int) {
+        periods.remove(at: index)
         storage.saveSchedule()
     }
     
@@ -42,20 +47,6 @@ class Schoodule {
     func nextClassFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
             return date < period.start
-        }
-    }
-    
-    func indexOf(period: Period) -> Int? {
-        return periods.index(of: period)
-    }
-    
-}
-
-extension Int {
-    
-    var min: TimeInterval {
-        get {
-            return TimeInterval(self * 60)
         }
     }
     

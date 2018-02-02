@@ -23,20 +23,31 @@ class InterfaceController: WKInterfaceController {
     override func didAppear() {
         if let currentPeriod = schoodule.classFrom(date: Date()) {
             scheduleTable.scrollToRow(at: currentPeriod.index)
-            print(currentPeriod.index)
         } else if let nextPeriod = schoodule.nextClassFrom(date: Date()) {
             scheduleTable.scrollToRow(at: nextPeriod.index)
-            print(nextPeriod.index)
         }
+    }
+    
+    override func willActivate() {
+        createTable()
     }
     
     override func awake(withContext context: Any?) {
         schoodule.storage.loadScheudle()
-        createTable()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
-        return (schoodule, rowIndex)
+        if segueIdentifier == "editSegue" {
+            return (schoodule, schoodule.periods[rowIndex])
+        }
+        return nil
+    }
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "createSegue" {
+            return (schoodule, Period())
+        }
+        return nil
     }
  
     // MARK: Functions
@@ -45,7 +56,7 @@ class InterfaceController: WKInterfaceController {
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
         
         for (index, _) in schoodule.periods.enumerated() {
-            let period = schoodule.periods[index]
+            var period = schoodule.periods[index]
             let row = scheduleTable.rowController(at: index) as! ClassRow            
             
             row.durationLabel?.setText("\(period.startString)")

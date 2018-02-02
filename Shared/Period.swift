@@ -11,7 +11,7 @@ import UIKit
 
 typealias Hallway = Period
 
-class Period: Equatable, Codable {
+struct Period: Equatable, Codable {
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -21,22 +21,30 @@ class Period: Equatable, Codable {
         return dateFormatter
     }()
     
-    let index: Int
-    let className: String
-    let start: Date
-    let end: Date
+    var index: Int
+    var className: String
+    var start: Date
+    var end: Date
     
-    let red: CGFloat
-    let green: CGFloat
-    let blue: CGFloat
+    var red: CGFloat!
+    var green: CGFloat!
+    var blue: CGFloat!
     
     var color: UIColor {
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        get {
+            return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        }
+        set {
+            let comp = newValue.cgColor.components!
+            self.red = comp[0]
+            self.green = comp[1]
+            self.blue = comp[2]
+        }
     }
     
     var startString: String {
-        get {
-            return dateFormatter.string(from: start)
+        mutating get {
+            return self.dateFormatter.string(from: start)
         }
     }
     
@@ -45,11 +53,11 @@ class Period: Equatable, Codable {
         self.className = className
         self.start = start
         self.end = end
-        
-        let comp = color.cgColor.components!
-        self.red = comp[0]
-        self.green = comp[1]
-        self.blue = comp[2]
+        self.color = color
+    }
+    
+    init() {
+        self.init(index: -1, className: "Class", color: UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), start: Date(), end: Date()) 
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {
