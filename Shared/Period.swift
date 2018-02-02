@@ -25,19 +25,11 @@ struct Period: Equatable, Codable, Comparable {
     var start: Date
     var end: Date
     
-    var red: CGFloat!
-    var green: CGFloat!
-    var blue: CGFloat!
+    var themeIndex: Int
     
     var color: UIColor {
         get {
-            return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
-        }
-        set {
-            let comp = newValue.cgColor.components!
-            self.red = comp[0]
-            self.green = comp[1]
-            self.blue = comp[2]
+            return Array(UIColor.themes.values)[themeIndex]
         }
     }
     
@@ -47,15 +39,11 @@ struct Period: Equatable, Codable, Comparable {
         }
     }
     
-    init(className: String, color: UIColor, start: Date, end: Date) {
+    init(className: String, themeIndex: Int, start: Date, end: Date) {
         self.className = className
+        self.themeIndex = themeIndex
         self.start = start
         self.end = end
-        self.color = color
-    }
-    
-    init() {
-        self.init(className: "Class", color: UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), start: Date(), end: Date())
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {

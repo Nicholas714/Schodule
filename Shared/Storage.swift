@@ -22,7 +22,7 @@ class Storage {
     }()
     
     func saveSchedule() {
-        
+        /*
         let encoder = JSONEncoder()
 
         do {
@@ -34,11 +34,11 @@ class Storage {
             FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
         } catch {
             fatalError("Error loading periods.")
-        }
+        }*/
     }
     
     func loadScheudle() {
-
+        /*
         if !FileManager.default.fileExists(atPath: url.path) {
             return
         }
@@ -53,6 +53,7 @@ class Storage {
                 fatalError("Error decoding periods.")
             }
         }
+        */
         
     }
 }

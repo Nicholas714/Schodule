@@ -93,7 +93,11 @@
                             </items>
                         </group>
                         <label alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
-                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o"/>
+                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o">
+                            <connections>
+                                <action selector="pickColor:" destination="kdc-Nx-vgh" id="brg-a2-koP"/>
+                            </connections>
+                        </picker>
                         <button width="1" alignment="left" title="Save" id="TQd-6A-b8a">
                             <connections>
                                 <action selector="save" destination="kdc-Nx-vgh" id="kLY-xO-fwY"/>
@@ -111,11 +115,18 @@
                         </button>
                     </items>
                     <connections>
+                        <outlet property="amEndPicker" destination="qWO-vG-TWr" id="Eg5-wC-KXM"/>
+                        <outlet property="amStartPicker" destination="IYJ-1j-Wrv" id="H4y-In-VUS"/>
+                        <outlet property="colorPicker" destination="8Mb-8a-51o" id="Jcx-Ev-lNW"/>
                         <outlet property="deleteButton" destination="TPb-vB-ZMp" id="Ku0-hf-au7"/>
+                        <outlet property="hourEndPicker" destination="SLb-Q0-J6F" id="Gzf-z8-bBL"/>
+                        <outlet property="hourStartPicker" destination="qn6-sz-pGj" id="wzF-68-awH"/>
+                        <outlet property="minuteEndPicker" destination="gUJ-kC-pxN" id="WJa-03-VFg"/>
+                        <outlet property="minuteStartPicker" destination="gci-oz-Gda" id="eEf-0m-H9Q"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="553" y="-107"/>
+            <point key="canvasLocation" x="553" y="-107.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

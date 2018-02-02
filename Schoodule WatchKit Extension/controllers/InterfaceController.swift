@@ -45,7 +45,7 @@ class InterfaceController: WKInterfaceController {
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "createSegue" {
-            return (schoodule, Period())
+            return schoodule
         }
         return nil
     }

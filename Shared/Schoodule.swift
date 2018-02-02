@@ -23,9 +23,9 @@ class Schoodule {
         return Storage(schoodule: self)
     }()
     
-    func replace(old oldPeriod: Period, with newPeriod: Period) {
-        if let oldIndex = unsortedPeriods.index(of: oldPeriod) {
-            unsortedPeriods.remove(at: oldIndex)
+    func replace(old oldPeriod: Int?, with newPeriod: Period) {
+        if let old = oldPeriod {
+            unsortedPeriods.remove(at: old)
         }
         unsortedPeriods.append(newPeriod)
         
@@ -36,11 +36,6 @@ class Schoodule {
         if let oldIndex = unsortedPeriods.index(of: period) {
             unsortedPeriods.remove(at: oldIndex)
         }
-        storage.saveSchedule()
-    }
-    
-    func addPeriod(period: Period) {
-        unsortedPeriods.append(period)
         storage.saveSchedule()
     }
     
