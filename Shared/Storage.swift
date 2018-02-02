@@ -47,7 +47,7 @@ class Storage {
             let decoder = JSONDecoder()
             do {
                 for period in try decoder.decode([Period].self, from: data) {
-                    schoodule.periods.append(period)
+                    schoodule.unsortedPeriods.append(period)
                 }
             } catch {
                 fatalError("Error decoding periods.")

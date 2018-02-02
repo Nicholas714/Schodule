@@ -41,7 +41,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 template.headerTextProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: [.minute])
                 template.body1TextProvider = CLKSimpleTextProvider(text: period.className)
             } else {
-                if let nextClass = schoodule.nextClassFrom(date: date), nextClass.index != 0 {
+                if let nextClass = schoodule.nextClassFrom(date: date), schoodule.index(of: nextClass) != 0 {
                     template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: [.minute])
                     template.body1TextProvider = CLKSimpleTextProvider(text: "Next Class")
                 } else {
@@ -64,7 +64,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
             if let period = schoodule.classFrom(date: date) {
                 template.textProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: .minute)
             } else {
-                if let nextClass = schoodule.nextClassFrom(date: date), nextClass.index != 0 {
+                if let nextClass = schoodule.nextClassFrom(date: date), schoodule.index(of: nextClass) != 0 {
                     template.textProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: .minute)
                 } else {
                     template.textProvider = CLKSimpleTextProvider(text: "")

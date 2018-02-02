@@ -28,13 +28,13 @@ class ClassCreateController: WKInterfaceController {
         if let (schoodule, period) = context as? (Schoodule, Period) {
             self.schoodule = schoodule
             self.period = period
-            self.periodStartIndex = period.index
             
             setTitle("\(period.className)")
             
             
-            // if no name is set, it cannot be deleted so remove delete button
-            if period.index == -1 {
+            // if it is not in list, this is not an actual period
+            if schoodule.index(of: period) == nil {
+                // TODO: set period to whatever is inside the pickers by default
                 periodStartIndex = 0
                 deleteButton.setHidden(true)
             }
@@ -45,8 +45,7 @@ class ClassCreateController: WKInterfaceController {
     
     @IBAction func save() {
         //schoodule.replace(period: periodStartIndex, with: period)
-        period.index = 0
-        schoodule.add(with: period)
+        schoodule.addPeriod(period: period)
         popToRootController()
     }
     
@@ -55,7 +54,7 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func delete() {
-        schoodule.removePeriod(at: periodStartIndex)
+        schoodule.removePeriod(period)
         popToRootController()
     }
     

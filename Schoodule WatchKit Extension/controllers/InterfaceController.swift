@@ -21,10 +21,10 @@ class InterfaceController: WKInterfaceController {
     // MARK: WKInterfaceController functions
     
     override func didAppear() {
-        if let currentPeriod = schoodule.classFrom(date: Date()) {
-            scheduleTable.scrollToRow(at: currentPeriod.index)
-        } else if let nextPeriod = schoodule.nextClassFrom(date: Date()) {
-            scheduleTable.scrollToRow(at: nextPeriod.index)
+        if let currentPeriod = schoodule.classFrom(date: Date()), let index = schoodule.index(of: currentPeriod) {
+            scheduleTable.scrollToRow(at: index)
+        } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
+            scheduleTable.scrollToRow(at: index)
         }
     }
     
