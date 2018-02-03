@@ -46,12 +46,24 @@ struct Period: Equatable, Codable, Comparable {
         self.end = end
     }
     
+    func date(component: Calendar.Component, dateType type: DateType) -> Int {
+        if component == .hour {
+            return Calendar.current.component(component, from: (type == .start) ? start : end)
+        }
+        return Calendar.current.component(component, from: (type == .start) ? start : end)
+    }
+    
     static func ==(lhs: Period, rhs: Period) -> Bool {
         return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {
         return lhs.start < rhs.start
+    }
+
+    enum DateType {
+        case start
+        case end
     }
     
 }

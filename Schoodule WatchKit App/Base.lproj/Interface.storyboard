@@ -77,19 +77,43 @@
                         <label alignment="left" text="Start" textAlignment="left" id="zZZ-69-mww"/>
                         <group width="1" height="46" alignment="left" id="Glv-2X-g1L" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
                             <items>
-                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qn6-sz-pGj"/>
+                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qn6-sz-pGj">
+                                    <connections>
+                                        <action selector="pickStartHour:" destination="kdc-Nx-vgh" id="Ztv-62-wHF"/>
+                                    </connections>
+                                </picker>
                                 <label height="46" alignment="left" text=":" id="hbS-oh-ZaR"/>
-                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gci-oz-Gda"/>
-                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="IYJ-1j-Wrv"/>
+                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gci-oz-Gda">
+                                    <connections>
+                                        <action selector="pickStartMinute:" destination="kdc-Nx-vgh" id="zbe-ZQ-1ke"/>
+                                    </connections>
+                                </picker>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="IYJ-1j-Wrv">
+                                    <connections>
+                                        <action selector="pickStartAMPM:" destination="kdc-Nx-vgh" id="4cc-DB-YkR"/>
+                                    </connections>
+                                </picker>
                             </items>
                         </group>
                         <label alignment="left" text="End" textAlignment="left" id="vab-aq-fjT"/>
                         <group width="1" height="46" alignment="left" id="SOT-Ne-p6k" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
                             <items>
-                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F"/>
+                                <picker width="35" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F">
+                                    <connections>
+                                        <action selector="pickEndHour:" destination="kdc-Nx-vgh" id="4x3-fR-7Vb"/>
+                                    </connections>
+                                </picker>
                                 <label height="46" alignment="left" text=":" id="vhu-d2-hlL"/>
-                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gUJ-kC-pxN"/>
-                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qWO-vG-TWr"/>
+                                <picker width="43" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="gUJ-kC-pxN">
+                                    <connections>
+                                        <action selector="pickEndMinute:" destination="kdc-Nx-vgh" id="3RU-xv-vrf"/>
+                                    </connections>
+                                </picker>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qWO-vG-TWr">
+                                    <connections>
+                                        <action selector="pickEndAMPM:" destination="kdc-Nx-vgh" id="D6X-Sm-Qe6"/>
+                                    </connections>
+                                </picker>
                             </items>
                         </group>
                         <label alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>

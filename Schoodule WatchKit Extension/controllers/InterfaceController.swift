@@ -21,11 +21,20 @@ class InterfaceController: WKInterfaceController {
     // MARK: WKInterfaceController functions
     
     override func didAppear() {
+        
+        if let index = schoodule.pendingTableScrollIndex {
+            scheduleTable.scrollToRow(at: index)
+            schoodule.pendingTableScrollIndex = nil
+            return
+        }
+        
+        
         if let currentPeriod = schoodule.classFrom(date: Date()), let index = schoodule.index(of: currentPeriod) {
             scheduleTable.scrollToRow(at: index)
         } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
             scheduleTable.scrollToRow(at: index)
         }
+        
     }
     
     override func willActivate() {
@@ -55,8 +64,7 @@ class InterfaceController: WKInterfaceController {
     func createTable() {
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
         
-        for (index, _) in schoodule.periods.enumerated() {
-            var period = schoodule.periods[index]
+        for (index, var period) in schoodule.periods.enumerated() {
             let row = scheduleTable.rowController(at: index) as! ClassRow            
             
             row.durationLabel?.setText("\(period.startString)")
