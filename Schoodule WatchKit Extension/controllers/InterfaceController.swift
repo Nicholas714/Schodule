@@ -9,8 +9,28 @@
 import WatchKit
 import ClockKit
 import Foundation
+import WatchConnectivity
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    
+    var session: WCSession!
+    
+    @IBAction func sendData() {
+        session.sendMessageData(schoodule.storage.encodePeriods()!, replyHandler: { (data) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        schoodule.storage.decodePeriods(from: messageData)
+        print("recieved")
+        createTable()
+    }
     
     @IBOutlet var scheduleTable: WKInterfaceTable!
     
@@ -28,21 +48,29 @@ class InterfaceController: WKInterfaceController {
             return
         }
         
-        
         if let currentPeriod = schoodule.classFrom(date: Date()), let index = schoodule.index(of: currentPeriod) {
             scheduleTable.scrollToRow(at: index)
         } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
             scheduleTable.scrollToRow(at: index)
         }
         
+        createTable()
     }
     
     override func willActivate() {
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session.delegate = self
+            session.activate()
+            print("activated.")
+        }
+        
         createTable()
     }
     
     override func awake(withContext context: Any?) {
-        schoodule.storage.loadScheudle()
+        // grab from phone
+        createTable()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
@@ -78,6 +106,6 @@ class InterfaceController: WKInterfaceController {
         }
         
     }
-
+    
 }
 

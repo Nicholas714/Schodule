@@ -32,7 +32,6 @@ class ClassCreateController: WKInterfaceController {
     
     var isStartAM = false
     var isEndAM = false
-    var isAMPMLocked = true
     
     var calendar: Calendar {
         return Calendar.current
@@ -76,40 +75,31 @@ class ClassCreateController: WKInterfaceController {
         
         isStartAM = period.date(component: .hour, dateType: .start) < 12
         isEndAM = period.date(component: .hour, dateType: .end) < 12
-        
-        populateColorPicker()
-        populateHourPickers()
-        populateMinutePickers()
-        
     }
     
     override func didAppear() {
         populateAMPMPickers()
-        
-        isAMPMLocked = false
+        populateHourPickers()
+        populateMinutePickers()
+        populateColorPicker()
     }
     
     // MARK: Button Actions
     
     @IBAction func save() {
         schoodule.replace(old: periodStartIndex, with: period)
-        
         schoodule.pendingTableScrollIndex = schoodule.index(of: period)
-            
         popToRootController()
     }
     
     @IBAction func cancel() {
         schoodule.pendingTableScrollIndex = schoodule.index(of: period)
-        
         popToRootController()
     }
     
     @IBAction func delete() {
-        schoodule.removePeriod(period)
-
+        schoodule.removePeriod(index: periodStartIndex)
         schoodule.pendingTableScrollIndex = schoodule.index(of: period)
-
         popToRootController()
     }
     
@@ -153,10 +143,6 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func pickStartAMPM(_ value: Int) {
-        if isAMPMLocked {
-            return
-        }
-        
         if value == 0 { // am
             isStartAM = true
             period.start = period.start.addingTimeInterval(-43200) // subtract 12 hours
@@ -167,10 +153,6 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func pickEndAMPM(_ value: Int) {
-        if isAMPMLocked {
-            return
-        }
-        
         if value == 0 { // am
             isEndAM = true
             period.end = period.end.addingTimeInterval(-43200) // subtract 12 hours
@@ -180,18 +162,6 @@ class ClassCreateController: WKInterfaceController {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // MARK: Picker populators
 
@@ -207,17 +177,18 @@ class ClassCreateController: WKInterfaceController {
     }
     
     func populateHourPickers() {
-        if period.date(component: .hour, dateType: .start) > 12 {
-            interval(of: (1...12), for: hourStartPicker, with: period.date(component: .hour, dateType: .start) - 13) // 13 to make up for index
-        } else {
-            interval(of: (1...12), for: hourStartPicker, with: period.date(component: .hour, dateType: .start) - 1)
+        func setHour(for picker: WKInterfacePicker, dateType: DateType) {
+            if period.date(component: .hour, dateType: dateType) > 12 {
+                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) - 13)
+            } else if period.date(component: .hour, dateType: dateType) == 0 {
+                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) + 11)
+            } else {
+                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) - 1)
+            }
         }
         
-        if period.date(component: .hour, dateType: .end) > 12 {
-            interval(of: (1...12), for: hourEndPicker, with: period.date(component: .hour, dateType: .end) - 13)
-        } else {
-            interval(of: (1...12), for: hourEndPicker, with: period.date(component: .hour, dateType: .end) - 1)
-        }
+        setHour(for: hourStartPicker, dateType: .start)
+        setHour(for: hourEndPicker, dateType: .end)
     }
     
     func populateMinutePickers() {
@@ -238,7 +209,6 @@ class ClassCreateController: WKInterfaceController {
                 pickerItem.title = type
                 return pickerItem
             }))
-            
         }
         
         setAM(for: amStartPicker)

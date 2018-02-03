@@ -60,10 +60,10 @@ struct Period: Equatable, Codable, Comparable {
     static func <(lhs: Period, rhs: Period) -> Bool {
         return lhs.start < rhs.start
     }
-
-    enum DateType {
-        case start
-        case end
-    }
     
+}
+
+enum DateType {
+    case start
+    case end
 }

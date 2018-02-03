@@ -7,12 +7,62 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WCSessionDelegate {
+    
+    let schoodule = Schoodule(fake: true)
+    var session: WCSession!
+    
+    @IBOutlet var encodeLabel: UILabel!
+        
+    @IBAction func sendSchedule(_ sender: UIButton) {
+        print("sending")
+        session.sendMessageData(schoodule.storage.encodePeriods()!, replyHandler: { (data) in
+            print("reply ios")
+        }, errorHandler: { (error) in
+            print("error ios")
+        })
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        schoodule.storage.decodePeriods(from: messageData)
+        schoodule.storage.saveSchedule()
+        print("recieved")
+        
+        encodeLabel.text = schoodule.periods.map({ (period) -> String in
+            return "\(period.className), "
+        }).description
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        schoodule.storage.loadScheudle()
+        
+        encodeLabel.text = schoodule.periods.map({ (period) -> String in
+            return "\(period.className), "
+        }).description
+        
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

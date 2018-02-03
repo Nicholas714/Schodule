@@ -26,16 +26,18 @@ class Schoodule {
     }()
     
     // TODO: remove
-    init() {
-        var prev = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(-9600))!
-        for name in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"] {
-            let start = Calendar.current.date(bySetting: .second, value: 0, of: prev)!
-            let end = Calendar.current.date(bySetting: .second, value: 0, of: prev.addingTimeInterval(40 * 60))!
-
-            let period = Period(className: name, themeIndex: 0, start: start, end: end)
-            unsortedPeriods.append(period)
-
-            prev = end.addingTimeInterval(5 * 60)
+    init(fake: Bool = false) {
+        if fake {
+            var prev = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(-9600))!
+            for name in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"] {
+                let start = Calendar.current.date(bySetting: .second, value: 0, of: prev)!
+                let end = Calendar.current.date(bySetting: .second, value: 0, of: prev.addingTimeInterval(40 * 60))!
+                
+                let period = Period(className: name, themeIndex: 0, start: start, end: end)
+                unsortedPeriods.append(period)
+                
+                prev = end.addingTimeInterval(5 * 60)
+            }
         }
     }
     
@@ -45,15 +47,12 @@ class Schoodule {
         }
         
         unsortedPeriods.append(newPeriod)
-        
-        storage.saveSchedule()
     }
     
-    func removePeriod(_ period: Period) {
-        if let oldIndex = unsortedPeriods.index(of: period) {
-            unsortedPeriods.remove(at: oldIndex)
+    func removePeriod(index: Int?) {
+        if let i = index {
+            unsortedPeriods.remove(at: i)
         }
-        storage.saveSchedule()
     }
     
     func index(of period: Period) -> Int? {
