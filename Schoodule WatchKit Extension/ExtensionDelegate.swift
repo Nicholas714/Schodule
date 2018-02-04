@@ -56,8 +56,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 let complicationServer = CLKComplicationServer.sharedInstance()
                 
-                for complication in complicationServer.activeComplications! {
-                    complicationServer.reloadTimeline(for: complication)
+                if let complications = complicationServer.activeComplications {
+                    for complication in complications {
+                        complicationServer.reloadTimeline(for: complication)
+                    }
                 }
                 
                 // call in another 2 hours

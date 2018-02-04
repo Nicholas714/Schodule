@@ -16,9 +16,7 @@ class Schoodule {
     
     var periods: [Period] {
         get {
-            return unsortedPeriods.map({ (period) -> Period in
-                return period.normalized()
-            }).sorted()
+            return unsortedPeriods.sorted()
         }
     }
     
@@ -46,19 +44,22 @@ class Schoodule {
     }
     
     func index(of period: Period) -> Int? {
+        if periods.isEmpty || !periods.contains(period) {
+            return nil
+        }
         return periods.index(of: period)
     }
     
     func classFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date <= period.end && date >= period.start
-        }?.normalized()
+            return date <= period.end.date && date >= period.start.date
+        }
     }
     
     func nextClassFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date < period.start
-        }?.normalized()
+            return date < period.start.date
+        }
     }
     
 }

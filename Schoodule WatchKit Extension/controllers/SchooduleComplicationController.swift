@@ -17,12 +17,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // shorthand for first period time of the day
     var scheduleStart: Date? {
-        return schoodule.periods.first?.start.addingTimeInterval(-600) // 10 minutes to begining next class
+        return schoodule.periods.first?.start.date.addingTimeInterval(-600) // 10 minutes to begining next class
     }
     
     // shorthand for last period time of the day
     var scheduleEnd: Date? {
-        return schoodule.periods.last?.end
+        return schoodule.periods.last?.end.date
     }
 
     // blank template
@@ -55,19 +55,19 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
             }
             
             if let period = schoodule.classFrom(date: date) {
-                template.headerTextProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: [.minute])
+                template.headerTextProvider = CLKRelativeDateTextProvider(date: period.end.date, style: .natural, units: [.minute])
                 template.body1TextProvider = CLKSimpleTextProvider(text: period.className)
             } else {
                 if let nextClass = schoodule.nextClassFrom(date: date) {
                     if schoodule.index(of: nextClass) == 0 {
-                        template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: [.minute])
+                        template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute])
                         template.body1TextProvider = CLKSimpleTextProvider(text: "First Class")
                     } else {
                         if schoodule.index(of: nextClass) == schoodule.unsortedPeriods.count - 1 {
-                            template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: [.minute])
+                            template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute])
                             template.body1TextProvider = CLKSimpleTextProvider(text: "Last Class")
                         } else {
-                            template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: [.minute])
+                            template.headerTextProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute])
                             template.body1TextProvider = CLKSimpleTextProvider(text: "Next Class")
                         }
                         
@@ -90,10 +90,10 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
             }
             
             if let period = schoodule.classFrom(date: date) {
-                template.textProvider = CLKRelativeDateTextProvider(date: period.end, style: .natural, units: .minute)
+                template.textProvider = CLKRelativeDateTextProvider(date: period.end.date, style: .natural, units: .minute)
             } else {
                 if let nextClass = schoodule.nextClassFrom(date: date), schoodule.index(of: nextClass) != 0 {
-                    template.textProvider = CLKRelativeDateTextProvider(date: nextClass.start, style: .natural, units: .minute)
+                    template.textProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: .minute)
                 } else {
                     template.textProvider = CLKSimpleTextProvider(text: "")
                 }
@@ -173,15 +173,15 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         
             print("period date is \(period.start) and today is \(Date())")
             
-            if let template = complicationTemplate(complication, from: period.start) {
+            if let template = complicationTemplate(complication, from: period.start.date) {
                 let timelineEntry: CLKComplicationTimelineEntry
                     
-                timelineEntry = CLKComplicationTimelineEntry(date: period.start, complicationTemplate: template)
+                timelineEntry = CLKComplicationTimelineEntry(date: period.start.date, complicationTemplate: template)
                 timelineEntires.append(timelineEntry)
                     
                 // if not the last class, put an entry to tell the time until the next class
-                if scheduleEnd != period.end {
-                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.addingTimeInterval(0.01), complicationTemplate: complicationTemplate(complication, from: period.end.addingTimeInterval(0.01))!)
+                if scheduleEnd != period.end.date {
+                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.date.addingTimeInterval(0.01), complicationTemplate: complicationTemplate(complication, from: period.end.date.addingTimeInterval(0.01))!)
                         timelineEntires.append(nextClassTimelineEntry)
                 }
             } else {

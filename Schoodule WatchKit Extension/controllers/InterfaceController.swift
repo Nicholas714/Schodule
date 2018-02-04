@@ -76,10 +76,10 @@ class InterfaceController: WKInterfaceController {
     func createTable() {
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
         
-        for (index, var period) in schoodule.periods.enumerated() {
+        for (index, period) in schoodule.periods.enumerated() {
             let row = scheduleTable.rowController(at: index) as! ClassRow            
 
-            row.durationLabel?.setText("\(period.startString)")
+            row.durationLabel?.setText("\(period.start.string)")
             row.indexLabel?.setText("\(index + 1)")
             row.nameLabel?.setText("\(period.className)")
             

@@ -30,12 +30,11 @@ class ClassCreateController: WKInterfaceController {
     // buttons
     @IBOutlet var deleteButton: WKInterfaceButton!
     
-    var isStartAM = false
-    var isEndAM = false
-    
     var calendar: Calendar {
         return Calendar.current
     }
+
+    var isLock = true
     
     func interval(of range: CountableClosedRange<Int>, for picker: WKInterfacePicker, with start: Int? = nil, formatter: NumberFormatter? = nil) {
         picker.setItems(range.map({ (number) -> WKPickerItem in
@@ -61,9 +60,7 @@ class ClassCreateController: WKInterfaceController {
         
         if let (schoodule, period) = context as? (Schoodule, Period) { // edit passes in period
             self.schoodule = schoodule
-            self.period = period.normalized()
-            
-            setTitle("\(period.className)")
+            self.period = period
         
             periodStartIndex = schoodule.unsortedPeriods.index(of: period)
             
@@ -71,11 +68,10 @@ class ClassCreateController: WKInterfaceController {
             self.schoodule = schoodule
             deleteButton.setHidden(true)
 
-            period = Period(className: "Class", themeIndex: Int(arc4random_uniform(UInt32(UIColor.themes.count))), start: Date(), end: Date().addingTimeInterval(40 * 60))
+            period = Period(className: "Class", themeIndex: Int(arc4random_uniform(UInt32(UIColor.themes.count))), start: Time(from: Date()), end: Time(from: Date().addingTimeInterval(40 * 60)))
         }
         
-        isStartAM = period.date(component: .hour, dateType: .start) < 12
-        isEndAM = period.date(component: .hour, dateType: .end) < 12
+        setTitle("\(period.className)")
     }
     
     override func willActivate() {
@@ -84,6 +80,7 @@ class ClassCreateController: WKInterfaceController {
             self.populateHourPickers()
             self.populateAMPMPickers()
             self.populateColorPicker()
+            self.isLock = false
         }
     }
     
@@ -118,52 +115,84 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func pickColor(_ value: Int) {
+        if isLock {
+            return
+        }
+        
         period.themeIndex = value
     }
 
     @IBAction func pickStartHour(_ value: Int) {
-        if isStartAM {
-            period.start = calendar.replace(componenet: .hour, with: value + 1, for: period.start)
-        } else {
-            period.start = calendar.replace(componenet: .hour, with: value + 13, for: period.start)
+        if isLock {
+            return
         }
+        
+        if value == 11 {
+            if period.start.isAM {
+                period.start.hour = 0
+            } else {
+                period.start.hour = 12
+            }
+        } else {
+            if period.start.isAM {
+                period.start.hour = value + 1
+            } else {
+                period.start.hour = value + 13
+            }
+        }
+        
     }
     
     @IBAction func pickEndHour(_ value: Int) {
-        if isEndAM {
-            period.end = calendar.replace(componenet: .hour, with: value + 1, for: period.end)
+        if isLock {
+            return
+        }
+        
+        if value == 11 {
+            if period.end.isAM {
+                period.end.hour = 0
+            } else {
+                period.end.hour = 12
+            }
         } else {
-            period.end = calendar.replace(componenet: .hour, with: value + 13, for: period.end)
+            if period.end.isAM {
+                period.end.hour = value + 1
+            } else {
+                period.end.hour = value + 13
+            }
         }
     }
     
     @IBAction func pickStartMinute(_ value: Int) {
-        period.start = calendar.replace(componenet: .minute, with: value, for: period.start)
+        if isLock {
+            return
+        }
+        
+        period.start.minute = value
     }
     
     @IBAction func pickEndMinute(_ value: Int) {
-        period.end = calendar.replace(componenet: .minute, with: value, for: period.end)
+        if isLock {
+            return
+        }
+        
+        period.end.minute = value
     }
     
     @IBAction func pickStartAMPM(_ value: Int) {
-        if value == 0 { // am
-            isStartAM = true
-            period.start = period.start.addingTimeInterval(-43200) // subtract 12 hours
-        } else { // pm
-            isStartAM = false
-            period.start = period.start.addingTimeInterval(43200)
+        if isLock {
+            return
         }
+    
+        period.start.isAM = value == 0
     }
     
     @IBAction func pickEndAMPM(_ value: Int) {
-        if value == 0 { // am
-            isEndAM = true
-            period.end = period.end.addingTimeInterval(-43200) // subtract 12 hours
-        } else { // pm
-            isEndAM = false
-            period.end = period.end.addingTimeInterval(43200) // add 12 hours
+        if isLock {
+            return
         }
         
+        period.end.isAM = value == 0
     }
     
     // MARK: Picker populators
@@ -180,18 +209,26 @@ class ClassCreateController: WKInterfaceController {
     }
     
     func populateHourPickers() {
-        func setHour(for picker: WKInterfacePicker, dateType: DateType) {
-            if period.date(component: .hour, dateType: dateType) > 12 {
-                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) - 13)
-            } else if period.date(component: .hour, dateType: dateType) == 0 {
-                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) + 11)
-            } else {
-                interval(of: (1...12), for: picker, with: period.date(component: .hour, dateType: dateType) - 1)
+        func indexHour(for hour: Int) -> Int {
+            switch hour {
+            case 1...11: // 1-11 (1AM-11AM), subtract 1 to bring from hour to index scale
+                return hour - 1
+            case 13...23: // 13-23 (1PM-11PM), subtract 12 to bring it to 0-11 scale
+                return hour - 13
+            case 0: // 0 (12AM) or 12 (12PM), make it go to max index (11)
+                fallthrough
+            case 12:
+                return 11
+            default:
+                return 0
             }
         }
         
-        setHour(for: hourStartPicker, dateType: .start)
-        setHour(for: hourEndPicker, dateType: .end)
+        interval(of: (1...12), for: hourStartPicker)
+        interval(of: (1...12), for: hourEndPicker)
+        
+        hourStartPicker.setSelectedItemIndex(indexHour(for: period.start.hour))
+        hourEndPicker.setSelectedItemIndex(indexHour(for: period.end.hour))
     }
     
     func populateMinutePickers() {
@@ -200,8 +237,8 @@ class ClassCreateController: WKInterfaceController {
         numberFormatter.paddingPosition = .beforePrefix
         numberFormatter.formatWidth = 2
         
-        interval(of: (0...59), for: minuteStartPicker, with: period.date(component: .minute, dateType: .start), formatter: numberFormatter)
-        interval(of: (0...59), for: minuteEndPicker, with: period.date(component: .minute, dateType: .end), formatter: numberFormatter)
+        interval(of: (0...59), for: minuteStartPicker, with: period.start.minute, formatter: numberFormatter)
+        interval(of: (0...59), for: minuteEndPicker, with: period.end.minute, formatter: numberFormatter)
     }
     
     func populateAMPMPickers() {
@@ -217,17 +254,8 @@ class ClassCreateController: WKInterfaceController {
         setAM(for: amStartPicker)
         setAM(for: amEndPicker)
         
-        if isStartAM {
-            amStartPicker.setSelectedItemIndex(0)
-        } else {
-            amStartPicker.setSelectedItemIndex(1)
-        }
-        
-        if isEndAM {
-            amEndPicker.setSelectedItemIndex(0)
-        } else {
-            amEndPicker.setSelectedItemIndex(1)
-        }
+        amStartPicker.setSelectedItemIndex((!period.start.isAM).hashValue)
+        amEndPicker.setSelectedItemIndex((!period.end.isAM).hashValue)
     }
     
 }
