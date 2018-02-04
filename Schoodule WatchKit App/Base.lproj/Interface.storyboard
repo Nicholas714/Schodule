@@ -56,11 +56,6 @@
                                 <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Send Data" id="DU5-pw-aUN">
-                            <connections>
-                                <action selector="sendData" destination="AgC-eL-Hgc" id="Q8c-fz-awF"/>
-                            </connections>
-                        </button>
                     </items>
                     <connections>
                         <outlet property="scheduleTable" destination="BzL-93-Fiw" id="BXX-xP-j7q"/>

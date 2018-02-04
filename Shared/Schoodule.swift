@@ -11,6 +11,7 @@ import UIKit
 
 class Schoodule {
 
+    var hasPendingSend = false
     var unsortedPeriods = [Period]()
     
     var periods: [Period] {
@@ -47,11 +48,14 @@ class Schoodule {
         }
         
         unsortedPeriods.append(newPeriod)
+        
+        hasPendingSend = true
     }
     
     func removePeriod(index: Int?) {
         if let i = index {
             unsortedPeriods.remove(at: i)
+            hasPendingSend = true
         }
     }
     

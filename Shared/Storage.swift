@@ -13,41 +13,7 @@ class Storage {
     
     var schoodule: Schoodule
     
-    var defaults: UserDefaults {
-        get {
-            return UserDefaults()
-        }
-    }
-    
-    init(schoodule: Schoodule) {
-        self.schoodule = schoodule
-    }
-    
-    func saveSchedule() {
-        
-        if let encoded = encodePeriods() {
-            defaults.setValue(encoded, forKey: "periods")
-        }
-
-    }
-    
-    func loadScheudle() {
-        schoodule.unsortedPeriods.removeAll()
-        
-        if let data = defaults.value(forKey: "periods") as? Data {
-            let decoder = JSONDecoder()
-            
-            do {
-                for period in try decoder.decode([Period].self, from: data) {
-                    schoodule.unsortedPeriods.append(period)
-                }
-            } catch {
-                fatalError("Error decoding periods.")
-            }
-        }
-    }
-    
-    func encodePeriods() -> Data? {
+    var encoded: Data {
         let encoder = JSONEncoder()
         
         do {
@@ -55,6 +21,10 @@ class Storage {
         } catch {
             fatalError("Error loading periods.")
         }
+    }
+    
+    init(schoodule: Schoodule) {
+        self.schoodule = schoodule
     }
     
     func decodePeriods(from data: Data) {
