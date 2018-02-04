@@ -53,11 +53,22 @@ struct Period: Equatable, Codable, Comparable {
         return Calendar.current.component(component, from: (type == .start) ? start : end)
     }
     
+    func normalized() -> Period {
+        let newStart = Calendar.current.date(bySettingHour: Calendar.current.component(.hour, from: start), minute: Calendar.current.component(.minute, from: start), second: 0, of: Date())!
+        let newEnd = Calendar.current.date(bySettingHour: Calendar.current.component(.hour, from: end), minute:Calendar.current.component(.minute, from: end), second: 0, of: Date())!
+        
+        return Period(className: className, themeIndex: themeIndex, start: newStart, end: newEnd)
+    }
+    
     static func ==(lhs: Period, rhs: Period) -> Bool {
+        let lhs = lhs.normalized()
+        let rhs = rhs.normalized()
         return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {
+        let lhs = lhs.normalized()
+        let rhs = rhs.normalized()
         return lhs.start < rhs.start
     }
     

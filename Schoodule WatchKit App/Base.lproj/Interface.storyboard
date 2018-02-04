@@ -20,16 +20,16 @@
                                     <group key="rootItem" width="1" alignment="left" spacing="4" id="Ybr-pq-Kkh">
                                         <items>
                                             <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
-                                                <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="font" type="system" pointSize="16"/>
                                             </label>
                                             <separator height="30" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
-                                                <color key="color" red="0.85882352941176465" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </separator>
                                             <group alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
                                                 <items>
                                                     <label width="1" alignment="left" text="English" id="BPc-qV-4Ke">
-                                                        <color key="textColor" red="0.85882352939999995" green="0.18039215689999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="font" type="system" pointSize="15"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="7:05 AM" id="ukE-2s-Ejl">
@@ -54,6 +54,11 @@
                         <button width="1" alignment="left" title="New" id="c9I-Zy-rXo">
                             <connections>
                                 <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Retry" id="K0V-Z1-UHN">
+                            <connections>
+                                <action selector="retrySessionConnect" destination="AgC-eL-Hgc" id="jpf-m8-7DA"/>
                             </connections>
                         </button>
                     </items>

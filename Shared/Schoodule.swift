@@ -16,7 +16,9 @@ class Schoodule {
     
     var periods: [Period] {
         get {
-            return unsortedPeriods.sorted()
+            return unsortedPeriods.map({ (period) -> Period in
+                return period.normalized()
+            }).sorted()
         }
     }
     
@@ -25,22 +27,6 @@ class Schoodule {
     lazy var storage: Storage = {
         return Storage(schoodule: self)
     }()
-    
-    // TODO: remove
-    init(fake: Bool = false) {
-        if fake {
-            var prev = Calendar.current.date(bySetting: .second, value: 0, of: Date().addingTimeInterval(-9600))!
-            for name in ["Economics", "Electronics", "Statistics", "Lunch", "Calculus", "Comp Sci", "Literature", "Gym", "Physics"] {
-                let start = Calendar.current.date(bySetting: .second, value: 0, of: prev)!
-                let end = Calendar.current.date(bySetting: .second, value: 0, of: prev.addingTimeInterval(40 * 60))!
-                
-                let period = Period(className: name, themeIndex: 0, start: start, end: end)
-                unsortedPeriods.append(period)
-                
-                prev = end.addingTimeInterval(5 * 60)
-            }
-        }
-    }
     
     func replace(old oldPeriod: Int?, with newPeriod: Period) {
         if let old = oldPeriod {
@@ -66,13 +52,13 @@ class Schoodule {
     func classFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
             return date <= period.end && date >= period.start
-        }
+        }?.normalized()
     }
     
     func nextClassFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
             return date < period.start
-        }
+        }?.normalized()
     }
     
 }

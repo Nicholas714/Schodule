@@ -7,11 +7,37 @@
 //
 
 import WatchKit
+import WatchConnectivity
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
 
+    var session: WCSession? = nil
+    var schoodule: Schoodule! = nil
+    
+    func createNextRefresh() {
+        let nextUpdate = Date().addingTimeInterval(30)
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextUpdate, userInfo: nil) { (error) in }
+    }
+    
+    func createTable() {
+        (WKExtension.shared().rootInterfaceController as? InterfaceController)?.createTable()
+    }
+    
+    func startSession() {
+        if WCSession.isSupported() && session == nil {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
+    }
+    
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        schoodule = Schoodule()
+        
+        startSession()
+        
+        // start refresh cycle
+        createNextRefresh()
     }
 
     func applicationDidBecomeActive() {
@@ -24,26 +50,45 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
-        // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
         for task in backgroundTasks {
-            // Use a switch statement to check the task type
             switch task {
+            // called to update timeline
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                // Be sure to complete the background task once you’re done.
+                let complicationServer = CLKComplicationServer.sharedInstance()
+                
+                for complication in complicationServer.activeComplications! {
+                    complicationServer.reloadTimeline(for: complication)
+                }
+                
+                // call in another 2 hours
+                createNextRefresh()
+                
                 backgroundTask.setTaskCompletedWithSnapshot(false)
-            case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                // Snapshot tasks have a unique completion call, make sure to set your expiration date
-                snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
-            case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
-                // Be sure to complete the connectivity task once you’re done.
-                connectivityTask.setTaskCompletedWithSnapshot(false)
-            case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-                // Be sure to complete the URL session task once you’re done.
-                urlSessionTask.setTaskCompletedWithSnapshot(false)
             default:
-                // make sure to complete unhandled task types
+                // called by system
                 task.setTaskCompletedWithSnapshot(false)
             }
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        self.schoodule.storage.decodePeriods(from: applicationContext["periods"] as! Data)
+        
+        DispatchQueue.main.async {
+            self.createTable()
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        session.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
+            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+            
+            DispatchQueue.main.async {
+                self.createTable()
+            }
+            
+        }) { (error) in
+            print(error)
         }
     }
 

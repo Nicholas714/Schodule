@@ -61,9 +61,10 @@ class ClassCreateController: WKInterfaceController {
         
         if let (schoodule, period) = context as? (Schoodule, Period) { // edit passes in period
             self.schoodule = schoodule
-            self.period = period
+            self.period = period.normalized()
             
             setTitle("\(period.className)")
+        
             periodStartIndex = schoodule.unsortedPeriods.index(of: period)
             
         } else if let schoodule = context as? Schoodule { // create has no period
@@ -77,11 +78,13 @@ class ClassCreateController: WKInterfaceController {
         isEndAM = period.date(component: .hour, dateType: .end) < 12
     }
     
-    override func didAppear() {
-        populateAMPMPickers()
-        populateHourPickers()
-        populateMinutePickers()
-        populateColorPicker()
+    override func willActivate() {
+        DispatchQueue.main.async {
+            self.populateMinutePickers()
+            self.populateHourPickers()
+            self.populateAMPMPickers()
+            self.populateColorPicker()
+        }
     }
     
     // MARK: Button Actions
@@ -148,7 +151,7 @@ class ClassCreateController: WKInterfaceController {
             period.start = period.start.addingTimeInterval(-43200) // subtract 12 hours
         } else { // pm
             isStartAM = false
-            period.start = period.start.addingTimeInterval(43200) // add 12 hours
+            period.start = period.start.addingTimeInterval(43200)
         }
     }
     

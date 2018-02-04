@@ -15,20 +15,26 @@ class InterfaceController: WKInterfaceController {
   
     @IBOutlet var scheduleTable: WKInterfaceTable!
     
+    @IBAction func retrySessionConnect() {
+        (WKExtension.shared().delegate as? ExtensionDelegate)?.startSession()
+    }
     // MARK: Properties
     
-    var session: WCSession?
+    var session: WCSession? {
+        return (WKExtension.shared().delegate as? ExtensionDelegate)?.session
+    }
     
     var transfer: [String: Data] {
         return ["periods": schoodule.storage.encoded]
     }
     
-    let schoodule = Schoodule()
-    
+    var schoodule: Schoodule {
+        return (WKExtension.shared().delegate as! ExtensionDelegate).schoodule
+    }
+        
     // MARK: WKInterfaceController functions
     
     override func didAppear() {
-        
         if let index = schoodule.pendingTableScrollIndex {
             scheduleTable.scrollToRow(at: index)
             schoodule.pendingTableScrollIndex = nil
@@ -40,23 +46,15 @@ class InterfaceController: WKInterfaceController {
         } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
             scheduleTable.scrollToRow(at: index)
         }
-
-        createTable()
+        
     }
     
     override func willActivate() {
-        createTable()
-        
         // only when table has changed
         if schoodule.hasPendingSend {
             sendUpdatedContents()
+            createTable()
         }
-    }
-    
-    override func awake(withContext context: Any?) {
-        // grab from phone
-        startSession()
-        createTable()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
@@ -85,44 +83,20 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setText("\(index + 1)")
             row.nameLabel?.setText("\(period.className)")
             
-            row.seperator?.setColor(period.color)
-            row.indexLabel?.setTextColor(period.color)
-            row.nameLabel?.setTextColor(period.color)
+            let color = Array(UIColor.themes.values)[index]
+            row.seperator?.setColor(color)
+            row.indexLabel?.setTextColor(color)
+            row.nameLabel?.setTextColor(color)
             
+            print("\(index) - \(color.cgColor.components!.description)")
         }
         
     }
     
-    func startSession() {
-        if WCSession.isSupported() {
-            session = WCSession.default
-            session?.delegate = self
-            session?.activate()
-        }
-    }
-    
     func sendUpdatedContents() {
         session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
+            self.schoodule.hasPendingSend = false
             print("rec2")
-        }) { (error) in
-            print(error)
-        }
-    }
-    
-}
-
-extension InterfaceController: WCSessionDelegate {
-    
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        self.schoodule.storage.decodePeriods(from: applicationContext["periods"] as! Data)
-        self.createTable()
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        session.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
-            print("rec1")
-            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-            self.createTable()
         }) { (error) in
             print(error)
         }

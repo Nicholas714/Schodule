@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     var session: WCSession?
     
-    let schoodule = Schoodule(fake: true)
+    var schoodule = Schoodule()
     
     var defaults: UserDefaults {
         get {
@@ -32,9 +32,11 @@ class ViewController: UIViewController {
         
         loadScheudle()
         
-        encodeLabel.text = schoodule.periods.map({ (period) -> String in
-            return "\(period.className), "
-        }).description
+        DispatchQueue.main.async {
+            self.encodeLabel.text = self.schoodule.periods.map({ (period) -> String in
+                return "\(period.className)"
+            }).description
+        }
         
         startSession()
     }
@@ -98,9 +100,11 @@ extension ViewController: WCSessionDelegate {
             schoodule.storage.decodePeriods(from: data)
             saveSchedule()
             
-            encodeLabel.text = schoodule.periods.map({ (period) -> String in
-                return "\(period.className), "
-            }).description
+            DispatchQueue.main.async {
+                self.encodeLabel.text = self.schoodule.periods.map({ (period) -> String in
+                    return "\(period.className), "
+                }).description
+            }
             
             replyHandler(transfer)
         }
