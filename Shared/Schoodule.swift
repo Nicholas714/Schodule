@@ -20,6 +20,10 @@ class Schoodule {
         }
     }
     
+    var lastPeriod: Period? {
+        return periods.last
+    }
+    
     var pendingTableScrollIndex: Int?
     
     lazy var storage: Storage = {

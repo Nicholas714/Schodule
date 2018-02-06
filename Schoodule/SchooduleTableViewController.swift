@@ -1,15 +1,17 @@
 //
-//  ViewController.swift
+//  SchooduleTableViewController.swift
 //  Schoodule
 //
-//  Created by Nicholas Grana on 1/28/18.
+//  Created by Nicholas Grana on 2/4/18.
 //  Copyright © 2018 Nicholas Grana. All rights reserved.
 //
 
 import UIKit
 import WatchConnectivity
 
-class ViewController: UIViewController {
+class SchooduleTableViewController: UITableViewController {
+
+    // MARK: WatchConnectivity Support
     
     var session: WCSession?
     
@@ -21,28 +23,20 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet var encodeLabel: UILabel!
-
     var transfer: [String: Data] {
         return ["periods": schoodule.storage.encoded]
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        loadScheudle()
-        
-        DispatchQueue.main.async {
-            self.encodeLabel.text = self.schoodule.periods.map({ (period) -> String in
-                return "\(period.className)"
-            }).description
+    func startSession() {
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
         }
-        
-        startSession()
     }
-
+    
     func saveSchedule() {
-       defaults.setValue(schoodule.storage.encoded, forKey: "periods")
+        defaults.setValue(schoodule.storage.encoded, forKey: "periods")
     }
     
     func loadScheudle() {
@@ -60,14 +54,6 @@ class ViewController: UIViewController {
             }
         }
     }
-
-    func startSession() {
-        if WCSession.isSupported() {
-            session = WCSession.default
-            session?.delegate = self
-            session?.activate()
-        }
-    }
     
     // TODO: call when objects are edited
     func tryUpdate() {
@@ -77,9 +63,48 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loadScheudle()
+        startSession()
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return schoodule.periods.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusePeriod", for: indexPath)
+
+        cell.textLabel?.text = "\(schoodule.periods[indexPath.row].className)"
+        
+        return cell
+    }
+
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            schoodule.removePeriod(index: indexPath.row)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+
 }
 
-extension ViewController: WCSessionDelegate {
+extension SchooduleTableViewController: WCSessionDelegate {
     
     func sessionDidBecomeInactive(_ session: WCSession) {
         
@@ -100,13 +125,11 @@ extension ViewController: WCSessionDelegate {
             schoodule.storage.decodePeriods(from: data)
             saveSchedule()
             
-            DispatchQueue.main.async {
-                self.encodeLabel.text = self.schoodule.periods.map({ (period) -> String in
-                    return "\(period.className), "
-                }).description
-            }
-            
             replyHandler(transfer)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

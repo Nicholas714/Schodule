@@ -40,13 +40,6 @@ class InterfaceController: WKInterfaceController {
             schoodule.pendingTableScrollIndex = nil
             return
         }
-        
-        if let currentPeriod = schoodule.classFrom(date: Date()), let index = schoodule.index(of: currentPeriod) {
-            scheduleTable.scrollToRow(at: index)
-        } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
-            scheduleTable.scrollToRow(at: index)
-        }
-        
     }
     
     override func willActivate() {
@@ -76,6 +69,8 @@ class InterfaceController: WKInterfaceController {
     func createTable() {
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
         
+        let currentPeriod = schoodule.classFrom(date: Date())
+        
         for (index, period) in schoodule.periods.enumerated() {
             let row = scheduleTable.rowController(at: index) as! ClassRow            
 
@@ -83,12 +78,22 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setText("\(index + 1)")
             row.nameLabel?.setText("\(period.className)")
             
-            let color = Array(UIColor.themes.values)[index]
+            let color = Array(UIColor.themes.values)[index % 10]
             row.seperator?.setColor(color)
             row.indexLabel?.setTextColor(color)
             row.nameLabel?.setTextColor(color)
             
-            print("\(index) - \(color.cgColor.components!.description)")
+            if currentPeriod == period {
+                row.group.setBackgroundColor(.white)
+                row.group.setAlpha(0.90)
+            }
+            
+        }
+
+        if let currentPeriod = self.schoodule.classFrom(date: Date()), let index = self.schoodule.index(of: currentPeriod) {
+            self.scheduleTable.scrollToRow(at: index)
+        } else if let nextPeriod = self.schoodule.nextClassFrom(date: Date()), let index = self.schoodule.index(of: nextPeriod) {
+            self.scheduleTable.scrollToRow(at: index)
         }
         
     }

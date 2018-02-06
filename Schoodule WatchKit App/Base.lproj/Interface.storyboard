@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14087.3" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14028"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -20,7 +20,7 @@
                                     <group key="rootItem" width="1" alignment="left" spacing="4" id="Ybr-pq-Kkh">
                                         <items>
                                             <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="font" type="system" pointSize="16"/>
                                             </label>
                                             <separator height="30" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
@@ -43,6 +43,7 @@
                                     </group>
                                     <connections>
                                         <outlet property="durationLabel" destination="ukE-2s-Ejl" id="lab-9A-G2S"/>
+                                        <outlet property="group" destination="Ybr-pq-Kkh" id="Rcu-uf-JJU"/>
                                         <outlet property="indexLabel" destination="Ju4-cE-dTb" id="6gP-ki-7aq"/>
                                         <outlet property="nameLabel" destination="BPc-qV-4Ke" id="J6V-u3-LqI"/>
                                         <outlet property="seperator" destination="1M5-fQ-mq7" id="njP-Kr-hQ1"/>
@@ -68,10 +69,10 @@
                 </controller>
             </objects>
         </scene>
-        <!--Class Create Controller-->
+        <!--Cancel-->
         <scene sceneID="Yps-AZ-nS8">
             <objects>
-                <controller id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
+                <controller title="Cancel" hidesWhenLoading="NO" id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Name" id="Fo8-TC-TMe"/>
                         <button width="1" alignment="left" title="Set Name" id="g8g-K0-Gmi">
@@ -132,11 +133,6 @@
                                 <action selector="save" destination="kdc-Nx-vgh" id="kLY-xO-fwY"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Cancel" id="paw-lv-IWc">
-                            <connections>
-                                <action selector="cancel" destination="kdc-Nx-vgh" id="Nax-m1-guL"/>
-                            </connections>
-                        </button>
                         <button width="1" alignment="left" title="Delete" id="TPb-vB-ZMp">
                             <connections>
                                 <action selector="delete" destination="kdc-Nx-vgh" id="J8j-OA-0YO"/>
@@ -152,6 +148,7 @@
                         <outlet property="hourStartPicker" destination="qn6-sz-pGj" id="wzF-68-awH"/>
                         <outlet property="minuteEndPicker" destination="gUJ-kC-pxN" id="WJa-03-VFg"/>
                         <outlet property="minuteStartPicker" destination="gci-oz-Gda" id="eEf-0m-H9Q"/>
+                        <outlet property="nameLabel" destination="Fo8-TC-TMe" id="nYm-XV-jIn"/>
                     </connections>
                 </controller>
             </objects>
