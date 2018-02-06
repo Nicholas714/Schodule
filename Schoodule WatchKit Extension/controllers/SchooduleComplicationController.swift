@@ -46,6 +46,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     func complicationTemplate(_ complication: CLKComplication, from date: Date = Date(), blank: Bool = false) -> CLKComplicationTemplate? {
         switch complication.family {
         case .modularLarge:
+            
             let template = CLKComplicationTemplateModularLargeStandardBody()
             
             if blank {
@@ -170,9 +171,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         
         
         for period in schoodule.periods where i < limit {
-        
-            print("period date is \(period.start) and today is \(Date())")
-            
+                
             if let template = complicationTemplate(complication, from: period.start.date) {
                 let timelineEntry: CLKComplicationTimelineEntry
                     

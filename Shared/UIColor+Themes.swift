@@ -13,7 +13,7 @@ extension UIColor {
     static let themes = [
     "Red": UIColor(red: 202/255.0, green: 63/255.0, blue: 46/255.0, alpha: 1.0),
     "Orange": UIColor(red: 0.960668, green: 0.306238, blue: 0.0611271, alpha: 1.0),
-    "Yellow": UIColor(red: 0.823098, green: 0.870379, blue: 0.105293, alpha: 1.0),
+    "Yellow": UIColor(red: 216/255.0, green: 195/255.0, blue: 64/255.0, alpha: 1.0),
     "Green": UIColor(red: 122/255.0, green: 192/255.0, blue: 93/255.0, alpha: 1.0),
     "Blue": UIColor(red: 0.326728, green: 0.525373, blue: 0.971058, alpha: 1.0),
     "Teal": UIColor(red: 0.15546, green: 0.828514, blue: 0.798872, alpha: 1.0),

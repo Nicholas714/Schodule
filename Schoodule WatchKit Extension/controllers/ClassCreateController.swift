@@ -99,9 +99,13 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func delete() {
-        schoodule.removePeriod(index: periodStartIndex)
-        schoodule.pendingTableScrollIndex = schoodule.index(of: period)
-        popToRootController()
+        let deleteConfirm = WKAlertAction(title: "Delete", style: .destructive) {
+            self.schoodule.removePeriod(index: self.periodStartIndex)
+            self.schoodule.pendingTableScrollIndex = self.schoodule.index(of: self.period)
+            self.popToRootController()
+        }
+        self.presentAlert(withTitle: "Delete \"\(period.className)\"", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [deleteConfirm])
+        
     }
     
     // MARK: Picker Actions

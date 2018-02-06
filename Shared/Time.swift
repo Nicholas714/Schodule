@@ -50,7 +50,6 @@ struct Time: Codable, Comparable {
     }
     
     var date: Date {
-        print("hr \(hour) \(minute)")
         return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
     }
     

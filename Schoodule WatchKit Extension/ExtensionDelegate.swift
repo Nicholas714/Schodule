@@ -82,6 +82,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if error != nil || activationState == .notActivated {
+            (WKExtension.shared().rootInterfaceController as? InterfaceController)?.showError()
+            return
+        }
+        
         session.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             

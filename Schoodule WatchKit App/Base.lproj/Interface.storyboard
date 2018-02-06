@@ -14,7 +14,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <table alignment="left" id="BzL-93-Fiw">
+                        <table alignment="left" hidden="YES" id="BzL-93-Fiw">
                             <items>
                                 <tableRow identifier="classRow" id="5Zl-nu-DE8" customClass="ClassRow" customModule="Schoodule_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" spacing="4" id="Ybr-pq-Kkh">
@@ -52,27 +52,31 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <button width="1" alignment="left" title="New" id="c9I-Zy-rXo">
+                        <label width="136" alignment="left" text="Connecting to iPhone..." textAlignment="center" numberOfLines="3" id="qLg-EJ-chf"/>
+                        <button width="1" alignment="left" hidden="YES" title="New" id="c9I-Zy-rXo">
                             <connections>
                                 <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Retry" id="K0V-Z1-UHN">
+                        <button width="1" alignment="left" hidden="YES" title="Retry" id="K0V-Z1-UHN">
                             <connections>
                                 <action selector="retrySessionConnect" destination="AgC-eL-Hgc" id="jpf-m8-7DA"/>
                             </connections>
                         </button>
                     </items>
                     <connections>
+                        <outlet property="connectingLabel" destination="qLg-EJ-chf" id="zSm-KH-gDZ"/>
+                        <outlet property="newButton" destination="c9I-Zy-rXo" id="egm-Th-3EV"/>
+                        <outlet property="retryButton" destination="K0V-Z1-UHN" id="f8b-Mv-IFz"/>
                         <outlet property="scheduleTable" destination="BzL-93-Fiw" id="BXX-xP-j7q"/>
                     </connections>
                 </controller>
             </objects>
         </scene>
-        <!--Cancel-->
+        <!--Class Create Controller-->
         <scene sceneID="Yps-AZ-nS8">
             <objects>
-                <controller title="Cancel" hidesWhenLoading="NO" id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
+                <controller hidesWhenLoading="NO" id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Name" id="Fo8-TC-TMe"/>
                         <button width="1" alignment="left" title="Set Name" id="g8g-K0-Gmi">

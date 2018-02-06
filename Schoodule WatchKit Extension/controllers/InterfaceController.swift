@@ -15,6 +15,10 @@ class InterfaceController: WKInterfaceController {
   
     @IBOutlet var scheduleTable: WKInterfaceTable!
     
+    @IBOutlet var connectingLabel: WKInterfaceLabel!
+    @IBOutlet var newButton: WKInterfaceButton!
+    @IBOutlet var retryButton: WKInterfaceButton!
+    
     @IBAction func retrySessionConnect() {
         (WKExtension.shared().delegate as? ExtensionDelegate)?.startSession()
     }
@@ -48,6 +52,15 @@ class InterfaceController: WKInterfaceController {
             sendUpdatedContents()
             createTable()
         }
+        
+        let currentPeriod = schoodule.classFrom(date: Date())
+        for (index, period) in schoodule.periods.enumerated() {
+            let row = scheduleTable.rowController(at: index) as! ClassRow
+            
+            if currentPeriod == period {
+                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.18))
+            }
+        }
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
@@ -67,10 +80,10 @@ class InterfaceController: WKInterfaceController {
     // MARK: Functions
     
     func createTable() {
+        showInfo()
+        
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
-        
-        let currentPeriod = schoodule.classFrom(date: Date())
-        
+                
         for (index, period) in schoodule.periods.enumerated() {
             let row = scheduleTable.rowController(at: index) as! ClassRow            
 
@@ -83,11 +96,6 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setTextColor(color)
             row.nameLabel?.setTextColor(color)
             
-            if currentPeriod == period {
-                row.group.setBackgroundColor(.white)
-                row.group.setAlpha(0.90)
-            }
-            
         }
 
         if let currentPeriod = self.schoodule.classFrom(date: Date()), let index = self.schoodule.index(of: currentPeriod) {
@@ -98,10 +106,26 @@ class InterfaceController: WKInterfaceController {
         
     }
     
+    func showInfo() {
+        if schoodule.periods.isEmpty {
+            connectingLabel.setHidden(false)
+            connectingLabel.setText("Tap to add a new class.")
+        } else {
+            connectingLabel.setHidden(true)
+        }
+        
+        scheduleTable.setHidden(false)
+        newButton.setHidden(false)
+    }
+    
+    func showError() {
+        connectingLabel.setText("Failed to connect.")
+        retryButton.setHidden(false)
+    }
+    
     func sendUpdatedContents() {
         session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
             self.schoodule.hasPendingSend = false
-            print("rec2")
         }) { (error) in
             print(error)
         }

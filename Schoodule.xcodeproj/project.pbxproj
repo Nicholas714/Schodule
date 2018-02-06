@@ -32,6 +32,9 @@
 		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
+		43EEBAA420292A250029750A /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA320292A250029750A /* FoldingCell.swift */; };
+		43EEBAA620292A490029750A /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA520292A490029750A /* PeriodCell.swift */; };
+		43EEBAA820292A620029750A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,9 @@
 		43D3F71B2027DE310095FDC2 /* SchooduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleTableViewController.swift; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
+		43EEBAA320292A250029750A /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
+		43EEBAA520292A490029750A /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
+		43EEBAA720292A620029750A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,9 @@
 				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
 				433E0993201E9AC500902BB8 /* Info.plist */,
 				43D3F71B2027DE310095FDC2 /* SchooduleTableViewController.swift */,
+				43EEBAA320292A250029750A /* FoldingCell.swift */,
+				43EEBAA520292A490029750A /* PeriodCell.swift */,
+				43EEBAA720292A620029750A /* ViewController.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -335,13 +344,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EEBAA820292A620029750A /* ViewController.swift in Sources */,
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				43D3F71C2027DE310095FDC2 /* SchooduleTableViewController.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
+				43EEBAA620292A490029750A /* PeriodCell.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
 				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,
+				43EEBAA420292A250029750A /* FoldingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +523,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
