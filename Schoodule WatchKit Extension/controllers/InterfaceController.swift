@@ -121,12 +121,15 @@ class InterfaceController: WKInterfaceController {
     func showError() {
         connectingLabel.setText("Failed to connect.")
         retryButton.setHidden(false)
+        newButton.setHidden(true)
+        scheduleTable.setHidden(true)
     }
     
     func sendUpdatedContents() {
         session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
             self.schoodule.hasPendingSend = false
         }) { (error) in
+            self.showError()
             print(error)
         }
     }

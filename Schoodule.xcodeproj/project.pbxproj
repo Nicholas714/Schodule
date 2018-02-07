@@ -35,6 +35,8 @@
 		43EEBAA420292A250029750A /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA320292A250029750A /* FoldingCell.swift */; };
 		43EEBAA620292A490029750A /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA520292A490029750A /* PeriodCell.swift */; };
 		43EEBAA820292A620029750A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* ViewController.swift */; };
+		43EEBAAA202A7A840029750A /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA9202A7A840029750A /* EditView.swift */; };
+		43EEBAAC202A7AD00029750A /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAAB202A7AD00029750A /* TimePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		43EEBAA320292A250029750A /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		43EEBAA520292A490029750A /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
 		43EEBAA720292A620029750A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		43EEBAA9202A7A840029750A /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		43EEBAAB202A7AD00029750A /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,8 @@
 				43EEBAA320292A250029750A /* FoldingCell.swift */,
 				43EEBAA520292A490029750A /* PeriodCell.swift */,
 				43EEBAA720292A620029750A /* ViewController.swift */,
+				43EEBAA9202A7A840029750A /* EditView.swift */,
+				43EEBAAB202A7AD00029750A /* TimePicker.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -344,8 +350,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EEBAAC202A7AD00029750A /* TimePicker.swift in Sources */,
 				43EEBAA820292A620029750A /* ViewController.swift in Sources */,
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
+				43EEBAAA202A7A840029750A /* EditView.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				43D3F71C2027DE310095FDC2 /* SchooduleTableViewController.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,

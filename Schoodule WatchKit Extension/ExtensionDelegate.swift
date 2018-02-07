@@ -15,7 +15,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     var schoodule: Schoodule! = nil
     
     func createNextRefresh() {
-        let nextUpdate = Date().addingTimeInterval(30)
+        let nextUpdate = Date().addingTimeInterval(1200)
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextUpdate, userInfo: nil) { (error) in }
     }
     
@@ -83,6 +83,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if error != nil || activationState == .notActivated {
+            print("error")
             (WKExtension.shared().rootInterfaceController as? InterfaceController)?.showError()
             return
         }

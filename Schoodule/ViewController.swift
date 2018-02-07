@@ -12,7 +12,7 @@ import WatchConnectivity
 fileprivate struct C {
     struct CellHeight {
         static let close: CGFloat = 90 // equal or greater foregroundView height
-        static let open: CGFloat = 320 // equal or greater containerView height
+        static let open: CGFloat = 520 // equal or greater containerView height
     }
 }
 
@@ -61,7 +61,7 @@ class MainTableViewController: UITableViewController {
     }
     
     let kCloseCellHeight: CGFloat = 90
-    let kOpenCellHeight: CGFloat = 320
+    let kOpenCellHeight: CGFloat = 520
     var kRowsCount: Int {
         return MainTableViewController.schoodule.periods.count
     }
@@ -73,12 +73,6 @@ class MainTableViewController: UITableViewController {
         loadScheudle()
         startSession()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.sendSubview(toBack: blurEffectView)
-        
         setup()
     }
     
@@ -86,7 +80,7 @@ class MainTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
+        tableView.backgroundColor = UIColor.black // UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
     }
 }
 
@@ -111,14 +105,7 @@ extension MainTableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FoldingCell
-        
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
-        return cell
-    }
+
     
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeights[indexPath.row]
@@ -179,5 +166,7 @@ extension MainTableViewController: WCSessionDelegate {
             }
         }
     }
+    
+    
     
 }

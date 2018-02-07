@@ -14,18 +14,19 @@ class PeriodCell: FoldingCell {
     @IBOutlet var indexLabel: UILabel!
     @IBOutlet var className: UILabel!
     @IBOutlet var timeLabel: UILabel!
-    
+        
     override func awakeFromNib() {
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
-    
+        
         let period = MainTableViewController.schoodule.periods[PeriodCell.index]
         
         indexLabel.text = "\(PeriodCell.index + 1)"
         className.text = period.className
-        timeLabel.text = period.start.string
+        timeLabel.text = "\(period.start.string) - \(period.end.string)"
         
         foregroundView.backgroundColor = Array(UIColor.themes.values)[PeriodCell.index % 10]
+        
         containerView.backgroundColor = Array(UIColor.themes.values)[PeriodCell.index % 10]
         PeriodCell.index += 1
         
