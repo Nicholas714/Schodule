@@ -21,6 +21,8 @@
 		433E09B1201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E09B0201E9AC500902BB8 /* Assets.xcassets */; };
 		433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */; };
 		433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C9201E9E3100902BB8 /* ClassRow.swift */; };
+		433E62162031032300083811 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6214203102FD00083811 /* Crashlytics.framework */; };
+		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
@@ -101,6 +103,8 @@
 		433E09B2201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleComplicationController.swift; sourceTree = "<group>"; };
 		433E09C9201E9E3100902BB8 /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
+		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433E62162031032300083811 /* Crashlytics.framework in Frameworks */,
+				433E62172031032500083811 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,7 @@
 				433E099A201E9AC500902BB8 /* Schoodule WatchKit App */,
 				433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */,
 				433E0985201E9AC500902BB8 /* Products */,
+				433E62152031032300083811 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +202,8 @@
 		433E09C0201E9B0200902BB8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				433E6214203102FD00083811 /* Crashlytics.framework */,
+				433E6213203102FD00083811 /* Fabric.framework */,
 				43988741201FB8F700E5BD60 /* Period.swift */,
 				43988744201FBC7800E5BD60 /* Schoodule.swift */,
 				434DC2ED202292EB008A0074 /* Storage.swift */,
@@ -203,6 +212,13 @@
 				43B43D732030906E007A809C /* SchooduleManager.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		433E62152031032300083811 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		43988740201FB8D900E5BD60 /* controllers */ = {
@@ -226,6 +242,7 @@
 				433E0981201E9AC500902BB8 /* Frameworks */,
 				433E0982201E9AC500902BB8 /* Resources */,
 				433E09BC201E9AC500902BB8 /* Embed Watch Content */,
+				433E6212203102C800083811 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -345,6 +362,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		433E6212203102C800083811 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 33f39a6a487f5298b92b41a499bff42e8a479ff5 0d70fe19a0136b8e5bbbcef7fbbe6d0124d8197f5c7c4e3dd2d53284b2775a61";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		433E0980201E9AC500902BB8 /* Sources */ = {
@@ -628,6 +661,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
@@ -644,6 +681,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
