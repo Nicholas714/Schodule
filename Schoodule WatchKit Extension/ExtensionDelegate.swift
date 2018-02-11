@@ -26,8 +26,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextUpdate, userInfo: nil) { (error) in }
     }
     
-    func createTable() {
-        (WKExtension.shared().rootInterfaceController as? InterfaceController)?.createTable()
+    func applicationDidEnterBackground() {
+        manager.updateComplications()
     }
     
     func applicationDidFinishLaunching() {
@@ -70,7 +70,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             return
         }
         
-        self.root?.sendRefreshRequest()
+        manager.sendRefreshRequest(replyHandler: { (period) in
+            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+        })
     }
     
 }

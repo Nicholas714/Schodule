@@ -21,6 +21,16 @@ extension SchooduleManager {
         }
     }
     
+    func sendClearRequest(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        session?.sendMessage(["message" : "clear"], replyHandler: replyHandler, errorHandler: errorHandler)
+    }
     
+    func sendRefreshRequest(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        session?.sendMessage(["message": "refreshRequest"], replyHandler: replyHandler, errorHandler: errorHandler)
+    }
+    
+    func sendUpdatedContents(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: replyHandler, errorHandler: errorHandler)
+    }
     
 }

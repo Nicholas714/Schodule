@@ -11,7 +11,7 @@ import WatchConnectivity
 
 fileprivate struct C {
     struct CellHeight {
-        static let close: CGFloat = 90 // equal or greater foregroundView height
+        static let close: CGFloat = 105 // equal or greater foregroundView height
         static let open: CGFloat = 320 // equal or greater containerView height
     }
 }
@@ -60,11 +60,12 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    let kCloseCellHeight: CGFloat = 90
+    let kCloseCellHeight: CGFloat = 105
     let kOpenCellHeight: CGFloat = 320
     var kRowsCount: Int {
         return MainTableViewController.schoodule.periods.count
     }
+    var cellHeights: [CGFloat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,7 @@ class MainTableViewController: UITableViewController {
     }
     
     private func setup() {
+        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = UIColor.black // UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
@@ -104,11 +106,15 @@ extension MainTableViewController {
         
         cell.backgroundColor = UIColor.clear
         
-        cell.unfold(false, animated: false, completion: nil)
+        if cellHeights[indexPath.row] == kCloseCellHeight {
+            cell.unfold(false, animated: false, completion: nil)
+        } else {
+            cell.unfold(true, animated: false, completion: nil)
+        }
     }
     
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return kCloseCellHeight
+        return cellHeights[indexPath.row]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -120,11 +126,13 @@ extension MainTableViewController {
         }
         
         var duration = 0.0
-        let cellIsCollapsed = cell.frame.height == kCloseCellHeight
+        let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
         if cellIsCollapsed {
+            cellHeights[indexPath.row] = kOpenCellHeight
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {
+            cellHeights[indexPath.row] = kCloseCellHeight
             cell.unfold(false, animated: true, completion: nil)
             duration = 0.8
         }
@@ -160,6 +168,7 @@ extension MainTableViewController: WCSessionDelegate {
             replyHandler(transfer)
             
             DispatchQueue.main.async {
+                self.setup()
                 self.tableView.reloadData()
             }
         } else if let data = message["periods"] as? Data {
@@ -169,6 +178,7 @@ extension MainTableViewController: WCSessionDelegate {
             replyHandler(transfer)
             
             DispatchQueue.main.async {
+                self.setup()
                 self.tableView.reloadData()
             }
         }

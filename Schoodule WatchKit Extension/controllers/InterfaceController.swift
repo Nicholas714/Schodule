@@ -19,14 +19,14 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var newButton: WKInterfaceButton!
     @IBOutlet var retryButton: WKInterfaceButton!
     
-    
     @IBAction func retrySessionConnect() {
-        // manager.startSession(delegate: self)
+        manager.startSession(delegate: WKExtension.shared().delegate as! ExtensionDelegate)
     }
     
     // MARK: Properties
     
     var manager = SchooduleManager.shared
+    
     var schoodule: Schoodule {
         return manager.schoodule
     }
@@ -38,32 +38,35 @@ class InterfaceController: WKInterfaceController {
     var transfer: [String: Data] {
         return ["periods": schoodule.storage.encoded]
     }
+    
+    // if anything fails to send, the connection to the host iPhone is lost. disable UI.
+    var errorHandler: ((Error) -> Void)? {
+        return { (error) in
+            self.showError()
+        }
+    }
         
     // MARK: WKInterfaceController functions
     
-    override func didAppear() {
-        if let index = schoodule.pendingTableScrollIndex {
-            scheduleTable.scrollToRow(at: index)
-            schoodule.pendingTableScrollIndex = nil
-            return
-        }
-    }
-    
     override func willActivate() {
-        // only when table has changed
+        // when table has changed, send contents
         if schoodule.hasPendingSend {
-            sendUpdatedContents()
-            createTable()
+            manager.sendUpdatedContents(replyHandler: { (period) in
+                self.schoodule.hasPendingSend = false
+            }, errorHandler: errorHandler)
         }
         
-        let currentPeriod = schoodule.classFrom(date: Date())
-        for (index, period) in schoodule.periods.enumerated() {
-            let row = scheduleTable.rowController(at: index) as! ClassRow
-            
-            if currentPeriod == period {
-                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.18))
+        if schoodule.unsortedPeriods.isEmpty {
+            manager.sendRefreshRequest(replyHandler: { (period) in
+                self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+                self.createTable()
+            }) { (error) in
+                self.showError()
             }
+        } else {
+            self.createTable()
         }
+        
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
@@ -83,6 +86,7 @@ class InterfaceController: WKInterfaceController {
     // MARK: Functions
     
     func createTable() {
+        
         showInfo()
         
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
@@ -98,15 +102,33 @@ class InterfaceController: WKInterfaceController {
             row.seperator?.setColor(color)
             row.indexLabel?.setTextColor(color)
             row.nameLabel?.setTextColor(color)
-            
+            row.durationLabel.setTextColor(UIColor.white)
         }
 
+        var scrollIndex: Int?
+        var highlightIndex: Int?
+        
         if let currentPeriod = self.schoodule.classFrom(date: Date()), let index = self.schoodule.index(of: currentPeriod) {
-            self.scheduleTable.scrollToRow(at: index)
+            scrollIndex = index
+            highlightIndex = index
         } else if let nextPeriod = self.schoodule.nextClassFrom(date: Date()), let index = self.schoodule.index(of: nextPeriod) {
-            self.scheduleTable.scrollToRow(at: index)
+            scrollIndex = index
+            highlightIndex = index
         }
         
+        if let index = schoodule.pendingTableScrollIndex {
+            scrollIndex = index
+            schoodule.pendingTableScrollIndex = nil
+        }
+        
+        if let scroll = scrollIndex {
+            scheduleTable.scrollToRow(at: scroll)
+        }
+        
+        if let highlight = highlightIndex {
+            let row = scheduleTable.rowController(at: highlight) as! ClassRow
+            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.18))
+        }
     }
     
     func showInfo() {
@@ -119,55 +141,25 @@ class InterfaceController: WKInterfaceController {
         
         scheduleTable.setHidden(false)
         newButton.setHidden(false)
+        retryButton.setHidden(true)
     }
     
     func showError() {
         connectingLabel.setText("Failed to connect.")
+        connectingLabel.setHidden(false)
         retryButton.setHidden(false)
         newButton.setHidden(true)
         scheduleTable.setHidden(true)
     }
     
-    override func didDeactivate() {
-        manager.updateComplications()
-    }
-    
     @IBAction func clearAllPeriods() {
-        sendClearRequest()
-    }
-    
-    func sendClearRequest() {
-        session?.sendMessage(["message": "clear"], replyHandler: { (period) in
+        manager.sendClearRequest(replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             
             DispatchQueue.main.async {
                 self.createTable()
             }
-            
-        }) { (error) in
-            print(error)
-        }
+        }, errorHandler: errorHandler)
     }
     
-    func sendRefreshRequest() {
-        session?.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
-            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-            
-            DispatchQueue.main.async {
-                self.createTable()
-            }
-            
-        }) { (error) in
-            print(error)
-        }
-    }
-    
-    func sendUpdatedContents() {
-        session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
-            self.schoodule.hasPendingSend = false
-        }) { (error) in
-            self.showError()
-            print(error)
-        }
-    }
 }
