@@ -12,7 +12,7 @@ import WatchKit
 class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
 
     var schoodule: Schoodule {
-        return (WKExtension.shared().delegate as! ExtensionDelegate).schoodule
+        return SchooduleManager.shared.schoodule
     }
     
     // shorthand for first period time of the day

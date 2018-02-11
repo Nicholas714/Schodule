@@ -14,20 +14,52 @@ class PeriodCell: FoldingCell {
     @IBOutlet var indexLabel: UILabel!
     @IBOutlet var className: UILabel!
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var containerButtons: [UIButton]!
+    
+    @IBAction func toggleDay(_ sender: UIButton) {
+        sender.layer.borderWidth = 3
+        sender.layer.borderColor = UIColor.white.cgColor
         
+        if let currentBackground = sender.backgroundColor, currentBackground == containerBackground {
+            UIView.animate(withDuration: 0.2) {
+                sender.setTitleColor(self.containerBackground, for: .normal)
+                sender.backgroundColor = UIColor.white
+            }
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                sender.backgroundColor = self.containerBackground
+                sender.setTitleColor(UIColor.white, for: .normal)
+            }
+        }
+    }
+    
+    var i: Int = 0
+    
+    var containerBackground: UIColor {
+        return Array(UIColor.themes.values)[i % 10]
+    }
+    
     override func awakeFromNib() {
+        i = PeriodCell.index
+        
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
         
-        let period = MainTableViewController.schoodule.periods[PeriodCell.index]
+        let period = MainTableViewController.schoodule.periods[i]
         
         indexLabel.text = "\(PeriodCell.index + 1)"
         className.text = period.className
         timeLabel.text = "\(period.start.string) - \(period.end.string)"
         
-        foregroundView.backgroundColor = Array(UIColor.themes.values)[PeriodCell.index % 10]
+        foregroundView.backgroundColor = containerBackground
+        containerView.backgroundColor = containerBackground
         
-        containerView.backgroundColor = Array(UIColor.themes.values)[PeriodCell.index % 10]
+        for button in containerButtons {
+            button.setTitleColor(containerBackground, for: .normal)
+            button.layer.cornerRadius = button.frame.height / 2
+            button.clipsToBounds = true
+        }
+        
         PeriodCell.index += 1
         
         super.awakeFromNib()

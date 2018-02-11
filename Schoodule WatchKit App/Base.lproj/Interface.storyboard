@@ -64,6 +64,15 @@
                             </connections>
                         </button>
                     </items>
+                    <menu key="menu" id="Biv-3L-gSZ">
+                        <items>
+                            <menuItem title="Clear All" icon="trash" id="IOX-tf-9Yf">
+                                <connections>
+                                    <action selector="clearAllPeriods" destination="AgC-eL-Hgc" id="rgP-rv-A27"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="connectingLabel" destination="qLg-EJ-chf" id="zSm-KH-gDZ"/>
                         <outlet property="newButton" destination="c9I-Zy-rXo" id="egm-Th-3EV"/>

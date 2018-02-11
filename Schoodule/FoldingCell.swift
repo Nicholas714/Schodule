@@ -239,7 +239,7 @@ open class FoldingCell: UITableViewCell {
             var previuosView: RotatedView?
             for case let container as RotatedView in animationView.subviews.sorted(by: { $0.tag < $1.tag })
                 where container.tag > 0 && container.tag < animationView.subviews.count {
-                    previuosView?.addBackView(container.bounds.size.height, color: UIColor.white.withAlphaComponent(0.2))
+                    previuosView?.addBackView(container.bounds.size.height, color: UIColor.gray)
                     previuosView = container
             }
         }

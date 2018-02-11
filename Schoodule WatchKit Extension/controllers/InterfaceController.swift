@@ -19,21 +19,24 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var newButton: WKInterfaceButton!
     @IBOutlet var retryButton: WKInterfaceButton!
     
+    
     @IBAction func retrySessionConnect() {
-        (WKExtension.shared().delegate as? ExtensionDelegate)?.startSession()
+        // manager.startSession(delegate: self)
     }
+    
     // MARK: Properties
     
+    var manager = SchooduleManager.shared
+    var schoodule: Schoodule {
+        return manager.schoodule
+    }
+    
     var session: WCSession? {
-        return (WKExtension.shared().delegate as? ExtensionDelegate)?.session
+        return manager.session
     }
     
     var transfer: [String: Data] {
         return ["periods": schoodule.storage.encoded]
-    }
-    
-    var schoodule: Schoodule {
-        return (WKExtension.shared().delegate as! ExtensionDelegate).schoodule
     }
         
     // MARK: WKInterfaceController functions
@@ -125,6 +128,40 @@ class InterfaceController: WKInterfaceController {
         scheduleTable.setHidden(true)
     }
     
+    override func didDeactivate() {
+        manager.updateComplications()
+    }
+    
+    @IBAction func clearAllPeriods() {
+        sendClearRequest()
+    }
+    
+    func sendClearRequest() {
+        session?.sendMessage(["message": "clear"], replyHandler: { (period) in
+            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+            
+            DispatchQueue.main.async {
+                self.createTable()
+            }
+            
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    func sendRefreshRequest() {
+        session?.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
+            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+            
+            DispatchQueue.main.async {
+                self.createTable()
+            }
+            
+        }) { (error) in
+            print(error)
+        }
+    }
+    
     func sendUpdatedContents() {
         session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
             self.schoodule.hasPendingSend = false
@@ -133,6 +170,4 @@ class InterfaceController: WKInterfaceController {
             print(error)
         }
     }
-    
 }
-

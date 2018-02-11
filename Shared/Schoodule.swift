@@ -66,4 +66,9 @@ class Schoodule {
         }
     }
     
+    func clear() {
+        unsortedPeriods.removeAll()
+        pendingTableScrollIndex = nil
+    }
+    
 }
