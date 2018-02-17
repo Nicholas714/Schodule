@@ -15,10 +15,11 @@ class PeriodCell: FoldingCell {
     @IBOutlet var className: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var containerButtons: [UIButton]!
+    @IBOutlet var seperator: UIView!
     
     @IBAction func toggleDay(_ sender: UIButton) {
-        sender.layer.borderWidth = 3
-        sender.layer.borderColor = UIColor.white.cgColor
+        //sender.layer.borderWidth = 3
+        //sender.layer.borderColor = UIColor.white.cgColor
         
         if let currentBackground = sender.backgroundColor, currentBackground == containerBackground {
             UIView.animate(withDuration: 0.2) {
@@ -44,20 +45,45 @@ class PeriodCell: FoldingCell {
         
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
-        
-        let period = MainTableViewController.schoodule.periods[i]
+
+        let period = SchooduleManager.shared.schoodule.periods[i]
         
         indexLabel.text = "\(PeriodCell.index + 1)"
+        indexLabel.textColor = containerBackground
+        className.textColor = containerBackground
+        timeLabel.textColor = UIColor.white
         className.text = period.className
         timeLabel.text = "\(period.start.string) - \(period.end.string)"
+        seperator.backgroundColor = containerBackground
         
-        foregroundView.backgroundColor = containerBackground
-        containerView.backgroundColor = containerBackground
+        foregroundView.backgroundColor = UIColor.black
+        containerView.backgroundColor = UIColor.black
         
         for button in containerButtons {
             button.setTitleColor(containerBackground, for: .normal)
-            button.layer.cornerRadius = button.frame.height / 2
-            button.clipsToBounds = true
+            //button.layer.cornerRadius = button.frame.height / 2
+            // button.clipsToBounds = true
+            
+            if button.currentTitle == "Mon" {
+                let path = UIBezierPath(roundedRect: button.bounds,
+                                        byRoundingCorners:[.bottomLeft, .topLeft],
+                                        cornerRadii: CGSize(width: button.frame.height / 2, height:  button.frame.height / 2))
+                
+                let maskLayer = CAShapeLayer()
+                
+                maskLayer.path = path.cgPath
+                button.layer.mask = maskLayer
+            } else if button.currentTitle == "Sun" {
+                let path = UIBezierPath(roundedRect: button.bounds,
+                                        byRoundingCorners:[.bottomRight, .topRight],
+                                        cornerRadii: CGSize(width: button.frame.height / 2, height:  button.frame.height / 2))
+                
+                let maskLayer = CAShapeLayer()
+                
+                maskLayer.path = path.cgPath
+                button.layer.mask = maskLayer
+            }
+            
         }
         
         PeriodCell.index += 1

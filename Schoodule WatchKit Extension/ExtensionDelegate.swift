@@ -22,12 +22,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     }
     
     func createNextRefresh() {
-        let nextUpdate = Date().addingTimeInterval(7200)
+        let nextUpdate = Date().addingTimeInterval(3600)
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextUpdate, userInfo: nil) { (error) in }
-    }
-    
-    func applicationDidEnterBackground() {
-        manager.updateComplications()
     }
     
     func applicationDidFinishLaunching() {
@@ -43,7 +39,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             // called to update timeline
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 manager.updateComplications()
-                
                 // call in another 2 hours
                 createNextRefresh()
                 

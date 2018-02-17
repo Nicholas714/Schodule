@@ -58,8 +58,8 @@ class ClassCreateController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         
-        if let (schoodule, period) = context as? (Schoodule, Period) { // edit passes in period
-            self.schoodule = schoodule
+        if let (s, period) = context as? (Schoodule, Period) { // edit passes in period
+            self.schoodule = s
             self.period = period
         
             periodStartIndex = schoodule.unsortedPeriods.index(of: period)

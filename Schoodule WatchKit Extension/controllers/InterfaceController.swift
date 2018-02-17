@@ -20,19 +20,17 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var retryButton: WKInterfaceButton!
     
     @IBAction func retrySessionConnect() {
-        manager.startSession(delegate: WKExtension.shared().delegate as! ExtensionDelegate)
+        SchooduleManager.shared.startSession(delegate: WKExtension.shared().delegate as! ExtensionDelegate)
     }
     
     // MARK: Properties
     
-    var manager = SchooduleManager.shared
-    
     var schoodule: Schoodule {
-        return manager.schoodule
+        return SchooduleManager.shared.schoodule
     }
     
     var session: WCSession? {
-        return manager.session
+        return SchooduleManager.shared.session
     }
     
     var transfer: [String: Data] {
@@ -51,13 +49,13 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // when table has changed, send contents
         if schoodule.hasPendingSend {
-            manager.sendUpdatedContents(replyHandler: { (period) in
+            SchooduleManager.shared.sendUpdatedContents(replyHandler: { (period) in
                 self.schoodule.hasPendingSend = false
             }, errorHandler: errorHandler)
         }
         
         if schoodule.unsortedPeriods.isEmpty {
-            manager.sendRefreshRequest(replyHandler: { (period) in
+            SchooduleManager.shared.sendRefreshRequest(replyHandler: { (period) in
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
                 self.createTable()
             }) { (error) in
@@ -82,11 +80,10 @@ class InterfaceController: WKInterfaceController {
         }
         return nil
     }
- 
+     
     // MARK: Functions
     
     func createTable() {
-        
         showInfo()
         
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
@@ -152,8 +149,15 @@ class InterfaceController: WKInterfaceController {
         scheduleTable.setHidden(true)
     }
     
+    // MARK: Actions
+    
+    @IBAction func updateComplications() {
+        SchooduleManager.shared.updateComplications()
+    }
+    
+    
     @IBAction func clearAllPeriods() {
-        manager.sendClearRequest(replyHandler: { (period) in
+        SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             
             DispatchQueue.main.async {

@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import Crashlytics
 
 fileprivate struct C {
     struct CellHeight {
@@ -18,9 +19,10 @@ fileprivate struct C {
 
 class MainTableViewController: UITableViewController {
     
-    var session: WCSession?
-    
-    static var schoodule = Schoodule()
+    lazy var schoodule: Schoodule = {
+        SchooduleManager.shared.startSession(delegate: self)
+        return SchooduleManager.shared.schoodule
+    }()
     
     var defaults: UserDefaults {
         get {
@@ -29,30 +31,22 @@ class MainTableViewController: UITableViewController {
     }
     
     var transfer: [String: Data] {
-        return ["periods": MainTableViewController.schoodule.storage.encoded]
-    }
-    
-    func startSession() {
-        if WCSession.isSupported() {
-            session = WCSession.default
-            session?.delegate = self
-            session?.activate()
-        }
+        return ["periods": schoodule.storage.encoded]
     }
     
     func saveSchedule() {
-        defaults.setValue(MainTableViewController.schoodule.storage.encoded, forKey: "periods")
+        defaults.setValue(schoodule.storage.encoded, forKey: "periods")
     }
     
     func loadScheudle() {
-        MainTableViewController.schoodule.unsortedPeriods.removeAll()
+        schoodule.unsortedPeriods.removeAll()
         
         if let data = defaults.value(forKey: "periods") as? Data {
             let decoder = JSONDecoder()
             
             do {
                 for period in try decoder.decode([Period].self, from: data) {
-                    MainTableViewController.schoodule.unsortedPeriods.append(period)
+                    schoodule.unsortedPeriods.append(period)
                 }
             } catch {
                 fatalError("Error decoding periods.")
@@ -63,16 +57,14 @@ class MainTableViewController: UITableViewController {
     let kCloseCellHeight: CGFloat = 105
     let kOpenCellHeight: CGFloat = 320
     var kRowsCount: Int {
-        return MainTableViewController.schoodule.periods.count
+        return schoodule.periods.count
     }
     var cellHeights: [CGFloat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         loadScheudle()
-        startSession()
-        
         setup()
     }
     
@@ -87,7 +79,7 @@ class MainTableViewController: UITableViewController {
 extension MainTableViewController {
     
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return MainTableViewController.schoodule.periods.count
+        return schoodule.periods.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,7 +154,7 @@ extension MainTableViewController: WCSessionDelegate {
         if let message = message["message"] as? String, message == "refreshRequest" {
             replyHandler(transfer)
         } else if let message = message["message"] as? String, message == "clear" {
-            MainTableViewController.schoodule.clear()
+            schoodule.clear()
             saveSchedule()
             
             replyHandler(transfer)
@@ -172,7 +164,7 @@ extension MainTableViewController: WCSessionDelegate {
                 self.tableView.reloadData()
             }
         } else if let data = message["periods"] as? Data {
-            MainTableViewController.schoodule.storage.decodePeriods(from: data)
+            schoodule.storage.decodePeriods(from: data)
             saveSchedule()
             
             replyHandler(transfer)

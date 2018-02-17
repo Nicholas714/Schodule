@@ -21,7 +21,7 @@
                                         <items>
                                             <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="font" type="system" pointSize="16"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
                                             </label>
                                             <separator height="30" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
                                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -30,7 +30,7 @@
                                                 <items>
                                                     <label width="1" alignment="left" text="English" id="BPc-qV-4Ke">
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="font" type="system" pointSize="15"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="7:05 AM" id="ukE-2s-Ejl">
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,6 +61,11 @@
                         <button width="1" alignment="left" hidden="YES" title="Retry" id="K0V-Z1-UHN">
                             <connections>
                                 <action selector="retrySessionConnect" destination="AgC-eL-Hgc" id="jpf-m8-7DA"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Update" id="Clt-TK-Xce">
+                            <connections>
+                                <action selector="updateComplications" destination="AgC-eL-Hgc" id="46I-Yi-bIW"/>
                             </connections>
                         </button>
                     </items>
@@ -165,7 +170,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="553" y="-107.5"/>
+            <point key="canvasLocation" x="553" y="-113.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -23,6 +23,8 @@
 		433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C9201E9E3100902BB8 /* ClassRow.swift */; };
 		433E62162031032300083811 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6214203102FD00083811 /* Crashlytics.framework */; };
 		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
+		433E621F20310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
+		433E622020310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
@@ -105,6 +107,7 @@
 		433E09C9201E9E3100902BB8 /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
 		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		433E621E20310AD000083811 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
@@ -202,14 +205,13 @@
 		433E09C0201E9B0200902BB8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				433E6214203102FD00083811 /* Crashlytics.framework */,
-				433E6213203102FD00083811 /* Fabric.framework */,
 				43988741201FB8F700E5BD60 /* Period.swift */,
 				43988744201FBC7800E5BD60 /* Schoodule.swift */,
 				434DC2ED202292EB008A0074 /* Storage.swift */,
 				4307E739202414240046B7CA /* UIColor+Themes.swift */,
 				43E468072027661A0076BEBD /* Time.swift */,
 				43B43D732030906E007A809C /* SchooduleManager.swift */,
+				433E621E20310AD000083811 /* Day.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -217,6 +219,8 @@
 		433E62152031032300083811 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				433E6213203102FD00083811 /* Fabric.framework */,
+				433E6214203102FD00083811 /* Crashlytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -389,6 +393,7 @@
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
+				433E621F20310AD000083811 /* Day.swift in Sources */,
 				43EEBAA620292A490029750A /* PeriodCell.swift in Sources */,
 				43B43D742030906E007A809C /* SchooduleManager.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
@@ -402,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433E622020310AD000083811 /* Day.swift in Sources */,
 				433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */,
 				43E468092027661A0076BEBD /* Time.swift in Sources */,
 				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,
@@ -660,6 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

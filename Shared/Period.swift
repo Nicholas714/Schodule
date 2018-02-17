@@ -17,6 +17,7 @@ struct Period: Equatable, Codable, Comparable {
     var themeIndex: Int
     var start: Time
     var end: Time
+    // var days = [Day]()
     
     var color: UIColor {
         get {
@@ -24,11 +25,12 @@ struct Period: Equatable, Codable, Comparable {
         }
     }
     
-    init(className: String, themeIndex: Int, start: Time, end: Time) {
+    init(className: String, themeIndex: Int, start: Time, end: Time, days: [Day] = Day.weekdays) {
         self.className = className
         self.themeIndex = themeIndex
         self.start = start
         self.end = end
+        // self.days = days
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {
