@@ -19,7 +19,7 @@ class SchooduleManager {
     private init() { }
     
     func startSession(delegate: WCSessionDelegate) {
-        if WCSession.isSupported() && session == nil {
+        if WCSession.isSupported() {
             session = WCSession.default
             session?.delegate = delegate
             session?.activate()

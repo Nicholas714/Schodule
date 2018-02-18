@@ -14,6 +14,10 @@ class Schoodule {
     var hasPendingSend = false
     var unsortedPeriods = [Period]()
     
+    var transfer: [String: Data] {
+        return ["periods": storage.encoded]
+    }
+    
     var periods: [Period] {
         get {
             return unsortedPeriods.sorted()

@@ -30,10 +30,6 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    var transfer: [String: Data] {
-        return ["periods": schoodule.storage.encoded]
-    }
-    
     func saveSchedule() {
         defaults.setValue(schoodule.storage.encoded, forKey: "periods")
     }
@@ -152,12 +148,15 @@ extension MainTableViewController: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if let message = message["message"] as? String, message == "refreshRequest" {
-            replyHandler(transfer)
-        } else if let message = message["message"] as? String, message == "clear" {
+            replyHandler(schoodule.transfer)
+        } else if let message = message["message"] as? String, message == "complicationRefreshRequest" {
+            print("recieved on iOS. sending now to watch.")
+            session.transferCurrentComplicationUserInfo(schoodule.transfer)
+        }else if let message = message["message"] as? String, message == "clear" {
             schoodule.clear()
             saveSchedule()
             
-            replyHandler(transfer)
+            replyHandler(schoodule.transfer)
             
             DispatchQueue.main.async {
                 self.setup()
@@ -167,7 +166,7 @@ extension MainTableViewController: WCSessionDelegate {
             schoodule.storage.decodePeriods(from: data)
             saveSchedule()
             
-            replyHandler(transfer)
+            replyHandler(schoodule.transfer)
             
             DispatchQueue.main.async {
                 self.setup()

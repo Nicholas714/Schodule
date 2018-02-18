@@ -25,8 +25,8 @@ extension SchooduleManager {
         session?.sendMessage(["message" : "clear"], replyHandler: replyHandler, errorHandler: errorHandler)
     }
     
-    func sendRefreshRequest(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        session?.sendMessage(["message": "refreshRequest"], replyHandler: replyHandler, errorHandler: errorHandler)
+    func sendRefreshRequest(type: String, replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+        session?.sendMessage(["message": type], replyHandler: replyHandler, errorHandler: errorHandler)
     }
     
     func sendUpdatedContents(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {

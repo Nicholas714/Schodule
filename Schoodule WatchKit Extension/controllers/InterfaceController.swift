@@ -33,10 +33,6 @@ class InterfaceController: WKInterfaceController {
         return SchooduleManager.shared.session
     }
     
-    var transfer: [String: Data] {
-        return ["periods": schoodule.storage.encoded]
-    }
-    
     // if anything fails to send, the connection to the host iPhone is lost. disable UI.
     var errorHandler: ((Error) -> Void)? {
         return { (error) in
@@ -55,8 +51,9 @@ class InterfaceController: WKInterfaceController {
         }
         
         if schoodule.unsortedPeriods.isEmpty {
-            SchooduleManager.shared.sendRefreshRequest(replyHandler: { (period) in
+            SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+                
                 self.createTable()
             }) { (error) in
                 self.showError()
@@ -95,7 +92,7 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setText("\(index + 1)")
             row.nameLabel?.setText("\(period.className)")
             
-            let color = Array(UIColor.themes.values)[index % 10]
+            let color = period.color
             row.seperator?.setColor(color)
             row.indexLabel?.setTextColor(color)
             row.nameLabel?.setTextColor(color)
@@ -124,7 +121,7 @@ class InterfaceController: WKInterfaceController {
         
         if let highlight = highlightIndex {
             let row = scheduleTable.rowController(at: highlight) as! ClassRow
-            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.18))
+            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.1))
         }
     }
     
@@ -152,7 +149,10 @@ class InterfaceController: WKInterfaceController {
     // MARK: Actions
     
     @IBAction func updateComplications() {
-        SchooduleManager.shared.updateComplications()
+        SchooduleManager.shared.sendRefreshRequest(type: "complicationRefreshRequest", replyHandler: { (period) in
+        }) { (error) in
+            self.showError()
+        }
     }
     
     

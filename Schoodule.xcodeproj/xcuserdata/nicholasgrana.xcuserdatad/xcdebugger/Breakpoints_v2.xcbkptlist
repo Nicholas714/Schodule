@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schoodule/PeriodCell.swift"
-            timestampString = "540577703.3440599"
+            timestampString = "540611476.556478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schoodule WatchKit Extension/controllers/InterfaceController.swift"
-            timestampString = "540577703.3441451"
+            timestampString = "540615761.7136199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "showInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schoodule WatchKit Extension/controllers/InterfaceController.swift"
-            timestampString = "540577703.344211"
+            timestampString = "540615761.714063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "willActivate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schoodule WatchKit Extension/controllers/InterfaceController.swift"
-            timestampString = "540577703.344278"
+            timestampString = "540615761.714343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "willActivate()"
             landmarkType = "7">
          </BreakpointContent>
