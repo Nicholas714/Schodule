@@ -38,9 +38,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             switch task {
             // called to update timeline
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                SchooduleManager.shared.sendRefreshRequest(type: "complicationRefreshRequest", replyHandler: { (period) in
-                }) { (error) in
-                }
+                SchooduleManager.shared.updateComplications()
                 
                 createNextRefresh()
                 
@@ -70,9 +68,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         manager.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             
-            SchooduleManager.shared.sendRefreshRequest(type: "complicationRefreshRequest", replyHandler: { (period) in
-            }) { (error) in
-            }
+            SchooduleManager.shared.updateComplications()
         })
     }
     
@@ -80,6 +76,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         print("recieved. decoding and updating complications...")
         self.schoodule.storage.decodePeriods(from: userInfo["periods"] as! Data)
         SchooduleManager.shared.updateComplications()
+        
+        DispatchQueue.main.async {
+            self.root?.createTable()
+        }
     }
     
 }

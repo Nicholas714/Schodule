@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reusePeriod" rowHeight="229" id="FMh-8o-zeU">
-                                <rect key="frame" x="0.0" y="28" width="375" height="229"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="reusePeriod" rowHeight="66" id="FMh-8o-zeU">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FMh-8o-zeU" id="0ZX-e2-bV0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="228.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -32,7 +32,24 @@
                             <outlet property="delegate" destination="brF-Pg-7y0" id="JGK-g8-cfe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vao-cT-RtE"/>
+                    <navigationItem key="navigationItem" id="vao-cT-RtE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="y7L-3x-vru">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jEV-11-2Fe">
+                                <rect key="frame" x="313" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="click:" destination="brF-Pg-7y0" eventType="touchUpInside" id="Wdy-4w-Eix"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="renameCurrent:" destination="brF-Pg-7y0" id="gje-nj-8iN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scheduleTableView" destination="qR6-F3-MM0" id="1OC-qS-pBO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpS-FB-KRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

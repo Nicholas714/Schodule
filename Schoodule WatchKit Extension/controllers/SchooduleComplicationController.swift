@@ -76,12 +76,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // block time travel for anything after the last schedule entry
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(scheduleEnd?.addingTimeInterval(30))
+        handler(scheduleEnd?.addingTimeInterval(65))
     }
     
     // block time travel for anything before the start of the schedule
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-       handler(scheduleStart?.addingTimeInterval(-30))
+       handler(scheduleStart?.addingTimeInterval(-65))
     }
     
     

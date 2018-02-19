@@ -121,7 +121,7 @@ class InterfaceController: WKInterfaceController {
         
         if let highlight = highlightIndex {
             let row = scheduleTable.rowController(at: highlight) as! ClassRow
-            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.1))
+            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
         }
     }
     
@@ -149,10 +149,7 @@ class InterfaceController: WKInterfaceController {
     // MARK: Actions
     
     @IBAction func updateComplications() {
-        SchooduleManager.shared.sendRefreshRequest(type: "complicationRefreshRequest", replyHandler: { (period) in
-        }) { (error) in
-            self.showError()
-        }
+        SchooduleManager.shared.updateComplications()
     }
     
     
