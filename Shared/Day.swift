@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Day: Equatable, Codable {
+/*struct Day: Equatable, Codable {
 
     static let weekdays = [monday, tuesday, wednesday, thursday, friday]
     static let days = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
@@ -31,4 +31,4 @@ struct Day: Equatable, Codable {
         return Day.days.index(of: self)!
     }
     
-}
+}*/

@@ -10,11 +10,9 @@
 		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
 		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
-		433E098F201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E098E201E9AC500902BB8 /* Assets.xcassets */; };
 		433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */; };
 		433E0997201E9AC500902BB8 /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */; };
 		433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E099B201E9AC500902BB8 /* Interface.storyboard */; };
-		433E099F201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E099E201E9AC500902BB8 /* Assets.xcassets */; };
 		433E09A6201E9AC500902BB8 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AA201E9AC500902BB8 /* InterfaceController.swift */; };
 		433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */; };
@@ -25,11 +23,14 @@
 		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
 		433E621F20310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
 		433E622020310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
+		434A5D142039CC4D00C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D132039CC4D00C7F4AD /* Assets.xcassets */; };
+		434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D152039CD4900C7F4AD /* Assets.xcassets */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		437475FE2020023500A21465 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
+		4378393C2039FD400083898B /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378393B2039FD400083898B /* ComplicationStore.swift */; };
 		43988743201FB8F700E5BD60 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
 		43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		43B43D742030906E007A809C /* SchooduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* SchooduleManager.swift */; };
@@ -38,10 +39,7 @@
 		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
-		43EEBAA420292A250029750A /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA320292A250029750A /* FoldingCell.swift */; };
-		43EEBAA620292A490029750A /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA520292A490029750A /* PeriodCell.swift */; };
 		43EEBAA820292A620029750A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* ViewController.swift */; };
-		43EEBAAC202A7AD00029750A /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAAB202A7AD00029750A /* TimePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,12 +89,10 @@
 		433E0984201E9AC500902BB8 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E0987201E9AC500902BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		433E098C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		433E098E201E9AC500902BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433E0991201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		433E0993201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E099C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		433E099E201E9AC500902BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433E09A0201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E09AA201E9AC500902BB8 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
@@ -108,17 +104,17 @@
 		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		433E621E20310AD000083811 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		434A5D132039CC4D00C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Desktop/Icon Set/Assets.xcassets"; sourceTree = "<group>"; };
+		434A5D152039CD4900C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
 		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
 		43B43D732030906E007A809C /* SchooduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleManager.swift; sourceTree = "<group>"; };
 		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
-		43EEBAA320292A250029750A /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
-		43EEBAA520292A490029750A /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
 		43EEBAA720292A620029750A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		43EEBAAB202A7AD00029750A /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,13 +164,10 @@
 			children = (
 				433E0987201E9AC500902BB8 /* AppDelegate.swift */,
 				433E098B201E9AC500902BB8 /* Main.storyboard */,
-				433E098E201E9AC500902BB8 /* Assets.xcassets */,
+				434A5D132039CC4D00C7F4AD /* Assets.xcassets */,
 				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
 				433E0993201E9AC500902BB8 /* Info.plist */,
-				43EEBAA320292A250029750A /* FoldingCell.swift */,
-				43EEBAA520292A490029750A /* PeriodCell.swift */,
 				43EEBAA720292A620029750A /* ViewController.swift */,
-				43EEBAAB202A7AD00029750A /* TimePicker.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -183,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				433E099B201E9AC500902BB8 /* Interface.storyboard */,
-				433E099E201E9AC500902BB8 /* Assets.xcassets */,
+				434A5D152039CD4900C7F4AD /* Assets.xcassets */,
 				433E09A0201E9AC500902BB8 /* Info.plist */,
 			);
 			path = "Schoodule WatchKit App";
@@ -198,6 +191,7 @@
 				433E09C9201E9E3100902BB8 /* ClassRow.swift */,
 				433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */,
 				43B43D762030913E007A809C /* SchooduleManager+Watch.swift */,
+				4378393B2039FD400083898B /* ComplicationStore.swift */,
 			);
 			path = "Schoodule WatchKit Extension";
 			sourceTree = "<group>";
@@ -343,7 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */,
-				433E098F201E9AC500902BB8 /* Assets.xcassets in Resources */,
+				434A5D142039CC4D00C7F4AD /* Assets.xcassets in Resources */,
 				433E098D201E9AC500902BB8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433E099F201E9AC500902BB8 /* Assets.xcassets in Resources */,
+				434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */,
 				433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,18 +382,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43EEBAAC202A7AD00029750A /* TimePicker.swift in Sources */,
 				43EEBAA820292A620029750A /* ViewController.swift in Sources */,
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
 				433E621F20310AD000083811 /* Day.swift in Sources */,
-				43EEBAA620292A490029750A /* PeriodCell.swift in Sources */,
 				43B43D742030906E007A809C /* SchooduleManager.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
 				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,
-				43EEBAA420292A250029750A /* FoldingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +403,7 @@
 				43E468092027661A0076BEBD /* Time.swift in Sources */,
 				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,
 				43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */,
+				4378393C2039FD400083898B /* ComplicationStore.swift in Sources */,
 				43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */,
 				43988743201FB8F700E5BD60 /* Period.swift in Sources */,
 				43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */,

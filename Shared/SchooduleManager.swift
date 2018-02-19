@@ -19,7 +19,8 @@ class SchooduleManager {
     private init() { }
     
     func startSession(delegate: WCSessionDelegate) {
-        if WCSession.isSupported() {
+        // only check for new items when schoodule has not been initialized 
+        if WCSession.isSupported() && schoodule.unsortedPeriods.isEmpty {
             session = WCSession.default
             session?.delegate = delegate
             session?.activate()

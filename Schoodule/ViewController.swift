@@ -10,13 +10,6 @@ import UIKit
 import WatchConnectivity
 import Crashlytics
 
-fileprivate struct C {
-    struct CellHeight {
-        static let close: CGFloat = 105 // equal or greater foregroundView height
-        static let open: CGFloat = 320 // equal or greater containerView height
-    }
-}
-
 class MainTableViewController: UITableViewController {
     
     lazy var schoodule: Schoodule = {
@@ -50,86 +43,28 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    let kCloseCellHeight: CGFloat = 105
-    let kOpenCellHeight: CGFloat = 320
-    var kRowsCount: Int {
-        return schoodule.periods.count
-    }
-    var cellHeights: [CGFloat] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadScheudle()
-        setup()
-    }
-    
-    private func setup() {
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
-        tableView.estimatedRowHeight = kCloseCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor.black // UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
+        SchooduleManager.shared.startSession(delegate: self)
     }
 }
 
 extension MainTableViewController {
     
-    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return schoodule.periods.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FoldingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusePeriod", for: indexPath)
         
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
+        cell.textLabel?.text = "\(schoodule.periods[indexPath.row].className)"
+        cell.backgroundColor = schoodule.periods[indexPath.row].color
         return cell
     }
     
-    override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as PeriodCell = cell else {
-            return
-        }
-        
-        cell.backgroundColor = UIColor.clear
-        
-        if cellHeights[indexPath.row] == kCloseCellHeight {
-            cell.unfold(false, animated: false, completion: nil)
-        } else {
-            cell.unfold(true, animated: false, completion: nil)
-        }
-    }
-    
-    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
-        
-        if cell.isAnimating() {
-            return
-        }
-        
-        var duration = 0.0
-        let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
-        if cellIsCollapsed {
-            cellHeights[indexPath.row] = kOpenCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = kCloseCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
-    }
 }
 
 extension MainTableViewController: WCSessionDelegate {
@@ -150,7 +85,7 @@ extension MainTableViewController: WCSessionDelegate {
         if let message = message["message"] as? String, message == "refreshRequest" {
             replyHandler(schoodule.transfer)
         } else if let message = message["message"] as? String, message == "complicationRefreshRequest" {
-            print("recieved on iOS. sending now to watch.")
+            print("sending back complication refresh...")
             session.transferCurrentComplicationUserInfo(schoodule.transfer)
         }else if let message = message["message"] as? String, message == "clear" {
             schoodule.clear()
@@ -159,7 +94,6 @@ extension MainTableViewController: WCSessionDelegate {
             replyHandler(schoodule.transfer)
             
             DispatchQueue.main.async {
-                self.setup()
                 self.tableView.reloadData()
             }
         } else if let data = message["periods"] as? Data {
@@ -169,7 +103,6 @@ extension MainTableViewController: WCSessionDelegate {
             replyHandler(schoodule.transfer)
             
             DispatchQueue.main.async {
-                self.setup()
                 self.tableView.reloadData()
             }
         }

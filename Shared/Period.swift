@@ -25,7 +25,7 @@ struct Period: Equatable, Codable, Comparable {
         }
     }
     
-    init(className: String, themeIndex: Int, start: Time, end: Time, days: [Day] = Day.weekdays) {
+    init(className: String, themeIndex: Int, start: Time, end: Time) {
         self.className = className
         self.themeIndex = themeIndex
         self.start = start

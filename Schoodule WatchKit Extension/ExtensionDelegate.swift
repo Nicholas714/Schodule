@@ -69,6 +69,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         
         manager.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+            
+            SchooduleManager.shared.sendRefreshRequest(type: "complicationRefreshRequest", replyHandler: { (period) in
+            }) { (error) in
+            }
         })
     }
     
