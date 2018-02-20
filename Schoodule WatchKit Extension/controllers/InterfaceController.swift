@@ -81,8 +81,6 @@ class InterfaceController: WKInterfaceController {
     // MARK: Functions
     
     func createTable() {
-        showInfo()
-        
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
                 
         for (index, period) in schoodule.periods.enumerated() {
@@ -97,6 +95,14 @@ class InterfaceController: WKInterfaceController {
             row.indexLabel?.setTextColor(color)
             row.nameLabel?.setTextColor(color)
             row.durationLabel.setTextColor(UIColor.white)
+            
+            if let location = period.location {
+                row.locationLabel.setText(location)
+            } else {
+                row.locationLabel.setHidden(true)
+                
+            }
+            
         }
 
         var scrollIndex: Int?
@@ -123,6 +129,8 @@ class InterfaceController: WKInterfaceController {
             let row = scheduleTable.rowController(at: highlight) as! ClassRow
             row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
         }
+        
+        showInfo()
     }
     
     func showInfo() {

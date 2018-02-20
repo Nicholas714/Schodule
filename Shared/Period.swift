@@ -17,6 +17,7 @@ struct Period: Equatable, Codable, Comparable {
     var themeIndex: Int
     var start: Time
     var end: Time
+    var location: String?
     // var days = [Day]()
     
     var color: UIColor {
@@ -30,6 +31,7 @@ struct Period: Equatable, Codable, Comparable {
         self.themeIndex = themeIndex
         self.start = start
         self.end = end
+        self.location = nil
         // self.days = days
     }
     

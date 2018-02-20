@@ -15,5 +15,6 @@ class ClassRow: NSObject {
     @IBOutlet var indexLabel: WKInterfaceLabel!
     @IBOutlet var seperator: WKInterfaceSeparator!
     @IBOutlet var group: WKInterfaceGroup!
+    @IBOutlet var locationLabel: WKInterfaceLabel!
     
 }

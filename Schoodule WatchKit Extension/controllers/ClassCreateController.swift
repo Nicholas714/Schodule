@@ -19,6 +19,7 @@ class ClassCreateController: WKInterfaceController {
     // MARK: UI Outlets
     
     @IBOutlet var nameLabel: WKInterfaceLabel!
+    @IBOutlet var locationLabel: WKInterfaceLabel!
     
     // pickers
     @IBOutlet var colorPicker: WKInterfacePicker!
@@ -79,6 +80,7 @@ class ClassCreateController: WKInterfaceController {
         }
         
         nameLabel.setText(period.className)
+        locationLabel.setText(period.location ?? "Location")
     }
     
     override func willActivate() {
@@ -105,7 +107,6 @@ class ClassCreateController: WKInterfaceController {
             self.popToRootController()
         }
         self.presentAlert(withTitle: "Delete \"\(period.className)\"", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [deleteConfirm])
-        
     }
     
     // MARK: Picker Actions
@@ -119,6 +120,21 @@ class ClassCreateController: WKInterfaceController {
         }
     }
     
+    @IBAction func pickLocation() {
+        presentTextInputController(withSuggestions: ["Library", "Cafeteria", "Gymnasium", "None"], allowedInputMode: .plain) { (results) in
+            if let array = results, array.count > 0 {
+                if let location = array[0] as? String {
+                    if location == "None" {
+                        self.locationLabel.setText("Location")
+                        self.period.location = nil
+                    } else {
+                        self.locationLabel.setText(location)
+                        self.period.location = location
+                    }
+                }
+            }
+        }
+    }
     @IBAction func pickColor(_ value: Int) {
         period.themeIndex = value
     }

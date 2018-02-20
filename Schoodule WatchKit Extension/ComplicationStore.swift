@@ -94,7 +94,12 @@ struct ComplicationStore {
             // modularLarge text provider with period name as header, time left on body 1, and location on body 2
             template.headerTextProvider = periodNameProvider
             template.body1TextProvider = dateTextProvider
-            template.body2TextProvider = CLKSimpleTextProvider(text: "")
+            
+            if let location = period?.location {
+                template.body2TextProvider = CLKSimpleTextProvider(text: location)
+            } else {
+                template.body2TextProvider = CLKSimpleTextProvider(text: "")
+            }
             
         } else if let template = template as? CLKComplicationTemplateModularSmallStackText {
             
