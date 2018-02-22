@@ -95,9 +95,16 @@ class ClassCreateController: WKInterfaceController {
     // MARK: Button Actions
     
     @IBAction func save() {
-        schoodule.replace(old: periodStartIndex, with: period)
-        schoodule.pendingTableScrollIndex = schoodule.index(of: period)
-        popToRootController()
+        if period.start.date > period.end.date {
+            let okAlert = WKAlertAction(title: "Ok", style: .default) {
+                self.scroll(to: self.amStartPicker, at: .top, animated: true)
+            }
+            self.presentAlert(withTitle: "Time Error", message: "Start time must be before end time.", preferredStyle: .alert, actions: [okAlert])
+        } else {
+            schoodule.replace(old: periodStartIndex, with: period)
+            schoodule.pendingTableScrollIndex = schoodule.index(of: period)
+            popToRootController()
+        }
     }
     
     @IBAction func delete() {
@@ -191,10 +198,21 @@ class ClassCreateController: WKInterfaceController {
     // MARK: Picker populators
 
     func populateColorPicker() {
+        func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+            let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            UIGraphicsBeginImageContextWithOptions(size, false, 0)
+            color.setFill()
+            UIRectFill(rect)
+            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            return image
+        }
+        
         colorPicker.setItems(UIColor.themes.map({ (name, color) -> WKPickerItem in
             let pickerItem = WKPickerItem()
             pickerItem.caption = name
-            pickerItem.title = name
+            let width = WKInterfaceDevice.current().screenBounds.width
+            pickerItem.contentImage = WKImage(image: getImageWithColor(color: color, size: CGSize(width: width, height: 25)))
             return pickerItem
         }))
         

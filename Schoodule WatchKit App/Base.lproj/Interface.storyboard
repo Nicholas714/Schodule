@@ -12,24 +12,24 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
+                <controller hidesWhenLoading="NO" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <table alignment="left" id="BzL-93-Fiw">
+                        <table alignment="left" hidden="YES" id="BzL-93-Fiw">
                             <items>
                                 <tableRow identifier="classRow" id="5Zl-nu-DE8" customClass="ClassRow" customModule="Schoodule_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="4" id="Ybr-pq-Kkh">
                                         <items>
                                             <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
-                                                <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
                                             </label>
                                             <separator height="1" heightAdjustment="-5" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
-                                                <color key="color" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="color" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                             </separator>
                                             <group alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
                                                 <items>
                                                     <label width="1" alignment="left" text="English" numberOfLines="3" id="BPc-qV-4Ke">
-                                                        <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="7:05 AM" textAlignment="left" id="ukE-2s-Ejl">
@@ -55,7 +55,7 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label width="136" alignment="left" text="Connecting to iPhone..." textAlignment="center" numberOfLines="3" id="qLg-EJ-chf"/>
+                        <label width="1" alignment="left" text="Connecting to iPhone..." textAlignment="center" numberOfLines="3" id="qLg-EJ-chf"/>
                         <button width="1" alignment="left" hidden="YES" title="New" id="c9I-Zy-rXo">
                             <connections>
                                 <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
@@ -72,15 +72,6 @@
                             </connections>
                         </button>
                     </items>
-                    <menu key="menu" id="Biv-3L-gSZ">
-                        <items>
-                            <menuItem title="Clear All" icon="trash" id="IOX-tf-9Yf">
-                                <connections>
-                                    <action selector="clearAllPeriods" destination="AgC-eL-Hgc" id="rgP-rv-A27"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="connectingLabel" destination="qLg-EJ-chf" id="zSm-KH-gDZ"/>
                         <outlet property="newButton" destination="c9I-Zy-rXo" id="egm-Th-3EV"/>
@@ -159,12 +150,16 @@
                                 </picker>
                             </items>
                         </group>
-                        <label alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
-                        <picker height="42" alignment="left" focusStyle="stack" id="8Mb-8a-51o">
-                            <connections>
-                                <action selector="pickColor:" destination="kdc-Nx-vgh" id="brg-a2-koP"/>
-                            </connections>
-                        </picker>
+                        <group width="1" height="50" alignment="left" layout="overlap" id="hO3-Nm-O3l">
+                            <items>
+                                <picker width="1" height="42" alignment="center" verticalAlignment="bottom" style="sequence" focusStyle="sequence" id="8Mb-8a-51o">
+                                    <connections>
+                                        <action selector="pickColor:" destination="kdc-Nx-vgh" id="brg-a2-koP"/>
+                                    </connections>
+                                </picker>
+                                <label width="43" alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
+                            </items>
+                        </group>
                         <button width="1" alignment="left" title="Save" id="TQd-6A-b8a">
                             <connections>
                                 <action selector="save" destination="kdc-Nx-vgh" id="kLY-xO-fwY"/>
@@ -190,7 +185,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="552" y="-83.5"/>
+            <point key="canvasLocation" x="552" y="-99.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

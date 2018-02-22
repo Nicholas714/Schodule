@@ -18,7 +18,6 @@ struct Period: Equatable, Codable, Comparable {
     var start: Time
     var end: Time
     var location: String?
-    // var days = [Day]()
     
     var color: UIColor {
         get {
@@ -32,11 +31,10 @@ struct Period: Equatable, Codable, Comparable {
         self.start = start
         self.end = end
         self.location = nil
-        // self.days = days
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {
-        return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className
+        return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {

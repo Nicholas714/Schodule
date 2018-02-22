@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
+		43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43109E6E203E4E9900A7A2C7 /* Assets.xcassets */; };
 		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
 		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
 		433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */; };
@@ -21,9 +22,6 @@
 		433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C9201E9E3100902BB8 /* ClassRow.swift */; };
 		433E62162031032300083811 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6214203102FD00083811 /* Crashlytics.framework */; };
 		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
-		433E621F20310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
-		433E622020310AD000083811 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E621E20310AD000083811 /* Day.swift */; };
-		434A5D142039CC4D00C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D132039CC4D00C7F4AD /* Assets.xcassets */; };
 		434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D152039CD4900C7F4AD /* Assets.xcassets */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
@@ -87,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		4307E739202414240046B7CA /* UIColor+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
+		43109E6E203E4E9900A7A2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Schoodule WatchKit App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		433E0984201E9AC500902BB8 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E0987201E9AC500902BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		433E098C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,8 +103,6 @@
 		433E09C9201E9E3100902BB8 /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
 		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
-		433E621E20310AD000083811 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		434A5D132039CC4D00C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Desktop/Icon Set/Assets.xcassets"; sourceTree = "<group>"; };
 		434A5D152039CD4900C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
@@ -166,7 +163,7 @@
 			children = (
 				433E0987201E9AC500902BB8 /* AppDelegate.swift */,
 				433E098B201E9AC500902BB8 /* Main.storyboard */,
-				434A5D132039CC4D00C7F4AD /* Assets.xcassets */,
+				43109E6E203E4E9900A7A2C7 /* Assets.xcassets */,
 				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
 				433E0993201E9AC500902BB8 /* Info.plist */,
 				43EEBAA720292A620029750A /* ViewController.swift */,
@@ -208,7 +205,6 @@
 				4307E739202414240046B7CA /* UIColor+Themes.swift */,
 				43E468072027661A0076BEBD /* Time.swift */,
 				43B43D732030906E007A809C /* SchooduleManager.swift */,
-				433E621E20310AD000083811 /* Day.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -340,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */,
-				434A5D142039CC4D00C7F4AD /* Assets.xcassets in Resources */,
+				43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */,
 				433E098D201E9AC500902BB8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +385,6 @@
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
-				433E621F20310AD000083811 /* Day.swift in Sources */,
 				43B43D742030906E007A809C /* SchooduleManager.swift in Sources */,
 				43B9CF1B203B9C9900A98A30 /* SchooduleManager+iOS.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
@@ -402,7 +397,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433E622020310AD000083811 /* Day.swift in Sources */,
 				433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */,
 				43E468092027661A0076BEBD /* Time.swift in Sources */,
 				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,

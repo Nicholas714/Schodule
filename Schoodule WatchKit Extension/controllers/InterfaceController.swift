@@ -33,12 +33,18 @@ class InterfaceController: WKInterfaceController {
         return SchooduleManager.shared.session
     }
     
+    // last time the table was created, this stores it to detect when changes are made and only reloadTable when it is different
+    var lastRefresh = [Period]()
+    
     // if anything fails to send, the connection to the host iPhone is lost. disable UI.
     var errorHandler: ((Error) -> Void)? {
         return { (error) in
             self.showError()
         }
     }
+    
+    // stores if the table/info is displayed
+    var isLoaded = false
         
     // MARK: WKInterfaceController functions
     
@@ -78,59 +84,58 @@ class InterfaceController: WKInterfaceController {
         return nil
     }
      
-    // MARK: Functions
+    // MARK: Table Population
     
     func createTable() {
+        
+        if lastRefresh == schoodule.periods {
+            print("same")
+            return
+        }
+        
+        print("different")
+        
         scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
                 
         for (index, period) in schoodule.periods.enumerated() {
-            let row = scheduleTable.rowController(at: index) as! ClassRow            
-
-            row.durationLabel?.setText("\(period.start.string)")
-            row.indexLabel?.setText("\(index + 1)")
-            row.nameLabel?.setText("\(period.className)")
-            
-            let color = period.color
-            row.seperator?.setColor(color)
-            row.indexLabel?.setTextColor(color)
-            row.nameLabel?.setTextColor(color)
-            row.durationLabel.setTextColor(UIColor.white)
-            
-            if let location = period.location {
-                row.locationLabel.setText(location)
-            } else {
-                row.locationLabel.setHidden(true)
-                
-            }
-            
-        }
-
-        var scrollIndex: Int?
-        var highlightIndex: Int?
-        
-        if let currentPeriod = self.schoodule.classFrom(date: Date()), let index = self.schoodule.index(of: currentPeriod) {
-            scrollIndex = index
-            highlightIndex = index
-        } else if let nextPeriod = self.schoodule.nextClassFrom(date: Date()), let index = self.schoodule.index(of: nextPeriod) {
-            scrollIndex = index
-            highlightIndex = index
+            loadRow(index: index, period: period)
         }
         
-        if let index = schoodule.pendingTableScrollIndex {
-            scrollIndex = index
+        if let scroll = schoodule.pendingTableScrollIndex {
+            scheduleTable.scrollToRow(at: scroll)
             schoodule.pendingTableScrollIndex = nil
         }
+
+        showInfo()
         
-        if let scroll = scrollIndex {
-            scheduleTable.scrollToRow(at: scroll)
+        lastRefresh = schoodule.periods
+    }
+    
+    func loadRow(index: Int, period: Period) {
+        let currentClass = schoodule.classFrom(date: Date())
+        let nextClass = schoodule.nextClassFrom(date: Date())
+        
+        let row = scheduleTable.rowController(at: index) as! ClassRow
+        
+        row.durationLabel?.setText("\(period.start.string)")
+        row.indexLabel?.setText("\(index + 1)")
+        row.nameLabel?.setText("\(period.className)")
+        
+        let color = period.color
+        row.seperator?.setColor(color)
+        row.indexLabel?.setTextColor(color)
+        row.nameLabel?.setTextColor(color)
+        row.durationLabel.setTextColor(UIColor.white)
+        
+        if let location = period.location {
+            row.locationLabel.setText(location)
+        } else {
+            row.locationLabel.setHidden(true)
         }
         
-        if let highlight = highlightIndex {
-            let row = scheduleTable.rowController(at: highlight) as! ClassRow
+        if period == currentClass || (period == nextClass && currentClass == nil) {
             row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
         }
-        
-        showInfo()
     }
     
     func showInfo() {
@@ -144,9 +149,18 @@ class InterfaceController: WKInterfaceController {
         scheduleTable.setHidden(false)
         newButton.setHidden(false)
         retryButton.setHidden(true)
+
+        if !isLoaded {
+            DispatchQueue.main.async {
+                self.addMenuItem(with: .trash, title: "Clear All", action: #selector(self.clearAllPeriods))
+            }
+        }
+        
+        isLoaded = true
     }
     
     func showError() {
+        isLoaded = false
         connectingLabel.setText("Failed to connect.")
         connectingLabel.setHidden(false)
         retryButton.setHidden(false)
@@ -160,15 +174,21 @@ class InterfaceController: WKInterfaceController {
         SchooduleManager.shared.updateComplications()
     }
     
-    
-    @IBAction func clearAllPeriods() {
-        SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
-            self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-            
-            DispatchQueue.main.async {
-                self.createTable()
-            }
-        }, errorHandler: errorHandler)
+
+    @objc func clearAllPeriods() {
+        let clearAllConfirm = WKAlertAction(title: "Clear All", style: .destructive) {
+            SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
+                self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
+                
+                DispatchQueue.main.async {
+                    self.createTable()
+                }
+            }, errorHandler: self.errorHandler)
+        }
+        
+        self.presentAlert(withTitle: "Clear All Classes", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [clearAllConfirm])
+        
+        
     }
     
 }
