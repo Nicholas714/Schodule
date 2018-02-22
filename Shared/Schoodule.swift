@@ -12,17 +12,13 @@ import UIKit
 class Schoodule {
 
     var hasPendingSend = false
-    var unsortedPeriods = [Period]()
+    var unsortedPeriods = Set<Period>()
     
     var transfer: [String: Data] {
         return ["periods": storage.encoded]
     }
     
-    var periods: [Period] {
-        get {
-            return unsortedPeriods.sorted()
-        }
-    }
+    var periods = [Period]()
     
     var lastPeriod: Period? {
         return periods.last
@@ -34,21 +30,25 @@ class Schoodule {
         return Storage(schoodule: self)
     }()
     
-    func replace(old oldPeriod: Int?, with newPeriod: Period) {
+    func replace(old oldPeriod: Period?, with newPeriod: Period) {
         if let old = oldPeriod {
-            unsortedPeriods.remove(at: old)
+            unsortedPeriods.remove(old)
         }
         
-        unsortedPeriods.append(newPeriod)
+        unsortedPeriods.insert(newPeriod)
         
         hasPendingSend = true
+        
+        periods = unsortedPeriods.sorted()
     }
     
-    func removePeriod(index: Int?) {
-        if let i = index {
-            unsortedPeriods.remove(at: i)
+    func remove(old oldPeriod: Period?) {
+        if let old = oldPeriod {
+            unsortedPeriods.remove(old)
             hasPendingSend = true
         }
+        
+        periods = unsortedPeriods.sorted()
     }
     
     func index(of period: Period) -> Int? {
@@ -73,6 +73,7 @@ class Schoodule {
     func clear() {
         unsortedPeriods.removeAll()
         pendingTableScrollIndex = nil
+        periods = [Period]()
     }
     
 }

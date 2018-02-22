@@ -21,7 +21,7 @@ class MainTableViewController: UITableViewController {
     @IBAction func click(_ sender: Any) {
         print("hi")
         if let period = schoodule.classFrom(date: Date()) {
-            schoodule.replace(old: schoodule.unsortedPeriods.index(of: period), with: Period(className: "\(period.className)!", themeIndex: 0, start: period.start, end: period.end))
+            schoodule.replace(old: period, with: Period(className: "\(period.className)!", themeIndex: 0, start: period.start, end: period.end))
         }
         
         SchooduleManager.shared.saveSchedule()
@@ -42,7 +42,7 @@ class MainTableViewController: UITableViewController {
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schoodule.periods.count
+        return schoodule.unsortedPeriods.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

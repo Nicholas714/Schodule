@@ -14,8 +14,8 @@ class ClassCreateController: WKInterfaceController {
     
     var schoodule: Schoodule!
     var period: Period!
-    var periodStartIndex: Int?
-        
+    var initialPeriod: Period?
+
     // MARK: UI Outlets
     
     @IBOutlet var nameLabel: WKInterfaceLabel!
@@ -62,9 +62,8 @@ class ClassCreateController: WKInterfaceController {
         if let (s, period) = context as? (Schoodule, Period) { // edit passes in period
             self.schoodule = s
             self.period = period
-        
-            periodStartIndex = schoodule.unsortedPeriods.index(of: period)
-            
+
+            initialPeriod = period
         } else if let schoodule = context as? Schoodule { // create has no period
             self.schoodule = schoodule
             deleteButton.setHidden(true)
@@ -76,7 +75,6 @@ class ClassCreateController: WKInterfaceController {
             } else {
                 period = Period(className: "Class", themeIndex: Int(arc4random_uniform(UInt32(UIColor.themes.count))), start: Time(from: Date()), end: Time(from: Date().addingTimeInterval(40 * 60)))
             }
-            
         }
         
         nameLabel.setText(period.className)
@@ -101,7 +99,7 @@ class ClassCreateController: WKInterfaceController {
             }
             self.presentAlert(withTitle: "Time Error", message: "Start time must be before end time.", preferredStyle: .alert, actions: [okAlert])
         } else {
-            schoodule.replace(old: periodStartIndex, with: period)
+            schoodule.replace(old: initialPeriod, with: period)
             schoodule.pendingTableScrollIndex = schoodule.index(of: period)
             popToRootController()
         }
@@ -109,12 +107,14 @@ class ClassCreateController: WKInterfaceController {
     
     @IBAction func delete() {
         let deleteConfirm = WKAlertAction(title: "Delete", style: .destructive) {
-            self.schoodule.removePeriod(index: self.periodStartIndex)
+            self.schoodule.remove(old: self.initialPeriod)
             self.schoodule.pendingTableScrollIndex = self.schoodule.index(of: self.period)
             self.popToRootController()
         }
         self.presentAlert(withTitle: "Delete \"\(period.className)\"", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [deleteConfirm])
     }
+    
+    
     
     // MARK: Picker Actions
     
@@ -160,7 +160,6 @@ class ClassCreateController: WKInterfaceController {
                 period.start.hour = value + 13
             }
         }
-        
     }
     
     @IBAction func pickEndHour(_ value: Int) {

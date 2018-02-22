@@ -11,7 +11,9 @@ import UIKit
 
 typealias Hallway = Period
 
-struct Period: Equatable, Codable, Comparable {
+struct Period: Equatable, Codable, Comparable, Hashable {
+    
+    var hashValue: Int
     
     var className: String
     var themeIndex: Int
@@ -31,6 +33,7 @@ struct Period: Equatable, Codable, Comparable {
         self.start = start
         self.end = end
         self.location = nil
+        hashValue = className.hashValue + themeIndex.hashValue + start.hour.hashValue
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {

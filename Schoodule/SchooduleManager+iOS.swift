@@ -28,8 +28,9 @@ extension SchooduleManager {
             
             do {
                 for period in try decoder.decode([Period].self, from: data) {
-                    schoodule.unsortedPeriods.append(period)
+                    schoodule.unsortedPeriods.insert(period)
                 }
+                schoodule.periods = schoodule.unsortedPeriods.sorted()
             } catch {
                 fatalError("Error decoding periods.")
             }

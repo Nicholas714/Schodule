@@ -33,9 +33,6 @@ class InterfaceController: WKInterfaceController {
         return SchooduleManager.shared.session
     }
     
-    // last time the table was created, this stores it to detect when changes are made and only reloadTable when it is different
-    var lastRefresh = [Period]()
-    
     // if anything fails to send, the connection to the host iPhone is lost. disable UI.
     var errorHandler: ((Error) -> Void)? {
         return { (error) in
@@ -87,34 +84,33 @@ class InterfaceController: WKInterfaceController {
     // MARK: Table Population
     
     func createTable() {
-        
-        if lastRefresh == schoodule.periods {
-            print("same")
-            return
-        }
-        
-        print("different")
-        
-        scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
+
+        scheduleTable.setNumberOfRows(schoodule.unsortedPeriods.count, withRowType: "classRow")
                 
         for (index, period) in schoodule.periods.enumerated() {
             loadRow(index: index, period: period)
         }
         
-        if let scroll = schoodule.pendingTableScrollIndex {
-            scheduleTable.scrollToRow(at: scroll)
-            schoodule.pendingTableScrollIndex = nil
-        }
-
+        reloadCurrent()
+        pendingScroll()
         showInfo()
-        
-        lastRefresh = schoodule.periods
     }
     
-    func loadRow(index: Int, period: Period) {
+    func reloadCurrent() {
         let currentClass = schoodule.classFrom(date: Date())
         let nextClass = schoodule.nextClassFrom(date: Date())
         
+        for (index, period) in schoodule.periods.enumerated() {
+            let row = scheduleTable.rowController(at: index) as! ClassRow
+            if period == currentClass || (period == nextClass && currentClass == nil) {
+                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+            } else {
+                row.group.setBackgroundColor(UIColor.clear)
+            }
+        }
+    }
+    
+    func loadRow(index: Int, period: Period) {
         let row = scheduleTable.rowController(at: index) as! ClassRow
         
         row.durationLabel?.setText("\(period.start.string)")
@@ -129,17 +125,21 @@ class InterfaceController: WKInterfaceController {
         
         if let location = period.location {
             row.locationLabel.setText(location)
+            row.locationLabel.setHidden(false)
         } else {
             row.locationLabel.setHidden(true)
         }
-        
-        if period == currentClass || (period == nextClass && currentClass == nil) {
-            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+    }
+    
+    func pendingScroll() {
+        if let scroll = schoodule.pendingTableScrollIndex {
+            scheduleTable.scrollToRow(at: scroll)
+            schoodule.pendingTableScrollIndex = nil
         }
     }
     
     func showInfo() {
-        if schoodule.periods.isEmpty {
+        if schoodule.unsortedPeriods.isEmpty {
             connectingLabel.setHidden(false)
             connectingLabel.setText("Tap to add a new class.")
         } else {
@@ -166,6 +166,7 @@ class InterfaceController: WKInterfaceController {
         retryButton.setHidden(false)
         newButton.setHidden(true)
         scheduleTable.setHidden(true)
+        self.clearAllMenuItems()
     }
     
     // MARK: Actions
@@ -181,14 +182,22 @@ class InterfaceController: WKInterfaceController {
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
                 
                 DispatchQueue.main.async {
-                    self.createTable()
+                    self.scheduleTable.setNumberOfRows(0, withRowType: "classRow")
+                    self.showInfo()
                 }
             }, errorHandler: self.errorHandler)
         }
         
         self.presentAlert(withTitle: "Clear All Classes", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [clearAllConfirm])
-        
-        
     }
+    
+}
+
+extension Int {
+    
+    var indexSet: IndexSet {
+        return IndexSet(integer: self)
+    }
+    
     
 }
