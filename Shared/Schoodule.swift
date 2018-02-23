@@ -40,6 +40,7 @@ class Schoodule {
         hasPendingSend = true
         
         periods = unsortedPeriods.sorted()
+        SchooduleManager.shared.saveSchedule()
     }
     
     func remove(old oldPeriod: Period?) {
@@ -49,6 +50,14 @@ class Schoodule {
         }
         
         periods = unsortedPeriods.sorted()
+        SchooduleManager.shared.saveSchedule()
+    }
+    
+    func clear() {
+        unsortedPeriods.removeAll()
+        pendingTableScrollIndex = nil
+        periods = [Period]()
+        SchooduleManager.shared.saveSchedule()
     }
     
     func index(of period: Period) -> Int? {
@@ -68,12 +77,6 @@ class Schoodule {
         return periods.first { (period) -> Bool in
             return date < period.start.date
         }
-    }
-    
-    func clear() {
-        unsortedPeriods.removeAll()
-        pendingTableScrollIndex = nil
-        periods = [Period]()
     }
     
 }

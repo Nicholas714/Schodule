@@ -21,6 +21,7 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func retrySessionConnect() {
         SchooduleManager.shared.startSession(delegate: WKExtension.shared().delegate as! ExtensionDelegate)
+        self.createTable()
     }
     
     // MARK: Properties
@@ -52,19 +53,20 @@ class InterfaceController: WKInterfaceController {
                 self.schoodule.hasPendingSend = false
             }, errorHandler: errorHandler)
         }
-        
+
         if schoodule.unsortedPeriods.isEmpty {
             SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-                
+                SchooduleManager.shared.saveSchedule()
                 self.createTable()
             }) { (error) in
                 self.showError()
             }
-        } else {
-            self.createTable()
         }
         
+        SchooduleManager.shared.loadScheudle()
+
+        self.createTable()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
@@ -86,7 +88,7 @@ class InterfaceController: WKInterfaceController {
     func createTable() {
 
         scheduleTable.setNumberOfRows(schoodule.unsortedPeriods.count, withRowType: "classRow")
-                
+        
         for (index, period) in schoodule.periods.enumerated() {
             loadRow(index: index, period: period)
         }
