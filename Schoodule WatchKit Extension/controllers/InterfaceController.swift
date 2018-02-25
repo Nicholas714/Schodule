@@ -13,16 +13,11 @@ import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
   
-    @IBOutlet var scheduleTable: WKInterfaceTable!
+    // MARK: Outlets
     
+    @IBOutlet var scheduleTable: WKInterfaceTable!
     @IBOutlet var connectingLabel: WKInterfaceLabel!
     @IBOutlet var newButton: WKInterfaceButton!
-    @IBOutlet var retryButton: WKInterfaceButton!
-    
-    @IBAction func retrySessionConnect() {
-        SchooduleManager.shared.startSession(delegate: WKExtension.shared().delegate as! ExtensionDelegate)
-        self.createTable()
-    }
     
     // MARK: Properties
     
@@ -33,17 +28,7 @@ class InterfaceController: WKInterfaceController {
     var session: WCSession? {
         return SchooduleManager.shared.session
     }
-    
-    // if anything fails to send, the connection to the host iPhone is lost. disable UI.
-    var errorHandler: ((Error) -> Void)? {
-        return { (error) in
-            self.showError()
-        }
-    }
-    
-    // stores if the table/info is displayed
-    var isLoaded = false
-        
+
     // MARK: WKInterfaceController functions
     
     override func willActivate() {
@@ -51,23 +36,25 @@ class InterfaceController: WKInterfaceController {
         if schoodule.hasPendingSend {
             SchooduleManager.shared.sendUpdatedContents(replyHandler: { (period) in
                 self.schoodule.hasPendingSend = false
-            }, errorHandler: errorHandler)
+            }, errorHandler: nil)
         }
 
         if schoodule.unsortedPeriods.isEmpty {
+            SchooduleManager.shared.loadScheudle()
+            // try to fetch new list from iPhone if it is reachable
             SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
                 SchooduleManager.shared.saveSchedule()
                 self.createTable()
             }) { (error) in
-                self.showError()
+                
             }
         }
         
-        SchooduleManager.shared.loadScheudle()
-
         self.createTable()
     }
+    
+    // MARK Segueing Data
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "editSegue" {
@@ -83,7 +70,7 @@ class InterfaceController: WKInterfaceController {
         return nil
     }
      
-    // MARK: Table Population
+    // MARK: UI/Table Population
     
     func createTable() {
 
@@ -144,50 +131,24 @@ class InterfaceController: WKInterfaceController {
         if schoodule.unsortedPeriods.isEmpty {
             connectingLabel.setHidden(false)
             connectingLabel.setText("Tap to add a new class.")
-        } else {
-            connectingLabel.setHidden(true)
         }
         
         scheduleTable.setHidden(false)
         newButton.setHidden(false)
-        retryButton.setHidden(true)
-
-        if !isLoaded {
-            DispatchQueue.main.async {
-                self.addMenuItem(with: .trash, title: "Clear All", action: #selector(self.clearAllPeriods))
-            }
-        }
-        
-        isLoaded = true
-    }
-    
-    func showError() {
-        isLoaded = false
-        connectingLabel.setText("Failed to connect.")
-        connectingLabel.setHidden(false)
-        retryButton.setHidden(false)
-        newButton.setHidden(true)
-        scheduleTable.setHidden(true)
-        self.clearAllMenuItems()
     }
     
     // MARK: Actions
     
-    @IBAction func updateComplications() {
-        SchooduleManager.shared.updateComplications()
-    }
-    
-
-    @objc func clearAllPeriods() {
+    @IBAction func clearAllPeriods() {
         let clearAllConfirm = WKAlertAction(title: "Clear All", style: .destructive) {
             SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
                 self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-                
+    
                 DispatchQueue.main.async {
                     self.scheduleTable.setNumberOfRows(0, withRowType: "classRow")
                     self.showInfo()
                 }
-            }, errorHandler: self.errorHandler)
+            }, errorHandler: nil)
         }
         
         self.presentAlert(withTitle: "Clear All Classes", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [clearAllConfirm])

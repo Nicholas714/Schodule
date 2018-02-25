@@ -74,7 +74,6 @@ struct ComplicationStore {
             return nil
         }
         
-        // TODO: test highlight line 1 on stack providers
         template.tintColor = period?.color
     
         if let template = template as? CLKComplicationTemplateCircularSmallStackText {
