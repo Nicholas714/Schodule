@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14092" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14087.3" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14028.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14028"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -55,21 +55,16 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label width="1" alignment="left" textAlignment="center" numberOfLines="3" id="qLg-EJ-chf"/>
+                        <label width="1" alignment="left" hidden="YES" text="Tap to add a new class." textAlignment="center" numberOfLines="3" id="qLg-EJ-chf"/>
                         <button width="1" alignment="left" hidden="YES" title="New" id="c9I-Zy-rXo">
                             <connections>
                                 <segue destination="kdc-Nx-vgh" kind="push" identifier="createSegue" id="zjk-p5-8rE"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" hidden="YES" title="Retry" id="K0V-Z1-UHN">
-                            <connections>
-                                <action selector="retrySessionConnect" destination="AgC-eL-Hgc" id="jpf-m8-7DA"/>
-                            </connections>
-                        </button>
                     </items>
                     <menu key="menu" id="3lK-gQ-ruN">
                         <items>
-                            <menuItem title="Menu Item" icon="trash" id="j03-Ea-9pp">
+                            <menuItem title="Clear All" icon="trash" id="j03-Ea-9pp">
                                 <connections>
                                     <action selector="clearAllPeriods" destination="AgC-eL-Hgc" id="cbW-Yf-wUh"/>
                                 </connections>
@@ -79,7 +74,6 @@
                     <connections>
                         <outlet property="connectingLabel" destination="qLg-EJ-chf" id="zSm-KH-gDZ"/>
                         <outlet property="newButton" destination="c9I-Zy-rXo" id="egm-Th-3EV"/>
-                        <outlet property="retryButton" destination="K0V-Z1-UHN" id="f8b-Mv-IFz"/>
                         <outlet property="scheduleTable" destination="BzL-93-Fiw" id="BXX-xP-j7q"/>
                     </connections>
                 </controller>

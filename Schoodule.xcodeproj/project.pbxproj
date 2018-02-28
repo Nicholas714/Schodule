@@ -34,7 +34,6 @@
 		43B43D742030906E007A809C /* SchooduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* SchooduleManager.swift */; };
 		43B43D752030906E007A809C /* SchooduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* SchooduleManager.swift */; };
 		43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D762030913E007A809C /* SchooduleManager+Watch.swift */; };
-		43B9CF1B203B9C9900A98A30 /* SchooduleManager+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9CF1A203B9C9900A98A30 /* SchooduleManager+iOS.swift */; };
 		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
@@ -110,7 +109,6 @@
 		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
 		43B43D732030906E007A809C /* SchooduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleManager.swift; sourceTree = "<group>"; };
 		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
-		43B9CF1A203B9C9900A98A30 /* SchooduleManager+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+iOS.swift"; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
 		43EEBAA720292A620029750A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
 				433E0993201E9AC500902BB8 /* Info.plist */,
 				43EEBAA720292A620029750A /* ViewController.swift */,
-				43B9CF1A203B9C9900A98A30 /* SchooduleManager+iOS.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -185,6 +182,7 @@
 		433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				43725F1E204649BC00F6EDD7 /* New Group */,
 				43988740201FB8D900E5BD60 /* controllers */,
 				433E09B0201E9AC500902BB8 /* Assets.xcassets */,
 				433E09B2201E9AC500902BB8 /* Info.plist */,
@@ -216,6 +214,13 @@
 				433E6214203102FD00083811 /* Crashlytics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		43725F1E204649BC00F6EDD7 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		43988740201FB8D900E5BD60 /* controllers */ = {
@@ -401,7 +406,6 @@
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
 				43B43D742030906E007A809C /* SchooduleManager.swift in Sources */,
-				43B9CF1B203B9C9900A98A30 /* SchooduleManager+iOS.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
 				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,

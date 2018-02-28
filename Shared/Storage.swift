@@ -7,7 +7,6 @@
 // 
 
 import Foundation
-import UIKit
 
 class Storage {
     
@@ -27,7 +26,7 @@ class Storage {
         self.schoodule = schoodule
     }
     
-    func decodePeriods(from data: Data) {
+    @discardableResult func decodePeriods(from data: Data) -> Bool {
         schoodule.unsortedPeriods.removeAll()
         
         let decoder = JSONDecoder()
@@ -36,9 +35,19 @@ class Storage {
             for period in try decoder.decode([Period].self, from: data) {
                 schoodule.unsortedPeriods.insert(period)
             }
+            
+            let past = schoodule.periods
+            
             schoodule.periods = schoodule.unsortedPeriods.sorted()
+            SchooduleManager.shared.saveSchedule()
+            if past == schoodule.periods {
+                return true
+            }
+            
         } catch {
             fatalError("Error decoding periods.")
         }
+        
+        return false
     }
 }

@@ -50,9 +50,6 @@ extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if let message = message["message"] as? String, message == "refreshRequest" {
             replyHandler(schoodule.transfer)
-        } else if let message = message["message"] as? String, message == "complicationRefreshRequest" {
-            print("sending back complication refresh...")
-            session.transferCurrentComplicationUserInfo(schoodule.transfer)
         } else if let message = message["message"] as? String, message == "clear" {
             schoodule.clear()
             SchooduleManager.shared.saveSchedule()

@@ -7,7 +7,6 @@
 //
 
 import WatchKit
-import ClockKit
 import Foundation
 import WatchConnectivity
 
@@ -38,20 +37,22 @@ class InterfaceController: WKInterfaceController {
                 self.schoodule.hasPendingSend = false
             }, errorHandler: nil)
         }
-
+        
         if schoodule.unsortedPeriods.isEmpty {
             SchooduleManager.shared.loadScheudle()
+            createTable()
+            
             // try to fetch new list from iPhone if it is reachable
             SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
-                self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-                SchooduleManager.shared.saveSchedule()
-                self.createTable()
-            }) { (error) in
                 
-            }
+                if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
+                    SchooduleManager.shared.saveSchedule()
+                    self.createTable()
+                }
+            })
+        } else {
+            createTable()
         }
-        
-        self.createTable()
     }
     
     // MARK Segueing Data
@@ -130,7 +131,8 @@ class InterfaceController: WKInterfaceController {
     func showInfo() {
         if schoodule.unsortedPeriods.isEmpty {
             connectingLabel.setHidden(false)
-            connectingLabel.setText("Tap to add a new class.")
+        } else {
+            connectingLabel.setHidden(true)
         }
         
         scheduleTable.setHidden(false)
@@ -141,13 +143,14 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func clearAllPeriods() {
         let clearAllConfirm = WKAlertAction(title: "Clear All", style: .destructive) {
+            self.schoodule.clear()
+            
+            DispatchQueue.main.async {
+                self.createTable()
+            }
+            
             SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
-                self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
-    
-                DispatchQueue.main.async {
-                    self.scheduleTable.setNumberOfRows(0, withRowType: "classRow")
-                    self.showInfo()
-                }
+                
             }, errorHandler: nil)
         }
         

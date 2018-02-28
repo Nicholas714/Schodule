@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import WatchConnectivity
-import Crashlytics
 
 class MainTableViewController: UITableViewController {
     
@@ -19,7 +17,6 @@ class MainTableViewController: UITableViewController {
     }
     
     @IBAction func click(_ sender: Any) {
-        print("hi")
         if let period = schoodule.classFrom(date: Date()) {
             schoodule.replace(old: period, with: Period(className: "\(period.className)!", themeIndex: 0, start: period.start, end: period.end))
         }

@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-typealias Hallway = Period
-
 struct Period: Equatable, Codable, Comparable, Hashable {
     
     var hashValue: Int

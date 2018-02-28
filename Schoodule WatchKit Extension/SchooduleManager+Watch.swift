@@ -7,7 +7,7 @@
 //
 
 import WatchConnectivity
-import WatchKit
+import ClockKit
 
 extension SchooduleManager {
     
@@ -15,6 +15,9 @@ extension SchooduleManager {
         let complicationServer = CLKComplicationServer.sharedInstance()
         
         if let complications = complicationServer.activeComplications {
+            
+            SchooduleManager.shared.loadScheudle()
+            
             for complication in complications {
                 complicationServer.reloadTimeline(for: complication)
             }

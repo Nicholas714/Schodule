@@ -109,7 +109,10 @@ class ClassCreateController: WKInterfaceController {
         let deleteConfirm = WKAlertAction(title: "Delete", style: .destructive) {
             self.schoodule.remove(old: self.initialPeriod)
             self.schoodule.pendingTableScrollIndex = self.schoodule.index(of: self.period)
-            self.popToRootController()
+            
+            DispatchQueue.main.async {
+                self.popToRootController()
+            }
         }
         self.presentAlert(withTitle: "Delete \"\(period.className)\"", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [deleteConfirm])
     }
