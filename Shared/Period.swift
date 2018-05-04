@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-typealias Hallway = Period
-
-struct Period: Equatable, Codable, Comparable {
+struct Period: Equatable, Codable, Comparable, Hashable {
+    
+    var hashValue: Int
     
     var className: String
     var themeIndex: Int
     var start: Time
     var end: Time
+    var location: String?
     
     var color: UIColor {
         get {
@@ -29,10 +30,12 @@ struct Period: Equatable, Codable, Comparable {
         self.themeIndex = themeIndex
         self.start = start
         self.end = end
+        self.location = nil
+        hashValue = className.hashValue + themeIndex.hashValue + start.hour.hashValue
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {
-        return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className
+        return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {

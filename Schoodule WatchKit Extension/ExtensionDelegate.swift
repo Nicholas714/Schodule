@@ -11,61 +11,60 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
 
-    var session: WCSession? = nil
-    var schoodule: Schoodule! = nil
+    var manager = SchooduleManager.shared
     
-    func createNextRefresh() {
-        let nextUpdate = Date().addingTimeInterval(30)
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextUpdate, userInfo: nil) { (error) in }
+    var schoodule: Schoodule {
+        return manager.schoodule
     }
     
-    func createTable() {
-        (WKExtension.shared().rootInterfaceController as? InterfaceController)?.createTable()
-    }
-    
-    func startSession() {
-        if WCSession.isSupported() && session == nil {
-            session = WCSession.default
-            session?.delegate = self
-            session?.activate()
-        }
+    var root: InterfaceController? {
+        return WKExtension.shared().rootInterfaceController as? InterfaceController
     }
     
     func applicationDidFinishLaunching() {
-        schoodule = Schoodule()
-        
-        startSession()
-        
-        // start refresh cycle
-        createNextRefresh()
-    }
-
-    func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillResignActive() {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, etc.
+        // try to start the session if it has not already been started
+        manager.startSession(delegate: self)
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         for task in backgroundTasks {
             switch task {
-            // called to update timeline
-            case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                let complicationServer = CLKComplicationServer.sharedInstance()
+            case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 
-                if let complications = complicationServer.activeComplications {
-                    for complication in complications {
-                        complicationServer.reloadTimeline(for: complication)
+                if SchooduleManager.shared.schoodule.unsortedPeriods.isEmpty {
+                    SchooduleManager.shared.loadScheudle()
+                    
+                    if SchooduleManager.shared.schoodule.unsortedPeriods.isEmpty {
+                        manager.startSession(delegate: self)
+                        SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
+                            
+                            if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
+                                SchooduleManager.shared.updateComplications()
+                                
+                                DispatchQueue.main.async {
+                                    self.root?.createTable()
+                                }
+                            }
+                        })
                     }
                 }
                 
-                // call in another 2 hours
-                createNextRefresh()
+                if snapshotTask.reasonForSnapshot != .complicationUpdate {
+                    print("STARTING SNAPSHOT TASK")
+
+                    // when the app is sent to the background or scheduled (with setTaskCompletedWithSnapshot), update complications OTHERWISE try to update the UI with a new table
+                    if snapshotTask.reasonForSnapshot == .appBackgrounded || snapshotTask.reasonForSnapshot == .appScheduled {
+                        print("app was went to the background, update complications")
+                        SchooduleManager.shared.updateComplications()
+                    } else {
+                        // this automatically refreshes the UI
+                        manager.startSession(delegate: self)
+                        root?.createTable()
+                    }
+                } 
                 
-                backgroundTask.setTaskCompletedWithSnapshot(false)
+                // schedules a new snapshot update in 1 hour
+                snapshotTask.setTaskCompletedWithSnapshot(true)
             default:
                 // called by system
                 task.setTaskCompletedWithSnapshot(false)
@@ -73,25 +72,34 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         }
     }
     
+    // MARK: WCSession
+    
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         self.schoodule.storage.decodePeriods(from: applicationContext["periods"] as! Data)
         
         DispatchQueue.main.async {
-            self.createTable()
+            self.root?.createTable()
         }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        session.sendMessage(["message": "refreshRequest"], replyHandler: { (period) in
+        manager.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             
             DispatchQueue.main.async {
-                self.createTable()
+                self.root?.createTable()
             }
-            
-        }) { (error) in
-            print(error)
+        })
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        print("recieved. decoding and updating complications...")
+        self.schoodule.storage.decodePeriods(from: userInfo["periods"] as! Data)
+        SchooduleManager.shared.updateComplications()
+        
+        DispatchQueue.main.async {
+            self.root?.createTable()
         }
     }
-
+    
 }

@@ -7,55 +7,59 @@
 //
 
 import WatchKit
-import ClockKit
 import Foundation
 import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
   
-    @IBOutlet var scheduleTable: WKInterfaceTable!
+    // MARK: Outlets
     
-    @IBAction func retrySessionConnect() {
-        (WKExtension.shared().delegate as? ExtensionDelegate)?.startSession()
-    }
+    @IBOutlet var scheduleTable: WKInterfaceTable!
+    @IBOutlet var connectingLabel: WKInterfaceLabel!
+    @IBOutlet var newButton: WKInterfaceButton!
+    
     // MARK: Properties
     
-    var session: WCSession? {
-        return (WKExtension.shared().delegate as? ExtensionDelegate)?.session
-    }
-    
-    var transfer: [String: Data] {
-        return ["periods": schoodule.storage.encoded]
-    }
-    
     var schoodule: Schoodule {
-        return (WKExtension.shared().delegate as! ExtensionDelegate).schoodule
+        return SchooduleManager.shared.schoodule
     }
-        
+    
+    var session: WCSession? {
+        return SchooduleManager.shared.session
+    }
+
     // MARK: WKInterfaceController functions
     
-    override func didAppear() {
-        if let index = schoodule.pendingTableScrollIndex {
-            scheduleTable.scrollToRow(at: index)
-            schoodule.pendingTableScrollIndex = nil
-            return
-        }
-        
-        if let currentPeriod = schoodule.classFrom(date: Date()), let index = schoodule.index(of: currentPeriod) {
-            scheduleTable.scrollToRow(at: index)
-        } else if let nextPeriod = schoodule.nextClassFrom(date: Date()), let index = schoodule.index(of: nextPeriod) {
-            scheduleTable.scrollToRow(at: index)
-        }
-        
-    }
-    
     override func willActivate() {
-        // only when table has changed
+        // when table has changed, send contents
         if schoodule.hasPendingSend {
-            sendUpdatedContents()
+            SchooduleManager.shared.sendUpdatedContents(replyHandler: { (period) in
+                self.schoodule.hasPendingSend = false
+            }, errorHandler: nil)
+        }
+        
+        if schoodule.unsortedPeriods.isEmpty {
+            print("1")
+            SchooduleManager.shared.loadScheudle()
+            createTable()
+            
+            // try to fetch new list from iPhone if it is reachable
+            SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
+                
+                if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
+                    print("2")                    
+                    DispatchQueue.main.async {
+                        self.createTable()
+                    }
+                }
+            })
+        } else {
+            print("3")
             createTable()
         }
     }
+    
+    // MARK Segueing Data
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "editSegue" {
@@ -70,37 +74,100 @@ class InterfaceController: WKInterfaceController {
         }
         return nil
     }
- 
-    // MARK: Functions
+     
+    // MARK: UI/Table Population
     
     func createTable() {
-        scheduleTable.setNumberOfRows(schoodule.periods.count, withRowType: "classRow")
+
+        scheduleTable.setNumberOfRows(schoodule.unsortedPeriods.count, withRowType: "classRow")
         
         for (index, period) in schoodule.periods.enumerated() {
-            let row = scheduleTable.rowController(at: index) as! ClassRow            
-
-            row.durationLabel?.setText("\(period.start.string)")
-            row.indexLabel?.setText("\(index + 1)")
-            row.nameLabel?.setText("\(period.className)")
-            
-            let color = Array(UIColor.themes.values)[index]
-            row.seperator?.setColor(color)
-            row.indexLabel?.setTextColor(color)
-            row.nameLabel?.setTextColor(color)
-            
-            print("\(index) - \(color.cgColor.components!.description)")
+            loadRow(index: index, period: period)
         }
         
+        reloadCurrent()
+        pendingScroll()
+        showInfo()
     }
     
-    func sendUpdatedContents() {
-        session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: { (period) in
-            self.schoodule.hasPendingSend = false
-            print("rec2")
-        }) { (error) in
-            print(error)
+    func reloadCurrent() {
+        let currentClass = schoodule.classFrom(date: Date())
+        let nextClass = schoodule.nextClassFrom(date: Date())
+        
+        for (index, period) in schoodule.periods.enumerated() {
+            let row = scheduleTable.rowController(at: index) as! ClassRow
+            if period == currentClass || (period == nextClass && currentClass == nil) {
+                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+            } else {
+                row.group.setBackgroundColor(UIColor.clear)
+            }
         }
+    }
+    
+    func loadRow(index: Int, period: Period) {
+        let row = scheduleTable.rowController(at: index) as! ClassRow
+        
+        row.durationLabel?.setText("\(period.start.string)")
+        row.indexLabel?.setText("\(index + 1)")
+        row.nameLabel?.setText("\(period.className)")
+        
+        let color = period.color
+        row.seperator?.setColor(color)
+        row.indexLabel?.setTextColor(color)
+        row.nameLabel?.setTextColor(color)
+        row.durationLabel.setTextColor(UIColor.white)
+        
+        if let location = period.location {
+            row.locationLabel.setText(location)
+            row.locationLabel.setHidden(false)
+        } else {
+            row.locationLabel.setHidden(true)
+        }
+    }
+    
+    func pendingScroll() {
+        if let scroll = schoodule.pendingTableScrollIndex {
+            scheduleTable.scrollToRow(at: scroll)
+            schoodule.pendingTableScrollIndex = nil
+        }
+    }
+    
+    func showInfo() {
+        if schoodule.unsortedPeriods.isEmpty {
+            connectingLabel.setHidden(false)
+        } else {
+            connectingLabel.setHidden(true)
+        }
+        
+        scheduleTable.setHidden(false)
+        newButton.setHidden(false)
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func clearAllPeriods() {
+        let clearAllConfirm = WKAlertAction(title: "Clear All", style: .destructive) {
+            self.schoodule.clear()
+            
+            DispatchQueue.main.async {
+                self.createTable()
+            }
+            
+            SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
+                
+            }, errorHandler: nil)
+        }
+        
+        self.presentAlert(withTitle: "Clear All Classes", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [clearAllConfirm])
     }
     
 }
 
+extension Int {
+    
+    var indexSet: IndexSet {
+        return IndexSet(integer: self)
+    }
+    
+    
+}

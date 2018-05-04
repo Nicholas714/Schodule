@@ -14,5 +14,7 @@ class ClassRow: NSObject {
     @IBOutlet var durationLabel: WKInterfaceLabel!
     @IBOutlet var indexLabel: WKInterfaceLabel!
     @IBOutlet var seperator: WKInterfaceSeparator!
-    
+    @IBOutlet var group: WKInterfaceGroup!
+    @IBOutlet var locationLabel: WKInterfaceLabel!
+        
 }

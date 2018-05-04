@@ -8,30 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
+		43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43109E6E203E4E9900A7A2C7 /* Assets.xcassets */; };
 		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
-		433E098A201E9AC500902BB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0989201E9AC500902BB8 /* ViewController.swift */; };
 		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
-		433E098F201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E098E201E9AC500902BB8 /* Assets.xcassets */; };
 		433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */; };
 		433E0997201E9AC500902BB8 /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */; };
 		433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E099B201E9AC500902BB8 /* Interface.storyboard */; };
-		433E099F201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E099E201E9AC500902BB8 /* Assets.xcassets */; };
 		433E09A6201E9AC500902BB8 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AA201E9AC500902BB8 /* InterfaceController.swift */; };
 		433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */; };
 		433E09B1201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E09B0201E9AC500902BB8 /* Assets.xcassets */; };
 		433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */; };
 		433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C9201E9E3100902BB8 /* ClassRow.swift */; };
+		433E62162031032300083811 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6214203102FD00083811 /* Crashlytics.framework */; };
+		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
+		434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D152039CD4900C7F4AD /* Assets.xcassets */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		437475FE2020023500A21465 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
+		4378393C2039FD400083898B /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378393B2039FD400083898B /* ComplicationStore.swift */; };
 		43988743201FB8F700E5BD60 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
 		43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
+		43B43D742030906E007A809C /* SchooduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* SchooduleManager.swift */; };
+		43B43D752030906E007A809C /* SchooduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* SchooduleManager.swift */; };
+		43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D762030913E007A809C /* SchooduleManager+Watch.swift */; };
 		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
+		43EEBAA820292A620029750A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,16 +84,14 @@
 
 /* Begin PBXFileReference section */
 		4307E739202414240046B7CA /* UIColor+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
+		43109E6E203E4E9900A7A2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Schoodule WatchKit App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		433E0984201E9AC500902BB8 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E0987201E9AC500902BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		433E0989201E9AC500902BB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		433E098C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		433E098E201E9AC500902BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433E0991201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		433E0993201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E099C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		433E099E201E9AC500902BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433E09A0201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E09AA201E9AC500902BB8 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
@@ -96,11 +100,18 @@
 		433E09B2201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleComplicationController.swift; sourceTree = "<group>"; };
 		433E09C9201E9E3100902BB8 /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
+		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		434A5D152039CD4900C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
 		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
+		43B43D732030906E007A809C /* SchooduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleManager.swift; sourceTree = "<group>"; };
+		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
+		43EEBAA720292A620029750A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433E62162031032300083811 /* Crashlytics.framework in Frameworks */,
+				433E62172031032500083811 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +142,7 @@
 				433E099A201E9AC500902BB8 /* Schoodule WatchKit App */,
 				433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */,
 				433E0985201E9AC500902BB8 /* Products */,
+				433E62152031032300083811 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,11 +160,11 @@
 			isa = PBXGroup;
 			children = (
 				433E0987201E9AC500902BB8 /* AppDelegate.swift */,
-				433E0989201E9AC500902BB8 /* ViewController.swift */,
 				433E098B201E9AC500902BB8 /* Main.storyboard */,
-				433E098E201E9AC500902BB8 /* Assets.xcassets */,
+				43109E6E203E4E9900A7A2C7 /* Assets.xcassets */,
 				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
 				433E0993201E9AC500902BB8 /* Info.plist */,
+				43EEBAA720292A620029750A /* ViewController.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -159,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				433E099B201E9AC500902BB8 /* Interface.storyboard */,
-				433E099E201E9AC500902BB8 /* Assets.xcassets */,
+				434A5D152039CD4900C7F4AD /* Assets.xcassets */,
 				433E09A0201E9AC500902BB8 /* Info.plist */,
 			);
 			path = "Schoodule WatchKit App";
@@ -173,6 +187,8 @@
 				433E09B2201E9AC500902BB8 /* Info.plist */,
 				433E09C9201E9E3100902BB8 /* ClassRow.swift */,
 				433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */,
+				43B43D762030913E007A809C /* SchooduleManager+Watch.swift */,
+				4378393B2039FD400083898B /* ComplicationStore.swift */,
 			);
 			path = "Schoodule WatchKit Extension";
 			sourceTree = "<group>";
@@ -185,8 +201,18 @@
 				434DC2ED202292EB008A0074 /* Storage.swift */,
 				4307E739202414240046B7CA /* UIColor+Themes.swift */,
 				43E468072027661A0076BEBD /* Time.swift */,
+				43B43D732030906E007A809C /* SchooduleManager.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		433E62152031032300083811 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				433E6213203102FD00083811 /* Fabric.framework */,
+				433E6214203102FD00083811 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		43988740201FB8D900E5BD60 /* controllers */ = {
@@ -210,6 +236,7 @@
 				433E0981201E9AC500902BB8 /* Frameworks */,
 				433E0982201E9AC500902BB8 /* Resources */,
 				433E09BC201E9AC500902BB8 /* Embed Watch Content */,
+				433E6212203102C800083811 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -262,21 +289,36 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Nicholas Grana";
 				TargetAttributes = {
 					433E0983201E9AC500902BB8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					433E0995201E9AC500902BB8 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					433E09A4201E9AC500902BB8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -306,7 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */,
-				433E098F201E9AC500902BB8 /* Assets.xcassets in Resources */,
+				43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */,
 				433E098D201E9AC500902BB8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433E099F201E9AC500902BB8 /* Assets.xcassets in Resources */,
+				434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */,
 				433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,16 +372,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		433E6212203102C800083811 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 33f39a6a487f5298b92b41a499bff42e8a479ff5 0d70fe19a0136b8e5bbbcef7fbbe6d0124d8197f5c7c4e3dd2d53284b2775a61";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		433E0980201E9AC500902BB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EEBAA820292A620029750A /* ViewController.swift in Sources */,
 				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
+				43B43D742030906E007A809C /* SchooduleManager.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
-				433E098A201E9AC500902BB8 /* ViewController.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
 				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,
 			);
@@ -352,9 +411,12 @@
 				433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */,
 				43E468092027661A0076BEBD /* Time.swift in Sources */,
 				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,
+				43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */,
+				4378393C2039FD400083898B /* ComplicationStore.swift in Sources */,
 				43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */,
 				43988743201FB8F700E5BD60 /* Period.swift in Sources */,
 				43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */,
+				43B43D752030906E007A809C /* SchooduleManager.swift in Sources */,
 				434DC2F02022956F008A0074 /* Storage.swift in Sources */,
 				433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */,
 				433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */,
@@ -419,6 +481,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -426,6 +489,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -476,6 +540,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -483,6 +548,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -516,6 +582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
@@ -534,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
@@ -554,6 +622,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
@@ -576,6 +645,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
@@ -595,8 +665,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
@@ -610,8 +686,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;

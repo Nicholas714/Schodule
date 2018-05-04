@@ -4,10 +4,9 @@
 //
 //  Created by Nicholas Grana on 1/31/18.
 //  Copyright © 2018 Nicholas Grana. All rights reserved.
-//
+// 
 
 import Foundation
-import UIKit
 
 class Storage {
     
@@ -17,7 +16,7 @@ class Storage {
         let encoder = JSONEncoder()
         
         do {
-            return try encoder.encode(schoodule.periods)
+            return try encoder.encode(schoodule.unsortedPeriods)
         } catch {
             fatalError("Error loading periods.")
         }
@@ -27,17 +26,28 @@ class Storage {
         self.schoodule = schoodule
     }
     
-    func decodePeriods(from data: Data) {
+    @discardableResult func decodePeriods(from data: Data) -> Bool {
         schoodule.unsortedPeriods.removeAll()
         
         let decoder = JSONDecoder()
         
         do {
             for period in try decoder.decode([Period].self, from: data) {
-                schoodule.unsortedPeriods.append(period)
+                schoodule.unsortedPeriods.insert(period)
             }
+            
+            let past = schoodule.periods
+            
+            schoodule.periods = schoodule.unsortedPeriods.sorted()
+            SchooduleManager.shared.saveSchedule()
+            if past == schoodule.periods {
+                return true
+            }
+            
         } catch {
             fatalError("Error decoding periods.")
         }
+        
+        return false
     }
 }
