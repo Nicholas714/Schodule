@@ -39,8 +39,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
                         SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
                             
                             if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
-                                SchooduleManager.shared.saveSchedule()
-                                SchooduleManager.shared.updateComplications() 
+                                SchooduleManager.shared.updateComplications()
+                                
+                                DispatchQueue.main.async {
+                                    self.root?.createTable()
+                                }
                             }
                         })
                     }
@@ -58,7 +61,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
                         manager.startSession(delegate: self)
                         root?.createTable()
                     }
-                }
+                } 
                 
                 // schedules a new snapshot update in 1 hour
                 snapshotTask.setTaskCompletedWithSnapshot(true)
@@ -83,7 +86,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         manager.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
             self.schoodule.storage.decodePeriods(from: period["periods"] as! Data)
             
-            SchooduleManager.shared.updateComplications()
+            DispatchQueue.main.async {
+                self.root?.createTable()
+            }
         })
     }
     

@@ -131,7 +131,7 @@ class ClassCreateController: WKInterfaceController {
     }
     
     @IBAction func pickLocation() {
-        presentTextInputController(withSuggestions: ["Library", "Cafeteria", "Gymnasium", "None"], allowedInputMode: .plain) { (results) in
+        presentTextInputController(withSuggestions: ["Library", "Cafeteria", "Gymnasium", "Computer Lab", "None"], allowedInputMode: .plain) { (results) in
             if let array = results, array.count > 0 {
                 if let location = array[0] as? String {
                     if location == "None" {

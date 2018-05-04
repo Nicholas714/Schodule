@@ -39,6 +39,7 @@ class InterfaceController: WKInterfaceController {
         }
         
         if schoodule.unsortedPeriods.isEmpty {
+            print("1")
             SchooduleManager.shared.loadScheudle()
             createTable()
             
@@ -46,11 +47,14 @@ class InterfaceController: WKInterfaceController {
             SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
                 
                 if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
-                    SchooduleManager.shared.saveSchedule()
-                    self.createTable()
+                    print("2")                    
+                    DispatchQueue.main.async {
+                        self.createTable()
+                    }
                 }
             })
         } else {
+            print("3")
             createTable()
         }
     }

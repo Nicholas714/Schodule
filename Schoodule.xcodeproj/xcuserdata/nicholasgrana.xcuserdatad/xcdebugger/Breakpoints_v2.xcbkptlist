@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schoodule WatchKit Extension/controllers/InterfaceController.swift"
-            timestampString = "541477085.800324"
+            timestampString = "541479720.094219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "clearAllPeriods()"
             landmarkType = "7">
          </BreakpointContent>

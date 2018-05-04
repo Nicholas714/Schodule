@@ -56,7 +56,7 @@ extension MainTableViewController {
         cell.selectionStyle = .none
         cell.contentView.layer.masksToBounds = true
         cell.contentView.layer.cornerRadius = cell.contentView.frame.height / 2
-        cell.contentView.backgroundColor = schoodule.periods[indexPath.row].color
+        cell.contentView.backgroundColor = schoodule.unsortedPeriods.sorted()[indexPath.row].color
         cell.textLabel?.text = schoodule.periods[indexPath.row].className
         cell.textLabel?.backgroundColor = UIColor.clear
         

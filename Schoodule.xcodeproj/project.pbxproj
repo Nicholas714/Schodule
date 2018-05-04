@@ -182,7 +182,6 @@
 		433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				43725F1E204649BC00F6EDD7 /* New Group */,
 				43988740201FB8D900E5BD60 /* controllers */,
 				433E09B0201E9AC500902BB8 /* Assets.xcassets */,
 				433E09B2201E9AC500902BB8 /* Info.plist */,
@@ -214,13 +213,6 @@
 				433E6214203102FD00083811 /* Crashlytics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		43725F1E204649BC00F6EDD7 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		43988740201FB8D900E5BD60 /* controllers */ = {
