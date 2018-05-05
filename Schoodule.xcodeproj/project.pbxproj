@@ -10,14 +10,24 @@
 		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43109E6E203E4E9900A7A2C7 /* Assets.xcassets */; };
 		431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */; };
-		431D14E0209D4CC8003F3BC5 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14DF209D4CC8003F3BC5 /* Duration.swift */; };
-		431D14E1209D4CC8003F3BC5 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14DF209D4CC8003F3BC5 /* Duration.swift */; };
 		431D14E6209D5104003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
 		431D14E7209D5104003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
 		431D14EB209D5303003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
 		431D14EC209D5303003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
-		431D14EE209D5436003F3BC5 /* ScheduleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14ED209D5436003F3BC5 /* ScheduleStatus.swift */; };
-		431D14EF209D5436003F3BC5 /* ScheduleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14ED209D5436003F3BC5 /* ScheduleStatus.swift */; };
+		431D14F2209DF70C003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
+		431D14F4209DF7C1003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
+		431D14F5209DF8F5003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
+		431D14F6209DF906003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
+		431D14FE209E2346003F3BC5 /* SchooduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14FD209E2346003F3BC5 /* SchooduleTests.swift */; };
+		431D1505209E2367003F3BC5 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
+		431D1506209E236A003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
+		431D1507209E236C003F3BC5 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
+		431D1508209E236E003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
+		431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
+		431D150A209E2373003F3BC5 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
+		431D150B209E2375003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
+		431D150C209E2377003F3BC5 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
+		431D150D209E237A003F3BC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
 		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
 		433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */; };
@@ -33,13 +43,11 @@
 		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
 		434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D152039CD4900C7F4AD /* Assets.xcassets */; };
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
-		434DC2EF20229414008A0074 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		437475FE2020023500A21465 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
 		4378393C2039FD400083898B /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378393B2039FD400083898B /* ComplicationStore.swift */; };
 		43988743201FB8F700E5BD60 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
-		43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988744201FBC7800E5BD60 /* Schoodule.swift */; };
 		43B43D742030906E007A809C /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
 		43B43D752030906E007A809C /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
 		43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D762030913E007A809C /* SchooduleManager+Watch.swift */; };
@@ -50,6 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		431D1500209E2346003F3BC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 433E097C201E9AC500902BB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 433E0983201E9AC500902BB8;
+			remoteInfo = Schoodule;
+		};
 		433E0998201E9AC500902BB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 433E097C201E9AC500902BB8 /* Project object */;
@@ -95,10 +110,13 @@
 		4307E739202414240046B7CA /* UIColor+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
 		43109E6E203E4E9900A7A2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Schoodule WatchKit App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
-		431D14DF209D4CC8003F3BC5 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		431D14E5209D5104003F3BC5 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		431D14EA209D5303003F3BC5 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		431D14ED209D5436003F3BC5 /* ScheduleStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStatus.swift; sourceTree = "<group>"; };
+		431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConstraint.swift; sourceTree = "<group>"; };
+		431D14F3209DF7C1003F3BC5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchooduleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		431D14FD209E2346003F3BC5 /* SchooduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleTests.swift; sourceTree = "<group>"; };
+		431D14FF209E2346003F3BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433E0984201E9AC500902BB8 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433E0987201E9AC500902BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		433E098C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,7 +138,6 @@
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
 		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
-		43988744201FBC7800E5BD60 /* Schoodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schoodule.swift; sourceTree = "<group>"; };
 		43B43D732030906E007A809C /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
 		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
@@ -129,6 +146,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		431D14F8209E2346003F3BC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		433E0981201E9AC500902BB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,7 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				43E468072027661A0076BEBD /* Time.swift */,
-				431D14DF209D4CC8003F3BC5 /* Duration.swift */,
+				431D14F3209DF7C1003F3BC5 /* Day.swift */,
+				431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */,
 			);
 			path = time;
 			sourceTree = "<group>";
@@ -171,9 +196,19 @@
 			children = (
 				43B43D732030906E007A809C /* ScheduleManager.swift */,
 				431D14EA209D5303003F3BC5 /* Schedule.swift */,
-				431D14ED209D5436003F3BC5 /* ScheduleStatus.swift */,
+				43988741201FB8F700E5BD60 /* Period.swift */,
+				434DC2ED202292EB008A0074 /* Storage.swift */,
 			);
 			path = schedule;
+			sourceTree = "<group>";
+		};
+		431D14FC209E2346003F3BC5 /* SchooduleTests */ = {
+			isa = PBXGroup;
+			children = (
+				431D14FD209E2346003F3BC5 /* SchooduleTests.swift */,
+				431D14FF209E2346003F3BC5 /* Info.plist */,
+			);
+			path = SchooduleTests;
 			sourceTree = "<group>";
 		};
 		433E097B201E9AC500902BB8 = {
@@ -183,6 +218,7 @@
 				433E0986201E9AC500902BB8 /* Schoodule */,
 				433E099A201E9AC500902BB8 /* Schoodule WatchKit App */,
 				433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */,
+				431D14FC209E2346003F3BC5 /* SchooduleTests */,
 				433E0985201E9AC500902BB8 /* Products */,
 				433E62152031032300083811 /* Frameworks */,
 			);
@@ -194,6 +230,7 @@
 				433E0984201E9AC500902BB8 /* Schoodule.app */,
 				433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */,
 				433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */,
+				431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,9 +279,6 @@
 				431D14E9209D51C4003F3BC5 /* extensions */,
 				431D14E8209D51B5003F3BC5 /* time */,
 				431D14F0209D5771003F3BC5 /* schedule */,
-				43988741201FB8F700E5BD60 /* Period.swift */,
-				43988744201FBC7800E5BD60 /* Schoodule.swift */,
-				434DC2ED202292EB008A0074 /* Storage.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -271,6 +305,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		431D14FA209E2346003F3BC5 /* SchooduleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 431D1502209E2346003F3BC5 /* Build configuration list for PBXNativeTarget "SchooduleTests" */;
+			buildPhases = (
+				431D14F7209E2346003F3BC5 /* Sources */,
+				431D14F8209E2346003F3BC5 /* Frameworks */,
+				431D14F9209E2346003F3BC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				431D1501209E2346003F3BC5 /* PBXTargetDependency */,
+			);
+			name = SchooduleTests;
+			productName = SchooduleTests;
+			productReference = 431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		433E0983201E9AC500902BB8 /* Schoodule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433E09BD201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule" */;
@@ -331,10 +383,15 @@
 		433E097C201E9AC500902BB8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Nicholas Grana";
 				TargetAttributes = {
+					431D14FA209E2346003F3BC5 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 433E0983201E9AC500902BB8;
+					};
 					433E0983201E9AC500902BB8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -381,11 +438,19 @@
 				433E0983201E9AC500902BB8 /* Schoodule */,
 				433E0995201E9AC500902BB8 /* Schoodule WatchKit App */,
 				433E09A4201E9AC500902BB8 /* Schoodule WatchKit Extension */,
+				431D14FA209E2346003F3BC5 /* SchooduleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		431D14F9209E2346003F3BC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		433E0982201E9AC500902BB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,19 +497,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		431D14F7209E2346003F3BC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				431D1507209E236C003F3BC5 /* Time.swift in Sources */,
+				431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */,
+				431D150A209E2373003F3BC5 /* ScheduleManager.swift in Sources */,
+				431D14FE209E2346003F3BC5 /* SchooduleTests.swift in Sources */,
+				431D150C209E2377003F3BC5 /* Period.swift in Sources */,
+				431D1506209E236A003F3BC5 /* Date+Formatter.swift in Sources */,
+				431D1508209E236E003F3BC5 /* Day.swift in Sources */,
+				431D150B209E2375003F3BC5 /* Schedule.swift in Sources */,
+				431D1505209E2367003F3BC5 /* UIColor+Themes.swift in Sources */,
+				431D150D209E237A003F3BC5 /* Storage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		433E0980201E9AC500902BB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				43EEBAA820292A620029750A /* MainTableViewController.swift in Sources */,
 				431D14E6209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
-				431D14EE209D5436003F3BC5 /* ScheduleStatus.swift in Sources */,
-				434DC2EF20229414008A0074 /* Schoodule.swift in Sources */,
+				431D14F4209DF7C1003F3BC5 /* Day.swift in Sources */,
 				437475FE2020023500A21465 /* Period.swift in Sources */,
 				431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
 				431D14EB209D5303003F3BC5 /* Schedule.swift in Sources */,
-				431D14E0209D4CC8003F3BC5 /* Duration.swift in Sources */,
+				431D14F2209DF70C003F3BC5 /* TimeConstraint.swift in Sources */,
 				43B43D742030906E007A809C /* ScheduleManager.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
@@ -458,16 +539,15 @@
 			files = (
 				433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */,
 				43E468092027661A0076BEBD /* Time.swift in Sources */,
-				431D14EF209D5436003F3BC5 /* ScheduleStatus.swift in Sources */,
 				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,
+				431D14F5209DF8F5003F3BC5 /* TimeConstraint.swift in Sources */,
 				43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */,
 				4378393C2039FD400083898B /* ComplicationStore.swift in Sources */,
-				43988746201FBC7800E5BD60 /* Schoodule.swift in Sources */,
 				431D14EC209D5303003F3BC5 /* Schedule.swift in Sources */,
 				43988743201FB8F700E5BD60 /* Period.swift in Sources */,
 				43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */,
 				43B43D752030906E007A809C /* ScheduleManager.swift in Sources */,
-				431D14E1209D4CC8003F3BC5 /* Duration.swift in Sources */,
+				431D14F6209DF906003F3BC5 /* Day.swift in Sources */,
 				431D14E7209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
 				434DC2F02022956F008A0074 /* Storage.swift in Sources */,
 				433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */,
@@ -479,6 +559,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		431D1501209E2346003F3BC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 433E0983201E9AC500902BB8 /* Schoodule */;
+			targetProxy = 431D1500209E2346003F3BC5 /* PBXContainerItemProxy */;
+		};
 		433E0999201E9AC500902BB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 433E0995201E9AC500902BB8 /* Schoodule WatchKit App */;
@@ -519,6 +604,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		431D1503209E2346003F3BC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				INFOPLIST_FILE = SchooduleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.SchooduleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schoodule.app/Schoodule";
+			};
+			name = Debug;
+		};
+		431D1504209E2346003F3BC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				INFOPLIST_FILE = SchooduleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.SchooduleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schoodule.app/Schoodule";
+			};
+			name = Release;
+		};
 		433E09B3201E9AC500902BB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -757,6 +878,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		431D1502209E2346003F3BC5 /* Build configuration list for PBXNativeTarget "SchooduleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				431D1503209E2346003F3BC5 /* Debug */,
+				431D1504209E2346003F3BC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		433E097F201E9AC500902BB8 /* Build configuration list for PBXProject "Schoodule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -37,6 +37,11 @@ struct Time: Codable, Comparable {
         self.minute = Calendar.current.component(.minute, from: date)
     }
     
+    init(_ hour: Int, _ minute: Int) {
+        self.hour = hour
+        self.minute = minute
+    }
+    
     var date: Date {
         return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
     }
@@ -46,6 +51,6 @@ struct Time: Codable, Comparable {
     }
     
     static func ==(lhs: Time, rhs: Time) -> Bool {
-        return lhs.date == rhs.date
+        return lhs.hour == rhs.hour && lhs.minute == rhs.minute
     }
 }

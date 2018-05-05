@@ -10,20 +10,8 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    var schoodule: Schoodule {
-        return SchooduleManager.shared.schoodule
-    }
-    
-    var scheduleStatus: ScheduleStatus {
-        let schedules = SchooduleManager.shared.schedules
-        let todaySchedule = SchooduleManager.shared.todaySchedule
-        
-        if schedules.isEmpty && todaySchedule.isEmpty { // completely empty
-            return .empty
-        } else if todaySchedule.isEmpty && !schedules.isEmpty { // nothing today but there are schedules
-            return .schedules
-        }
-        return .both
+    var manager: SchooduleManager {
+        return SchooduleManager.shared
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +20,7 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        switch scheduleStatus {
+        switch manager.scheduleStatus {
         case .both:
             switch section {
             case 0:
@@ -66,17 +54,17 @@ class MainTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print("\(scheduleStatus.rawValue)")
-        return scheduleStatus.rawValue
+        print("\(manager.scheduleStatus.rawValue)")
+        return manager.scheduleStatus.rawValue
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch scheduleStatus {
+        switch manager.scheduleStatus {
         case .both:
             if section == 1 { // today
-                return SchooduleManager.shared.todaySchedule.count
+                return manager.todaySchedule.count
             } else { // schedules
-                return SchooduleManager.shared.schedules.count
+                return manager.schedules.count
             }
         case .schedules:
             return SchooduleManager.shared.schedules.count

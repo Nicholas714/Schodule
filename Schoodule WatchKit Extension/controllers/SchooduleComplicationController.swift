@@ -8,8 +8,8 @@
 
 import ClockKit
 
-class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
-
+class SchooduleComplicationController: NSObject/*, CLKComplicationDataSource*/ {
+/*
     var schoodule: Schoodule {
         return SchooduleManager.shared.schoodule
     }
@@ -180,6 +180,6 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         
         handler(timelineEntires)
     }
-    
+    */
 }
 

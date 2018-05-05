@@ -16,6 +16,9 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     @IBOutlet var endTimeSelector: UIDatePicker!
     @IBOutlet var colorIndexPicker: UIPickerView!
     
+    var manager: SchooduleManager {
+        return SchooduleManager.shared
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,11 +26,22 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     }
     
     @IBAction func save(_ sender: UIButton) {
-        let newPeriod = Period(className: nameField.text!, themeIndex: 0, start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
-        SchooduleManager.shared.schoodule.replace(old: nil, with: newPeriod)
-        SchooduleManager.shared.saveSchedule()
-        print(SchooduleManager.shared.schoodule.unsortedPeriods.count)
-        dismiss(animated: true, completion: nil)
+        let period = Period(className: nameField.text!, themeIndex: 0, timeframe: Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date)), location: nil)
+        let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [TimeConstraint]())
+        
+        // TODO: create time constraints from data given
+        
+        if schedulesToAdd.isEmpty {
+            let schedule = Schedule()
+            // schedule.timeConstraints = [AlternatingOdd(), SpecificDay(days: [.monday])]
+            schedule.append(new: period)
+        } else {
+            for schedule in schedulesToAdd {
+                schedule.append(new: period)
+            }
+        }
+        
+        manager.storage.saveSchedule()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

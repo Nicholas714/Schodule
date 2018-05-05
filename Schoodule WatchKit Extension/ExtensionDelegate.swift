@@ -10,7 +10,7 @@ import WatchKit
 import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-
+/*
     var manager = SchooduleManager.shared
     
     var schoodule: Schoodule {
@@ -49,5 +49,5 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
-    
+    */
 }

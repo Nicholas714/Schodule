@@ -9,7 +9,7 @@
 import WatchKit
 
 class ClassCreateController: WKInterfaceController {
-    
+/*
     // MARK: Properties
     
     var schoodule: Schoodule!
@@ -275,5 +275,5 @@ class ClassCreateController: WKInterfaceController {
         amStartPicker.setSelectedItemIndex((!period.timeframe.start.isAM).hashValue)
         amEndPicker.setSelectedItemIndex((!period.timeframe.end.isAM).hashValue)
     }
-    
+ */
 }

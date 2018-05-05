@@ -13,9 +13,9 @@ class SchooduleManager {
     
     static var shared = SchooduleManager()
     
-    let schoodule = Schoodule()
-    
-    private init() { }
+    lazy var storage: Storage = {
+        return Storage()
+    }()
     
     var defaults: UserDefaults {
         get {
@@ -31,25 +31,29 @@ class SchooduleManager {
         })
     }
     
-    func saveSchedule() {
-        defaults.setValue(schoodule.storage.encoded, forKey: "periods")
+    var scheduleStatus: ScheduleStatus {
+        if schedules.isEmpty && todaySchedule.isEmpty { // completely empty
+            return .empty
+        } else if todaySchedule.isEmpty && !schedules.isEmpty { // nothing today but there are schedules
+            return .schedules
+        }
+        return .both
     }
     
-    func loadScheudle() {
-        schoodule.unsortedPeriods.removeAll()
+    private init() { }
+    
+    func getSchedulesWith(timeConstraints: [TimeConstraint]) -> [Schedule] {
+        var passingSchedules = [Schedule]()
         
-        if let data = defaults.value(forKey: "periods") as? Data {
-            let decoder = JSONDecoder()
-            
-            do {
-                for period in try decoder.decode([Period].self, from: data) {
-                    schoodule.unsortedPeriods.insert(period)
-                }
-                schoodule.periods = schoodule.unsortedPeriods.sorted()
-            } catch {
-                fatalError("Error decoding periods.")
-            }
-        }
+        //for schedule in schedules {
+           // for scheduleTimeConstraint in schedule.timeConstraints {
+                //if !timeConstraints.contains(scheduleTimeConstraint) {
+                //    break
+                //}
+            //}
+            //passingSchedules.append(schedule)
+        //}
+        return passingSchedules
     }
     
 }

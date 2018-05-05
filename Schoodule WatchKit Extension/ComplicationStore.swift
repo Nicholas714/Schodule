@@ -9,7 +9,7 @@
 import WatchKit
 
 struct ComplicationStore {
-    
+    /*
     public enum PeriodComplication {
         case first
         case current
@@ -120,4 +120,5 @@ struct ComplicationStore {
         
         return template
     }
+ */
 }

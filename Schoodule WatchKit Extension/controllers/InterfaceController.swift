@@ -11,7 +11,7 @@ import Foundation
 import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
-  
+ /*
     // MARK: Outlets
     
     @IBOutlet var createInfoLabel: WKInterfaceLabel!
@@ -108,9 +108,9 @@ class InterfaceController: WKInterfaceController {
         scheduleTable.setHidden(false)
         newButton.setHidden(false)
     }
-    
+    */
 }
-
+    
 extension Int {
     
     var indexSet: IndexSet {

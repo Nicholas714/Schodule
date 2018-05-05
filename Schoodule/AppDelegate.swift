@@ -16,13 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var schoodule: Schoodule {
-        return SchooduleManager.shared.schoodule
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        SchooduleManager.shared.loadScheudle()
+        SchooduleManager.shared.storage.loadScheudle()
         Fabric.with([Crashlytics.self])
         
         return true
