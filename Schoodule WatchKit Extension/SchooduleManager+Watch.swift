@@ -24,16 +24,4 @@ extension SchooduleManager {
         }
     }
     
-    func sendClearRequest(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        session?.sendMessage(["message" : "clear"], replyHandler: replyHandler, errorHandler: errorHandler)
-    }
-    
-    func sendRefreshRequest(type: String, replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        session?.sendMessage(["message": type], replyHandler: replyHandler, errorHandler: errorHandler)
-    }
-    
-    func sendUpdatedContents(replyHandler: (([String : Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
-        session?.sendMessage(["periods": schoodule.storage.encoded], replyHandler: replyHandler, errorHandler: errorHandler)
-    }
-    
 }

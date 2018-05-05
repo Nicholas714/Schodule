@@ -15,8 +15,7 @@ struct Period: Equatable, Codable, Comparable, Hashable {
     
     var className: String
     var themeIndex: Int
-    var start: Time
-    var end: Time
+    var timeframe: Timeframe
     var location: String?
     
     var color: UIColor {
@@ -28,18 +27,17 @@ struct Period: Equatable, Codable, Comparable, Hashable {
     init(className: String, themeIndex: Int, start: Time, end: Time) {
         self.className = className
         self.themeIndex = themeIndex
-        self.start = start
-        self.end = end
+        self.timeframe = Timeframe(start: start, end: end)
         self.location = nil
         hashValue = className.hashValue + themeIndex.hashValue + start.hour.hashValue
     }
     
     static func ==(lhs: Period, rhs: Period) -> Bool {
-        return lhs.start == rhs.start && lhs.end == rhs.end && lhs.className == rhs.className && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
+        return lhs.timeframe.start == rhs.timeframe.start && lhs.timeframe.end == rhs.timeframe.end && lhs.className == rhs.className && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {
-        return lhs.start < rhs.start
+        return lhs.timeframe.start < rhs.timeframe.start
     }
     
 }

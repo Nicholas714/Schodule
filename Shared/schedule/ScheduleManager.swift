@@ -14,23 +14,21 @@ class SchooduleManager {
     static var shared = SchooduleManager()
     
     let schoodule = Schoodule()
-    var session: WCSession? = nil
     
     private init() { }
-    
-    func startSession(delegate: WCSessionDelegate) {
-        // only check for new items when schoodule has not been initialized 
-        if WCSession.isSupported() {
-            session = WCSession.default
-            session?.delegate = delegate
-            session?.activate()
-        }
-    }
     
     var defaults: UserDefaults {
         get {
             return UserDefaults()
         }
+    }
+    
+    var schedules = [Schedule]()
+    
+    var todaySchedule: [Schedule] {
+        return schedules.filter({ (schedule) -> Bool in
+            return schedule.isToday
+        })
     }
     
     func saveSchedule() {

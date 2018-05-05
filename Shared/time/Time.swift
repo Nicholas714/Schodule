@@ -37,18 +37,6 @@ struct Time: Codable, Comparable {
         self.minute = Calendar.current.component(.minute, from: date)
     }
     
-    var formatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
-        
-        return dateFormatter
-    }
-    
-    var string: String {
-        return self.formatter.string(from: date)
-    }
-    
     var date: Date {
         return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
     }

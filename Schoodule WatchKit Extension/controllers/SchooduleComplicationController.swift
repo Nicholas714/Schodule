@@ -18,12 +18,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // shorthand for first period time of the day
     var scheduleStart: Date? {
-        return schoodule.periods.first?.start.date.addingTimeInterval(initialClassWarning) // go before a bit to fit first class warning
+        return schoodule.periods.first?.timeframe.start.date.addingTimeInterval(initialClassWarning) // go before a bit to fit first class warning
     }
     
     // shorthand for last period time of the day
     var scheduleEnd: Date? {
-        return schoodule.periods.last?.end.date
+        return schoodule.periods.last?.timeframe.end.date
     }
     
     // given a date and compliation type, this will send back the current complication template
@@ -36,24 +36,24 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         if let date = date {
             if let period = schoodule.classFrom(date: date) {
                 
-                dateProvider = CLKRelativeDateTextProvider(date: period.end.date, style: .natural, units: [.minute, .hour])
+                dateProvider = CLKRelativeDateTextProvider(date: period.timeframe.end.date, style: .natural, units: [.minute, .hour])
                 periodProvider = period
                 complicationType = .current
                 
             } else if let nextClass = schoodule.nextClassFrom(date: date) {
                 if schoodule.index(of: nextClass) == 0 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .first
                     
                 } else if schoodule.index(of: nextClass) == schoodule.unsortedPeriods.count - 1 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .last
                     
                 } else {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .next
                     
                 }
@@ -105,7 +105,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
 
         if let template = complicationTemplate(complication, from: now), let end = scheduleEnd, let start = scheduleStart, now > start && now < end {
             if let period = schoodule.classFrom(date: Date()) {
-                handler(CLKComplicationTimelineEntry(date: period.start.date, complicationTemplate: template))
+                handler(CLKComplicationTimelineEntry(date: period.timeframe.start.date, complicationTemplate: template))
             } else {
                 handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
             }
@@ -144,13 +144,13 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         for period in schoodule.periods {
             let current = schoodule.classFrom(date: Date())
             
-            if let template = complicationTemplate(complication, from: period.start.date) {
-                if (!comparision(date, period.start.date) && !comparision(date, period.end.date)) {
+            if let template = complicationTemplate(complication, from: period.timeframe.start.date) {
+                if (!comparision(date, period.timeframe.start.date) && !comparision(date, period.timeframe.end.date)) {
 
                     if sendNext && current == period {
-                        if scheduleEnd != period.end.date {
+                        if scheduleEnd != period.timeframe.end.date {
                             // do not add class, but add next class entry
-                            let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.date, complicationTemplate: complicationTemplate(complication, from: period.end.date.addingTimeInterval(5))!)
+                            let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.timeframe.end.date, complicationTemplate: complicationTemplate(complication, from: period.timeframe.end.date.addingTimeInterval(5))!)
                             timelineEntires.append(nextClassTimelineEntry)
                         }
                     }
@@ -160,12 +160,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 
                 let timelineEntry: CLKComplicationTimelineEntry
                 
-                timelineEntry = CLKComplicationTimelineEntry(date: period.start.date, complicationTemplate: template)
+                timelineEntry = CLKComplicationTimelineEntry(date: period.timeframe.start.date, complicationTemplate: template)
                 timelineEntires.append(timelineEntry)
                 
                 // if not the last class, put an entry to tell the time until the next class
-                if scheduleEnd != period.end.date {
-                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.end.date, complicationTemplate: complicationTemplate(complication, from: period.end.date.addingTimeInterval(5))!)
+                if scheduleEnd != period.timeframe.end.date {
+                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: period.timeframe.end.date, complicationTemplate: complicationTemplate(complication, from: period.timeframe.end.date.addingTimeInterval(5))!)
                     timelineEntires.append(nextClassTimelineEntry)
                 }
             } else {

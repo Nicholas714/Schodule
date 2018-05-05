@@ -14,8 +14,8 @@ class InterfaceController: WKInterfaceController {
   
     // MARK: Outlets
     
+    @IBOutlet var createInfoLabel: WKInterfaceLabel!
     @IBOutlet var scheduleTable: WKInterfaceTable!
-    @IBOutlet var connectingLabel: WKInterfaceLabel!
     @IBOutlet var newButton: WKInterfaceButton!
     
     // MARK: Properties
@@ -23,40 +23,14 @@ class InterfaceController: WKInterfaceController {
     var schoodule: Schoodule {
         return SchooduleManager.shared.schoodule
     }
-    
-    var session: WCSession? {
-        return SchooduleManager.shared.session
-    }
 
     // MARK: WKInterfaceController functions
     
     override func willActivate() {
-        // when table has changed, send contents
-        if schoodule.hasPendingSend {
-            SchooduleManager.shared.sendUpdatedContents(replyHandler: { (period) in
-                self.schoodule.hasPendingSend = false
-            }, errorHandler: nil)
-        }
-        
         if schoodule.unsortedPeriods.isEmpty {
-            print("1")
             SchooduleManager.shared.loadScheudle()
-            createTable()
-            
-            // try to fetch new list from iPhone if it is reachable
-            SchooduleManager.shared.sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
-                
-                if !self.schoodule.storage.decodePeriods(from: period["periods"] as! Data) {
-                    print("2")                    
-                    DispatchQueue.main.async {
-                        self.createTable()
-                    }
-                }
-            })
-        } else {
-            print("3")
-            createTable()
         }
+        createTable()
     }
     
     // MARK Segueing Data
@@ -86,7 +60,6 @@ class InterfaceController: WKInterfaceController {
         }
         
         reloadCurrent()
-        pendingScroll()
         showInfo()
     }
     
@@ -107,7 +80,7 @@ class InterfaceController: WKInterfaceController {
     func loadRow(index: Int, period: Period) {
         let row = scheduleTable.rowController(at: index) as! ClassRow
         
-        row.durationLabel?.setText("\(period.start.string)")
+        row.durationLabel?.setText("\(period.timeframe.start.date.timeString)")
         row.indexLabel?.setText("\(index + 1)")
         row.nameLabel?.setText("\(period.className)")
         
@@ -125,40 +98,15 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
-    func pendingScroll() {
-        if let scroll = schoodule.pendingTableScrollIndex {
-            scheduleTable.scrollToRow(at: scroll)
-            schoodule.pendingTableScrollIndex = nil
-        }
-    }
-    
     func showInfo() {
         if schoodule.unsortedPeriods.isEmpty {
-            connectingLabel.setHidden(false)
+            createInfoLabel.setHidden(false)
         } else {
-            connectingLabel.setHidden(true)
+            createInfoLabel.setHidden(true)
         }
         
         scheduleTable.setHidden(false)
         newButton.setHidden(false)
-    }
-    
-    // MARK: Actions
-    
-    @IBAction func clearAllPeriods() {
-        let clearAllConfirm = WKAlertAction(title: "Clear All", style: .destructive) {
-            self.schoodule.clear()
-            
-            DispatchQueue.main.async {
-                self.createTable()
-            }
-            
-            SchooduleManager.shared.sendClearRequest(replyHandler: { (period) in
-                
-            }, errorHandler: nil)
-        }
-        
-        self.presentAlert(withTitle: "Clear All Classes", message: "This action cannot be undone.", preferredStyle: .actionSheet, actions: [clearAllConfirm])
     }
     
 }
