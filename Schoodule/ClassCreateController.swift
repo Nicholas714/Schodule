@@ -27,21 +27,41 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     
     @IBAction func save(_ sender: UIButton) {
         let period = Period(className: nameField.text!, themeIndex: 0, timeframe: Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date)), location: nil)
-        let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [TimeConstraint]())
         
-        // TODO: create time constraints from data given
-        
-        if schedulesToAdd.isEmpty {
-            let schedule = Schedule()
-            // schedule.timeConstraints = [AlternatingOdd(), SpecificDay(days: [.monday])]
-            schedule.append(new: period)
-        } else {
-            for schedule in schedulesToAdd {
+        let day = SpecificDay(days: [.monday, .friday, .saturday])
+        let alt = AlternatingEven()
+        if arc4random_uniform(100) < UInt32(50) {
+            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt])
+            
+            if schedulesToAdd.isEmpty {
+                let schedule = Schedule()
+                schedule.timeConstraints = [alt]
                 schedule.append(new: period)
+                manager.schedules.append(schedule)
+            } else {
+                for schedule in schedulesToAdd {
+                    schedule.append(new: period)
+                }
+            }
+        } else {
+            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [day])
+            
+            if schedulesToAdd.isEmpty {
+                let schedule = Schedule()
+                schedule.timeConstraints = [day]
+                schedule.append(new: period)
+                manager.schedules.append(schedule)
+            } else {
+                for schedule in schedulesToAdd {
+                    schedule.append(new: period)
+                }
             }
         }
         
+        
+        
         manager.storage.saveSchedule()
+        navigationController?.popViewController(animated: true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

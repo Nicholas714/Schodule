@@ -25,19 +25,12 @@ class SchooduleManager {
     
     var schedules = [Schedule]()
     
-    var todaySchedule: [Schedule] {
+    var todaySchedule: [Period] {
         return schedules.filter({ (schedule) -> Bool in
             return schedule.isToday
+        }).flatMap({ (schedule) -> [Period] in
+            return schedule.periods
         })
-    }
-    
-    var scheduleStatus: ScheduleStatus {
-        if schedules.isEmpty && todaySchedule.isEmpty { // completely empty
-            return .empty
-        } else if todaySchedule.isEmpty && !schedules.isEmpty { // nothing today but there are schedules
-            return .schedules
-        }
-        return .both
     }
     
     private init() { }
@@ -45,14 +38,16 @@ class SchooduleManager {
     func getSchedulesWith(timeConstraints: [TimeConstraint]) -> [Schedule] {
         var passingSchedules = [Schedule]()
         
-        //for schedule in schedules {
-           // for scheduleTimeConstraint in schedule.timeConstraints {
-                //if !timeConstraints.contains(scheduleTimeConstraint) {
-                //    break
-                //}
-            //}
-            //passingSchedules.append(schedule)
-        //}
+        for schedule in schedules {
+            if Set<String>(schedule.timeConstraints.map({ (constraint) -> String in
+                return constraint.getTitle()
+            })).intersection(timeConstraints.map({ (constraint) -> String in
+                return constraint.getTitle()
+            })).count == timeConstraints.count {
+                passingSchedules.append(schedule)
+            }
+        }
+        
         return passingSchedules
     }
     

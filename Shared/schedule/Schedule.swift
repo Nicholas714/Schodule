@@ -8,28 +8,38 @@
 
 import Foundation
 
-enum ScheduleStatus: Int {
-    case empty
-    case schedules
-    case both
-}
-
 class Schedule: Codable {
     
     var periods = [Period]()
-    //var timeConstraints = [TimeConstraint]()
+    var timeConstraints = [TimeConstraint]()
     
     var lastPeriod: Period? {
         return periods.last
     }
     
+    var title: String? {
+        return timeConstraints.first?.getTitle()
+    }
+    
     var isToday: Bool {
-        /*for constraint in timeConstraints {
-            if !constraint.isToday() {
+        for constraint in timeConstraints {
+            if !constraint.isNow() {
                 return false
             }
-        }*/
+        }
         return true
+    }
+    
+    // TODO: get time constraints to actually encode/decode 
+    func encode(to encoder: Encoder) throws {
+        
+    }
+    
+    required init(from decoder: Decoder) throws {
+    }
+    
+    init() {
+        
     }
     
     // MARK: Getting Data

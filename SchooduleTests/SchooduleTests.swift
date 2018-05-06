@@ -67,12 +67,16 @@ class SchooduleTests: XCTestCase {
         XCTAssertNil(schedule.nextClassFrom(date: date3))
     }
     
-    func testScheduleStatus() {
-        manager.schedules.removeAll()
-        XCTAssertEqual(manager.scheduleStatus, ScheduleStatus.empty)
-        manager.schedules.append(schedule)
-        XCTAssertEqual(manager.scheduleStatus, ScheduleStatus.both)
-        // TODO: test just schedules when there is nothing for today
+    func testTodayList() {
+        let nothingTodaySchedule = Schedule()
+        nothingTodaySchedule.timeConstraints = [SpecificDay(days: [Day]())]
+        nothingTodaySchedule.periods = schedule.periods
+        manager.schedules = [nothingTodaySchedule]
+        XCTAssertEqual(manager.todaySchedule.count, 0)
+        
+        schedule.timeConstraints = [Everyday()]
+        manager.schedules = [schedule]
+        XCTAssertEqual(manager.todaySchedule.count, 11)
     }
     
     override func tearDown() {
