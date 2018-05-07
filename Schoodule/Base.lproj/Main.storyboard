@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="guE-uo-VRl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="guE-uo-VRl">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="-69.599999999999994" y="-219.45812807881774"/>
         </scene>
-        <!--Class Create Controller-->
+        <!--Title-->
         <scene sceneID="jNh-E7-G1U">
             <objects>
                 <viewController id="7ah-qV-6a7" customClass="ClassCreateController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
@@ -144,14 +144,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-bW-gGO">
-                                <rect key="frame" x="170" y="734" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="save:" destination="7ah-qV-6a7" eventType="touchUpInside" id="u8J-LL-BTF"/>
-                                </connections>
-                            </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eds-rE-9W8">
                                 <rect key="frame" x="0.0" y="548" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -171,6 +163,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="d4C-TG-ecY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DWb-f2-7SW">
+                            <connections>
+                                <action selector="save:" destination="7ah-qV-6a7" id="goa-fb-Yfa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="colorIndexPicker" destination="eds-rE-9W8" id="G9m-hu-On3"/>
                         <outlet property="endTimeSelector" destination="nbx-1e-9ok" id="naU-aR-JPu"/>

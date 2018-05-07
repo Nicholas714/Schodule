@@ -14,7 +14,7 @@ class Storage {
         return SchooduleManager.shared
     }
     
-    var encoded: Data {
+    /*var encoded: Data {
         let encoder = JSONEncoder()
         
         do {
@@ -40,6 +40,6 @@ class Storage {
                 fatalError("Error decoding schedules.")
             }
         }
-    }
+    }*/
     
 }

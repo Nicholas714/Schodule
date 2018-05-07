@@ -38,9 +38,9 @@ class SchooduleManager {
     func getSchedulesWith(timeConstraints: [TimeConstraint]) -> [Schedule] {
         return schedules.filter({ (schedule) -> Bool in
             return Set<String>(schedule.timeConstraints.map({ (constraint) -> String in
-                return constraint.getTitle()
+                return constraint.title
             })).intersection(timeConstraints.map({ (constraint) -> String in
-                return constraint.getTitle()
+                return constraint.title
             })).count == timeConstraints.count
         })
     }

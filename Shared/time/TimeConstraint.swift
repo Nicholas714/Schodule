@@ -8,18 +8,9 @@
 
 import Foundation
 
-class TimeConstraint: Codable, Equatable {
-    
-    static func == (lhs: TimeConstraint, rhs: TimeConstraint) -> Bool {
-        return lhs.getTitle() == rhs.getTitle()
-    }
-    
-    func isInConstraint(_ date: Date) -> Bool {
-        return false
-    }
-    func getTitle() -> String {
-        return ""
-    }
+protocol TimeConstraint {
+    var title: String { get }
+    func isInConstraint(_ date: Date) -> Bool
 }
 
 extension TimeConstraint {
@@ -30,114 +21,105 @@ extension TimeConstraint {
     
 }
 
-class Timeframe: TimeConstraint {
+struct Timeframe: TimeConstraint, Equatable {
     
-    var start: Time?
-    var end: Time?
+    var start: Time
+    var end: Time
     
-    override func isInConstraint(_ date: Date) -> Bool {
-        return date <= end!.date && date >= start!.date
+    var title: String {
+        return start.date.timeString
     }
     
-    override func getTitle() -> String {
-        return start!.date.timeString
-    }
-    
-}
-
-class Dateframe: TimeConstraint {
-    
-    var start: Date?
-    var end: Date?
-    
-    override func isInConstraint(_ date: Date) -> Bool {
-        return date <= start! && date >= end!
-    }
-    
-    override func getTitle() -> String {
-        return start!.dayString
+    func isInConstraint(_ date: Date) -> Bool {
+        return date <= end.date && date >= start.date
     }
     
 }
 
-class AlternatingEven: TimeConstraint {
+struct Dateframe: TimeConstraint {
     
-    override func isInConstraint(_ date: Date) -> Bool {
+    var start: Date
+    var end: Date
+    
+    var title: String {
+        return start.dayString
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        return date <= start && date >= end
+    }
+
+}
+
+struct AlternatingEven: TimeConstraint {
+    
+    var title = "Even Days"
+    
+    func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.component(.day, from: Date()) % 2 == 0
     }
     
-    override func getTitle() -> String {
-        return "Even Days"
-    }
-    
 }
 
-class AlternatingOdd: TimeConstraint {
+struct AlternatingOdd: TimeConstraint {
     
-    override func isInConstraint(_ date: Date) -> Bool {
+    var title = "Odd Days"
+    
+    func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.component(.day, from: Date()) % 2 != 0
     }
-    
-    override func getTitle() -> String {
-        return "Odd Days"
-    }
+
 }
 
-class SpecificDay: TimeConstraint {
+struct SpecificDay: TimeConstraint {
 
-    var days = [Day]()
-    
-    override func isInConstraint(_ date: Date) -> Bool {
-        if let today = Day(rawValue: Calendar.current.component(.day, from: date)) {
-            return days.contains(today)
-        }
-        return false
-    }
-    
-    override func getTitle() -> String {
+    var title: String {
         if days.count == 1 {
             return days.first!.name
         }
         
         return days.map { (day) -> String in
             return day.shortName
-        }.joined(separator: ", ")
+            }.joined(separator: ", ")
     }
     
+    var days = [Day]()
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        if let today = Day(rawValue: Calendar.current.component(.day, from: date)) {
+            return days.contains(today)
+        }
+        return false
+    }
     
 }
 
-class Everyday: TimeConstraint {
+struct Everyday: TimeConstraint {
     
-    override func isInConstraint(_ date: Date) -> Bool {
+    var title = "Everyday"
+    
+    func isInConstraint(_ date: Date) -> Bool {
         return true
     }
     
-    override func getTitle() -> String {
-        return "Everyday"
-    }
-    
 }
 
-class Weekend: TimeConstraint {
+struct Weekend: TimeConstraint {
+ 
+    var title = "Weekends"
     
-    override func isInConstraint(_ date: Date) -> Bool {
+    func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.isDateInWeekend(date)
     }
     
-    override func getTitle() -> String {
-         return "Weekends"
-    }
 }
 
-class Weekday: TimeConstraint {
+struct Weekday: TimeConstraint {
     
-    override func isInConstraint(_ date: Date) -> Bool {
+    var title = "Weekdays"
+    
+    func isInConstraint(_ date: Date) -> Bool {
         return !Calendar.current.isDateInWeekend(date)
-    }
-    
-    override func getTitle() -> String {
-        return "Weekdays"
     }
     
 }

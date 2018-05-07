@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Period: Equatable, Codable, Comparable {
+struct Period: Equatable, Comparable {
     
     var className: String
     var themeIndex: Int
@@ -27,7 +27,7 @@ struct Period: Equatable, Codable, Comparable {
     }
     
     static func <(lhs: Period, rhs: Period) -> Bool {
-        return lhs.timeframe.start! < rhs.timeframe.end!
+        return lhs.timeframe.start < rhs.timeframe.end
     }
     
 }

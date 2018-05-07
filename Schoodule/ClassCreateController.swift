@@ -25,16 +25,17 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
         colorIndexPicker.dataSource = self
     }
     
-    @IBAction func save(_ sender: UIButton) {
-        let timeframe = Timeframe()
-        timeframe.start = Time(from: startTimeSelector.date)
-        timeframe.end = Time(from: endTimeSelector.date)
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
         let period = Period(className: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
         
-        let day = SpecificDay()
-        day.days = [.monday, .friday, .saturday]
+        let day = SpecificDay(days: [.monday, .friday, .saturday])
+        
         let alt = AlternatingEven()
-        if arc4random_uniform(100) < UInt32(50) {
+        let alt2 = AlternatingOdd()
+        
+        let rand = arc4random_uniform(100)
+        if rand < UInt32(33) {
             let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt])
             
             if schedulesToAdd.isEmpty {
@@ -47,7 +48,7 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
                     schedule.append(new: period)
                 }
             }
-        } else {
+        } else if rand < 66 {
             let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [day])
             
             if schedulesToAdd.isEmpty {
@@ -60,11 +61,24 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
                     schedule.append(new: period)
                 }
             }
+        } else {
+            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt2])
+            
+            if schedulesToAdd.isEmpty {
+                let schedule = Schedule()
+                schedule.timeConstraints = [alt2]
+                schedule.append(new: period)
+                manager.schedules.append(schedule)
+            } else {
+                for schedule in schedulesToAdd {
+                    schedule.append(new: period)
+                }
+            }
         }
         
         
         
-        manager.storage.saveSchedule()
+        // manager.storage.saveSchedule()
         navigationController?.popViewController(animated: true)
     }
     

@@ -18,14 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        SchooduleManager.shared.storage.loadScheudle()
+        // SchooduleManager.shared.storage.loadScheudle()
         Fabric.with([Crashlytics.self])
-        
-        SchooduleManager.shared.schedules.forEach { (s) in
-            s.timeConstraints.forEach({ (t) in
-                print(t.getTitle())
-            })
-        }
         
         return true
     }

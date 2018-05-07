@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Schedule: Codable {
+class Schedule {
     
     var periods = [Period]()
     var timeConstraints = [TimeConstraint]()
@@ -18,7 +18,7 @@ class Schedule: Codable {
     }
     
     var title: String? {
-        return timeConstraints.first?.getTitle()
+        return timeConstraints.first?.title
     }
     
     var isToday: Bool {
@@ -34,13 +34,13 @@ class Schedule: Codable {
     
     func classFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date <= period.timeframe.end!.date && date >= period.timeframe.start!.date
+            return date <= period.timeframe.end.date && date >= period.timeframe.start.date
         }
     }
     
     func nextClassFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date < period.timeframe.start!.date
+            return date < period.timeframe.start.date
         }
     }
     
@@ -58,7 +58,7 @@ class Schedule: Codable {
         periods.append(newPeriod)
         periods.sort()
         
-        SchooduleManager.shared.storage.saveSchedule()
+        // SchooduleManager.shared.storage.saveSchedule()
     }
     
     func remove(old oldPeriod: Period?) {
@@ -67,7 +67,7 @@ class Schedule: Codable {
         }
         
         periods.sort()
-        SchooduleManager.shared.storage.saveSchedule()
+        // SchooduleManager.shared.storage.saveSchedule()
     }
     
     func index(of period: Period) -> Int? {
