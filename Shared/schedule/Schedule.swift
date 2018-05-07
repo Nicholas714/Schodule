@@ -30,29 +30,17 @@ class Schedule: Codable {
         return true
     }
     
-    // TODO: get time constraints to actually encode/decode 
-    func encode(to encoder: Encoder) throws {
-        
-    }
-    
-    required init(from decoder: Decoder) throws {
-    }
-    
-    init() {
-        
-    }
-    
     // MARK: Getting Data
     
     func classFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date <= period.timeframe.end.date && date >= period.timeframe.start.date
+            return date <= period.timeframe.end!.date && date >= period.timeframe.start!.date
         }
     }
     
     func nextClassFrom(date: Date) -> Period? {
         return periods.first { (period) -> Bool in
-            return date < period.timeframe.start.date
+            return date < period.timeframe.start!.date
         }
     }
     

@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/schedule/Schedule.swift"
-            timestampString = "547270373.608243"
+            timestampString = "547344759.394097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "append(new:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "classFrom(date:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

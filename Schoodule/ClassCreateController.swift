@@ -26,9 +26,13 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     }
     
     @IBAction func save(_ sender: UIButton) {
-        let period = Period(className: nameField.text!, themeIndex: 0, timeframe: Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date)), location: nil)
+        let timeframe = Timeframe()
+        timeframe.start = Time(from: startTimeSelector.date)
+        timeframe.end = Time(from: endTimeSelector.date)
+        let period = Period(className: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
         
-        let day = SpecificDay(days: [.monday, .friday, .saturday])
+        let day = SpecificDay()
+        day.days = [.monday, .friday, .saturday]
         let alt = AlternatingEven()
         if arc4random_uniform(100) < UInt32(50) {
             let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt])

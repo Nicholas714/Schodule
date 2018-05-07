@@ -8,9 +8,18 @@
 
 import Foundation
 
-protocol TimeConstraint: Codable {
-    func isInConstraint(_ date: Date) -> Bool
-    func getTitle() -> String
+class TimeConstraint: Codable, Equatable {
+    
+    static func == (lhs: TimeConstraint, rhs: TimeConstraint) -> Bool {
+        return lhs.getTitle() == rhs.getTitle()
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        return false
+    }
+    func getTitle() -> String {
+        return ""
+    }
 }
 
 extension TimeConstraint {
@@ -21,71 +30,71 @@ extension TimeConstraint {
     
 }
 
-struct Timeframe: TimeConstraint, Equatable {
+class Timeframe: TimeConstraint {
     
-    var start: Time
-    var end: Time
+    var start: Time?
+    var end: Time?
     
-    func isInConstraint(_ date: Date) -> Bool {
-        return date <= end.date && date >= start.date
+    override func isInConstraint(_ date: Date) -> Bool {
+        return date <= end!.date && date >= start!.date
     }
     
-    func getTitle() -> String {
-        return start.date.timeString
-    }
-    
-}
-
-struct Dateframe: TimeConstraint, Codable {
-    
-    var start: Date
-    var end: Date
-    
-    func isInConstraint(_ date: Date) -> Bool {
-        return date <= start && date >= end
-    }
-    
-    func getTitle() -> String {
-        return start.dayString
+    override func getTitle() -> String {
+        return start!.date.timeString
     }
     
 }
 
-struct AlternatingEven: TimeConstraint {
+class Dateframe: TimeConstraint {
     
-    func isInConstraint(_ date: Date) -> Bool {
+    var start: Date?
+    var end: Date?
+    
+    override func isInConstraint(_ date: Date) -> Bool {
+        return date <= start! && date >= end!
+    }
+    
+    override func getTitle() -> String {
+        return start!.dayString
+    }
+    
+}
+
+class AlternatingEven: TimeConstraint {
+    
+    override func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.component(.day, from: Date()) % 2 == 0
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
         return "Even Days"
     }
     
 }
 
-struct AlternatingOdd: TimeConstraint {
+class AlternatingOdd: TimeConstraint {
     
-    func isInConstraint(_ date: Date) -> Bool {
+    override func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.component(.day, from: Date()) % 2 != 0
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
         return "Odd Days"
     }
 }
 
-struct SpecificDay: TimeConstraint, Equatable {
+class SpecificDay: TimeConstraint {
 
-    var days: [Day]
+    var days = [Day]()
     
-    func isInConstraint(_ date: Date) -> Bool {
+    override func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.day, from: date)) {
             return days.contains(today)
         }
         return false
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
         if days.count == 1 {
             return days.first!.name
         }
@@ -98,36 +107,36 @@ struct SpecificDay: TimeConstraint, Equatable {
     
 }
 
-struct Everyday: TimeConstraint {
+class Everyday: TimeConstraint {
     
-    func isInConstraint(_ date: Date) -> Bool {
+    override func isInConstraint(_ date: Date) -> Bool {
         return true
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
         return "Everyday"
     }
     
 }
 
-struct Weekend: TimeConstraint {
+class Weekend: TimeConstraint {
     
-    func isInConstraint(_ date: Date) -> Bool {
+    override func isInConstraint(_ date: Date) -> Bool {
         return Calendar.current.isDateInWeekend(date)
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
          return "Weekends"
     }
 }
 
-struct Weekday: TimeConstraint {
+class Weekday: TimeConstraint {
     
-    func isInConstraint(_ date: Date) -> Bool {
+    override func isInConstraint(_ date: Date) -> Bool {
         return !Calendar.current.isDateInWeekend(date)
     }
     
-    func getTitle() -> String {
+    override func getTitle() -> String {
         return "Weekdays"
     }
     

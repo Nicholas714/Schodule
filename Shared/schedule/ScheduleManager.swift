@@ -36,19 +36,13 @@ class SchooduleManager {
     private init() { }
     
     func getSchedulesWith(timeConstraints: [TimeConstraint]) -> [Schedule] {
-        var passingSchedules = [Schedule]()
-        
-        for schedule in schedules {
-            if Set<String>(schedule.timeConstraints.map({ (constraint) -> String in
+        return schedules.filter({ (schedule) -> Bool in
+            return Set<String>(schedule.timeConstraints.map({ (constraint) -> String in
                 return constraint.getTitle()
             })).intersection(timeConstraints.map({ (constraint) -> String in
                 return constraint.getTitle()
-            })).count == timeConstraints.count {
-                passingSchedules.append(schedule)
-            }
-        }
-        
-        return passingSchedules
+            })).count == timeConstraints.count
+        })
     }
     
 }
