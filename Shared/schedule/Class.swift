@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-struct Period: Equatable, Comparable {
+struct Class: Equatable, Comparable, Codable {
     
-    var className: String
+    var name: String
     var themeIndex: Int
     var timeframe: Timeframe
     var location: String?
@@ -22,11 +22,11 @@ struct Period: Equatable, Comparable {
         }
     }
     
-    static func ==(lhs: Period, rhs: Period) -> Bool {
-        return lhs.timeframe == rhs.timeframe && lhs.className == rhs.className && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
+    static func ==(lhs: Class, rhs: Class) -> Bool {
+        return lhs.timeframe == rhs.timeframe && lhs.name == rhs.name && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
     }
     
-    static func <(lhs: Period, rhs: Period) -> Bool {
+    static func <(lhs: Class, rhs: Class) -> Bool {
         return lhs.timeframe.start < rhs.timeframe.end
     }
     

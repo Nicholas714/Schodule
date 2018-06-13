@@ -24,7 +24,7 @@ extension Date {
     
     var dayFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         
         return dateFormatter

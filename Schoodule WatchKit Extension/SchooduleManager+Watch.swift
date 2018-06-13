@@ -9,7 +9,7 @@
 import WatchConnectivity
 import ClockKit
 
-extension SchooduleManager {
+extension ScheduleList {
    /*
     func updateComplications() {
         let complicationServer = CLKComplicationServer.sharedInstance()

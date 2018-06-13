@@ -15,10 +15,11 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     @IBOutlet var startTimeSelector: UIDatePicker!
     @IBOutlet var endTimeSelector: UIDatePicker!
     @IBOutlet var colorIndexPicker: UIPickerView!
+    @IBOutlet var startDateSelector: UIDatePicker!
+    @IBOutlet var endDateSelector: UIDatePicker!
     
-    var manager: SchooduleManager {
-        return SchooduleManager.shared
-    }
+    var scheduleList: ScheduleList = ScheduleList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,58 +28,23 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
-        let period = Period(className: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
+        let period = Class(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
+
+        let dateframe = SpecificDay(days: [.monday, .tuesday])
         
-        let day = SpecificDay(days: [.monday, .friday, .saturday])
+        // let schedulesToAdd = scheduleList.getSchedulesWith(timeConstraints: [dateframe])
+            
+        var schedule = Schedule()
+        schedule.addConstrait(dateframe)
+        schedule.append(new: period)
+        // scheduleList.schedules.append(schedule)
         
-        let alt = AlternatingEven()
-        let alt2 = AlternatingOdd()
-        
-        let rand = arc4random_uniform(100)
-        if rand < UInt32(33) {
-            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt])
-            
-            if schedulesToAdd.isEmpty {
-                let schedule = Schedule()
-                schedule.timeConstraints = [alt]
-                schedule.append(new: period)
-                manager.schedules.append(schedule)
-            } else {
-                for schedule in schedulesToAdd {
-                    schedule.append(new: period)
-                }
-            }
-        } else if rand < 66 {
-            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [day])
-            
-            if schedulesToAdd.isEmpty {
-                let schedule = Schedule()
-                schedule.timeConstraints = [day]
-                schedule.append(new: period)
-                manager.schedules.append(schedule)
-            } else {
-                for schedule in schedulesToAdd {
-                    schedule.append(new: period)
-                }
-            }
-        } else {
-            let schedulesToAdd = manager.getSchedulesWith(timeConstraints: [alt2])
-            
-            if schedulesToAdd.isEmpty {
-                let schedule = Schedule()
-                schedule.timeConstraints = [alt2]
-                schedule.append(new: period)
-                manager.schedules.append(schedule)
-            } else {
-                for schedule in schedulesToAdd {
-                    schedule.append(new: period)
-                }
+        for c in navigationController!.viewControllers {
+            if c is MainTableViewController {
+                (c as! MainTableViewController).storage.scheduleList.schedules.append(schedule)
             }
         }
-        
-        
-        
-        // manager.storage.saveSchedule()
+
         navigationController?.popViewController(animated: true)
     }
     

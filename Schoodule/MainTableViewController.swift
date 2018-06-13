@@ -10,8 +10,15 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    var manager: SchooduleManager {
-        return SchooduleManager.shared
+    var storage = Storage()
+    
+    var first = true
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if first {
+            storage.loadScheudle()
+            first = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -21,36 +28,38 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return manager.todaySchedule.isEmpty ? "No Classes Today" : "Today"
+            return storage.scheduleList.todaySchedule.isEmpty ? "No Classes Today" : "Today"
         case 1:
-            return manager.schedules.isEmpty ? "No Schedules" : manager.schedules[section - 1].title
+            return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
         case _:
-            return manager.schedules[section - 1].title
+            return storage.scheduleList.schedules[section - 1].title
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")!
         
+        // storage.storage.scheduleList.schedulePeriod(scheduleIndex, periodIndex)
+
         if indexPath.section == 0 {
-            cell.textLabel?.text = manager.todaySchedule[indexPath.row].className
+            cell.textLabel?.text = storage.scheduleList.todaySchedule[indexPath.row].name
         } else {
-            cell.textLabel?.text = manager.schedules[indexPath.section - 1].periods[indexPath.row].className
+            cell.textLabel?.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].name
         }
         
         return cell
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return manager.schedules.isEmpty ? 2 : manager.schedules.count + 1
+        return storage.scheduleList.schedules.isEmpty ? 2 : storage.scheduleList.schedules.count + 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return manager.todaySchedule.count
+            return storage.scheduleList.todaySchedule.count
         case _:
-            return manager.schedules.isEmpty ? 0 : manager.schedules[section - 1].periods.count
+            return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
         }
     }
     

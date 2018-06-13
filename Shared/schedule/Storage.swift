@@ -10,36 +10,53 @@ import Foundation
 
 class Storage {
     
-    var manager: SchooduleManager {
-        return SchooduleManager.shared
+    private var loadedScheduleList = ScheduleList()
+    
+    var scheduleList: ScheduleList {
+        get {
+            return loadedScheduleList
+        }
+        set {
+            loadedScheduleList = newValue
+            print("schedule has been set")
+            saveSchedule()
+        }
     }
     
-    /*var encoded: Data {
+    var defaults: UserDefaults {
+        get {
+            return UserDefaults()
+        }
+    }
+    
+    var encoded: Data {
         let encoder = JSONEncoder()
         
         do {
-            return try encoder.encode(manager.schedules)
+            return try encoder.encode(scheduleList.schedules)
         } catch {
             fatalError("Error loading schedules.")
         }
     }
 
     func saveSchedule() {
-        manager.defaults.setValue(encoded, forKey: "schedules")
+        defaults.setValue(encoded, forKey: "schedules")
     }
     
     func loadScheudle() {
-        manager.schedules.removeAll()
+        loadedScheduleList.schedules.removeAll()
         
-        if let data = manager.defaults.value(forKey: "schedules") as? Data {
+        if let data = defaults.value(forKey: "schedules") as? Data {
             let decoder = JSONDecoder()
 
             do {
-                manager.schedules = try decoder.decode([Schedule].self, from: data)
+                for classList in try decoder.decode([Schedule].self, from: data) {
+                    loadedScheduleList.schedules.append(classList)
+                }
             } catch {
                 fatalError("Error decoding schedules.")
             }
         }
-    }*/
+    }
     
 }

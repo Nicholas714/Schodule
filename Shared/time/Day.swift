@@ -40,5 +40,16 @@ enum Day: Int, Codable {
     var shortName: String {
         return String(name.prefix(3))
     }
+    
+    var isWeekend: Bool {
+        if let date = Calendar.current.date(bySetting: .day, value: rawValue, of: Date()) {
+            return Calendar.current.isDateInWeekend(date)
+        }
+        return false
+    }
+    
+    var isWeekday: Bool {
+        return !isWeekend
+    }
 
 }

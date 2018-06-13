@@ -8,73 +8,109 @@
 
 import Foundation
 
-class Schedule {
+struct Schedule: Codable {
     
-    var periods = [Period]()
-    var timeConstraints = [TimeConstraint]()
+    var classList = [Class]()
+    private var _timeConstraints = [TimeConstraintType]()
     
-    var lastPeriod: Period? {
-        return periods.last
+    var timeConstraints: [TimeConstraint] {
+        var constraints = [TimeConstraint]()
+        
+        for constraint in _timeConstraints {
+            switch constraint {
+            case .timeframe(let t):
+                constraints.append(t)
+            case .dateframe(let t):
+                constraints.append(t)
+            case .repeating(let t):
+                constraints.append(t)
+            case .alternatingEven(let t):
+                constraints.append(t)
+            case .alternatingOdd(let t):
+                constraints.append(t)
+            case .specificDays(let t):
+                constraints.append(t)
+            }
+        }
+        
+        return constraints
+    }
+    
+    mutating func addConstrait<T: TimeConstraint>(_ constraint: T) {
+        _timeConstraints.append(TimeConstraintType(constraint))
+    }
+    
+    var lastPeriod: Class? {
+        return classList.last
+    }
+    
+    var dateframe: Dateframe? {
+        return nil
     }
     
     var title: String? {
-        return timeConstraints.first?.title
+        // TODO: implement
+        return ""
     }
     
     var isToday: Bool {
-        for constraint in timeConstraints {
-            if !constraint.isNow() {
-                return false
-            }
-        }
-        return true
+        return isScheduleInDate(Date())
     }
     
     // MARK: Getting Data
     
-    func classFrom(date: Date) -> Period? {
-        return periods.first { (period) -> Bool in
+    mutating func classFrom(date: Date) -> Class? {
+        return classList.first { (period) -> Bool in
             return date <= period.timeframe.end.date && date >= period.timeframe.start.date
         }
     }
     
-    func nextClassFrom(date: Date) -> Period? {
-        return periods.first { (period) -> Bool in
+    mutating func nextClassFrom(date: Date) -> Class? {
+        return classList.first { (period) -> Bool in
             return date < period.timeframe.start.date
         }
     }
     
     // MARK: Schedule Manipulation
     
-    func append(new period: Period) {
+    mutating func append(new period: Class) {
         replace(old: nil, with: period)
     }
     
-    func replace(old oldPeriod: Period?, with newPeriod: Period) {
+    mutating func replace(old oldPeriod: Class?, with newPeriod: Class) {
         if let old = oldPeriod, let index = index(of: old) {
-            periods.remove(at: index)
+            classList.remove(at: index)
         }
         
-        periods.append(newPeriod)
-        periods.sort()
+        classList.append(newPeriod)
+        classList.sort()
         
-        // SchooduleManager.shared.storage.saveSchedule()
+        //SchooduleManager.shared.storage.saveSchedule()
     }
     
-    func remove(old oldPeriod: Period?) {
+    mutating func remove(old oldPeriod: Class?) {
         if let old = oldPeriod, let index = index(of: old) {
-            periods.remove(at: index)
+            classList.remove(at: index)
         }
         
-        periods.sort()
-        // SchooduleManager.shared.storage.saveSchedule()
+        classList.sort()
+        //SchooduleManager.shared.storage.saveSchedule()
     }
     
-    func index(of period: Period) -> Int? {
-        if periods.isEmpty || !periods.contains(period) {
+    func index(of period: Class) -> Int? {
+        if classList.isEmpty || !classList.contains(period) {
             return nil
         }
-        return periods.index(of: period)
+        return classList.index(of: period)
+    }
+    
+    func isScheduleInDate(_ date: Date) -> Bool {
+        for constraint in timeConstraints {
+            if !constraint.isInConstraint(date) {
+                return false
+            }
+        }
+        return true
     }
     
 }

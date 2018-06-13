@@ -24,9 +24,9 @@
 		431D1507209E236C003F3BC5 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		431D1508209E236E003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
 		431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
-		431D150A209E2373003F3BC5 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
+		431D150A209E2373003F3BC5 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
 		431D150B209E2375003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
-		431D150C209E2377003F3BC5 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
+		431D150C209E2377003F3BC5 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Class.swift */; };
 		431D150D209E237A003F3BC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
 		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
@@ -45,11 +45,11 @@
 		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
 		434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
-		437475FE2020023500A21465 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
+		437475FE2020023500A21465 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Class.swift */; };
 		4378393C2039FD400083898B /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378393B2039FD400083898B /* ComplicationStore.swift */; };
-		43988743201FB8F700E5BD60 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Period.swift */; };
-		43B43D742030906E007A809C /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
-		43B43D752030906E007A809C /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleManager.swift */; };
+		43988743201FB8F700E5BD60 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Class.swift */; };
+		43B43D742030906E007A809C /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
+		43B43D752030906E007A809C /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
 		43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D762030913E007A809C /* SchooduleManager+Watch.swift */; };
 		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
@@ -137,8 +137,8 @@
 		434A5D152039CD4900C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
-		43988741201FB8F700E5BD60 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
-		43B43D732030906E007A809C /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		43988741201FB8F700E5BD60 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		43B43D732030906E007A809C /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
 		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
@@ -194,9 +194,9 @@
 		431D14F0209D5771003F3BC5 /* schedule */ = {
 			isa = PBXGroup;
 			children = (
-				43B43D732030906E007A809C /* ScheduleManager.swift */,
+				43B43D732030906E007A809C /* ScheduleList.swift */,
 				431D14EA209D5303003F3BC5 /* Schedule.swift */,
-				43988741201FB8F700E5BD60 /* Period.swift */,
+				43988741201FB8F700E5BD60 /* Class.swift */,
 				434DC2ED202292EB008A0074 /* Storage.swift */,
 			);
 			path = schedule;
@@ -503,9 +503,9 @@
 			files = (
 				431D1507209E236C003F3BC5 /* Time.swift in Sources */,
 				431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */,
-				431D150A209E2373003F3BC5 /* ScheduleManager.swift in Sources */,
+				431D150A209E2373003F3BC5 /* ScheduleList.swift in Sources */,
 				431D14FE209E2346003F3BC5 /* SchooduleTests.swift in Sources */,
-				431D150C209E2377003F3BC5 /* Period.swift in Sources */,
+				431D150C209E2377003F3BC5 /* Class.swift in Sources */,
 				431D1506209E236A003F3BC5 /* Date+Formatter.swift in Sources */,
 				431D1508209E236E003F3BC5 /* Day.swift in Sources */,
 				431D150B209E2375003F3BC5 /* Schedule.swift in Sources */,
@@ -521,12 +521,12 @@
 				43EEBAA820292A620029750A /* MainTableViewController.swift in Sources */,
 				431D14E6209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
 				431D14F4209DF7C1003F3BC5 /* Day.swift in Sources */,
-				437475FE2020023500A21465 /* Period.swift in Sources */,
+				437475FE2020023500A21465 /* Class.swift in Sources */,
 				431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */,
 				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
 				431D14EB209D5303003F3BC5 /* Schedule.swift in Sources */,
 				431D14F2209DF70C003F3BC5 /* TimeConstraint.swift in Sources */,
-				43B43D742030906E007A809C /* ScheduleManager.swift in Sources */,
+				43B43D742030906E007A809C /* ScheduleList.swift in Sources */,
 				43E468082027661A0076BEBD /* Time.swift in Sources */,
 				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
 				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,
@@ -544,9 +544,9 @@
 				43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */,
 				4378393C2039FD400083898B /* ComplicationStore.swift in Sources */,
 				431D14EC209D5303003F3BC5 /* Schedule.swift in Sources */,
-				43988743201FB8F700E5BD60 /* Period.swift in Sources */,
+				43988743201FB8F700E5BD60 /* Class.swift in Sources */,
 				43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */,
-				43B43D752030906E007A809C /* ScheduleManager.swift in Sources */,
+				43B43D752030906E007A809C /* ScheduleList.swift in Sources */,
 				431D14F6209DF906003F3BC5 /* Day.swift in Sources */,
 				431D14E7209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
 				434DC2F02022956F008A0074 /* Storage.swift in Sources */,
