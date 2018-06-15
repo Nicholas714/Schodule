@@ -122,6 +122,7 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     }
     
     func isInConstraint(_ date: Date) -> Bool {
+        print("\(date) < \(end.date) && \(date) >= \(start.date)")
         return date <= end.date && date >= start.date
     }
     
@@ -201,7 +202,8 @@ struct SpecificDay: TimeConstraint {
     }
     
     func isInConstraint(_ date: Date) -> Bool {
-        if let today = Day(rawValue: Calendar.current.component(.day, from: date)) {
+        if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
+            print("\(today) and all days \(days)")
             return days.contains(today)
         }
         return false

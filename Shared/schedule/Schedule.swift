@@ -10,7 +10,11 @@ import Foundation
 
 struct Schedule: Codable {
     
-    var classList = [Class]()
+    var classList = [Course]() {
+        didSet {
+            classList.sort()
+        }
+    }
     private var _timeConstraints = [TimeConstraintType]()
     
     var timeConstraints: [TimeConstraint] {
@@ -36,62 +40,35 @@ struct Schedule: Codable {
         return constraints
     }
     
+    var dateframe: Dateframe?
+    
+    var title: String {
+        return ""
+    }
+    
     mutating func setConstraints<T: TimeConstraint>(_ constraints: [T]) {
         _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
             return TimeConstraintType(constraint)
         })
     }
     
-    var lastPeriod: Class? {
-        return classList.last
+    mutating func append(course: Course) {
+        replace(course: nil, with: course)
     }
     
-    var dateframe: Dateframe? {
-        return nil
-    }
-    
-    var title: String? {
-        // TODO: implement
-        return ""
-    }
-    
-    var isToday: Bool {
-        return isScheduleInDate(Date())
-    }
-    
-    // MARK: Getting Data
-    
-    mutating func classFrom(date: Date) -> Class? {
-        return classList.first { (period) -> Bool in
-            return date <= period.timeframe.end.date && date >= period.timeframe.start.date
-        }
-    }
-    
-    mutating func nextClassFrom(date: Date) -> Class? {
-        return classList.first { (period) -> Bool in
-            return date < period.timeframe.start.date
-        }
-    }
-    
-    // MARK: Schedule Manipulation
-    
-    mutating func append(new period: Class) {
-        replace(old: nil, with: period)
-    }
-    
-    mutating func replace(old oldPeriod: Class?, with newPeriod: Class) {
-        if let old = oldPeriod, let index = index(of: old) {
+    mutating func replace(course oldCourse: Course?, with newCourse: Course) {
+        if let old = oldCourse, let index = index(of: old) {
             classList.remove(at: index)
         }
         
-        classList.append(newPeriod)
+        classList.append(newCourse)
         classList.sort()
         
         //SchooduleManager.shared.storage.saveSchedule()
     }
     
-    mutating func remove(old oldPeriod: Class?) {
-        if let old = oldPeriod, let index = index(of: old) {
+    mutating func remove(course oldCourse: Course?) {
+        if let old = oldCourse, let index = index(of: old) {
             classList.remove(at: index)
         }
         
@@ -99,14 +76,14 @@ struct Schedule: Codable {
         //SchooduleManager.shared.storage.saveSchedule()
     }
     
-    func index(of period: Class) -> Int? {
-        if classList.isEmpty || !classList.contains(period) {
+    private func index(of course: Course) -> Int? {
+        if classList.isEmpty || !classList.contains(course) {
             return nil
         }
-        return classList.index(of: period)
+        return classList.index(of: course)
     }
     
-    func isScheduleInDate(_ date: Date) -> Bool {
+    func isScheduleIn(date: Date) -> Bool {
         for constraint in timeConstraints {
             if !constraint.isInConstraint(date) {
                 return false

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Class: Equatable, Comparable, Codable {
+struct Course: Equatable, Comparable, Codable {
     
     var name: String
     var themeIndex: Int
@@ -22,11 +22,11 @@ struct Class: Equatable, Comparable, Codable {
         }
     }
     
-    static func ==(lhs: Class, rhs: Class) -> Bool {
+    static func ==(lhs: Course, rhs: Course) -> Bool {
         return lhs.timeframe == rhs.timeframe && lhs.name == rhs.name && lhs.themeIndex == rhs.themeIndex && lhs.location == rhs.location
     }
     
-    static func <(lhs: Class, rhs: Class) -> Bool {
+    static func <(lhs: Course, rhs: Course) -> Bool {
         return lhs.timeframe.start < rhs.timeframe.end
     }
     

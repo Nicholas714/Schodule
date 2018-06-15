@@ -28,7 +28,7 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
-        let period = Class(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
+        let course = Course(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
 
         let dateframe = SpecificDay(days: [.monday, .tuesday])
         
@@ -36,7 +36,7 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
             
         var schedule = Schedule()
         schedule.setConstraints([dateframe])
-        schedule.append(new: period)
+        schedule.append(course: course)
         // scheduleList.schedules.append(schedule)
         
         for c in navigationController!.viewControllers {

@@ -8,15 +8,17 @@
 
 import Foundation
 
-enum Day: Int, Codable {
+enum Day: Int, Codable, CaseIterable {
     
-    case sunday = -1
+    case sunday = 1
     case monday
     case tuesday
     case wednesday
     case thursday
     case friday
     case saturday
+    
+    static var everyday = Day.allCases
     
     var name: String {
         switch self {
