@@ -36,7 +36,7 @@ class SchooduleTests: XCTestCase {
     
     func testDurations() {
         for schedule in storage.scheduleList.schedules {
-            for c in schedule.periods {
+            for c in schedule.classList {
                 let ClassDurations = Int(c.timeframe.end.date.timeIntervalSinceNow - c.timeframe.start.date.timeIntervalSinceNow) / 60
                 XCTAssertTrue([40, 45, 75, 95].contains(ClassDurations))
             }
@@ -45,7 +45,7 @@ class SchooduleTests: XCTestCase {
     
     func testDateframe() {
         for var schedule in storage.scheduleList.schedules {
-            schedule.addConstrait(Dateframe(start: Date(), end: Date().addingTimeInterval(100000)))
+            schedule.setConstraints([Dateframe(start: Date(), end: Date().addingTimeInterval(100000))])
             print(schedule.dateframe?.title ?? "None.")
         }
         
@@ -53,21 +53,21 @@ class SchooduleTests: XCTestCase {
     
     func testGettingDate() {
         var schedule = storage.scheduleList.schedules.first!
-        let date0 = schedule.periods.first!.timeframe.start.date.addingTimeInterval(-60)
-        let date1 = schedule.periods.first!.timeframe.start.date.addingTimeInterval(60)
-        let date2 = schedule.periods.first!.timeframe.end.date.addingTimeInterval(60)
+        let date0 = schedule.classList.first!.timeframe.start.date.addingTimeInterval(-60)
+        let date1 = schedule.classList.first!.timeframe.start.date.addingTimeInterval(60)
+        let date2 = schedule.classList.first!.timeframe.end.date.addingTimeInterval(60)
         let date3 = schedule.lastPeriod!.timeframe.start.date.addingTimeInterval(60)
         
         // no class if date is before schedule
         XCTAssertNil(schedule.classFrom(date: date0))
         // first class should be given for next class if date given is before schedule start
-        XCTAssertEqual(schedule.nextClassFrom(date: date0), schedule.periods.first!)
+        XCTAssertEqual(schedule.nextClassFrom(date: date0), schedule.classList.first!)
         // check for first class
-        XCTAssertEqual(schedule.classFrom(date: date1), schedule.periods.first!)
+        XCTAssertEqual(schedule.classFrom(date: date1), schedule.classList.first!)
         // if in between 2 classes it should give nil
         XCTAssertNil(schedule.classFrom(date: date2))
         // next class from first class should give second class
-        XCTAssertEqual(schedule.nextClassFrom(date: date1), schedule.periods.first!)
+        XCTAssertEqual(schedule.nextClassFrom(date: date1), schedule.classList.first!)
         // check for last class
         XCTAssertEqual(schedule.classFrom(date: date3), schedule.periods.first!)
         // no class if date is after schedule
@@ -75,8 +75,8 @@ class SchooduleTests: XCTestCase {
     }
     
     func testTodayList() {
-        var nothingTodaySchedule = ScheduleList()
-        var classList = ClassList()
+        let nothingTodaySchedule = ScheduleList()
+        var classList = Schedule()
         classList.addConstrait(SpecificDay(days: [Day]()))
         nothingTodaySchedule.schedules = [classList]
         

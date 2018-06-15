@@ -36,8 +36,10 @@ struct Schedule: Codable {
         return constraints
     }
     
-    mutating func addConstrait<T: TimeConstraint>(_ constraint: T) {
-        _timeConstraints.append(TimeConstraintType(constraint))
+    mutating func setConstraints<T: TimeConstraint>(_ constraints: [T]) {
+        _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
+            return TimeConstraintType(constraint)
+        })
     }
     
     var lastPeriod: Class? {

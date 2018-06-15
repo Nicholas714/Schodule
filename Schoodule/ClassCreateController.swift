@@ -35,7 +35,7 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
         // let schedulesToAdd = scheduleList.getSchedulesWith(timeConstraints: [dateframe])
             
         var schedule = Schedule()
-        schedule.addConstrait(dateframe)
+        schedule.setConstraints([dateframe])
         schedule.append(new: period)
         // scheduleList.schedules.append(schedule)
         

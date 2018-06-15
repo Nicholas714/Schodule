@@ -8,10 +8,12 @@
 
 import Foundation
 
-class Storage {
-    
+struct Storage {
+
     private var loadedScheduleList = ScheduleList()
-    
+
+    var defaults: UserDefaults
+
     var scheduleList: ScheduleList {
         get {
             return loadedScheduleList
@@ -23,27 +25,27 @@ class Storage {
         }
     }
     
-    var defaults: UserDefaults {
-        get {
-            return UserDefaults()
-        }
+    init(defaults: UserDefaults) {
+        self.defaults = defaults
+        
+        loadScheudle()
     }
     
-    var encoded: Data {
+    func saveSchedule() {
+        defaults.setValue(encoded, forKey: "schedules")
+    }
+    
+    private var encoded: Data {
         let encoder = JSONEncoder()
-        
+
         do {
             return try encoder.encode(scheduleList.schedules)
         } catch {
             fatalError("Error loading schedules.")
         }
     }
-
-    func saveSchedule() {
-        defaults.setValue(encoded, forKey: "schedules")
-    }
     
-    func loadScheudle() {
+    private mutating func loadScheudle() {
         loadedScheduleList.schedules.removeAll()
         
         if let data = defaults.value(forKey: "schedules") as? Data {
