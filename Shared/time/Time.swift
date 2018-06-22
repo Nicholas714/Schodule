@@ -37,9 +37,14 @@ struct Time: Codable, Comparable {
         self.minute = Calendar.current.component(.minute, from: date)
     }
     
-    init(_ hour: Int, _ minute: Int) {
-        self.hour = hour
+    init(_ hour: Int, _ minute: Int, _ asMilitary: Bool) {
         self.minute = minute
+
+        if asMilitary {
+            self.hour = hour
+        } else {
+            self.hour = hour + 12
+        }
     }
     
     var date: Date {

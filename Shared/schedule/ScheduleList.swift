@@ -15,6 +15,10 @@ struct ScheduleList: Codable {
     var todaySchedule: [Course] {
         return scheduleFor(date: Date())
     }
+    
+    var totalCourseCount: Int {
+        return schedules.reduce(0, { $0 + $1.classList.count })
+    }
         
     func getSchedulesWith(timeConstraints: [TimeConstraint]) -> Schedule? {
         for schedule in schedules {

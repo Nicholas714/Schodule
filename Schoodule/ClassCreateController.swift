@@ -30,12 +30,12 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
         let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
         let course = Course(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
 
-        let dateframe = SpecificDay(days: [.monday, .tuesday])
+        let term = SpecificDay(days: [.monday, .tuesday])
         
-        // let schedulesToAdd = scheduleList.getSchedulesWith(timeConstraints: [dateframe])
+        // let schedulesToAdd = scheduleList.getSchedulesWith(timeConstraints: [term])
             
         var schedule = Schedule()
-        schedule.setConstraints([dateframe])
+        schedule.setConstraints([term])
         schedule.append(course: course)
         // scheduleList.schedules.append(schedule)
         

@@ -24,7 +24,7 @@ struct Schedule: Codable {
             switch constraint {
             case .timeframe(let t):
                 constraints.append(t)
-            case .dateframe(let t):
+            case .term(let t):
                 constraints.append(t)
             case .repeating(let t):
                 constraints.append(t)
@@ -40,7 +40,7 @@ struct Schedule: Codable {
         return constraints
     }
     
-    var dateframe: Dateframe?
+    var term: Term?
     
     var title: String {
         return ""

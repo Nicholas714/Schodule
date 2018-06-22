@@ -17,7 +17,7 @@ enum TimeConstraintType: Codable {
     
     private enum Values: Int, Codable {
         case timeframe
-        case dateframe
+        case term
         case repeating
         case alternatingEven
         case alternatingOdd
@@ -25,7 +25,7 @@ enum TimeConstraintType: Codable {
     }
     
     case timeframe(Timeframe)
-    case dateframe(Dateframe)
+    case term(Term)
     case repeating(Repeating)
     case alternatingEven(AlternatingEven)
     case alternatingOdd(AlternatingOdd)
@@ -34,8 +34,8 @@ enum TimeConstraintType: Codable {
     init<T: TimeConstraint>(_ constraint: T) {
         if let item = constraint as? Timeframe {
             self = .timeframe(item)
-        } else if let item = constraint as? Dateframe {
-            self = .dateframe(item)
+        } else if let item = constraint as? Term {
+            self = .term(item)
         } else if let item = constraint as? Repeating {
             self = .repeating(item)
         } else if let item = constraint as? AlternatingEven {
@@ -56,9 +56,9 @@ enum TimeConstraintType: Codable {
         case .timeframe:
             let payload = try container.decode(Timeframe.self, forKey: .payload)
             self = .timeframe(payload)
-        case .dateframe:
-            let payload = try container.decode(Dateframe.self, forKey: .payload)
-            self = .dateframe(payload)
+        case .term:
+            let payload = try container.decode(Term.self, forKey: .payload)
+            self = .term(payload)
         case .repeating:
             let payload = try container.decode(Repeating.self, forKey: .payload)
             self = .repeating(payload)
@@ -66,8 +66,8 @@ enum TimeConstraintType: Codable {
             let payload = try container.decode(Timeframe.self, forKey: .payload)
             self = .timeframe(payload)
         case .alternatingOdd:
-            let payload = try container.decode(Dateframe.self, forKey: .payload)
-            self = .dateframe(payload)
+            let payload = try container.decode(Term.self, forKey: .payload)
+            self = .term(payload)
         case .specificDays:
             let payload = try container.decode(SpecificDay.self, forKey: .payload)
             self = .specificDays(payload)
@@ -80,8 +80,8 @@ enum TimeConstraintType: Codable {
         case .timeframe(let payload):
             try container.encode(Values.timeframe, forKey: .value)
             try container.encode(payload, forKey: .payload)
-        case .dateframe(let payload):
-            try container.encode(Values.dateframe, forKey: .value)
+        case .term(let payload):
+            try container.encode(Values.term, forKey: .value)
             try container.encode(payload, forKey: .payload)
         case .repeating(let payload):
             try container.encode(Values.repeating, forKey: .value)
@@ -104,6 +104,22 @@ protocol TimeConstraint: Codable {
     func isInConstraint(_ date: Date) -> Bool
 }
 
+protocol DynamicStartConstraint: TimeConstraint {
+    var startDate: Date { get set }
+    var daysUntilRepeat: Int { get set }
+}
+
+extension DynamicStartConstraint {
+    
+    func daysInBetween(_ date: Date) -> Int {
+        return Int(abs(Double(date.timeIntervalSince1970 - startDate.timeIntervalSince1970) * (1 / 86400)))
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        return daysInBetween(date) % daysUntilRepeat == 0
+    }
+}
+
 extension TimeConstraint {
     
     func isNow() -> Bool {
@@ -122,43 +138,49 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     }
     
     func isInConstraint(_ date: Date) -> Bool {
-        print("\(date) < \(end.date) && \(date) >= \(start.date)")
         return date <= end.date && date >= start.date
     }
     
 }
 
-struct Dateframe: TimeConstraint {
+struct Term: TimeConstraint {
     
     var start: Date
-    var end: Date
+    var end: Date?
     
     var title: String {
         return ""
     }
     
     func isInConstraint(_ date: Date) -> Bool {
-        return date <= start && date >= end
+        return date >= start && (end == nil ? true : date <= end!)
     }
     
 }
 
-struct AlternatingEven: TimeConstraint {
+struct AlternatingEven: DynamicStartConstraint {
     
+    var daysUntilRepeat = 1
+    var startDate: Date
+
     var title = "Even Days"
     
-    func isInConstraint(_ date: Date) -> Bool {
-        return Calendar.current.component(.day, from: Date()) % 2 == 0
+    init(startDate: Date) {
+        self.startDate = startDate
     }
     
 }
 
-struct AlternatingOdd: TimeConstraint {
+struct AlternatingOdd: DynamicStartConstraint {
+
+    var daysUntilRepeat = 1
+    var startDate: Date
     
     var title = "Odd Days"
-    
-    func isInConstraint(_ date: Date) -> Bool {
-        return Calendar.current.component(.day, from: Date()) % 2 != 0
+
+    init(startDate: Date) {
+        // add a day because odd starts on the next day
+        self.startDate = startDate.addingTimeInterval(86400)
     }
     
 }
@@ -211,15 +233,13 @@ struct SpecificDay: TimeConstraint {
     
 }
 
-struct Repeating: TimeConstraint {
+struct Repeating: DynamicStartConstraint {
 
     var daysUntilRepeat: Int
-
+    var startDate: Date
+    
     var title: String {
         return "Every \(daysUntilRepeat) \(daysUntilRepeat == 1 ? "day" : "days")"
     }
-    
-    func isInConstraint(_ date: Date) -> Bool {
-        return true
-    }
+
 }

@@ -15,17 +15,17 @@ class SchooduleTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let sco = Course(name: "Scociology", themeIndex: 0, timeframe: Timeframe(start: Time(7, 05), end: Time(7, 45)), location: nil)
-        let eco = Course(name: "Economics", themeIndex: 1, timeframe: Timeframe(start: Time(7, 50), end: Time(8, 35)), location: nil)
-        let stats = Course(name: "Statistics", themeIndex: 2, timeframe: Timeframe(start: Time(8, 40), end: Time(9, 20)), location: nil)
-        let lunch = Course(name: "Lunch", themeIndex: 3, timeframe: Timeframe(start: Time(9, 25), end: Time(10, 05)), location: nil)
-        let calc = Course(name: "Calculus", themeIndex: 4, timeframe: Timeframe(start: Time(10, 10), end: Time(10, 50)), location: nil)
-        let cs = Course(name: "Computer Science", themeIndex: 5, timeframe: Timeframe(start: Time(10, 55), end: Time(11, 35)), location: nil)
-        let lit = Course(name: "Literature", themeIndex: 6, timeframe: Timeframe(start: Time(11, 40), end: Time(12, 20)), location: nil)
-        let gym = Course(name: "Gym", themeIndex: 7, timeframe: Timeframe(start: Time(12, 25), end: Time(13, 05)), location: nil)
-        let phy = Course(name: "Physics", themeIndex: 8, timeframe: Timeframe(start: Time(13, 10), end: Time(13, 50)), location: nil)
-        let after1 = Course(name: "Afterschool1", themeIndex: 9, timeframe: Timeframe(start: Time(13, 50), end: Time(15, 05)), location: nil)
-        let after2 = Course(name: "Afterschool2", themeIndex: 0, timeframe: Timeframe(start: Time(15, 05), end: Time(16, 40)), location: nil)
+        let sco = Course(name: "Scociology", themeIndex: 0, timeframe: Timeframe(start: Time(7, 05, true), end: Time(7, 45, true)), location: nil)
+        let eco = Course(name: "Economics", themeIndex: 1, timeframe: Timeframe(start: Time(7, 50, true), end: Time(8, 35, true)), location: nil)
+        let stats = Course(name: "Statistics", themeIndex: 2, timeframe: Timeframe(start: Time(8, 40, true), end: Time(9, 20, true)), location: nil)
+        let lunch = Course(name: "Lunch", themeIndex: 3, timeframe: Timeframe(start: Time(9, 25, true), end: Time(10, 05, true)), location: nil)
+        let calc = Course(name: "Calculus", themeIndex: 4, timeframe: Timeframe(start: Time(10, 10, true), end: Time(10, 50, true)), location: nil)
+        let cs = Course(name: "Computer Science", themeIndex: 5, timeframe: Timeframe(start: Time(10, 55, true), end: Time(11, 35, true)), location: nil)
+        let lit = Course(name: "Literature", themeIndex: 6, timeframe: Timeframe(start: Time(11, 40, true), end: Time(12, 20, true)), location: nil)
+        let gym = Course(name: "Gym", themeIndex: 7, timeframe: Timeframe(start: Time(12, 25, true), end: Time(13, 05, true)), location: nil)
+        let phy = Course(name: "Physics", themeIndex: 8, timeframe: Timeframe(start: Time(13, 10, true), end: Time(13, 50, true)), location: nil)
+        let after1 = Course(name: "Afterschool1", themeIndex: 9, timeframe: Timeframe(start: Time(13, 50, true), end: Time(15, 05, true)), location: nil)
+        let after2 = Course(name: "Afterschool2", themeIndex: 0, timeframe: Timeframe(start: Time(15, 05, true), end: Time(16, 40, true)), location: nil)
         
         storage = Storage(defaults: UserDefaults())
         
@@ -78,17 +78,98 @@ class SchooduleTests: XCTestCase {
     
 
     func testTodayList() {
-        var nothingTodaySchedule = ScheduleList()
+        var scheduleList = ScheduleList()
         var schedule = Schedule()
-        schedule.setConstraints([SpecificDay(days: [Day]())])
-        nothingTodaySchedule.schedules = [schedule]
-        XCTAssertEqual(nothingTodaySchedule.todaySchedule.count, 0)
         
-        var fullSchedule = ScheduleList()
-        schedule.setConstraints([SpecificDay(days: Day.everyday)])
         schedule.classList = storage.scheduleList.schedules.first!.classList
-        fullSchedule.schedules = [schedule]
-        XCTAssertEqual(fullSchedule.todaySchedule.count, 11)
+
+        func createTestSchedule<T: TimeConstraint>(constraint: T)  {
+            schedule.setConstraints([constraint])
+            scheduleList.schedules = [schedule]
+        }
+        
+        // SPECIFIC DAY
+        
+        // no days
+        createTestSchedule(constraint: SpecificDay(days: [Day]()))
+        XCTAssertEqual(scheduleList.todaySchedule.count, 0)
+        
+        // today
+        let today = Day(rawValue: Calendar.current.component(.weekday, from: Date()))!
+        createTestSchedule(constraint: SpecificDay(days: [today]))
+        XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
+        
+        // not today
+        let notToday = Day.allCases[0] == today ? Day.allCases[1] : Day.allCases[0]
+        createTestSchedule(constraint: SpecificDay(days: [notToday]))
+        XCTAssertEqual(scheduleList.todaySchedule.count, 0)
+        
+        
+        // EVEN / ODD
+        schedule.setConstraints([AlternatingOdd(startDate: Date().addingTimeInterval(-86400 * 3.0))])
+        scheduleList.schedules = [schedule]
+        
+        let isOddToday = scheduleList.todaySchedule.count == scheduleList.totalCourseCount
+        
+        schedule.setConstraints([AlternatingEven(startDate: Date().addingTimeInterval(-86400 * 4.0))])
+        scheduleList.schedules = [schedule]
+
+        let isEvenToday = scheduleList.todaySchedule.count == scheduleList.totalCourseCount
+        
+        XCTAssert(isOddToday != isEvenToday)
+        
+        // TIMEFRAME
+        let startTimeHourComponent = Calendar.current.component(.hour, from: Date())
+        // within time
+        schedule.setConstraints([Timeframe(start: Time(startTimeHourComponent, 00, true), end: Time(startTimeHourComponent + 1 > 23 ? 23 : startTimeHourComponent + 1, startTimeHourComponent + 1 > 23 ? 59 : 00, true))])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
+        
+        // not within time
+        schedule.setConstraints([Timeframe(start: Time(startTimeHourComponent, 00, true), end: Time(startTimeHourComponent, 01, true))])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, 0)
+        
+        // TERM
+        // within term
+        schedule.setConstraints([Term(start: Date().addingTimeInterval(-86400 * 5), end: Date().addingTimeInterval(86400 * 5))])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
+        
+        // not within term
+        schedule.setConstraints([Term(start: Date().addingTimeInterval(-86400 * 5), end: Date().addingTimeInterval(-86400 * 4))])
+        scheduleList.schedules = [schedule]
+        
+        // within term without end set
+        schedule.setConstraints([Term(start: Date().addingTimeInterval(-86400 * 5), end: nil)])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
+        
+        // not within term without end set
+        schedule.setConstraints([Term(start: Date().addingTimeInterval(86400 * 5), end: nil)])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, 0)
+        
+        // REPEATING
+        // not on repeating day
+        schedule.setConstraints([Repeating(daysUntilRepeat: 7, startDate: Date(timeIntervalSince1970: Date().timeIntervalSince1970 - 3 * -86400))])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, 0)
+        
+        // on repeating day
+        schedule.setConstraints([Repeating(daysUntilRepeat: 7, startDate: Date().addingTimeInterval(-86400 * 7))])
+        scheduleList.schedules = [schedule]
+        
+        XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
+        
+        // TODO: make button to ignore certain days that repeat
+
     }
     
     func testToday() {
