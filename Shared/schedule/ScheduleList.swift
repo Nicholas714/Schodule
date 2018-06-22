@@ -13,23 +13,26 @@ struct ScheduleList: Codable {
     var schedules = [Schedule]()
     
     var todaySchedule: [Course] {
-        return scheduleFor(date: Date())
+        return getCoursesIn(date: Date())
     }
     
     var totalCourseCount: Int {
         return schedules.reduce(0, { $0 + $1.classList.count })
     }
-        
-    func getSchedulesWith(timeConstraints: [TimeConstraint]) -> Schedule? {
+    
+    func getScheduleWith(timeConstraints: [TimeConstraint]) -> Schedule? {
         for schedule in schedules {
-            if timeConstraints.count == schedule.timeConstraints.count {
+            let sendTimeConstraintsSet = Set(timeConstraints.map { $0.title })
+            let loopTimeConstraintsSet = Set(schedule.timeConstraints.map { $0.title })
+            
+            if sendTimeConstraintsSet == loopTimeConstraintsSet {
                 return schedule
             }
         }
         return nil 
     }
     
-    func scheduleFor(date: Date) -> [Course] {
+    func getCoursesIn(date: Date) -> [Course] {
         return schedules.filter({ (schedule) -> Bool in
             return schedule.isScheduleIn(date: date)
         }).flatMap({ (schedule) -> [Course] in

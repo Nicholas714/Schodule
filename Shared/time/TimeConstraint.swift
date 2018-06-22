@@ -134,7 +134,7 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     var end: Time
     
     var title: String {
-        return ""
+        return "1:30am - 2:00am"
     }
     
     func isInConstraint(_ date: Date) -> Bool {
@@ -149,7 +149,7 @@ struct Term: TimeConstraint {
     var end: Date?
     
     var title: String {
-        return ""
+        return "May 23, 2018 - May 30, 2018"
     }
     
     func isInConstraint(_ date: Date) -> Bool {
@@ -225,7 +225,6 @@ struct SpecificDay: TimeConstraint {
     
     func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
-            print("\(today) and all days \(days)")
             return days.contains(today)
         }
         return false

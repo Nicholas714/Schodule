@@ -18,7 +18,9 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
     @IBOutlet var startDateSelector: UIDatePicker!
     @IBOutlet var endDateSelector: UIDatePicker!
     
-    var scheduleList: ScheduleList = ScheduleList()
+    var scheduleList: ScheduleList {
+        return MainTableViewController.storage.scheduleList
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +32,20 @@ class ClassCreateController: UIViewController, UIPickerViewDataSource {
         let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
         let course = Course(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
 
-        let term = SpecificDay(days: [.monday, .tuesday])
+        let term = SpecificDay(days: [.friday])
+        let sameSchedule = scheduleList.getScheduleWith(timeConstraints: [term])
         
-        // let schedulesToAdd = scheduleList.getSchedulesWith(timeConstraints: [term])
-            
-        var schedule = Schedule()
-        schedule.setConstraints([term])
-        schedule.append(course: course)
-        // scheduleList.schedules.append(schedule)
-        
-        for c in navigationController!.viewControllers {
-            if c is MainTableViewController {
-                (c as! MainTableViewController).storage.scheduleList.schedules.append(schedule)
-            }
+        var schedule: Schedule
+        if let sch = sameSchedule {
+            schedule = sch
+        } else {
+            schedule = Schedule()
+            schedule.setConstraints([term])
+            MainTableViewController.storage.scheduleList.schedules.append(schedule)
         }
-
+        schedule.append(course: course)
+        MainTableViewController.storage.saveSchedule()
+        
         navigationController?.popViewController(animated: true)
     }
     

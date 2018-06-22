@@ -168,8 +168,31 @@ class SchooduleTests: XCTestCase {
         
         XCTAssertEqual(scheduleList.todaySchedule.count, scheduleList.totalCourseCount)
         
-        // TODO: make button to ignore certain days that repeat
-
+        // TODO: supply which days alternating runs
+        // which means odd cant simply add one, it must go to the next day
+        // TODO: correclt supply titles 
+    }
+    
+    func testGetScheduleFromTimeConstraints() {
+        let timeConstraints = [SpecificDay(days: [.monday,])]
+        var scheduleList = ScheduleList()
+        var schedule = Schedule()
+        
+        schedule.classList = storage.scheduleList.schedules.first!.classList
+        
+        func createTestSchedule<T: TimeConstraint>(constraint: T)  {
+            schedule.setConstraints([constraint])
+            scheduleList.schedules = [schedule]
+        }
+        
+        schedule.setConstraints([SpecificDay(days: [.monday])])
+        scheduleList.schedules = [schedule, Schedule()]
+        
+        XCTAssertNotNil(scheduleList.getScheduleWith(timeConstraints: [SpecificDay(days: [.monday])]))
+        XCTAssertEqual(scheduleList.getScheduleWith(timeConstraints: [SpecificDay(days: [.monday])])!.classList, schedule.classList)
+        
+        XCTAssertNotNil(scheduleList.getScheduleWith(timeConstraints: []))
+        XCTAssertEqual(scheduleList.getScheduleWith(timeConstraints: [])!.classList, Schedule().classList)
     }
     
     func testToday() {

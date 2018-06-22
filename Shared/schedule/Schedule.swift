@@ -8,13 +8,15 @@
 
 import Foundation
 
-struct Schedule: Codable {
+// TODO: turn back into a struct?
+class Schedule: Codable {
     
     var classList = [Course]() {
         didSet {
             classList.sort()
         }
     }
+    
     private var _timeConstraints = [TimeConstraintType]()
     
     var timeConstraints: [TimeConstraint] {
@@ -43,20 +45,20 @@ struct Schedule: Codable {
     var term: Term?
     
     var title: String {
-        return ""
+        return timeConstraints.isEmpty ? "" : timeConstraints[0].title
     }
     
-    mutating func setConstraints<T: TimeConstraint>(_ constraints: [T]) {
+    func setConstraints<T: TimeConstraint>(_ constraints: [T]) {
         _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
             return TimeConstraintType(constraint)
         })
     }
     
-    mutating func append(course: Course) {
+    func append(course: Course) {
         replace(course: nil, with: course)
     }
     
-    mutating func replace(course oldCourse: Course?, with newCourse: Course) {
+    func replace(course oldCourse: Course?, with newCourse: Course) {
         if let old = oldCourse, let index = index(of: old) {
             classList.remove(at: index)
         }
@@ -67,7 +69,7 @@ struct Schedule: Codable {
         //SchooduleManager.shared.storage.saveSchedule()
     }
     
-    mutating func remove(course oldCourse: Course?) {
+    func remove(course oldCourse: Course?) {
         if let old = oldCourse, let index = index(of: old) {
             classList.remove(at: index)
         }

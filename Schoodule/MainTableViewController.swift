@@ -10,8 +10,12 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    var storage = Storage(defaults: UserDefaults())
-        
+    static var storage: Storage!
+    
+    var storage: Storage {
+        return MainTableViewController.storage
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
