@@ -170,7 +170,7 @@ class SchooduleTests: XCTestCase {
         
         // TODO: supply which days alternating runs
         // which means odd cant simply add one, it must go to the next day
-        // TODO: correclt supply titles 
+        // TODO: correcly supply titles
     }
     
     func testGetScheduleFromTimeConstraints() {

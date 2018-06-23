@@ -48,7 +48,7 @@ class Schedule: Codable {
         return timeConstraints.isEmpty ? "" : timeConstraints[0].title
     }
     
-    func setConstraints<T: TimeConstraint>(_ constraints: [T]) {
+    func setConstraints(_ constraints: [TimeConstraint]) {
         _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
             return TimeConstraintType(constraint)
         })

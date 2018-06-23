@@ -31,7 +31,7 @@ enum TimeConstraintType: Codable {
     case alternatingOdd(AlternatingOdd)
     case specificDays(SpecificDay)
     
-    init<T: TimeConstraint>(_ constraint: T) {
+    init(_ constraint: TimeConstraint) {
         if let item = constraint as? Timeframe {
             self = .timeframe(item)
         } else if let item = constraint as? Term {
@@ -63,11 +63,11 @@ enum TimeConstraintType: Codable {
             let payload = try container.decode(Repeating.self, forKey: .payload)
             self = .repeating(payload)
         case .alternatingEven:
-            let payload = try container.decode(Timeframe.self, forKey: .payload)
-            self = .timeframe(payload)
+            let payload = try container.decode(AlternatingEven.self, forKey: .payload)
+            self = .alternatingEven(payload)
         case .alternatingOdd:
-            let payload = try container.decode(Term.self, forKey: .payload)
-            self = .term(payload)
+            let payload = try container.decode(AlternatingOdd.self, forKey: .payload)
+            self = .alternatingOdd(payload)
         case .specificDays:
             let payload = try container.decode(SpecificDay.self, forKey: .payload)
             self = .specificDays(payload)
@@ -147,7 +147,7 @@ struct Term: TimeConstraint {
     
     var start: Date
     var end: Date?
-    
+
     var title: String {
         return "May 23, 2018 - May 30, 2018"
     }
@@ -163,11 +163,11 @@ struct AlternatingEven: DynamicStartConstraint {
     var daysUntilRepeat = 1
     var startDate: Date
 
-    var title = "Even Days"
-    
     init(startDate: Date) {
         self.startDate = startDate
     }
+    
+    var title = "Even Days"
     
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Storage {
+class Storage {
 
     private var loadedScheduleList = ScheduleList()
 
@@ -45,7 +45,7 @@ struct Storage {
         }
     }
     
-    private mutating func loadScheudle() {
+    private func loadScheudle() {
         loadedScheduleList.schedules.removeAll()
         
         if let data = defaults.value(forKey: "schedules") as? Data {
