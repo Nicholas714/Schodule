@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0797A6E3A8BB06DE48460A30 /* Pods_Schoodule_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */; };
 		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
 		43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43109E6E203E4E9900A7A2C7 /* Assets.xcassets */; };
 		431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */; };
@@ -55,6 +56,9 @@
 		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
 		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
 		43EEBAA820292A620029750A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* MainTableViewController.swift */; };
+		5D27651DB037D34BFA992978 /* Pods_Schoodule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */; };
+		7C01387CB42581D98C561216 /* Pods_SchooduleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */; };
+		D83C2B0F66773F1B7EA22160 /* Pods_Schoodule_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchooduleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4307E739202414240046B7CA /* UIColor+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
 		43109E6E203E4E9900A7A2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Schoodule WatchKit App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
@@ -143,6 +148,17 @@
 		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
 		43EEBAA720292A620029750A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit Extension/Pods-Schoodule WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit Extension/Pods-Schoodule WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.release.xcconfig"; sourceTree = "<group>"; };
+		A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchooduleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.debug.xcconfig"; sourceTree = "<group>"; };
+		CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchooduleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests.release.xcconfig"; sourceTree = "<group>"; };
+		F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit App/Pods-Schoodule WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit App/Pods-Schoodule WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C01387CB42581D98C561216 /* Pods_SchooduleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +176,7 @@
 			files = (
 				433E62162031032300083811 /* Crashlytics.framework in Frameworks */,
 				433E62172031032500083811 /* Fabric.framework in Frameworks */,
+				5D27651DB037D34BFA992978 /* Pods_Schoodule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +184,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0797A6E3A8BB06DE48460A30 /* Pods_Schoodule_WatchKit_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D47187647C3AB66757E61306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D83C2B0F66773F1B7EA22160 /* Pods_Schoodule_WatchKit_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +248,7 @@
 				431D14FC209E2346003F3BC5 /* SchooduleTests */,
 				433E0985201E9AC500902BB8 /* Products */,
 				433E62152031032300083811 /* Frameworks */,
+				E4650387F5D6190395CA4690 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,6 +316,10 @@
 			children = (
 				433E6213203102FD00083811 /* Fabric.framework */,
 				433E6214203102FD00083811 /* Crashlytics.framework */,
+				CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */,
+				69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */,
+				AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */,
+				A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -302,6 +334,21 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
+		E4650387F5D6190395CA4690 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */,
+				9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */,
+				F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */,
+				FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */,
+				9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */,
+				7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */,
+				1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */,
+				E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,9 +356,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 431D1502209E2346003F3BC5 /* Build configuration list for PBXNativeTarget "SchooduleTests" */;
 			buildPhases = (
+				888D8E69732872E31087A7C9 /* [CP] Check Pods Manifest.lock */,
 				431D14F7209E2346003F3BC5 /* Sources */,
 				431D14F8209E2346003F3BC5 /* Frameworks */,
 				431D14F9209E2346003F3BC5 /* Resources */,
+				719B1E2E5FCAB91AEAB37805 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +376,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433E09BD201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule" */;
 			buildPhases = (
+				633B6DC216B10781A7CB924D /* [CP] Check Pods Manifest.lock */,
 				433E0980201E9AC500902BB8 /* Sources */,
 				433E0981201E9AC500902BB8 /* Frameworks */,
 				433E0982201E9AC500902BB8 /* Resources */,
@@ -347,8 +397,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433E09B9201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */;
 			buildPhases = (
+				33B9E5E8E8B8AE5BF691CC2C /* [CP] Check Pods Manifest.lock */,
 				433E0994201E9AC500902BB8 /* Resources */,
 				433E09B8201E9AC500902BB8 /* Embed App Extensions */,
+				D47187647C3AB66757E61306 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -364,6 +416,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433E09B5201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */;
 			buildPhases = (
+				BEDF4C155F1A0E6543210A33 /* [CP] Check Pods Manifest.lock */,
 				433E09A1201E9AC500902BB8 /* Sources */,
 				433E09A2201E9AC500902BB8 /* Frameworks */,
 				433E09A3201E9AC500902BB8 /* Resources */,
@@ -481,6 +534,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		33B9E5E8E8B8AE5BF691CC2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Schoodule WatchKit App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		433E6212203102C800083811 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +564,78 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 33f39a6a487f5298b92b41a499bff42e8a479ff5 0d70fe19a0136b8e5bbbcef7fbbe6d0124d8197f5c7c4e3dd2d53284b2775a61";
+		};
+		633B6DC216B10781A7CB924D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Schoodule-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		719B1E2E5FCAB91AEAB37805 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		888D8E69732872E31087A7C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SchooduleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEDF4C155F1A0E6543210A33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Schoodule WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -606,6 +749,7 @@
 /* Begin XCBuildConfiguration section */
 		431D1503209E2346003F3BC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -624,6 +768,7 @@
 		};
 		431D1504209E2346003F3BC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -753,6 +898,7 @@
 		};
 		433E09B6201E9AC500902BB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -772,6 +918,7 @@
 		};
 		433E09B7201E9AC500902BB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -791,8 +938,8 @@
 		};
 		433E09BA201E9AC500902BB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -814,8 +961,8 @@
 		};
 		433E09BB201E9AC500902BB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -836,6 +983,7 @@
 		};
 		433E09BE201E9AC500902BB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -847,6 +995,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -857,6 +1006,7 @@
 		};
 		433E09BF201E9AC500902BB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -867,6 +1017,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
