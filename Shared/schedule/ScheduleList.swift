@@ -10,6 +10,8 @@ import Foundation
 
 struct ScheduleList: Codable {
     
+    // MARK: Properties
+    
     var schedules = [Schedule]()
     
     var todaySchedule: [Course] {
@@ -20,6 +22,8 @@ struct ScheduleList: Codable {
         return schedules.reduce(0, { $0 + $1.classList.count })
     }
     
+    // MARK: Schedule editing and getting
+    
     func getScheduleWith(timeConstraints: [TimeConstraint]) -> Schedule? {
         for schedule in schedules {
             let sendTimeConstraintsSet = Set(timeConstraints.map { $0.title })
@@ -29,7 +33,7 @@ struct ScheduleList: Codable {
                 return schedule
             }
         }
-        return nil 
+        return nil
     }
     
     func getCoursesIn(date: Date) -> [Course] {

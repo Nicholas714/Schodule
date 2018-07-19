@@ -8,8 +8,9 @@
 
 import Foundation
 
-// TODO: turn back into a struct?
 class Schedule: Codable {
+    
+    // MARK: Properties
     
     var classList = [Course]() {
         didSet {
@@ -48,41 +49,12 @@ class Schedule: Codable {
         return timeConstraints.isEmpty ? "" : timeConstraints[0].title
     }
     
+    // MARK: Schedule editing / getting
+    
     func setConstraints(_ constraints: [TimeConstraint]) {
         _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
             return TimeConstraintType(constraint)
         })
-    }
-    
-    func append(course: Course) {
-        replace(course: nil, with: course)
-    }
-    
-    func replace(course oldCourse: Course?, with newCourse: Course) {
-        if let old = oldCourse, let index = index(of: old) {
-            classList.remove(at: index)
-        }
-        
-        classList.append(newCourse)
-        classList.sort()
-        
-        //SchooduleManager.shared.storage.saveSchedule()
-    }
-    
-    func remove(course oldCourse: Course?) {
-        if let old = oldCourse, let index = index(of: old) {
-            classList.remove(at: index)
-        }
-        
-        classList.sort()
-        //SchooduleManager.shared.storage.saveSchedule()
-    }
-    
-    private func index(of course: Course) -> Int? {
-        if classList.isEmpty || !classList.contains(course) {
-            return nil
-        }
-        return classList.index(of: course)
     }
     
     func isScheduleIn(date: Date) -> Bool {
@@ -92,6 +64,14 @@ class Schedule: Codable {
             }
         }
         return true
+    }
+    
+}
+
+extension Schedule: Equatable {
+    
+    static func == (lhs: Schedule, rhs: Schedule) -> Bool {
+        return lhs.title == rhs.title && lhs.classList == rhs.classList
     }
     
 }

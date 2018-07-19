@@ -8,54 +8,52 @@
 
 import UIKit 
 
-class ClassCreateController: UIViewController, UIPickerViewDataSource {
+import UIKit
+
+class ClassCreateController: UIViewController {
     
     @IBOutlet var nameField: UITextField!
-    @IBOutlet var locationField: UITextField!
-    @IBOutlet var startTimeSelector: UIDatePicker!
-    @IBOutlet var endTimeSelector: UIDatePicker!
-    @IBOutlet var colorIndexPicker: UIPickerView!
-    @IBOutlet var startDateSelector: UIDatePicker!
-    @IBOutlet var endDateSelector: UIDatePicker!
     
-    var scheduleList: ScheduleList {
-        return MainTableViewController.storage.scheduleList
-    }
+    // schedule and course being made from the controller
+    var schedule: Schedule?
+    var course: Course?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        colorIndexPicker.dataSource = self
-    }
+    // editable list of schedules that gets passed back to root view
+    var scheduleList: ScheduleList!
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-        let timeframe = Timeframe(start: Time(from: startTimeSelector.date), end: Time(from: endTimeSelector.date))
+        let timeframe = Timeframe(start: Time(0, 30, true), end: Time(22, 00, true))
         let course = Course(name: nameField.text!, themeIndex: 0, timeframe: timeframe, location: nil)
-
-        let term: TimeConstraint = SpecificDay(days: [.friday])
         
+        let term: TimeConstraint
+        if course.name == "English" {
+            term = SpecificDay(days: [.monday, .wednesday])
+        } else if course.name == "Physics" || course.name == "Calculus" || course.name == "Spanish" {
+            term = SpecificDay(days: [.tuesday, .friday])
+        } else if course.name == "Lunch" || course.name == "Statistics" {
+            term = SpecificDay(days: Day.allCases)
+        } else {
+            term = SpecificDay(days: [.thursday])
+        }
         
         let sameSchedule = scheduleList.getScheduleWith(timeConstraints: [term])
         
         var schedule: Schedule
+        
         if let sch = sameSchedule {
             schedule = sch
         } else {
             schedule = Schedule()
             schedule.setConstraints([term])
-            MainTableViewController.storage.scheduleList.schedules.append(schedule)
+            scheduleList.schedules.append(schedule)
         }
-        schedule.append(course: course)
-        MainTableViewController.storage.saveSchedule()
+        schedule.classList.append(course)
+        
+        if let root = navigationController?.viewControllers[0] as? MainTableViewController {
+            root.storage.scheduleList = scheduleList
+        }
         
         navigationController?.popViewController(animated: true)
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return UIColor.themes.count
-    }
 }

@@ -10,20 +10,31 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    static var storage: Storage!
-    
-    var storage: Storage {
-        return MainTableViewController.storage
-    }
+    var storage = Storage(defaults: UserDefaults())
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ClassCreateSegue" {
+            if let destination = segue.destination as? ClassCreateController {
+                // TODO: if selected a course and schedule, populate the destinationVC
+                destination.course = nil
+                destination.schedule = nil
+                destination.scheduleList = storage.scheduleList
+            }
+        }
+    }
+    
+}
+
+extension MainTableViewController {
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return storage.scheduleList.todaySchedule.isEmpty ? "No Classes Today" : "Today"
+            return storage.scheduleList.todaySchedule.isEmpty ? "No Classes Today" : ""
         case 1:
             return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
         case _:
@@ -35,7 +46,7 @@ class MainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")!
         
         // storage.storage.scheduleList.schedulePeriod(scheduleIndex, periodIndex)
-
+        
         if indexPath.section == 0 {
             cell.textLabel?.text = storage.scheduleList.todaySchedule[indexPath.row].name
         } else {
