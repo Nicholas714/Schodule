@@ -1,6 +1,0 @@
-framework module Pods_SchooduleTests {
-  umbrella header "Pods-SchooduleTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

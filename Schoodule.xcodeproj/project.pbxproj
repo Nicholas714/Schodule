@@ -3,107 +3,72 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0797A6E3A8BB06DE48460A30 /* Pods_Schoodule_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */; };
-		4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
-		43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43109E6E203E4E9900A7A2C7 /* Assets.xcassets */; };
-		431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */; };
-		431D14E6209D5104003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
-		431D14E7209D5104003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
-		431D14EB209D5303003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
-		431D14EC209D5303003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
-		431D14F2209DF70C003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
-		431D14F4209DF7C1003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
-		431D14F5209DF8F5003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
-		431D14F6209DF906003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
-		431D14FE209E2346003F3BC5 /* SchooduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14FD209E2346003F3BC5 /* SchooduleTests.swift */; };
-		431D1505209E2367003F3BC5 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
-		431D1506209E236A003F3BC5 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14E5209D5104003F3BC5 /* Date+Formatter.swift */; };
-		431D1507209E236C003F3BC5 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
-		431D1508209E236E003F3BC5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F3209DF7C1003F3BC5 /* Day.swift */; };
-		431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */; };
-		431D150A209E2373003F3BC5 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
-		431D150B209E2375003F3BC5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431D14EA209D5303003F3BC5 /* Schedule.swift */; };
-		431D150C209E2377003F3BC5 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Course.swift */; };
-		431D150D209E237A003F3BC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
-		433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E0987201E9AC500902BB8 /* AppDelegate.swift */; };
-		433E098D201E9AC500902BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E098B201E9AC500902BB8 /* Main.storyboard */; };
-		433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */; };
-		433E0997201E9AC500902BB8 /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */; };
-		433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433E099B201E9AC500902BB8 /* Interface.storyboard */; };
-		433E09A6201E9AC500902BB8 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AA201E9AC500902BB8 /* InterfaceController.swift */; };
-		433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */; };
-		433E09B1201E9AC500902BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433E09B0201E9AC500902BB8 /* Assets.xcassets */; };
-		433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */; };
-		433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433E09C9201E9E3100902BB8 /* ClassRow.swift */; };
-		433E62162031032300083811 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6214203102FD00083811 /* Crashlytics.framework */; };
-		433E62172031032500083811 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433E6213203102FD00083811 /* Fabric.framework */; };
-		434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434A5D152039CD4900C7F4AD /* Assets.xcassets */; };
-		434DC2EE202292EB008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
-		434DC2F02022956F008A0074 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DC2ED202292EB008A0074 /* Storage.swift */; };
-		434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307E739202414240046B7CA /* UIColor+Themes.swift */; };
-		437475FE2020023500A21465 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Course.swift */; };
-		4378393C2039FD400083898B /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378393B2039FD400083898B /* ComplicationStore.swift */; };
-		43988743201FB8F700E5BD60 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43988741201FB8F700E5BD60 /* Course.swift */; };
-		43B43D742030906E007A809C /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
-		43B43D752030906E007A809C /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D732030906E007A809C /* ScheduleList.swift */; };
-		43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B43D762030913E007A809C /* SchooduleManager+Watch.swift */; };
-		43E468082027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
-		43E468092027661A0076BEBD /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E468072027661A0076BEBD /* Time.swift */; };
-		43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */; };
-		43EEBAA820292A620029750A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBAA720292A620029750A /* MainTableViewController.swift */; };
-		5D27651DB037D34BFA992978 /* Pods_Schoodule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */; };
-		7C01387CB42581D98C561216 /* Pods_SchooduleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */; };
-		D83C2B0F66773F1B7EA22160 /* Pods_Schoodule_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */; };
+		43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DC421010FD3004B0B76 /* AppDelegate.swift */; };
+		43307DCC21010FD4004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DCB21010FD4004B0B76 /* Assets.xcassets */; };
+		43307DCF21010FD4004B0B76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */; };
+		43307DD421010FD4004B0B76 /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */; };
+		43307DDA21010FD4004B0B76 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43307DD821010FD4004B0B76 /* Interface.storyboard */; };
+		43307DDC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DDB21010FD5004B0B76 /* Assets.xcassets */; };
+		43307DE321010FD5004B0B76 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43307DE821010FD5004B0B76 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DE721010FD5004B0B76 /* InterfaceController.swift */; };
+		43307DEA21010FD5004B0B76 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DE921010FD5004B0B76 /* ExtensionDelegate.swift */; };
+		43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DEB21010FD5004B0B76 /* Assets.xcassets */; };
+		43C3B80B21011077003904E8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B7FF21011077003904E8 /* Storage.swift */; };
+		43C3B80C21011077003904E8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80021011077003904E8 /* Schedule.swift */; };
+		43C3B80D21011077003904E8 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80121011077003904E8 /* Course.swift */; };
+		43C3B80E21011077003904E8 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80221011077003904E8 /* ScheduleList.swift */; };
+		43C3B80F21011077003904E8 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80421011077003904E8 /* Time.swift */; };
+		43C3B81021011077003904E8 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80521011077003904E8 /* Day.swift */; };
+		43C3B81121011077003904E8 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80621011077003904E8 /* TimeConstraint.swift */; };
+		43C3B81221011077003904E8 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80821011077003904E8 /* UIColor+Themes.swift */; };
+		43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80921011077003904E8 /* Date+Formatter.swift */; };
+		43C3B81421011077003904E8 /* Array+replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80A21011077003904E8 /* Array+replace.swift */; };
+		43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81521011081003904E8 /* ClassCreateController.swift */; };
+		43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81721011086003904E8 /* MainTableViewController.swift */; };
+		43C3B81A2101108C003904E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C3B8192101108C003904E8 /* Main.storyboard */; };
+		9C50C7F018DF6038F1E94243 /* Pods_Schoodule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D16146D6C1BDC05D8A03A1E /* Pods_Schoodule.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		431D1500209E2346003F3BC5 /* PBXContainerItemProxy */ = {
+		43307DD521010FD4004B0B76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 433E097C201E9AC500902BB8 /* Project object */;
+			containerPortal = 43307DB921010FD3004B0B76 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 433E0983201E9AC500902BB8;
-			remoteInfo = Schoodule;
-		};
-		433E0998201E9AC500902BB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 433E097C201E9AC500902BB8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 433E0995201E9AC500902BB8;
+			remoteGlobalIDString = 43307DD221010FD4004B0B76;
 			remoteInfo = "Schoodule WatchKit App";
 		};
-		433E09A7201E9AC500902BB8 /* PBXContainerItemProxy */ = {
+		43307DE421010FD5004B0B76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 433E097C201E9AC500902BB8 /* Project object */;
+			containerPortal = 43307DB921010FD3004B0B76 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 433E09A4201E9AC500902BB8;
+			remoteGlobalIDString = 43307DE121010FD5004B0B76;
 			remoteInfo = "Schoodule WatchKit Extension";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		433E09B8201E9AC500902BB8 /* Embed App Extensions */ = {
+		43307DF321010FD5004B0B76 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				433E09A6201E9AC500902BB8 /* Schoodule WatchKit Extension.appex in Embed App Extensions */,
+				43307DE321010FD5004B0B76 /* Schoodule WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E09BC201E9AC500902BB8 /* Embed Watch Content */ = {
+		43307DF721010FD5004B0B76 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				433E0997201E9AC500902BB8 /* Schoodule WatchKit App.app in Embed Watch Content */,
+				43307DD421010FD4004B0B76 /* Schoodule WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,240 +76,176 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchooduleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4307E739202414240046B7CA /* UIColor+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
-		43109E6E203E4E9900A7A2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Schoodule WatchKit App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
-		431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
-		431D14E5209D5104003F3BC5 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
-		431D14EA209D5303003F3BC5 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConstraint.swift; sourceTree = "<group>"; };
-		431D14F3209DF7C1003F3BC5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchooduleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		431D14FD209E2346003F3BC5 /* SchooduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleTests.swift; sourceTree = "<group>"; };
-		431D14FF209E2346003F3BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		433E0984201E9AC500902BB8 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		433E0987201E9AC500902BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		433E098C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		433E0991201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		433E0993201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		433E099C201E9AC500902BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		433E09A0201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		433E09AA201E9AC500902BB8 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		433E09B0201E9AC500902BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		433E09B2201E9AC500902BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchooduleComplicationController.swift; sourceTree = "<group>"; };
-		433E09C9201E9E3100902BB8 /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
-		433E6213203102FD00083811 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		433E6214203102FD00083811 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
-		434A5D152039CD4900C7F4AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		434DC2ED202292EB008A0074 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		4378393B2039FD400083898B /* ComplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
-		43988741201FB8F700E5BD60 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		43B43D732030906E007A809C /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
-		43B43D762030913E007A809C /* SchooduleManager+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchooduleManager+Watch.swift"; sourceTree = "<group>"; };
-		43E468072027661A0076BEBD /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
-		43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
-		43EEBAA720292A620029750A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit Extension/Pods-Schoodule WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
-		9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit Extension/Pods-Schoodule WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.release.xcconfig"; sourceTree = "<group>"; };
-		A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchooduleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.debug.xcconfig"; sourceTree = "<group>"; };
-		CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchooduleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests.release.xcconfig"; sourceTree = "<group>"; };
-		F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit App/Pods-Schoodule WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
-		FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule WatchKit App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule WatchKit App/Pods-Schoodule WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		43307DC121010FD3004B0B76 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43307DC421010FD3004B0B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43307DCB21010FD4004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43307DCE21010FD4004B0B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		43307DD021010FD4004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43307DD921010FD4004B0B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		43307DDB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43307DDD21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43307DE721010FD5004B0B76 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		43307DE921010FD5004B0B76 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		43307DEB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43307DED21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C3B7FF21011077003904E8 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		43C3B80021011077003904E8 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		43C3B80121011077003904E8 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		43C3B80221011077003904E8 /* ScheduleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
+		43C3B80421011077003904E8 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		43C3B80521011077003904E8 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		43C3B80621011077003904E8 /* TimeConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConstraint.swift; sourceTree = "<group>"; };
+		43C3B80821011077003904E8 /* UIColor+Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
+		43C3B80921011077003904E8 /* Date+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
+		43C3B80A21011077003904E8 /* Array+replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+replace.swift"; sourceTree = "<group>"; };
+		43C3B81521011081003904E8 /* ClassCreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
+		43C3B81721011086003904E8 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		43C3B8192101108C003904E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4A0D4A8E27E7AA3858B27A84 /* Pods-Schoodule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.release.xcconfig"; sourceTree = "<group>"; };
+		7D16146D6C1BDC05D8A03A1E /* Pods_Schoodule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schoodule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB28186B10A818577600EB76 /* Pods-Schoodule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		431D14F8209E2346003F3BC5 /* Frameworks */ = {
+		43307DBE21010FD3004B0B76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C01387CB42581D98C561216 /* Pods_SchooduleTests.framework in Frameworks */,
+				9C50C7F018DF6038F1E94243 /* Pods_Schoodule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E0981201E9AC500902BB8 /* Frameworks */ = {
+		43307DDF21010FD5004B0B76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433E62162031032300083811 /* Crashlytics.framework in Frameworks */,
-				433E62172031032500083811 /* Fabric.framework in Frameworks */,
-				5D27651DB037D34BFA992978 /* Pods_Schoodule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E09A2201E9AC500902BB8 /* Frameworks */ = {
+		5B2D10202E7BCBFD7C121960 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0797A6E3A8BB06DE48460A30 /* Pods_Schoodule_WatchKit_Extension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D47187647C3AB66757E61306 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D83C2B0F66773F1B7EA22160 /* Pods_Schoodule_WatchKit_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		431D14E8209D51B5003F3BC5 /* time */ = {
+		43307DB821010FD3004B0B76 = {
 			isa = PBXGroup;
 			children = (
-				43E468072027661A0076BEBD /* Time.swift */,
-				431D14F3209DF7C1003F3BC5 /* Day.swift */,
-				431D14F1209DF70C003F3BC5 /* TimeConstraint.swift */,
-			);
-			path = time;
-			sourceTree = "<group>";
-		};
-		431D14E9209D51C4003F3BC5 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4307E739202414240046B7CA /* UIColor+Themes.swift */,
-				431D14E5209D5104003F3BC5 /* Date+Formatter.swift */,
-			);
-			path = extensions;
-			sourceTree = "<group>";
-		};
-		431D14F0209D5771003F3BC5 /* schedule */ = {
-			isa = PBXGroup;
-			children = (
-				43B43D732030906E007A809C /* ScheduleList.swift */,
-				431D14EA209D5303003F3BC5 /* Schedule.swift */,
-				43988741201FB8F700E5BD60 /* Course.swift */,
-				434DC2ED202292EB008A0074 /* Storage.swift */,
-			);
-			path = schedule;
-			sourceTree = "<group>";
-		};
-		431D14FC209E2346003F3BC5 /* SchooduleTests */ = {
-			isa = PBXGroup;
-			children = (
-				431D14FD209E2346003F3BC5 /* SchooduleTests.swift */,
-				431D14FF209E2346003F3BC5 /* Info.plist */,
-			);
-			path = SchooduleTests;
-			sourceTree = "<group>";
-		};
-		433E097B201E9AC500902BB8 = {
-			isa = PBXGroup;
-			children = (
-				433E09C0201E9B0200902BB8 /* Shared */,
-				433E0986201E9AC500902BB8 /* Schoodule */,
-				433E099A201E9AC500902BB8 /* Schoodule WatchKit App */,
-				433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */,
-				431D14FC209E2346003F3BC5 /* SchooduleTests */,
-				433E0985201E9AC500902BB8 /* Products */,
-				433E62152031032300083811 /* Frameworks */,
-				E4650387F5D6190395CA4690 /* Pods */,
+				43C3B7FD21011077003904E8 /* Shared */,
+				43307DC321010FD3004B0B76 /* Schoodule */,
+				43307DD721010FD4004B0B76 /* Schoodule WatchKit App */,
+				43307DE621010FD5004B0B76 /* Schoodule WatchKit Extension */,
+				43307DC221010FD3004B0B76 /* Products */,
+				EAACABC9EB2BA7D457787777 /* Pods */,
+				A2D448E8A36E35ABC8E1A676 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		433E0985201E9AC500902BB8 /* Products */ = {
+		43307DC221010FD3004B0B76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				433E0984201E9AC500902BB8 /* Schoodule.app */,
-				433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */,
-				433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */,
-				431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */,
+				43307DC121010FD3004B0B76 /* Schoodule.app */,
+				43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */,
+				43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		433E0986201E9AC500902BB8 /* Schoodule */ = {
+		43307DC321010FD3004B0B76 /* Schoodule */ = {
 			isa = PBXGroup;
 			children = (
-				433E0987201E9AC500902BB8 /* AppDelegate.swift */,
-				433E098B201E9AC500902BB8 /* Main.storyboard */,
-				43109E6E203E4E9900A7A2C7 /* Assets.xcassets */,
-				433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */,
-				433E0993201E9AC500902BB8 /* Info.plist */,
-				43EEBAA720292A620029750A /* MainTableViewController.swift */,
-				431D14DD209CF68E003F3BC5 /* ClassCreateController.swift */,
+				43307DC421010FD3004B0B76 /* AppDelegate.swift */,
+				43C3B8192101108C003904E8 /* Main.storyboard */,
+				43307DCB21010FD4004B0B76 /* Assets.xcassets */,
+				43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */,
+				43307DD021010FD4004B0B76 /* Info.plist */,
+				43C3B81521011081003904E8 /* ClassCreateController.swift */,
+				43C3B81721011086003904E8 /* MainTableViewController.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
 		};
-		433E099A201E9AC500902BB8 /* Schoodule WatchKit App */ = {
+		43307DD721010FD4004B0B76 /* Schoodule WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				433E099B201E9AC500902BB8 /* Interface.storyboard */,
-				434A5D152039CD4900C7F4AD /* Assets.xcassets */,
-				433E09A0201E9AC500902BB8 /* Info.plist */,
+				43307DD821010FD4004B0B76 /* Interface.storyboard */,
+				43307DDB21010FD5004B0B76 /* Assets.xcassets */,
+				43307DDD21010FD5004B0B76 /* Info.plist */,
 			);
 			path = "Schoodule WatchKit App";
 			sourceTree = "<group>";
 		};
-		433E09A9201E9AC500902BB8 /* Schoodule WatchKit Extension */ = {
+		43307DE621010FD5004B0B76 /* Schoodule WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				43988740201FB8D900E5BD60 /* controllers */,
-				433E09B0201E9AC500902BB8 /* Assets.xcassets */,
-				433E09B2201E9AC500902BB8 /* Info.plist */,
-				433E09C9201E9E3100902BB8 /* ClassRow.swift */,
-				433E09AC201E9AC500902BB8 /* ExtensionDelegate.swift */,
-				43B43D762030913E007A809C /* SchooduleManager+Watch.swift */,
-				4378393B2039FD400083898B /* ComplicationStore.swift */,
+				43307DE721010FD5004B0B76 /* InterfaceController.swift */,
+				43307DE921010FD5004B0B76 /* ExtensionDelegate.swift */,
+				43307DEB21010FD5004B0B76 /* Assets.xcassets */,
+				43307DED21010FD5004B0B76 /* Info.plist */,
 			);
 			path = "Schoodule WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		433E09C0201E9B0200902BB8 /* Shared */ = {
+		43C3B7FD21011077003904E8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				431D14E9209D51C4003F3BC5 /* extensions */,
-				431D14E8209D51B5003F3BC5 /* time */,
-				431D14F0209D5771003F3BC5 /* schedule */,
+				43C3B7FE21011077003904E8 /* schedule */,
+				43C3B80321011077003904E8 /* time */,
+				43C3B80721011077003904E8 /* extensions */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		433E62152031032300083811 /* Frameworks */ = {
+		43C3B7FE21011077003904E8 /* schedule */ = {
 			isa = PBXGroup;
 			children = (
-				433E6213203102FD00083811 /* Fabric.framework */,
-				433E6214203102FD00083811 /* Crashlytics.framework */,
-				CDB489EFFFB9798D47E7C19A /* Pods_Schoodule.framework */,
-				69840692BA8D07499879EF0F /* Pods_Schoodule_WatchKit_App.framework */,
-				AE99F23A69C3576DAC7B16B6 /* Pods_Schoodule_WatchKit_Extension.framework */,
-				A3CF5C1E3B33A446E3FDC6A9 /* Pods_SchooduleTests.framework */,
+				43C3B7FF21011077003904E8 /* Storage.swift */,
+				43C3B80021011077003904E8 /* Schedule.swift */,
+				43C3B80121011077003904E8 /* Course.swift */,
+				43C3B80221011077003904E8 /* ScheduleList.swift */,
+			);
+			path = schedule;
+			sourceTree = "<group>";
+		};
+		43C3B80321011077003904E8 /* time */ = {
+			isa = PBXGroup;
+			children = (
+				43C3B80421011077003904E8 /* Time.swift */,
+				43C3B80521011077003904E8 /* Day.swift */,
+				43C3B80621011077003904E8 /* TimeConstraint.swift */,
+			);
+			path = time;
+			sourceTree = "<group>";
+		};
+		43C3B80721011077003904E8 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				43C3B80821011077003904E8 /* UIColor+Themes.swift */,
+				43C3B80921011077003904E8 /* Date+Formatter.swift */,
+				43C3B80A21011077003904E8 /* Array+replace.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		A2D448E8A36E35ABC8E1A676 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D16146D6C1BDC05D8A03A1E /* Pods_Schoodule.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		43988740201FB8D900E5BD60 /* controllers */ = {
+		EAACABC9EB2BA7D457787777 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				433E09C4201E9B6D00902BB8 /* SchooduleComplicationController.swift */,
-				433E09AA201E9AC500902BB8 /* InterfaceController.swift */,
-				43EB32B62020E2AB00B147C7 /* ClassCreateController.swift */,
-			);
-			path = controllers;
-			sourceTree = "<group>";
-		};
-		E4650387F5D6190395CA4690 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */,
-				9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */,
-				F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */,
-				FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */,
-				9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */,
-				7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */,
-				1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */,
-				E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */,
+				BB28186B10A818577600EB76 /* Pods-Schoodule.debug.xcconfig */,
+				4A0D4A8E27E7AA3858B27A84 /* Pods-Schoodule.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -352,74 +253,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		431D14FA209E2346003F3BC5 /* SchooduleTests */ = {
+		43307DC021010FD3004B0B76 /* Schoodule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 431D1502209E2346003F3BC5 /* Build configuration list for PBXNativeTarget "SchooduleTests" */;
+			buildConfigurationList = 43307DF821010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule" */;
 			buildPhases = (
-				888D8E69732872E31087A7C9 /* [CP] Check Pods Manifest.lock */,
-				431D14F7209E2346003F3BC5 /* Sources */,
-				431D14F8209E2346003F3BC5 /* Frameworks */,
-				431D14F9209E2346003F3BC5 /* Resources */,
-				719B1E2E5FCAB91AEAB37805 /* [CP] Embed Pods Frameworks */,
+				D470BD33729993B73532928D /* [CP] Check Pods Manifest.lock */,
+				43307DBD21010FD3004B0B76 /* Sources */,
+				43307DBE21010FD3004B0B76 /* Frameworks */,
+				43307DBF21010FD3004B0B76 /* Resources */,
+				43307DF721010FD5004B0B76 /* Embed Watch Content */,
+				79E5172DEA8791C830FF8279 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				431D1501209E2346003F3BC5 /* PBXTargetDependency */,
-			);
-			name = SchooduleTests;
-			productName = SchooduleTests;
-			productReference = 431D14FB209E2346003F3BC5 /* SchooduleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		433E0983201E9AC500902BB8 /* Schoodule */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 433E09BD201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule" */;
-			buildPhases = (
-				633B6DC216B10781A7CB924D /* [CP] Check Pods Manifest.lock */,
-				433E0980201E9AC500902BB8 /* Sources */,
-				433E0981201E9AC500902BB8 /* Frameworks */,
-				433E0982201E9AC500902BB8 /* Resources */,
-				433E09BC201E9AC500902BB8 /* Embed Watch Content */,
-				433E6212203102C800083811 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				433E0999201E9AC500902BB8 /* PBXTargetDependency */,
+				43307DD621010FD4004B0B76 /* PBXTargetDependency */,
 			);
 			name = Schoodule;
 			productName = Schoodule;
-			productReference = 433E0984201E9AC500902BB8 /* Schoodule.app */;
+			productReference = 43307DC121010FD3004B0B76 /* Schoodule.app */;
 			productType = "com.apple.product-type.application";
 		};
-		433E0995201E9AC500902BB8 /* Schoodule WatchKit App */ = {
+		43307DD221010FD4004B0B76 /* Schoodule WatchKit App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 433E09B9201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */;
+			buildConfigurationList = 43307DF421010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */;
 			buildPhases = (
-				33B9E5E8E8B8AE5BF691CC2C /* [CP] Check Pods Manifest.lock */,
-				433E0994201E9AC500902BB8 /* Resources */,
-				433E09B8201E9AC500902BB8 /* Embed App Extensions */,
-				D47187647C3AB66757E61306 /* Frameworks */,
+				43307DD121010FD4004B0B76 /* Resources */,
+				43307DF321010FD5004B0B76 /* Embed App Extensions */,
+				5B2D10202E7BCBFD7C121960 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				433E09A8201E9AC500902BB8 /* PBXTargetDependency */,
+				43307DE521010FD5004B0B76 /* PBXTargetDependency */,
 			);
 			name = "Schoodule WatchKit App";
 			productName = "Schoodule WatchKit App";
-			productReference = 433E0996201E9AC500902BB8 /* Schoodule WatchKit App.app */;
+			productReference = 43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		433E09A4201E9AC500902BB8 /* Schoodule WatchKit Extension */ = {
+		43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 433E09B5201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */;
+			buildConfigurationList = 43307DF021010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */;
 			buildPhases = (
-				BEDF4C155F1A0E6543210A33 /* [CP] Check Pods Manifest.lock */,
-				433E09A1201E9AC500902BB8 /* Sources */,
-				433E09A2201E9AC500902BB8 /* Frameworks */,
-				433E09A3201E9AC500902BB8 /* Resources */,
+				43307DDE21010FD5004B0B76 /* Sources */,
+				43307DDF21010FD5004B0B76 /* Frameworks */,
+				43307DE021010FD5004B0B76 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -427,145 +306,100 @@
 			);
 			name = "Schoodule WatchKit Extension";
 			productName = "Schoodule WatchKit Extension";
-			productReference = 433E09A5201E9AC500902BB8 /* Schoodule WatchKit Extension.appex */;
+			productReference = 43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		433E097C201E9AC500902BB8 /* Project object */ = {
+		43307DB921010FD3004B0B76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Nicholas Grana";
 				TargetAttributes = {
-					431D14FA209E2346003F3BC5 = {
-						CreatedOnToolsVersion = 9.3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 433E0983201E9AC500902BB8;
+					43307DC021010FD3004B0B76 = {
+						CreatedOnToolsVersion = 9.4.1;
 					};
-					433E0983201E9AC500902BB8 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
-							};
-						};
+					43307DD221010FD4004B0B76 = {
+						CreatedOnToolsVersion = 9.4.1;
 					};
-					433E0995201E9AC500902BB8 = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0930;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
-							};
-						};
-					};
-					433E09A4201E9AC500902BB8 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
-							};
-						};
+					43307DE121010FD5004B0B76 = {
+						CreatedOnToolsVersion = 9.4.1;
 					};
 				};
 			};
-			buildConfigurationList = 433E097F201E9AC500902BB8 /* Build configuration list for PBXProject "Schoodule" */;
-			compatibilityVersion = "Xcode 8.0";
+			buildConfigurationList = 43307DBC21010FD3004B0B76 /* Build configuration list for PBXProject "Schoodule" */;
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 433E097B201E9AC500902BB8;
-			productRefGroup = 433E0985201E9AC500902BB8 /* Products */;
+			mainGroup = 43307DB821010FD3004B0B76;
+			productRefGroup = 43307DC221010FD3004B0B76 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				433E0983201E9AC500902BB8 /* Schoodule */,
-				433E0995201E9AC500902BB8 /* Schoodule WatchKit App */,
-				433E09A4201E9AC500902BB8 /* Schoodule WatchKit Extension */,
-				431D14FA209E2346003F3BC5 /* SchooduleTests */,
+				43307DC021010FD3004B0B76 /* Schoodule */,
+				43307DD221010FD4004B0B76 /* Schoodule WatchKit App */,
+				43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		431D14F9209E2346003F3BC5 /* Resources */ = {
+		43307DBF21010FD3004B0B76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43307DCF21010FD4004B0B76 /* LaunchScreen.storyboard in Resources */,
+				43307DCC21010FD4004B0B76 /* Assets.xcassets in Resources */,
+				43C3B81A2101108C003904E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E0982201E9AC500902BB8 /* Resources */ = {
+		43307DD121010FD4004B0B76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433E0992201E9AC500902BB8 /* LaunchScreen.storyboard in Resources */,
-				43109E6F203E4E9900A7A2C7 /* Assets.xcassets in Resources */,
-				433E098D201E9AC500902BB8 /* Main.storyboard in Resources */,
+				43307DDC21010FD5004B0B76 /* Assets.xcassets in Resources */,
+				43307DDA21010FD4004B0B76 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E0994201E9AC500902BB8 /* Resources */ = {
+		43307DE021010FD5004B0B76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				434A5D162039CD4900C7F4AD /* Assets.xcassets in Resources */,
-				433E099D201E9AC500902BB8 /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		433E09A3201E9AC500902BB8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				433E09B1201E9AC500902BB8 /* Assets.xcassets in Resources */,
+				43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33B9E5E8E8B8AE5BF691CC2C /* [CP] Check Pods Manifest.lock */ = {
+		79E5172DEA8791C830FF8279 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Schoodule WatchKit App-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		433E6212203102C800083811 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 33f39a6a487f5298b92b41a499bff42e8a479ff5 0d70fe19a0136b8e5bbbcef7fbbe6d0124d8197f5c7c4e3dd2d53284b2775a61";
-		};
-		633B6DC216B10781A7CB924D /* [CP] Check Pods Manifest.lock */ = {
+		D470BD33729993B73532928D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -583,163 +417,66 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		719B1E2E5FCAB91AEAB37805 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SchooduleTests/Pods-SchooduleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		888D8E69732872E31087A7C9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SchooduleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BEDF4C155F1A0E6543210A33 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Schoodule WatchKit Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		431D14F7209E2346003F3BC5 /* Sources */ = {
+		43307DBD21010FD3004B0B76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				431D1507209E236C003F3BC5 /* Time.swift in Sources */,
-				431D1509209E2370003F3BC5 /* TimeConstraint.swift in Sources */,
-				431D150A209E2373003F3BC5 /* ScheduleList.swift in Sources */,
-				431D14FE209E2346003F3BC5 /* SchooduleTests.swift in Sources */,
-				431D150C209E2377003F3BC5 /* Course.swift in Sources */,
-				431D1506209E236A003F3BC5 /* Date+Formatter.swift in Sources */,
-				431D1508209E236E003F3BC5 /* Day.swift in Sources */,
-				431D150B209E2375003F3BC5 /* Schedule.swift in Sources */,
-				431D1505209E2367003F3BC5 /* UIColor+Themes.swift in Sources */,
-				431D150D209E237A003F3BC5 /* Storage.swift in Sources */,
+				43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */,
+				43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */,
+				43C3B81021011077003904E8 /* Day.swift in Sources */,
+				43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */,
+				43C3B80F21011077003904E8 /* Time.swift in Sources */,
+				43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */,
+				43C3B81121011077003904E8 /* TimeConstraint.swift in Sources */,
+				43C3B80D21011077003904E8 /* Course.swift in Sources */,
+				43C3B80C21011077003904E8 /* Schedule.swift in Sources */,
+				43C3B81421011077003904E8 /* Array+replace.swift in Sources */,
+				43C3B81221011077003904E8 /* UIColor+Themes.swift in Sources */,
+				43C3B80E21011077003904E8 /* ScheduleList.swift in Sources */,
+				43C3B80B21011077003904E8 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		433E0980201E9AC500902BB8 /* Sources */ = {
+		43307DDE21010FD5004B0B76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43EEBAA820292A620029750A /* MainTableViewController.swift in Sources */,
-				431D14E6209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
-				431D14F4209DF7C1003F3BC5 /* Day.swift in Sources */,
-				437475FE2020023500A21465 /* Course.swift in Sources */,
-				431D14DE209CF68E003F3BC5 /* ClassCreateController.swift in Sources */,
-				434DC2EE202292EB008A0074 /* Storage.swift in Sources */,
-				431D14EB209D5303003F3BC5 /* Schedule.swift in Sources */,
-				431D14F2209DF70C003F3BC5 /* TimeConstraint.swift in Sources */,
-				43B43D742030906E007A809C /* ScheduleList.swift in Sources */,
-				43E468082027661A0076BEBD /* Time.swift in Sources */,
-				433E0988201E9AC500902BB8 /* AppDelegate.swift in Sources */,
-				4307E73A202414240046B7CA /* UIColor+Themes.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		433E09A1201E9AC500902BB8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				433E09C6201E9B6D00902BB8 /* SchooduleComplicationController.swift in Sources */,
-				43E468092027661A0076BEBD /* Time.swift in Sources */,
-				433E09AD201E9AC500902BB8 /* ExtensionDelegate.swift in Sources */,
-				431D14F5209DF8F5003F3BC5 /* TimeConstraint.swift in Sources */,
-				43B43D782030913E007A809C /* SchooduleManager+Watch.swift in Sources */,
-				4378393C2039FD400083898B /* ComplicationStore.swift in Sources */,
-				431D14EC209D5303003F3BC5 /* Schedule.swift in Sources */,
-				43988743201FB8F700E5BD60 /* Course.swift in Sources */,
-				43EB32B72020E2AB00B147C7 /* ClassCreateController.swift in Sources */,
-				43B43D752030906E007A809C /* ScheduleList.swift in Sources */,
-				431D14F6209DF906003F3BC5 /* Day.swift in Sources */,
-				431D14E7209D5104003F3BC5 /* Date+Formatter.swift in Sources */,
-				434DC2F02022956F008A0074 /* Storage.swift in Sources */,
-				433E09AB201E9AC500902BB8 /* InterfaceController.swift in Sources */,
-				433E09CA201E9E3100902BB8 /* ClassRow.swift in Sources */,
-				434ED20C20241C69009FDD19 /* UIColor+Themes.swift in Sources */,
+				43307DEA21010FD5004B0B76 /* ExtensionDelegate.swift in Sources */,
+				43307DE821010FD5004B0B76 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		431D1501209E2346003F3BC5 /* PBXTargetDependency */ = {
+		43307DD621010FD4004B0B76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 433E0983201E9AC500902BB8 /* Schoodule */;
-			targetProxy = 431D1500209E2346003F3BC5 /* PBXContainerItemProxy */;
+			target = 43307DD221010FD4004B0B76 /* Schoodule WatchKit App */;
+			targetProxy = 43307DD521010FD4004B0B76 /* PBXContainerItemProxy */;
 		};
-		433E0999201E9AC500902BB8 /* PBXTargetDependency */ = {
+		43307DE521010FD5004B0B76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 433E0995201E9AC500902BB8 /* Schoodule WatchKit App */;
-			targetProxy = 433E0998201E9AC500902BB8 /* PBXContainerItemProxy */;
-		};
-		433E09A8201E9AC500902BB8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 433E09A4201E9AC500902BB8 /* Schoodule WatchKit Extension */;
-			targetProxy = 433E09A7201E9AC500902BB8 /* PBXContainerItemProxy */;
+			target = 43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */;
+			targetProxy = 43307DE421010FD5004B0B76 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		433E098B201E9AC500902BB8 /* Main.storyboard */ = {
+		43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				433E098C201E9AC500902BB8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		433E0990201E9AC500902BB8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				433E0991201E9AC500902BB8 /* Base */,
+				43307DCE21010FD4004B0B76 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		433E099B201E9AC500902BB8 /* Interface.storyboard */ = {
+		43307DD821010FD4004B0B76 /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				433E099C201E9AC500902BB8 /* Base */,
+				43307DD921010FD4004B0B76 /* Base */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -747,45 +484,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		431D1503209E2346003F3BC5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BE66BD49319A7C1215AD224 /* Pods-SchooduleTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				INFOPLIST_FILE = SchooduleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.SchooduleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schoodule.app/Schoodule";
-			};
-			name = Debug;
-		};
-		431D1504209E2346003F3BC5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E402147D236AF46125162D68 /* Pods-SchooduleTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				INFOPLIST_FILE = SchooduleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.SchooduleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schoodule.app/Schoodule";
-			};
-			name = Release;
-		};
-		433E09B3201E9AC500902BB8 /* Debug */ = {
+		43307DEE21010FD5004B0B76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -795,6 +494,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -835,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -844,7 +544,7 @@
 			};
 			name = Debug;
 		};
-		433E09B4201E9AC500902BB8 /* Release */ = {
+		43307DEF21010FD5004B0B76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -854,6 +554,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -888,115 +589,107 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		433E09B6201E9AC500902BB8 /* Debug */ = {
+		43307DF121010FD5004B0B76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9920A48D8A6A68CA5DE06E74 /* Pods-Schoodule WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Debug;
-		};
-		433E09B7201E9AC500902BB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DB4749F6659029A0A9BD2F6 /* Pods-Schoodule WatchKit Extension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Release;
-		};
-		433E09BA201E9AC500902BB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F759667689DD0B80A232783C /* Pods-Schoodule WatchKit App.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				IBSC_MODULE = Schoodule_WatchKit_Extension;
-				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Debug;
-		};
-		433E09BB201E9AC500902BB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB5B30F7D9ECAD68736A2DC5 /* Pods-Schoodule WatchKit App.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				IBSC_MODULE = Schoodule_WatchKit_Extension;
-				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Release;
-		};
-		433E09BE201E9AC500902BB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C08A21840C02733ABC5C2878 /* Pods-Schoodule.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				FRAMEWORK_SEARCH_PATHS = (
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		43307DF221010FD5004B0B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Release;
+		};
+		43307DF521010FD5004B0B76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				IBSC_MODULE = Schoodule_WatchKit_Extension;
+				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		43307DF621010FD5004B0B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
+				IBSC_MODULE = Schoodule_WatchKit_Extension;
+				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Release;
+		};
+		43307DF921010FD5004B0B76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB28186B10A818577600EB76 /* Pods-Schoodule.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6B5AP37L3T;
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1004,21 +697,18 @@
 			};
 			name = Debug;
 		};
-		433E09BF201E9AC500902BB8 /* Release */ = {
+		43307DFA21010FD5004B0B76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F89EABC9AC4E0EF7C5A58B7 /* Pods-Schoodule.release.xcconfig */;
+			baseConfigurationReference = 4A0D4A8E27E7AA3858B27A84 /* Pods-Schoodule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B5AP37L3T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1029,52 +719,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		431D1502209E2346003F3BC5 /* Build configuration list for PBXNativeTarget "SchooduleTests" */ = {
+		43307DBC21010FD3004B0B76 /* Build configuration list for PBXProject "Schoodule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				431D1503209E2346003F3BC5 /* Debug */,
-				431D1504209E2346003F3BC5 /* Release */,
+				43307DEE21010FD5004B0B76 /* Debug */,
+				43307DEF21010FD5004B0B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		433E097F201E9AC500902BB8 /* Build configuration list for PBXProject "Schoodule" */ = {
+		43307DF021010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				433E09B3201E9AC500902BB8 /* Debug */,
-				433E09B4201E9AC500902BB8 /* Release */,
+				43307DF121010FD5004B0B76 /* Debug */,
+				43307DF221010FD5004B0B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		433E09B5201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */ = {
+		43307DF421010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				433E09B6201E9AC500902BB8 /* Debug */,
-				433E09B7201E9AC500902BB8 /* Release */,
+				43307DF521010FD5004B0B76 /* Debug */,
+				43307DF621010FD5004B0B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		433E09B9201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */ = {
+		43307DF821010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				433E09BA201E9AC500902BB8 /* Debug */,
-				433E09BB201E9AC500902BB8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		433E09BD201E9AC500902BB8 /* Build configuration list for PBXNativeTarget "Schoodule" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				433E09BE201E9AC500902BB8 /* Debug */,
-				433E09BF201E9AC500902BB8 /* Release */,
+				43307DF921010FD5004B0B76 /* Debug */,
+				43307DFA21010FD5004B0B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 433E097C201E9AC500902BB8 /* Project object */;
+	rootObject = 43307DB921010FD3004B0B76 /* Project object */;
 }

@@ -6,9 +6,8 @@
 //  Copyright © 2018 Nicholas Grana. All rights reserved.
 //
 
-import UIKit 
-
 import UIKit
+import Eureka
 
 class ClassCreateController: UIViewController {
     
@@ -31,7 +30,7 @@ class ClassCreateController: UIViewController {
         } else if course.name == "Physics" || course.name == "Calculus" || course.name == "Spanish" {
             term = SpecificDay(days: [.tuesday, .friday])
         } else if course.name == "Lunch" || course.name == "Statistics" {
-            term = SpecificDay(days: Day.allCases)
+            term = SpecificDay(days: Day.everyday)
         } else {
             term = SpecificDay(days: [.thursday])
         }
