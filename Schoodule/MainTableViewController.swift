@@ -12,16 +12,15 @@ class MainTableViewController: UITableViewController {
     
     var storage = Storage(defaults: UserDefaults())
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ClassCreateSegue" {
             if let destination = segue.destination as? ClassCreateController {
-                // TODO: if selected a course and schedule, populate the destinationVC
-                destination.course = nil
-                destination.schedule = nil
                 destination.scheduleList = storage.scheduleList
             }
         }
@@ -45,8 +44,6 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")!
         
-        // storage.storage.scheduleList.schedulePeriod(scheduleIndex, periodIndex)
-        
         if indexPath.section == 0 {
             cell.textLabel?.text = storage.scheduleList.todaySchedule[indexPath.row].name
         } else {
@@ -67,6 +64,26 @@ extension MainTableViewController {
         case _:
             return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let scheduleIndex = indexPath.section - 1
+        let courseIndex = indexPath.row
+       
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ClassCreate") as! ClassCreateController
+
+        if scheduleIndex == -1 {
+            nextViewController.course = storage.scheduleList.todaySchedule[courseIndex]
+        } else {
+            nextViewController.schedule = storage.scheduleList.schedules[scheduleIndex]
+            nextViewController.course = nextViewController.schedule!.classList[courseIndex]
+        }
+        
+        nextViewController.scheduleList = storage.scheduleList
+        
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
 }

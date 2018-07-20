@@ -10,7 +10,7 @@ import Foundation
 
 enum Day: Int, Codable {
     
-    case sunday = 1
+    case sunday 
     case monday
     case tuesday
     case wednesday
@@ -19,6 +19,12 @@ enum Day: Int, Codable {
     case saturday
     
     static var everyday: [Day] = [.sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday]
+    static var weekdays: [Day] {
+        return everyday.filter { $0.isWeekday }
+    }
+    static var weekends: [Day] {
+        return everyday.filter { $0.isWeekend }
+    }
     
     var name: String {
         switch self {
@@ -44,7 +50,7 @@ enum Day: Int, Codable {
     }
     
     var isWeekend: Bool {
-        if let date = Calendar.current.date(bySetting: .day, value: rawValue, of: Date()) {
+        if let date = Calendar.current.date(bySetting: .weekday, value: rawValue, of: Date()) {
             return Calendar.current.isDateInWeekend(date)
         }
         return false

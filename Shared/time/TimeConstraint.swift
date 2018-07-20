@@ -97,6 +97,7 @@ enum TimeConstraintType: Codable {
             try container.encode(payload, forKey: .payload)
         }
     }
+
 }
 
 protocol TimeConstraint: Codable {
@@ -225,7 +226,7 @@ struct SpecificDay: TimeConstraint {
     
     func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
-            return days.contains(today)
+            return today.isWeekday
         }
         return false
     }
