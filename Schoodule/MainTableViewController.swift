@@ -12,8 +12,8 @@ class MainTableViewController: UITableViewController {
     
     var storage = Storage(defaults: UserDefaults())
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         tableView.reloadData()
     }
@@ -75,6 +75,7 @@ extension MainTableViewController {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ClassCreate") as! ClassCreateController
 
         if scheduleIndex == -1 {
+            //nextViewController.schedule = storage.scheduleList.getScheduleWith(scheduleType: <#T##ScheduleType#>, term: <#T##Term#>)
             nextViewController.course = storage.scheduleList.todaySchedule[courseIndex]
         } else {
             nextViewController.schedule = storage.scheduleList.schedules[scheduleIndex]

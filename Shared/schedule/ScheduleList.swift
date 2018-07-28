@@ -24,12 +24,11 @@ struct ScheduleList: Codable {
     
     // MARK: Schedule editing and getting
     
-    func getScheduleWith(timeConstraints: [TimeConstraint]) -> Schedule? {
+    func getScheduleWith(scheduleType: ScheduleType, term: Term) -> Schedule? {
+        let lookupSchedule = Schedule(scheduleType: scheduleType, term: term)
+        print("looking...")
         for schedule in schedules {
-            let sendTimeConstraintsSet = Set(timeConstraints.map { $0.title })
-            let loopTimeConstraintsSet = Set(schedule.timeConstraints.map { $0.title })
-            
-            if sendTimeConstraintsSet == loopTimeConstraintsSet {
+            if schedule == lookupSchedule {
                 return schedule
             }
         }

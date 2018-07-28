@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="guE-uo-VRl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nne-sY-vYd">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,6 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodCell" rowHeight="83" id="XJV-Yc-aEX">
                                 <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="83"/>
@@ -45,6 +46,22 @@
             </objects>
             <point key="canvasLocation" x="-69.599999999999994" y="-219.45812807881774"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zc3-SU-1ID">
+            <objects>
+                <navigationController id="nne-sY-vYd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WGk-8I-ePk">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cXc-2f-czI" kind="relationship" relationship="rootViewController" id="x5S-Bn-I5D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="96t-gX-Dy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1070" y="-219"/>
+        </scene>
         <!--Add Course-->
         <scene sceneID="jNh-E7-G1U">
             <objects>
@@ -52,7 +69,6 @@
                     <view key="view" contentMode="scaleToFill" id="aJX-WS-fOI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Course" id="d4C-TG-ecY">
@@ -66,22 +82,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSi-rb-RHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853.60000000000002" y="-219.45812807881774"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dYj-Jl-HiY">
-            <objects>
-                <navigationController id="guE-uo-VRl" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="5vx-qO-CO8">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="cXc-2f-czI" kind="relationship" relationship="rootViewController" id="y0x-Sv-Gkg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Rv-DN-9Y8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1020" y="-219"/>
         </scene>
     </scenes>
 </document>

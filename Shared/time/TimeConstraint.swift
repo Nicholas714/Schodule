@@ -8,35 +8,27 @@
 
 import Foundation
 
-enum TimeConstraintType: Codable {
+enum ScheduleConstraintType: Codable {
     
     private enum Keys: CodingKey {
         case value
         case payload
     }
     
-    private enum Values: Int, Codable {
-        case timeframe
-        case term
+    enum Values: Int, Codable {
         case repeating
         case alternatingEven
         case alternatingOdd
         case specificDays
     }
     
-    case timeframe(Timeframe)
-    case term(Term)
     case repeating(Repeating)
     case alternatingEven(AlternatingEven)
     case alternatingOdd(AlternatingOdd)
     case specificDays(SpecificDay)
     
     init(_ constraint: TimeConstraint) {
-        if let item = constraint as? Timeframe {
-            self = .timeframe(item)
-        } else if let item = constraint as? Term {
-            self = .term(item)
-        } else if let item = constraint as? Repeating {
+        if let item = constraint as? Repeating {
             self = .repeating(item)
         } else if let item = constraint as? AlternatingEven {
             self = .alternatingEven(item)
@@ -53,12 +45,6 @@ enum TimeConstraintType: Codable {
         let container = try decoder.container(keyedBy: Keys.self)
         let value = try container.decode(Values.self, forKey: .value)
         switch value {
-        case .timeframe:
-            let payload = try container.decode(Timeframe.self, forKey: .payload)
-            self = .timeframe(payload)
-        case .term:
-            let payload = try container.decode(Term.self, forKey: .payload)
-            self = .term(payload)
         case .repeating:
             let payload = try container.decode(Repeating.self, forKey: .payload)
             self = .repeating(payload)
@@ -77,12 +63,6 @@ enum TimeConstraintType: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
         switch self {
-        case .timeframe(let payload):
-            try container.encode(Values.timeframe, forKey: .value)
-            try container.encode(payload, forKey: .payload)
-        case .term(let payload):
-            try container.encode(Values.term, forKey: .value)
-            try container.encode(payload, forKey: .payload)
         case .repeating(let payload):
             try container.encode(Values.repeating, forKey: .value)
             try container.encode(payload, forKey: .payload)
@@ -98,6 +78,7 @@ enum TimeConstraintType: Codable {
         }
     }
 
+    
 }
 
 protocol TimeConstraint: Codable {
@@ -105,10 +86,13 @@ protocol TimeConstraint: Codable {
     func isInConstraint(_ date: Date) -> Bool
 }
 
-protocol DynamicStartConstraint: TimeConstraint {
+typealias ScheduleType = TimeConstraint
+
+protocol DynamicStartConstraint: ScheduleType {
     var startDate: Date { get set }
     var daysUntilRepeat: Int { get set }
 }
+
 
 extension DynamicStartConstraint {
     
@@ -119,14 +103,6 @@ extension DynamicStartConstraint {
     func isInConstraint(_ date: Date) -> Bool {
         return daysInBetween(date) % daysUntilRepeat == 0
     }
-}
-
-extension TimeConstraint {
-    
-    func isNow() -> Bool {
-        return isInConstraint(Date())
-    }
-    
 }
 
 struct Timeframe: TimeConstraint, Equatable, Codable {
@@ -144,7 +120,11 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     
 }
 
-struct Term: TimeConstraint {
+struct Term: TimeConstraint, Equatable {
+    
+    static func ==(lhs: Term, rhs: Term) -> Bool {
+        return true 
+    }
     
     var start: Date
     var end: Date?
@@ -186,7 +166,7 @@ struct AlternatingOdd: DynamicStartConstraint {
     
 }
 
-struct SpecificDay: TimeConstraint {
+struct SpecificDay: ScheduleType {
 
     var days = [Day]()
 

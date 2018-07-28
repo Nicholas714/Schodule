@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Schedule: Codable {
+struct Schedule: Codable {
     
     // MARK: Properties
     
@@ -18,60 +18,49 @@ class Schedule: Codable {
         }
     }
     
-    private var _timeConstraints = [TimeConstraintType]()
+    // TODO: remove optionals off schedule types and term
+    private var _scheduleType: ScheduleConstraintType
     
-    var timeConstraints: [TimeConstraint] {
-        var constraints = [TimeConstraint]()
-        
-        for constraint in _timeConstraints {
-            switch constraint {
-            case .timeframe(let t):
-                constraints.append(t)
-            case .term(let t):
-                constraints.append(t)
-            case .repeating(let t):
-                constraints.append(t)
-            case .alternatingEven(let t):
-                constraints.append(t)
-            case .alternatingOdd(let t):
-                constraints.append(t)
-            case .specificDays(let t):
-                constraints.append(t)
+    var scheduleType: ScheduleType {
+        get {
+            switch _scheduleType {
+            case .repeating(let repeating):
+                return repeating
+            case .alternatingEven(let alternatingEven):
+                return alternatingEven
+            case .alternatingOdd(let alternatingOdd):
+                return alternatingOdd
+            case .specificDays(let alternatingOdd):
+                return alternatingOdd
             }
         }
-        
-        return constraints
+        set {
+            _scheduleType = ScheduleConstraintType(newValue)
+        }
     }
     
-    var term: Term?
+    var term: Term
     
     var title: String {
-        return timeConstraints.isEmpty ? "" : timeConstraints[0].title
+        return scheduleType.title
     }
     
-    // MARK: Schedule editing / getting
-    
-    func setConstraints(_ constraints: [TimeConstraint]) {
-        _timeConstraints = constraints.map({ (constraint) -> TimeConstraintType in
-            return TimeConstraintType(constraint)
-        })
+    init(scheduleType: ScheduleType, term: Term) {
+        self._scheduleType = ScheduleConstraintType(scheduleType)
+        self.term = term
     }
     
     func isScheduleIn(date: Date) -> Bool {
-        for constraint in timeConstraints {
-            if !constraint.isInConstraint(date) {
-                return false
-            }
-        }
-        return true
+        return term.isInConstraint(date) && scheduleType.isInConstraint(date)
     }
     
 }
 
 extension Schedule: Equatable {
     
-    static func == (lhs: Schedule, rhs: Schedule) -> Bool {
-        return lhs.title == rhs.title && lhs.classList == rhs.classList
+    static func ==(lhs: Schedule, rhs: Schedule) -> Bool {
+        print("\(lhs.title) == \(rhs.title) && \(lhs.term) == \(rhs.term)")
+        return lhs.title == rhs.title && lhs.term == rhs.term
     }
     
 }
