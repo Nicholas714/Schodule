@@ -40,14 +40,16 @@ struct Schedule: Codable {
     }
     
     var term: Term
+    var name: String
     
     var title: String {
-        return scheduleType.title
+        return "\(scheduleType.title) \t\t\t\t\t\t\t\t\t\t\t\(term.title)"
     }
     
-    init(scheduleType: ScheduleType, term: Term) {
+    init(scheduleType: ScheduleType, term: Term, name: String) {
         self._scheduleType = ScheduleConstraintType(scheduleType)
         self.term = term
+        self.name = name
     }
     
     func isScheduleIn(date: Date) -> Bool {
@@ -59,7 +61,6 @@ struct Schedule: Codable {
 extension Schedule: Equatable {
     
     static func ==(lhs: Schedule, rhs: Schedule) -> Bool {
-        print("\(lhs.title) == \(rhs.title) && \(lhs.term) == \(rhs.term)")
         return lhs.title == rhs.title && lhs.term == rhs.term
     }
     

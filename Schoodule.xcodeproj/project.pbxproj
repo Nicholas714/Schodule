@@ -17,6 +17,8 @@
 		43307DE821010FD5004B0B76 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DE721010FD5004B0B76 /* InterfaceController.swift */; };
 		43307DEA21010FD5004B0B76 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DE921010FD5004B0B76 /* ExtensionDelegate.swift */; };
 		43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DEB21010FD5004B0B76 /* Assets.xcassets */; };
+		4379988D2111E3390005E948 /* Array+remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379988C2111E3390005E948 /* Array+remove.swift */; };
+		43BB8E1C211244F20036105B /* ScheduleFormHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB8E1B211244F20036105B /* ScheduleFormHandler.swift */; };
 		43C3B80B21011077003904E8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B7FF21011077003904E8 /* Storage.swift */; };
 		43C3B80C21011077003904E8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80021011077003904E8 /* Schedule.swift */; };
 		43C3B80D21011077003904E8 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80121011077003904E8 /* Course.swift */; };
@@ -26,7 +28,6 @@
 		43C3B81121011077003904E8 /* TimeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80621011077003904E8 /* TimeConstraint.swift */; };
 		43C3B81221011077003904E8 /* UIColor+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80821011077003904E8 /* UIColor+Themes.swift */; };
 		43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80921011077003904E8 /* Date+Formatter.swift */; };
-		43C3B81421011077003904E8 /* Array+replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80A21011077003904E8 /* Array+replace.swift */; };
 		43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81521011081003904E8 /* ClassCreateController.swift */; };
 		43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81721011086003904E8 /* MainTableViewController.swift */; };
 		43C3B81A2101108C003904E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C3B8192101108C003904E8 /* Main.storyboard */; };
@@ -90,6 +91,8 @@
 		43307DE921010FD5004B0B76 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		43307DEB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43307DED21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4379988C2111E3390005E948 /* Array+remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+remove.swift"; sourceTree = "<group>"; };
+		43BB8E1B211244F20036105B /* ScheduleFormHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFormHandler.swift; sourceTree = "<group>"; };
 		43C3B7FF21011077003904E8 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		43C3B80021011077003904E8 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		43C3B80121011077003904E8 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -99,7 +102,6 @@
 		43C3B80621011077003904E8 /* TimeConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConstraint.swift; sourceTree = "<group>"; };
 		43C3B80821011077003904E8 /* UIColor+Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Themes.swift"; sourceTree = "<group>"; };
 		43C3B80921011077003904E8 /* Date+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
-		43C3B80A21011077003904E8 /* Array+replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+replace.swift"; sourceTree = "<group>"; };
 		43C3B81521011081003904E8 /* ClassCreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
 		43C3B81721011086003904E8 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		43C3B8192101108C003904E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				43307DD021010FD4004B0B76 /* Info.plist */,
 				43C3B81521011081003904E8 /* ClassCreateController.swift */,
 				43C3B81721011086003904E8 /* MainTableViewController.swift */,
+				43BB8E1B211244F20036105B /* ScheduleFormHandler.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -228,7 +231,7 @@
 			children = (
 				43C3B80821011077003904E8 /* UIColor+Themes.swift */,
 				43C3B80921011077003904E8 /* Date+Formatter.swift */,
-				43C3B80A21011077003904E8 /* Array+replace.swift */,
+				4379988C2111E3390005E948 /* Array+remove.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -427,15 +430,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */,
+				43BB8E1C211244F20036105B /* ScheduleFormHandler.swift in Sources */,
 				43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */,
 				43C3B81021011077003904E8 /* Day.swift in Sources */,
+				4379988D2111E3390005E948 /* Array+remove.swift in Sources */,
 				43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */,
 				43C3B80F21011077003904E8 /* Time.swift in Sources */,
 				43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */,
 				43C3B81121011077003904E8 /* TimeConstraint.swift in Sources */,
 				43C3B80D21011077003904E8 /* Course.swift in Sources */,
 				43C3B80C21011077003904E8 /* Schedule.swift in Sources */,
-				43C3B81421011077003904E8 /* Array+replace.swift in Sources */,
 				43C3B81221011077003904E8 /* UIColor+Themes.swift in Sources */,
 				43C3B80E21011077003904E8 /* ScheduleList.swift in Sources */,
 				43C3B80B21011077003904E8 /* Storage.swift in Sources */,

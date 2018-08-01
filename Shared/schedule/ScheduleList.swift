@@ -14,8 +14,24 @@ struct ScheduleList: Codable {
     
     var schedules = [Schedule]()
     
-    var todaySchedule: [Course] {
-        return getCoursesIn(date: Date())
+    var todayCourseEntries: [(Course, Schedule)] {
+        var array = [(Course, Schedule)]()
+        for schedule in todaySchedules {
+            for course in schedule.classList {
+                array.append((course, schedule))
+            }
+        }
+        return array
+    }
+    
+    var todaySchedules: [Schedule] {
+        return getSchedulesIn(date: Date())
+    }
+    
+    var todayCourses: [Course] {
+        return todaySchedules.flatMap({ (schedule) -> [Course] in
+            return schedule.classList
+        })
     }
     
     var totalCourseCount: Int {
@@ -24,33 +40,29 @@ struct ScheduleList: Codable {
     
     // MARK: Schedule editing and getting
     
-    func getScheduleWith(scheduleType: ScheduleType, term: Term) -> Schedule? {
-        let lookupSchedule = Schedule(scheduleType: scheduleType, term: term)
-        print("looking...")
+    func getScheduleWith(name: String) -> Schedule? {
         for schedule in schedules {
-            if schedule == lookupSchedule {
+            if schedule.name == name {
                 return schedule
             }
         }
         return nil
     }
     
-    func getCoursesIn(date: Date) -> [Course] {
+    func getSchedulesIn(date: Date) -> [Schedule] {
         return schedules.filter({ (schedule) -> Bool in
             return schedule.isScheduleIn(date: date)
-        }).flatMap({ (schedule) -> [Course] in
-            return schedule.classList
         })
     }
     
     func classFrom(date: Date) -> Course? {
-        return todaySchedule.first { (course) -> Bool in
+        return todayCourses.first { (course) -> Bool in
             return date <= course.timeframe.end.date && date >= course.timeframe.start.date
         }
     }
     
     func nextClassFrom(date: Date) -> Course? {
-        return todaySchedule.first { (course) -> Bool in
+        return todayCourses.first { (course) -> Bool in
             return date < course.timeframe.start.date
         }
     }

@@ -23,16 +23,16 @@ enum ScheduleConstraintType: Codable {
     }
     
     case repeating(Repeating)
-    case alternatingEven(AlternatingEven)
-    case alternatingOdd(AlternatingOdd)
+    case alternatingEven(EvenDay)
+    case alternatingOdd(OddDay)
     case specificDays(SpecificDay)
     
     init(_ constraint: TimeConstraint) {
         if let item = constraint as? Repeating {
             self = .repeating(item)
-        } else if let item = constraint as? AlternatingEven {
+        } else if let item = constraint as? EvenDay {
             self = .alternatingEven(item)
-        } else if let item = constraint as? AlternatingOdd {
+        } else if let item = constraint as? OddDay {
             self = .alternatingOdd(item)
         } else if let item = constraint as? SpecificDay {
             self = .specificDays(item)
@@ -49,10 +49,10 @@ enum ScheduleConstraintType: Codable {
             let payload = try container.decode(Repeating.self, forKey: .payload)
             self = .repeating(payload)
         case .alternatingEven:
-            let payload = try container.decode(AlternatingEven.self, forKey: .payload)
+            let payload = try container.decode(EvenDay.self, forKey: .payload)
             self = .alternatingEven(payload)
         case .alternatingOdd:
-            let payload = try container.decode(AlternatingOdd.self, forKey: .payload)
+            let payload = try container.decode(OddDay.self, forKey: .payload)
             self = .alternatingOdd(payload)
         case .specificDays:
             let payload = try container.decode(SpecificDay.self, forKey: .payload)
@@ -111,7 +111,7 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     var end: Time
     
     var title: String {
-        return "1:30am - 2:00am"
+        return "\(start.date.timeString) - \(end.date.timeString)"
     }
     
     func isInConstraint(_ date: Date) -> Bool {
@@ -123,14 +123,14 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
 struct Term: TimeConstraint, Equatable {
     
     static func ==(lhs: Term, rhs: Term) -> Bool {
-        return true 
+        return lhs.title == rhs.title
     }
     
     var start: Date
     var end: Date?
 
     var title: String {
-        return "May 23, 2018 - May 30, 2018"
+        return "\(start.dayString) \(end == nil ? "" : "- \(end!.dayString)")"
     }
     
     func isInConstraint(_ date: Date) -> Bool {
@@ -139,7 +139,7 @@ struct Term: TimeConstraint, Equatable {
     
 }
 
-struct AlternatingEven: DynamicStartConstraint {
+struct EvenDay: DynamicStartConstraint {
     
     var daysUntilRepeat = 1
     var startDate: Date
@@ -150,9 +150,14 @@ struct AlternatingEven: DynamicStartConstraint {
     
     var title = "Even Days"
     
+    func isInConstraint(_ date: Date) -> Bool {
+        print("EVEN DAY: \(daysInBetween(date)) % 2 == 0 \(daysInBetween(date) % 2 == 0)")
+        return daysInBetween(date) % 2 == 0
+    }
+    
 }
 
-struct AlternatingOdd: DynamicStartConstraint {
+struct OddDay: DynamicStartConstraint {
 
     var daysUntilRepeat = 1
     var startDate: Date
@@ -160,8 +165,12 @@ struct AlternatingOdd: DynamicStartConstraint {
     var title = "Odd Days"
 
     init(startDate: Date) {
-        // add a day because odd starts on the next day
-        self.startDate = startDate.addingTimeInterval(86400)
+        self.startDate = startDate
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        print("ODD DAY: \(daysInBetween(date)) % 2 != 0 \(daysInBetween(date) % 2 != 0)")
+        return daysInBetween(date) % 2 != 0
     }
     
 }

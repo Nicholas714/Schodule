@@ -26,6 +26,10 @@ class MainTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func clearAll(_ sender: UIBarButtonItem) {
+        storage.scheduleList = ScheduleList()
+        tableView.reloadData()
+    }
 }
 
 extension MainTableViewController {
@@ -33,7 +37,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return storage.scheduleList.todaySchedule.isEmpty ? "No Classes Today" : ""
+            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : ""
         case 1:
             return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
         case _:
@@ -45,7 +49,7 @@ extension MainTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")!
         
         if indexPath.section == 0 {
-            cell.textLabel?.text = storage.scheduleList.todaySchedule[indexPath.row].name
+            cell.textLabel?.text = storage.scheduleList.todayCourses[indexPath.row].name
         } else {
             cell.textLabel?.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].name
         }
@@ -60,7 +64,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return storage.scheduleList.todaySchedule.count
+            return storage.scheduleList.todayCourses.count
         case _:
             return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
         }
@@ -75,11 +79,12 @@ extension MainTableViewController {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ClassCreate") as! ClassCreateController
 
         if scheduleIndex == -1 {
-            //nextViewController.schedule = storage.scheduleList.getScheduleWith(scheduleType: <#T##ScheduleType#>, term: <#T##Term#>)
-            nextViewController.course = storage.scheduleList.todaySchedule[courseIndex]
+            let entry = storage.scheduleList.todayCourseEntries[courseIndex]
+            nextViewController.initialCourse = entry.0
+            nextViewController.initialSchedule = entry.1 
         } else {
-            nextViewController.schedule = storage.scheduleList.schedules[scheduleIndex]
-            nextViewController.course = nextViewController.schedule!.classList[courseIndex]
+            nextViewController.initialSchedule = storage.scheduleList.schedules[scheduleIndex]
+            nextViewController.initialCourse = nextViewController.initialSchedule!.classList[courseIndex]
         }
         
         nextViewController.scheduleList = storage.scheduleList
