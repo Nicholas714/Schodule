@@ -10,15 +10,12 @@ import Foundation
 
 struct Schedule: Codable {
     
-    // MARK: Properties
-    
     var classList = [Course]() {
         didSet {
             classList.sort()
         }
     }
     
-    // TODO: remove optionals off schedule types and term
     private var _scheduleType: ScheduleConstraintType
     
     var scheduleType: ScheduleType {
@@ -40,16 +37,14 @@ struct Schedule: Codable {
     }
     
     var term: Term
-    var name: String
     
     var title: String {
         return "\(scheduleType.title) \t\t\t\t\t\t\t\t\t\t\t\(term.title)"
     }
     
-    init(scheduleType: ScheduleType, term: Term, name: String) {
+    init(scheduleType: ScheduleType, term: Term) {
         self._scheduleType = ScheduleConstraintType(scheduleType)
         self.term = term
-        self.name = name
     }
     
     func isScheduleIn(date: Date) -> Bool {

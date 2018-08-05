@@ -14,19 +14,93 @@
         <scene sceneID="UYF-l8-cat">
             <objects>
                 <tableViewController id="cXc-2f-czI" customClass="MainTableViewController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qTg-6w-Jfe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qTg-6w-Jfe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="sectionIndexColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="40" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodCell" rowHeight="83" id="XJV-Yc-aEX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodCell" rowHeight="83" id="XJV-Yc-aEX" customClass="CourseCell" customModule="Schoodule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XJV-Yc-aEX" id="rT1-Vv-XuO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-19-mly" customClass="GradientView" customModule="Schoodule" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="5" width="335" height="73"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I6-R4-Edm">
+                                                    <rect key="frame" x="12" y="11" width="60" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:06 AM - 8:50 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qon-vc-i4I">
+                                                    <rect key="frame" x="12" y="36.333333333333336" width="148.33333333333334" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qon-vc-i4I" firstAttribute="leading" secondItem="2vg-19-mly" secondAttribute="leading" constant="12" id="9I3-hX-pe8"/>
+                                                <constraint firstItem="5I6-R4-Edm" firstAttribute="leading" secondItem="2vg-19-mly" secondAttribute="leading" constant="12" id="L9W-fE-E0C"/>
+                                                <constraint firstItem="Qon-vc-i4I" firstAttribute="centerY" secondItem="2vg-19-mly" secondAttribute="centerY" constant="10" id="VSr-y8-Lmn"/>
+                                                <constraint firstItem="5I6-R4-Edm" firstAttribute="centerY" secondItem="2vg-19-mly" secondAttribute="centerY" constant="-15" id="YKC-bZ-FiV"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                                    <color key="value" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                                    <color key="value" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" white="0.0" alpha="0.50214041095890416" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="2vg-19-mly" secondAttribute="trailing" constant="20" id="HFd-ty-o2S"/>
+                                        <constraint firstItem="2vg-19-mly" firstAttribute="top" secondItem="rT1-Vv-XuO" secondAttribute="top" constant="5" id="UzQ-Yg-5Z4"/>
+                                        <constraint firstAttribute="bottom" secondItem="2vg-19-mly" secondAttribute="bottom" constant="5" id="qo4-ag-Ara"/>
+                                        <constraint firstItem="2vg-19-mly" firstAttribute="leading" secondItem="rT1-Vv-XuO" secondAttribute="leading" constant="20" id="v07-vZ-f2y"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="courseName" destination="5I6-R4-Edm" id="6vk-Yt-ttZ"/>
+                                    <outlet property="courseTime" destination="Qon-vc-i4I" id="s3j-2d-oDg"/>
+                                    <outlet property="gradientView" destination="2vg-19-mly" id="mmp-ow-sTo"/>
+                                    <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="QdR-Ul-tgB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -35,12 +109,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Today" id="D6o-d6-xQM">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="trash" id="cp7-ys-g9B">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="cp7-ys-g9B">
                             <connections>
                                 <action selector="clearAll:" destination="cXc-2f-czI" id="qlL-Fh-hlo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="4Lk-Ts-yJN">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" systemItem="add" id="4Lk-Ts-yJN">
                             <connections>
                                 <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="OPe-hA-NpR"/>
                             </connections>
@@ -67,26 +141,63 @@
             </objects>
             <point key="canvasLocation" x="-1070" y="-219"/>
         </scene>
-        <!--Add Course-->
+        <!--Course-->
         <scene sceneID="jNh-E7-G1U">
             <objects>
                 <viewController storyboardIdentifier="ClassCreate" id="7ah-qV-6a7" customClass="ClassCreateController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aJX-WS-fOI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adz-vD-bbt" customClass="GradientView" customModule="Schoodule" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="adz-vD-bbt" firstAttribute="top" secondItem="aJX-WS-fOI" secondAttribute="top" id="BFT-pP-8cE"/>
+                            <constraint firstAttribute="bottom" secondItem="adz-vD-bbt" secondAttribute="bottom" id="QzZ-fy-lRh"/>
+                            <constraint firstItem="adz-vD-bbt" firstAttribute="leading" secondItem="aJX-WS-fOI" secondAttribute="leading" id="TvL-yp-ihO"/>
+                            <constraint firstAttribute="trailing" secondItem="adz-vD-bbt" secondAttribute="trailing" id="V2S-ex-g2z"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Course" id="d4C-TG-ecY">
+                    <navigationItem key="navigationItem" title="Course" largeTitleDisplayMode="never" id="d4C-TG-ecY">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="DWb-f2-7SW">
                             <connections>
                                 <action selector="save:" destination="7ah-qV-6a7" id="goa-fb-Yfa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="gradientView" destination="adz-vD-bbt" id="kRe-rA-8eD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSi-rb-RHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853.60000000000002" y="-219.45812807881774"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="OPe-hA-NpR"/>
+    </inferredMetricsTieBreakers>
 </document>

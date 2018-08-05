@@ -19,11 +19,29 @@ class MainTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ClassCreateSegue" {
+        switch segue.identifier {
+        case "ClassCreateSegue":
             if let destination = segue.destination as? ClassCreateController {
                 destination.scheduleList = storage.scheduleList
+
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let scheduleIndex = indexPath.section - 1
+                    let courseIndex = indexPath.row
+                    
+                    if scheduleIndex == -1 {
+                        let entry = storage.scheduleList.todayCourseEntries[courseIndex]
+                        destination.initialCourse = entry.0
+                        destination.initialSchedule = entry.1
+                    } else {
+                        destination.initialSchedule = storage.scheduleList.schedules[scheduleIndex]
+                        destination.initialCourse = destination.initialSchedule!.classList[courseIndex]
+                    }
+                }
             }
+        default:
+            return
         }
+        
     }
     
     @IBAction func clearAll(_ sender: UIBarButtonItem) {
@@ -37,7 +55,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : ""
+            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : Date().dayString
         case 1:
             return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
         case _:
@@ -46,15 +64,21 @@ extension MainTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")! as! CourseCell
         
         if indexPath.section == 0 {
-            cell.textLabel?.text = storage.scheduleList.todayCourses[indexPath.row].name
+            cell.courseName.text = storage.scheduleList.todayCourses[indexPath.row].name
+            cell.courseTime.text = storage.scheduleList.todayCourses[indexPath.row].timeframe.title
         } else {
-            cell.textLabel?.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].name
+            cell.courseName.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].name
+            cell.courseTime.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].timeframe.title
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,32 +88,10 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return storage.scheduleList.todayCourses.count
+            return storage.scheduleList.todaySchedules.count
         case _:
             return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let scheduleIndex = indexPath.section - 1
-        let courseIndex = indexPath.row
-       
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ClassCreate") as! ClassCreateController
-
-        if scheduleIndex == -1 {
-            let entry = storage.scheduleList.todayCourseEntries[courseIndex]
-            nextViewController.initialCourse = entry.0
-            nextViewController.initialSchedule = entry.1 
-        } else {
-            nextViewController.initialSchedule = storage.scheduleList.schedules[scheduleIndex]
-            nextViewController.initialCourse = nextViewController.initialSchedule!.classList[courseIndex]
-        }
-        
-        nextViewController.scheduleList = storage.scheduleList
-        
-        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
 }

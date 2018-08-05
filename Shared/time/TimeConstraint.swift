@@ -88,6 +88,35 @@ protocol TimeConstraint: Codable {
 
 typealias ScheduleType = TimeConstraint
 
+extension ScheduleType {
+    
+    static func scheduleFromValue(_ value: String, _ extra: Any? = nil) -> ScheduleType? {
+        switch value {
+        case "Everyday":
+            return SpecificDay(days: Day.everyday)
+        case "Weekdays":
+            return SpecificDay(days: Day.weekdays)
+        case "Weekends":
+            return SpecificDay(days: Day.weekends)
+        case "Even Days":
+            if let date = extra as? Date {
+                return EvenDay(startDate: date)
+            }
+            return nil
+        case "Odd Days":
+            if let date = extra as? Date {
+                return OddDay(startDate: date)
+            }
+            return nil
+        case "Specific Day":
+            return SpecificDay(days: [.monday])
+        default:
+            return nil 
+        }
+    }
+    
+}
+
 protocol DynamicStartConstraint: ScheduleType {
     var startDate: Date { get set }
     var daysUntilRepeat: Int { get set }
@@ -215,7 +244,7 @@ struct SpecificDay: ScheduleType {
     
     func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
-            return today.isWeekday
+            return days.contains(today)
         }
         return false
     }

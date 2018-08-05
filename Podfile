@@ -5,5 +5,4 @@ target 'Schoodule' do
 
   pod 'Eureka'
   pod 'SCLAlertView'
-
 end

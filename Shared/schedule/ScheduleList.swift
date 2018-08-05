@@ -40,9 +40,10 @@ struct ScheduleList: Codable {
     
     // MARK: Schedule editing and getting
     
-    func getScheduleWith(name: String) -> Schedule? {
+    func getScheduleWith(scheduleType: ScheduleType, term: Term) -> Schedule? {
+        let lookupSchedule = Schedule(scheduleType: scheduleType, term: term)
         for schedule in schedules {
-            if schedule.name == name {
+            if schedule == lookupSchedule {
                 return schedule
             }
         }
