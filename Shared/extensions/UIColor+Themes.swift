@@ -23,4 +23,30 @@ extension UIColor {
     "Brown": UIColor(red: 118/255.0, green: 91/255.0, blue: 64/255.0, alpha: 1.0)
     ]
     
+    
+}
+
+extension UIView {
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
 }

@@ -14,7 +14,6 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
-        
         return dateFormatter
     }
     

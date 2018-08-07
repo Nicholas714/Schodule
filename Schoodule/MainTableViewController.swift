@@ -66,13 +66,14 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")! as! CourseCell
         
+        let course: Course
         if indexPath.section == 0 {
-            cell.courseName.text = storage.scheduleList.todayCourses[indexPath.row].name
-            cell.courseTime.text = storage.scheduleList.todayCourses[indexPath.row].timeframe.title
+            course = storage.scheduleList.todayCourses[indexPath.row]
         } else {
-            cell.courseName.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].name
-            cell.courseTime.text = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row].timeframe.title
+            course = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row]
         }
+        
+        cell.course = course
         
         return cell
     }
@@ -88,7 +89,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return storage.scheduleList.todaySchedules.count
+            return storage.scheduleList.todayCourses.count
         case _:
             return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
         }

@@ -22,9 +22,6 @@ enum Day: Int, Codable {
     static var weekdays: [Day] {
         return everyday.filter { $0.isWeekday }
     }
-    static var weekends: [Day] {
-        return everyday.filter { $0.isWeekend }
-    }
     
     var name: String {
         switch self {
@@ -49,15 +46,11 @@ enum Day: Int, Codable {
         return String(name.prefix(3))
     }
     
-    var isWeekend: Bool {
+    var isWeekday: Bool {
         if let date = Calendar.current.date(bySetting: .weekday, value: rawValue, of: Date()) {
-            return Calendar.current.isDateInWeekend(date)
+            return !Calendar.current.isDateInWeekend(date)
         }
         return false
-    }
-    
-    var isWeekday: Bool {
-        return !isWeekend
     }
 
 }

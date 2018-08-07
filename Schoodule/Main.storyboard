@@ -30,25 +30,55 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-19-mly" customClass="GradientView" customModule="Schoodule" customModuleProvider="target">
                                             <rect key="frame" x="20" y="5" width="335" height="73"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I6-R4-Edm">
-                                                    <rect key="frame" x="12" y="11" width="60" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-37-Kaz">
+                                                    <rect key="frame" x="0.0" y="-0.33333333333334281" width="335" height="73"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tal-Dz-QOp">
+                                                            <rect key="frame" x="0.0" y="-1" width="335" height="23"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="qGg-FM-dqC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="23"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                            <blurEffect style="light"/>
+                                                        </visualEffectView>
+                                                    </subviews>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPL-Z7-k3D">
+                                                    <rect key="frame" x="16" y="1.6666666666666665" width="148.33333333333331" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:06 AM - 8:50 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qon-vc-i4I">
-                                                    <rect key="frame" x="12" y="36.333333333333336" width="148.33333333333334" height="20.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mr Grana" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydc-bC-5Nw">
+                                                    <rect key="frame" x="256" y="2" width="61" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8:06 AM                   8:50 AM" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qon-vc-i4I">
+                                                    <rect key="frame" x="250" y="25" width="67" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I6-R4-Edm">
+                                                    <rect key="frame" x="16" y="24" width="293" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Qon-vc-i4I" firstAttribute="leading" secondItem="2vg-19-mly" secondAttribute="leading" constant="12" id="9I3-hX-pe8"/>
-                                                <constraint firstItem="5I6-R4-Edm" firstAttribute="leading" secondItem="2vg-19-mly" secondAttribute="leading" constant="12" id="L9W-fE-E0C"/>
-                                                <constraint firstItem="Qon-vc-i4I" firstAttribute="centerY" secondItem="2vg-19-mly" secondAttribute="centerY" constant="10" id="VSr-y8-Lmn"/>
-                                                <constraint firstItem="5I6-R4-Edm" firstAttribute="centerY" secondItem="2vg-19-mly" secondAttribute="centerY" constant="-15" id="YKC-bZ-FiV"/>
-                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                                     <color key="value" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,6 +111,9 @@
                                                     <real key="value" value="0.0"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiuss">
                                                     <real key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
@@ -96,7 +129,9 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="courseLocation" destination="aPL-Z7-k3D" id="S3l-px-TWp"/>
                                     <outlet property="courseName" destination="5I6-R4-Edm" id="6vk-Yt-ttZ"/>
+                                    <outlet property="courseTeacher" destination="Ydc-bC-5Nw" id="Igo-1Y-mNb"/>
                                     <outlet property="courseTime" destination="Qon-vc-i4I" id="s3j-2d-oDg"/>
                                     <outlet property="gradientView" destination="2vg-19-mly" id="mmp-ow-sTo"/>
                                     <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="QdR-Ul-tgB"/>
@@ -151,6 +186,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adz-vD-bbt" customClass="GradientView" customModule="Schoodule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                         <color key="value" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -182,11 +218,23 @@
                         <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Course" largeTitleDisplayMode="never" id="d4C-TG-ecY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DWb-f2-7SW">
-                            <connections>
-                                <action selector="save:" destination="7ah-qV-6a7" id="goa-fb-Yfa"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="DWb-f2-7SW">
+                                <connections>
+                                    <action selector="save:" destination="7ah-qV-6a7" id="goa-fb-Yfa"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Next" id="No2-CU-Ygb">
+                                <connections>
+                                    <action selector="nextGradient:" destination="7ah-qV-6a7" id="gEl-vo-NCo"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Prev" id="Ub6-WQ-y76">
+                                <connections>
+                                    <action selector="previousGradient:" destination="7ah-qV-6a7" id="vAX-LW-mg0"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="gradientView" destination="adz-vD-bbt" id="kRe-rA-8eD"/>

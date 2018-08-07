@@ -96,8 +96,6 @@ extension ScheduleType {
             return SpecificDay(days: Day.everyday)
         case "Weekdays":
             return SpecificDay(days: Day.weekdays)
-        case "Weekends":
-            return SpecificDay(days: Day.weekends)
         case "Even Days":
             if let date = extra as? Date {
                 return EvenDay(startDate: date)
@@ -140,7 +138,7 @@ struct Timeframe: TimeConstraint, Equatable, Codable {
     var end: Time
     
     var title: String {
-        return "\(start.date.timeString) - \(end.date.timeString)"
+        return "\(start.date.timeString) \(end.date.timeString)"
     }
     
     func isInConstraint(_ date: Date) -> Bool {
@@ -218,12 +216,8 @@ struct SpecificDay: ScheduleType {
         }
     
         var isWeekdayArray = true
-        var isWeekendArray = true
         
         for day in days {
-            if !day.isWeekend {
-                isWeekendArray = false
-            }
             if !day.isWeekday {
                 isWeekdayArray = false
             }
@@ -231,10 +225,6 @@ struct SpecificDay: ScheduleType {
         
         if isWeekdayArray {
             return "Weekdays"
-        }
-        
-        if isWeekendArray {
-            return "Weekends"
         }
         
         return days.map { (day) -> String in

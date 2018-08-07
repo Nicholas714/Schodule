@@ -21,21 +21,19 @@ struct ScheduleList: Codable {
                 array.append((course, schedule))
             }
         }
-        return array
+        return array.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.0 < rhs.0
+        })
     }
     
     var todaySchedules: [Schedule] {
-        return getSchedulesIn(date: Date())
+        return getSchedulesIn(date: Date()).sorted()
     }
     
     var todayCourses: [Course] {
         return todaySchedules.flatMap({ (schedule) -> [Course] in
             return schedule.classList
-        })
-    }
-    
-    var totalCourseCount: Int {
-        return schedules.reduce(0, { $0 + $1.classList.count })
+        }).sorted()
     }
     
     // MARK: Schedule editing and getting

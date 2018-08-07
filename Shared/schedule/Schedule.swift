@@ -12,6 +12,7 @@ struct Schedule: Codable {
     
     var classList = [Course]() {
         didSet {
+            print("classList set")
             classList.sort()
         }
     }
@@ -53,7 +54,11 @@ struct Schedule: Codable {
     
 }
 
-extension Schedule: Equatable {
+extension Schedule: Equatable, Comparable {
+    
+    static func < (lhs: Schedule, rhs: Schedule) -> Bool {
+        return lhs.term.start < rhs.term.start
+    }
     
     static func ==(lhs: Schedule, rhs: Schedule) -> Bool {
         return lhs.title == rhs.title && lhs.term == rhs.term

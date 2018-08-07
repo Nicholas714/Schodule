@@ -12,13 +12,22 @@ import SCLAlertView
 
 class ClassCreateController: FormViewController {
     
-    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var gradientView: GradientView! {
+        didSet {
+            gradient = initialCourse?.gradient ?? .red
+        }
+    }
     
-    // schedule and couOrse being made from the controller
     var initialSchedule: Schedule?
     var initialCourse: Course?
     
-    private var scheduleTypes = ["Everyday", "Weekdays", "Weekends", "Specific Day", "Even Days", "Odd Days"]
+    var gradient: Gradient = .red {
+        didSet {
+            gradientView.setGradient(gradient)
+        }
+    }
+    
+    private var scheduleTypes = ["Everyday", "Weekdays", "Specific Day", "Even Days", "Odd Days"]
     private var avaiableDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     private var scheduleNames: [String] {
         return ["New Schedule...", "Everyday"] + scheduleList.schedules.compactMap { $0.title }
@@ -31,7 +40,7 @@ class ClassCreateController: FormViewController {
         super.viewDidLoad()
         
         let scheduleTypeCondition = Condition.function(["schedule-type"], { form in
-            return ((form.rowBy(tag: "schedule-type") as? PickerInlineRow)?.value ?? "") != "Specific Day"
+            return ((form.rowBy(tag: "schedule-type") as? PickerRow)?.value ?? "") != "Specific Day"
         })
         
         form +++ Section("Course")
@@ -45,6 +54,15 @@ class ClassCreateController: FormViewController {
                 }
             }
             <<< TextRow() {
+                $0.tag = "course-instructor"
+                $0.title = "Instructor"
+                $0.placeholder = "Mr Hew"
+                
+                if let courseInstructor = initialCourse?.instructor {
+                    $0.value = courseInstructor
+                }
+            }
+            <<< TextRow() {
                 $0.tag = "course-location"
                 $0.title = "Location"
                 $0.placeholder = "Room 102"
@@ -53,7 +71,7 @@ class ClassCreateController: FormViewController {
                     $0.value = courseName
                 }
             }
-            <<< TimeInlineRow() {
+            <<< TimeRow() {
                 $0.tag = "start-time"
                 $0.minuteInterval = 5
                 $0.title = "Start Time"
@@ -64,7 +82,7 @@ class ClassCreateController: FormViewController {
                     $0.value = Date()
                 }
             }
-            <<< TimeInlineRow() {
+            <<< TimeRow() {
                 $0.tag = "end-time"
                 $0.minuteInterval = 5
                 $0.title = "End Time"
@@ -91,7 +109,7 @@ class ClassCreateController: FormViewController {
                 $0.tag = "segmented-days"
                 $0.hidden = scheduleTypeCondition
             }
-            <<< DateInlineRow() {
+            <<< DateRow() {
                 $0.tag = "start-date"
                 $0.title = "Start Date"
 
@@ -101,7 +119,7 @@ class ClassCreateController: FormViewController {
                     $0.value = Date()
                 }
             }
-            <<< DateInlineRow() {
+            <<< DateRow() {
                 $0.tag = "end-date"
                 $0.title = "End Date"
                 $0.value = Date()
@@ -134,6 +152,17 @@ class ClassCreateController: FormViewController {
         alertView.showError("Missing Information", subTitle: "Please input the \(input).")
     }
     
+    @IBAction func nextGradient(_ sender: UIBarButtonItem) {
+        let newGradient = Gradient.gradients.next(startingAt: gradient.index)
+        gradient = newGradient
+    }
+    
+    @IBAction func previousGradient(_ sender: UIBarButtonItem) {
+        let newGradient = Gradient.gradients.previous(startingAt: gradient.index)
+        gradient = newGradient
+    }
+    
+    
     @IBAction func save(_ sender: UIBarButtonItem) {
         let handler = ScheduleFormHandler(form: form)
         handler.handleSave()
@@ -143,12 +172,13 @@ class ClassCreateController: FormViewController {
         }
         
         let courseNameRow: TextRow = form.rowBy(tag: "course-name")!
+        let instructorRow: TextRow = form.rowBy(tag: "course-instructor")!
         let locationRow: TextRow = form.rowBy(tag: "course-location")!
-        let startTimeRow: TimeInlineRow = form.rowBy(tag: "start-time")!
-        let endTimeRow: TimeInlineRow = form.rowBy(tag: "end-time")!
+        let startTimeRow: TimeRow = form.rowBy(tag: "start-time")!
+        let endTimeRow: TimeRow = form.rowBy(tag: "end-time")!
         let scheduleTypeRow: PickerInlineRow<String> = form.rowBy(tag: "schedule-type")!
-        let startDateRow: DateInlineRow = form.rowBy(tag: "start-date")!
-        let endDateRow: DateInlineRow = form.rowBy(tag: "end-date")!
+        let startDateRow: DateRow = form.rowBy(tag: "start-date")!
+        let endDateRow: DateRow = form.rowBy(tag: "end-date")!
         let specificDaysPicker: SegmentedRow<String> = form.rowBy(tag: "segmented-days")!
         
         // TODO: make sure name, location, starttime and end time values are not nil & custom alert view
@@ -163,7 +193,7 @@ class ClassCreateController: FormViewController {
         }
         
         let timeframe = Timeframe(start: Time(from: startTimeRow.value!), end: Time(from: endTimeRow.value!))
-        let course = Course(name: courseName, themeIndex: 0, timeframe: timeframe, location: locationRow.value)
+        let course = Course(name: courseName, gradient: gradient, timeframe: timeframe, teacher: instructorRow.value, location: locationRow.value)
         let term = Term(start: startDateRow.value!, end: endDateRow.value!)
         
         guard let scheduleType = SpecificDay.scheduleFromValue(scheduleTypeRow.value!, startDateRow.value) else {

@@ -70,10 +70,15 @@ import UIKit
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadiuss: CGFloat = 0 {
         didSet {
             setNeedsLayout()
         }
+    }
+    
+    func setGradient(_ gradient: Gradient) {
+        self.topColor = gradient.darkColor
+        self.bottomColor = gradient.lightColor
     }
     
     override class var layerClass: AnyClass {
@@ -85,7 +90,7 @@ import UIKit
         self.gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         self.gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
         self.gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)
-        self.layer.cornerRadius = cornerRadius
+        self.layer.cornerRadius = cornerRadiuss
         self.layer.shadowColor = shadowColor.cgColor
         self.layer.shadowOffset = CGSize(width: shadowX, height: shadowY)
         self.layer.shadowRadius = shadowBlur
