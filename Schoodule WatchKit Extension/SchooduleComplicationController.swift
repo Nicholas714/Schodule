@@ -10,7 +10,7 @@ import ClockKit
 
 class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
-    let initialClassWarning: TimeInterval = -3600
+    //let initialClassWarning: TimeInterval = -3600
     
     var storage: Storage {
         return ExtensionDelegate.storage
@@ -26,7 +26,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // shorthand for first period time of the day
     var scheduleStart: Date? {
-        return sortedSchedule.first?.timeframe.start.date.addingTimeInterval(initialClassWarning)
+        return sortedSchedule.first?.timeframe.start.date//.addingTimeInterval(initialClassWarning)
     }
     
     // shorthand for last period time of the day
@@ -93,7 +93,8 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // block time travel for anything before the start of the schedule
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-       handler(scheduleStart?.addingTimeInterval(-62))
+        handler(nil)
+       //handler(scheduleStart?.addingTimeInterval(-62))
     }
     
     
