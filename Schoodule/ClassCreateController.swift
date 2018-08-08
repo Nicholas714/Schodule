@@ -143,6 +143,7 @@ class ClassCreateController: FormViewController {
             if let tableView = view as? UITableView {
                 tableView.separatorColor = .clear
                 tableView.backgroundColor = .clear
+
             }
         }
     }
@@ -163,7 +164,7 @@ class ClassCreateController: FormViewController {
     }
     
     
-    @IBAction func save(_ sender: UIBarButtonItem) {
+    @IBAction func save(_ sender: UIButton) {
         let handler = ScheduleFormHandler(form: form)
         handler.handleSave()
         
@@ -224,13 +225,16 @@ class ClassCreateController: FormViewController {
         newSchedule.classList.append(course)
         scheduleList.schedules.append(newSchedule)
 
-        if let root = navigationController?.viewControllers[0] as? MainTableViewController {
+        if let root = presentingViewController as? MainTableViewController {
             root.storage.scheduleList = scheduleList
         }
-
-        navigationController?.popViewController(animated: true)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func cancelSave(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 

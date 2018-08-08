@@ -29,10 +29,15 @@ class Storage {
         self.defaults = defaults
         
         loadScheudle()
+        print(scheduleList.todayCourses.count)
     }
     
     func saveSchedule() {
         defaults.setValue(encoded, forKey: "schedules")
+    }
+    
+    var transfer: [String: Data] {
+        return ["courses": encoded]
     }
     
     private var encoded: Data {
@@ -45,19 +50,24 @@ class Storage {
         }
     }
     
-    private func loadScheudle() {
+    func loadSchedule(data: Data) {
         loadedScheduleList.schedules.removeAll()
-        
-        if let data = defaults.value(forKey: "schedules") as? Data {
-            let decoder = JSONDecoder()
 
-            do {
-                for classList in try decoder.decode([Schedule].self, from: data) {
-                    loadedScheduleList.schedules.append(classList)
-                }
-            } catch {
-                fatalError("Error decoding schedules.")
+        let decoder = JSONDecoder()
+        
+        do {
+            for classList in try decoder.decode([Schedule].self, from: data) {
+                loadedScheduleList.schedules.append(classList)
             }
+        } catch {
+            fatalError("Error decoding schedules.")
+        }
+    }
+    
+    private func loadScheudle() {
+        print("INITIAL LOADING")
+        if let data = defaults.value(forKey: "schedules") as? Data {
+            loadSchedule(data: data)
         }
     }
     

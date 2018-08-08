@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14295.6" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14234.1"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller hidesWhenLoading="NO" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Schoodule_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" hidden="YES" id="BzL-93-Fiw">
+                            <items>
+                                <tableRow identifier="classRow" selectable="NO" id="5Zl-nu-DE8" customClass="ClassRow" customModule="Schoodule_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="4" id="Ybr-pq-Kkh">
+                                        <items>
+                                            <label width="20" height="1" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="Ju4-cE-dTb">
+                                                <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
+                                            </label>
+                                            <separator height="1" heightAdjustment="-5" alignment="left" verticalAlignment="center" id="1M5-fQ-mq7">
+                                                <color key="color" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </separator>
+                                            <group alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="IVb-yD-atU">
+                                                <items>
+                                                    <label width="1" alignment="left" text="English" numberOfLines="3" id="BPc-qV-4Ke">
+                                                        <color key="textColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
+                                                    </label>
+                                                    <label width="1" alignment="left" text="7:05 AM" textAlignment="left" id="ukE-2s-Ejl">
+                                                        <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
+                                                    </label>
+                                                    <label width="1" alignment="left" text="Room 100" textAlignment="left" id="qqy-vW-dd9">
+                                                        <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="durationLabel" destination="ukE-2s-Ejl" id="lab-9A-G2S"/>
+                                        <outlet property="group" destination="Ybr-pq-Kkh" id="Rcu-uf-JJU"/>
+                                        <outlet property="indexLabel" destination="Ju4-cE-dTb" id="6gP-ki-7aq"/>
+                                        <outlet property="locationLabel" destination="qqy-vW-dd9" id="Lns-JZ-qQt"/>
+                                        <outlet property="nameLabel" destination="BPc-qV-4Ke" id="J6V-u3-LqI"/>
+                                        <outlet property="seperator" destination="1M5-fQ-mq7" id="njP-Kr-hQ1"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label width="1" alignment="left" hidden="YES" text="Loading courses from iPhone..." textAlignment="center" numberOfLines="3" id="xex-IW-d7a"/>
+                    </items>
+                    <connections>
+                        <outlet property="infoLabel" destination="xex-IW-d7a" id="az1-51-yGa"/>
+                        <outlet property="scheduleTable" destination="BzL-93-Fiw" id="BXX-xP-j7q"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+        <!--Class Create Controller-->
+        <scene sceneID="Yps-AZ-nS8">
+            <objects>
+                <controller hidesWhenLoading="NO" id="kdc-Nx-vgh" customClass="ClassCreateController" customModule="Schoodule_WatchKit_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="MC5-3R-qmn">
+                            <items>
+                                <label alignment="left" text="Name" numberOfLines="3" id="Fo8-TC-TMe"/>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Set Name" id="g8g-K0-Gmi">
+                            <connections>
+                                <action selector="pickName" destination="kdc-Nx-vgh" id="Rsn-mw-8Fb"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" text="Location" numberOfLines="3" id="rPF-uC-RUG"/>
+                        <button width="1" alignment="left" title="Set Location" id="eaj-Bf-vW8">
+                            <connections>
+                                <action selector="pickLocation" destination="kdc-Nx-vgh" id="lmr-gf-VsZ"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" text="Start" textAlignment="left" id="zZZ-69-mww"/>
+                        <group width="1" height="42" alignment="left" id="Glv-2X-g1L" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
+                            <items>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="qn6-sz-pGj">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickStartHour:" destination="kdc-Nx-vgh" id="Ztv-62-wHF"/>
+                                    </connections>
+                                </picker>
+                                <label width="3" height="46" alignment="left" text=":" textAlignment="center" id="hbS-oh-ZaR"/>
+                                <picker width="45" height="1" alignment="center" focusStyle="stack" indicatorMode="shownWhileFocused" id="gci-oz-Gda">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickStartMinute:" destination="kdc-Nx-vgh" id="zbe-ZQ-1ke"/>
+                                    </connections>
+                                </picker>
+                                <picker width="45" height="1" alignment="right" focusStyle="stack" indicatorMode="shownWhileFocused" id="IYJ-1j-Wrv">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickStartAMPM:" destination="kdc-Nx-vgh" id="4cc-DB-YkR"/>
+                                    </connections>
+                                </picker>
+                            </items>
+                        </group>
+                        <label alignment="left" text="End" textAlignment="left" id="vab-aq-fjT"/>
+                        <group width="1" height="42" alignment="left" id="SOT-Ne-p6k" customClass="DateGroup" customModule="Schoodule_WatchKit_Extension">
+                            <items>
+                                <picker width="45" height="1" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="SLb-Q0-J6F">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickEndHour:" destination="kdc-Nx-vgh" id="4x3-fR-7Vb"/>
+                                    </connections>
+                                </picker>
+                                <label width="3" height="46" alignment="left" text=":" id="vhu-d2-hlL"/>
+                                <picker width="45" height="1" alignment="center" focusStyle="stack" indicatorMode="shownWhileFocused" id="gUJ-kC-pxN">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickEndMinute:" destination="kdc-Nx-vgh" id="3RU-xv-vrf"/>
+                                    </connections>
+                                </picker>
+                                <picker width="45" height="1" alignment="right" focusStyle="stack" indicatorMode="shownWhileFocused" id="qWO-vG-TWr">
+                                    <variation key="device=watch38mm" width="40"/>
+                                    <connections>
+                                        <action selector="pickEndAMPM:" destination="kdc-Nx-vgh" id="D6X-Sm-Qe6"/>
+                                    </connections>
+                                </picker>
+                            </items>
+                        </group>
+                        <group width="1" height="50" alignment="left" layout="overlap" id="hO3-Nm-O3l">
+                            <items>
+                                <picker width="1" height="42" alignment="center" verticalAlignment="bottom" style="sequence" focusStyle="sequence" id="8Mb-8a-51o">
+                                    <connections>
+                                        <action selector="pickColor:" destination="kdc-Nx-vgh" id="brg-a2-koP"/>
+                                    </connections>
+                                </picker>
+                                <label width="43" alignment="left" text="Color" textAlignment="left" id="fwL-3J-Yfk"/>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Save" id="TQd-6A-b8a">
+                            <connections>
+                                <action selector="save" destination="kdc-Nx-vgh" id="kLY-xO-fwY"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Delete" id="TPb-vB-ZMp">
+                            <connections>
+                                <action selector="delete" destination="kdc-Nx-vgh" id="J8j-OA-0YO"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="amEndPicker" destination="qWO-vG-TWr" id="Eg5-wC-KXM"/>
+                        <outlet property="amStartPicker" destination="IYJ-1j-Wrv" id="H4y-In-VUS"/>
+                        <outlet property="colorPicker" destination="8Mb-8a-51o" id="Jcx-Ev-lNW"/>
+                        <outlet property="deleteButton" destination="TPb-vB-ZMp" id="Ku0-hf-au7"/>
+                        <outlet property="hourEndPicker" destination="SLb-Q0-J6F" id="Gzf-z8-bBL"/>
+                        <outlet property="hourStartPicker" destination="qn6-sz-pGj" id="wzF-68-awH"/>
+                        <outlet property="locationLabel" destination="rPF-uC-RUG" id="9B1-wV-kKb"/>
+                        <outlet property="minuteEndPicker" destination="gUJ-kC-pxN" id="WJa-03-VFg"/>
+                        <outlet property="minuteStartPicker" destination="gci-oz-Gda" id="eEf-0m-H9Q"/>
+                        <outlet property="nameLabel" destination="Fo8-TC-TMe" id="nYm-XV-jIn"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="552" y="-99.5"/>
+        </scene>
+    </scenes>
+</document>

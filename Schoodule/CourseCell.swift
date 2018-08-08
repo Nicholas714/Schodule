@@ -12,7 +12,8 @@ class CourseCell: UITableViewCell {
     
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var courseName: UILabel!
-    @IBOutlet weak var courseTime: UILabel!
+    @IBOutlet weak var courseStartTime: UILabel!
+    @IBOutlet weak var courseEndTime: UILabel!
     @IBOutlet weak var courseTeacher: UILabel!
     @IBOutlet weak var courseLocation: UILabel!
     
@@ -24,7 +25,8 @@ class CourseCell: UITableViewCell {
             
             gradientView.setGradient(course.gradient)
             courseName.text = course.name
-            courseTime.text = course.timeframe.title
+            courseStartTime.text = course.timeframe.start.date.timeString
+            courseEndTime.text = course.timeframe.end.date.timeString
             courseTeacher.text = course.instructor
             courseLocation.text = course.location
         }

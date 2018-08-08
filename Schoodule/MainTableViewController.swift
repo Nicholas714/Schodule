@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 class MainTableViewController: UITableViewController {
     
     var storage = Storage(defaults: UserDefaults())
-    
+    var session: WCSession? = nil
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if WCSession.isSupported() && session == nil {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
         
         tableView.reloadData()
     }
@@ -55,7 +63,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : Date().dayString
+            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : nil
         case 1:
             return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
         case _:
@@ -95,4 +103,44 @@ extension MainTableViewController {
         }
     }
     
+}
+
+extension MainTableViewController: WCSessionDelegate {
+    
+    @available(iOS 9.3, *)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        if let message = message["message"] as? String, message == "refreshRequest" {
+            replyHandler(storage.transfer)
+        } else if let message = message["message"] as? String, message == "clear" {
+            storage.saveSchedule()
+            
+            replyHandler(storage.transfer)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        } else if let _ = message["courses"] as? Data {
+            print("iPhone: you requested, sending back")
+            storage.saveSchedule()
+            
+            replyHandler(storage.transfer)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
