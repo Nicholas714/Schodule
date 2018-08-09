@@ -129,10 +129,14 @@ class ClassCreateController: FormViewController {
                 } else {
                     $0.value = Date()
                 }
-                }.cellUpdate({ (cell, row) in
-                    for view in cell.contentView.subviews {
-                        view.backgroundColor = .clear
-                    }
+                }
+            <<< DateRow() {
+                $0.tag = "done-date"
+                $0.title = "DONE"
+                $0.value = Date()
+                
+                }.onCellSelection({ (cell, row) in
+                    self.save()
                 })
         
         for row in form.allRows {
@@ -165,6 +169,10 @@ class ClassCreateController: FormViewController {
     
     
     @IBAction func save(_ sender: UIButton) {
+        save()
+    }
+    
+    func save() {
         let handler = ScheduleFormHandler(form: form)
         handler.handleSave()
         
@@ -200,15 +208,15 @@ class ClassCreateController: FormViewController {
         guard let scheduleType = SpecificDay.scheduleFromValue(scheduleTypeRow.value!, startDateRow.value) else {
             return
         }
-
+        
         // TODO: Time Checks, Date Checks and make red if time is wrong
-
+        
         // remove oldSchedule and replace with same schedule but without the initial course
         if var oldSchedule = self.initialSchedule, let index = scheduleList.schedules.firstIndex(of: oldSchedule) {
             oldSchedule.classList.remove(element: initialCourse)
             scheduleList.schedules[index] = oldSchedule
         }
-
+        
         var newSchedule: Schedule
         if let foundSchedule = scheduleList.getScheduleWith(scheduleType: scheduleType, term: term) {
             // if found, remove from scheduleList to be replaced with new one
@@ -217,14 +225,14 @@ class ClassCreateController: FormViewController {
         } else {
             newSchedule = Schedule(scheduleType: scheduleType, term: term)
         }
-
+        
         if let schedule = initialSchedule, schedule.classList.count == 1 {
             scheduleList.schedules.remove(element: initialSchedule)
         }
-
+        
         newSchedule.classList.append(course)
         scheduleList.schedules.append(newSchedule)
-
+        
         if let root = presentingViewController as? MainTableViewController {
             root.storage.scheduleList = scheduleList
         }
