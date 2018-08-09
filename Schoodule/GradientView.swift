@@ -97,19 +97,6 @@ import UIKit
         self.layer.shadowOpacity = 1
     }
     
-//    override func layoutSubviews() {
-//        self.gradientLayer = self.layer as! CAGradientLayer
-//        self.gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-//        self.gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
-//        self.gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)
-//        self.layer.cornerRadius = cornerRadiuss
-//        self.layer.shadowColor = shadowColor.cgColor
-//        self.layer.shadowOffset = CGSize(width: shadowX, height: shadowY)
-//        self.layer.shadowRadius = shadowBlur
-//        self.layer.shadowOpacity = 1
-//
-//    }
-    
     func animate(duration: TimeInterval, newTopColor: UIColor, newBottomColor: UIColor) {
         let fromColors = self.gradientLayer?.colors
         let toColors: [AnyObject] = [ newTopColor.cgColor, newBottomColor.cgColor]

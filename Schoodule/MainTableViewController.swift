@@ -60,15 +60,27 @@ class MainTableViewController: UITableViewController {
 
 extension MainTableViewController {
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : nil
-        case 1:
-            return storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
-        case _:
-            return storage.scheduleList.schedules[section - 1].title
-        }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let title: String?
+//        switch section {
+//        case 0:
+//            title = storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : nil
+//        case 1:
+//            title = storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
+//        case _:
+//            title = storage.scheduleList.schedules[section - 1].title
+//        }
+//
+//        let label = UILabel(frame: CGRect(x: 30, y: 0, width: self.view.frame.width, height: 40))
+//        label.text = title
+//        label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+//        return label
+        
+        return UINib(nibName: "ScheduleHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

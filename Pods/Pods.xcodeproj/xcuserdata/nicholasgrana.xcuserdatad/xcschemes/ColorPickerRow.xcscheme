@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B0859BCD6C6080D006DB5512E45D6C0"
-               BlueprintName = "Eureka"
+               BlueprintIdentifier = "598452009BAE7AC884EC34743796D20F"
+               BlueprintName = "ColorPickerRow"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Eureka.framework">
+               BuildableName = "ColorPickerRow.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

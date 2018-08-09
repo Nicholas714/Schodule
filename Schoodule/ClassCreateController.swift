@@ -9,21 +9,18 @@
 import UIKit
 import Eureka
 import SCLAlertView
+import ColorPickerRow
+import UIColor_Hex_Swift
 
 class ClassCreateController: FormViewController {
-    
-    @IBOutlet var gradientView: GradientView! {
-        didSet {
-            gradient = initialCourse?.gradient ?? .red
-        }
-    }
     
     var initialSchedule: Schedule?
     var initialCourse: Course?
     
-    var gradient: Gradient = .red {
+    var gradient: Gradient! {
         didSet {
-            gradientView.setGradient(gradient)
+            tableView.backgroundColor = gradient.darkColor.withAlphaComponent(0.8)
+            navigationController?.navigationBar.barTintColor = gradient.darkColor
         }
     }
     
@@ -39,20 +36,26 @@ class ClassCreateController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gradient = initialCourse?.gradient ?? Gradient.gradients.first!
+        
         let scheduleTypeCondition = Condition.function(["schedule-type"], { form in
             return ((form.rowBy(tag: "schedule-type") as? PickerRow)?.value ?? "") != "Specific Day"
         })
+        
+        
         
         form +++ Section("Course")
             <<< TextRow() { row in
                 row.tag = "course-name"
                 row.title = "Name"
                 row.placeholder = "Physics"
-
+                
                 if let courseName = initialCourse?.name {
                     row.value = courseName
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.titleLabel?.textColor = .white
+                })
             <<< TextRow() {
                 $0.tag = "course-instructor"
                 $0.title = "Instructor"
@@ -61,7 +64,9 @@ class ClassCreateController: FormViewController {
                 if let courseInstructor = initialCourse?.instructor {
                     $0.value = courseInstructor
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.titleLabel?.textColor = .white
+                })
             <<< TextRow() {
                 $0.tag = "course-location"
                 $0.title = "Location"
@@ -70,18 +75,22 @@ class ClassCreateController: FormViewController {
                 if let courseName = initialCourse?.location {
                     $0.value = courseName
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.titleLabel?.textColor = .white
+                })
             <<< TimeRow() {
                 $0.tag = "start-time"
                 $0.minuteInterval = 5
                 $0.title = "Start Time"
-
+                
                 if let courseStartDate = initialCourse?.timeframe.start.date {
                     $0.value = courseStartDate
                 } else {
                     $0.value = Date()
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
+                })
             <<< TimeRow() {
                 $0.tag = "end-time"
                 $0.minuteInterval = 5
@@ -92,7 +101,9 @@ class ClassCreateController: FormViewController {
                 } else {
                     $0.value = Date().addingTimeInterval(2700)
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
+                })
             +++ Section("Schedule")
             <<< PickerInlineRow<String>() {
                 $0.tag = "schedule-type"
@@ -102,7 +113,9 @@ class ClassCreateController: FormViewController {
                 if let scheduleType = initialSchedule?.scheduleType {
                     $0.value = scheduleType.title
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
+                })
             <<< SegmentedRow<String>() {
                 $0.options = avaiableDays
                 $0.value = "Mon"
@@ -112,61 +125,63 @@ class ClassCreateController: FormViewController {
             <<< DateRow() {
                 $0.tag = "start-date"
                 $0.title = "Start Date"
-
+                
                 if let scheduleStartDate = initialSchedule?.term.start {
                     $0.value = scheduleStartDate
                 } else {
                     $0.value = Date()
                 }
-            }
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
+                })
             <<< DateRow() {
                 $0.tag = "end-date"
                 $0.title = "End Date"
                 $0.value = Date()
-
+                
                 if let scheduleEndDate = initialSchedule?.term.end {
                     $0.value = scheduleEndDate
                 } else {
                     $0.value = Date()
                 }
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
+                })
+            <<< ColorPickerRow("colors") { (row) in
+                row.title = "Color"
+                row.isCircular = true
+                row.showsCurrentSwatch = true
+                row.showsPaletteNames = false
+                row.value = gradient.darkColor
                 }
-            <<< DateRow() {
-                $0.tag = "done-date"
-                $0.title = "DONE"
-                $0.value = Date()
-                
-                }.onCellSelection({ (cell, row) in
-                    self.save()
+                .cellSetup { (cell, row) in
+                    cell.palettes = [ColorPalette(name: "All", palette: Gradient.gradients.map { ColorSpec(hex: $0.darkColor.hexString(), name: "") })]
+                }.onChange({ (picker) in
+                    guard let newDarkColor = picker.value else {
+                        return
+                    }
+                    
+                    for grad in Gradient.gradients {
+                        if grad.darkColor == newDarkColor {
+                            self.gradient = grad
+                        }
+                    }
+                }).cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .white
                 })
         
         for row in form.allRows {
-            row.baseCell.backgroundColor = gradientView.bottomColor
+            row.baseCell.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         }
         
-        for view in self.view.subviews {
-            if let tableView = view as? UITableView {
-                tableView.separatorColor = .clear
-                tableView.backgroundColor = .clear
-
-            }
-        }
+        self.view.backgroundColor = .white
+        tableView.separatorColor = .clear
     }
     
     func presentMissingInfoAlert(input: String) {
         let alertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance())
         alertView.showError("Missing Information", subTitle: "Please input the \(input).")
     }
-    
-    @IBAction func nextGradient(_ sender: UIBarButtonItem) {
-        let newGradient = Gradient.gradients.next(startingAt: gradient.index)
-        gradient = newGradient
-    }
-    
-    @IBAction func previousGradient(_ sender: UIBarButtonItem) {
-        let newGradient = Gradient.gradients.previous(startingAt: gradient.index)
-        gradient = newGradient
-    }
-    
     
     @IBAction func save(_ sender: UIButton) {
         save()
@@ -233,15 +248,11 @@ class ClassCreateController: FormViewController {
         newSchedule.classList.append(course)
         scheduleList.schedules.append(newSchedule)
         
-        if let root = presentingViewController as? MainTableViewController {
+        if let root = navigationController?.viewControllers.first as? MainTableViewController {
             root.storage.scheduleList = scheduleList
         }
         
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func cancelSave(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 }
 

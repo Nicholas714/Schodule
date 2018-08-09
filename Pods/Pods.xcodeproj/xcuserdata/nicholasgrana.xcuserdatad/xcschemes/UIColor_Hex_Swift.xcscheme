@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B0859BCD6C6080D006DB5512E45D6C0"
-               BlueprintName = "Eureka"
+               BlueprintIdentifier = "FFAA6CE3F67C96E14F5D7351B6DBCD88"
+               BlueprintName = "UIColor_Hex_Swift"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Eureka.framework">
+               BuildableName = "UIColor_Hex_Swift.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

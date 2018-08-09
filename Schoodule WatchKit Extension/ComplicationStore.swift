@@ -76,7 +76,7 @@ struct ComplicationStore {
             return nil
         }
         
-        template.tintColor = course?.gradient.darkColor
+        template.tintColor = course?.gradient.lightColor 
     
         if let template = template as? CLKComplicationTemplateCircularSmallStackText {
             

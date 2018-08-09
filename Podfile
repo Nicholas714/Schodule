@@ -5,4 +5,6 @@ target 'Schoodule' do
 
   pod 'Eureka'
   pod 'SCLAlertView'
+  pod 'ColorPickerRow', :git => 'https://github.com/EurekaCommunity/ColorPickerRow'  
+  pod 'UIColor_Hex_Swift'
 end
