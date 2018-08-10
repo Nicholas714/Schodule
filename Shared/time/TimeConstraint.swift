@@ -228,15 +228,7 @@ struct SpecificDay: ScheduleType {
             return days.first!.name
         }
     
-        var isWeekdayArray = true
-        
-        for day in days {
-            if !day.isWeekday {
-                isWeekdayArray = false
-            }
-        }
-        
-        if isWeekdayArray {
+        if Set(Day.weekdays) == Set(days) {
             return "Weekdays"
         }
         

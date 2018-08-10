@@ -44,7 +44,7 @@ class ClassCreateController: FormViewController {
         gradient = initialCourse?.gradient ?? Gradient.gradients.first!
         
         let scheduleTypeCondition = Condition.function(["schedule-type"], { form in
-            return ((form.rowBy(tag: "schedule-type") as? PickerRow)?.value ?? "") != "Specific Day"
+            return ((form.rowBy(tag: "schedule-type") as? PickerInlineRow)?.value ?? "") != "Specific Day"
         })
         
         form +++ Section("Course") { section in
@@ -134,6 +134,11 @@ class ClassCreateController: FormViewController {
                 
                 if let scheduleType = initialSchedule?.scheduleType {
                     $0.value = scheduleType.title
+                    if let type = scheduleType as? SpecificDay {
+                        if type.title != "Weekdays" {
+                            $0.value = "Specific Day"
+                        }
+                    }
                 }
                 }.onExpandInlineRow({ (cell, inlineRow, pickerRow) in
                     pickerRow.baseCell.backgroundColor = self.gradient.darkColor
@@ -142,12 +147,23 @@ class ClassCreateController: FormViewController {
                     cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                     cell.tintColor = UIColor.white.withAlphaComponent(0.7)
                 })
-            <<< SegmentedRow<String>() {
+            <<< MultipleSelectorRow<String>() {
+                $0.title = "Days"
                 $0.options = avaiableDays
-                $0.value = "Mon"
+                if let specificDay = initialSchedule?.scheduleType as? SpecificDay {
+                    $0.value = Set(specificDay.days.map { $0.shortName })
+                } else {
+                    $0.value = Set(Day.weekdays.map { $0.shortName })
+                }
+                
                 $0.tag = "segmented-days"
                 $0.hidden = scheduleTypeCondition
-            }
+                
+                }.cellUpdate({ (cell, row) in
+                    cell.tintColor = .white
+                    cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
+                })
             <<< DateRow() {
                 $0.tag = "start-date"
                 $0.title = "Start Date"
@@ -196,7 +212,7 @@ class ClassCreateController: FormViewController {
                         }
                     }
                 })
-    
+        
         self.view.backgroundColor = .white
         tableView.separatorColor = .clear
 
@@ -241,7 +257,7 @@ class ClassCreateController: FormViewController {
         let scheduleTypeRow: PickerInlineRow<String> = form.rowBy(tag: "schedule-type")!
         let startDateRow: DateRow = form.rowBy(tag: "start-date")!
         let endDateRow: DateRow = form.rowBy(tag: "end-date")!
-        let specificDaysPicker: SegmentedRow<String> = form.rowBy(tag: "segmented-days")!
+        let specificDaysPicker: MultipleSelectorRow<String> = form.rowBy(tag: "segmented-days")!
         
         // TODO: make sure name, location, starttime and end time values are not nil & custom alert view
         guard let courseName = courseNameRow.value else {
@@ -258,11 +274,14 @@ class ClassCreateController: FormViewController {
         let course = Course(name: courseName, gradient: gradient, timeframe: timeframe, teacher: instructorRow.value, location: locationRow.value)
         let term = Term(start: startDateRow.value!, end: endDateRow.value!)
         
-        guard let scheduleType = SpecificDay.scheduleFromValue(scheduleTypeRow.value!, startDateRow.value) else {
+        guard var scheduleType = SpecificDay.scheduleFromValue(scheduleTypeRow.value!, startDateRow.value) else {
             return
         }
         
-        // TODO: Time Checks, Date Checks and make red if time is wrong
+        if scheduleType is SpecificDay, let rawDays = specificDaysPicker.value {
+            let days = Day.everyday.filter { rawDays.contains($0.shortName) }
+            scheduleType = SpecificDay(days: days)
+        }
         
         // remove oldSchedule and replace with same schedule but without the initial course
         if var oldSchedule = self.initialSchedule, let index = scheduleList.schedules.firstIndex(of: oldSchedule) {
