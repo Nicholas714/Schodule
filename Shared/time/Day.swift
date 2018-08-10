@@ -10,13 +10,13 @@ import Foundation
 
 enum Day: Int, Codable {
     
-    case sunday 
+    case saturday
+    case sunday
     case monday
     case tuesday
     case wednesday
     case thursday
     case friday
-    case saturday
     
     static var everyday: [Day] = [.sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday]
     static var weekdays: [Day] {

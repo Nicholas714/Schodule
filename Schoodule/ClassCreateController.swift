@@ -19,8 +19,13 @@ class ClassCreateController: FormViewController {
     
     var gradient: Gradient! {
         didSet {
-            tableView.backgroundColor = gradient.darkColor.withAlphaComponent(0.8)
+            tableView.backgroundColor = gradient.darkColor.withAlphaComponent(0.9)
             navigationController?.navigationBar.barTintColor = gradient.darkColor
+            navigationController?.navigationBar.isTranslucent = false 
+            
+            for row in form.allRows {
+                row.baseCell.backgroundColor = gradient.darkColor //UIColor.white.withAlphaComponent(0.2)
+            }
         }
     }
     
@@ -42,41 +47,49 @@ class ClassCreateController: FormViewController {
             return ((form.rowBy(tag: "schedule-type") as? PickerRow)?.value ?? "") != "Specific Day"
         })
         
-        
-        
-        form +++ Section("Course")
+        form +++ Section("Course") { section in
+            var header = HeaderFooterView<TextHeaderView>(.nibFile(name: "TextHeaderView", bundle: nil))
+            
+            header.onSetupView = { view, _ in
+                view.textLabel.text = "Information"
+            }
+            section.header = header
+            }
             <<< TextRow() { row in
                 row.tag = "course-name"
                 row.title = "Name"
-                row.placeholder = "Physics"
+                row.placeholder = "Course Name"
                 
                 if let courseName = initialCourse?.name {
                     row.value = courseName
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.titleLabel?.textColor = .white
+                    cell.textField.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< TextRow() {
                 $0.tag = "course-instructor"
                 $0.title = "Instructor"
-                $0.placeholder = "Mr Hew"
+                $0.placeholder = "Name"
                 
                 if let courseInstructor = initialCourse?.instructor {
                     $0.value = courseInstructor
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.titleLabel?.textColor = .white
+                    cell.textField.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< TextRow() {
                 $0.tag = "course-location"
                 $0.title = "Location"
-                $0.placeholder = "Room 102"
+                $0.placeholder = "Building / Room"
                 
                 if let courseName = initialCourse?.location {
                     $0.value = courseName
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.titleLabel?.textColor = .white
+                    cell.textField.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< TimeRow() {
                 $0.tag = "start-time"
@@ -90,6 +103,7 @@ class ClassCreateController: FormViewController {
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< TimeRow() {
                 $0.tag = "end-time"
@@ -103,8 +117,16 @@ class ClassCreateController: FormViewController {
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
-            +++ Section("Schedule")
+            +++ Section("Schedule")  { section in
+                var header = HeaderFooterView<TextHeaderView>(.nibFile(name: "TextHeaderView", bundle: nil))
+                
+                header.onSetupView = { view, _ in
+                    view.textLabel.text = "Schedule"
+                }
+                section.header = header
+            }
             <<< PickerInlineRow<String>() {
                 $0.tag = "schedule-type"
                 $0.title = "Type"
@@ -113,8 +135,12 @@ class ClassCreateController: FormViewController {
                 if let scheduleType = initialSchedule?.scheduleType {
                     $0.value = scheduleType.title
                 }
-                }.cellUpdate({ (cell, row) in
+                }.onExpandInlineRow({ (cell, inlineRow, pickerRow) in
+                    pickerRow.baseCell.backgroundColor = self.gradient.darkColor
+                }).cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
+                    cell.tintColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< SegmentedRow<String>() {
                 $0.options = avaiableDays
@@ -133,6 +159,7 @@ class ClassCreateController: FormViewController {
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< DateRow() {
                 $0.tag = "end-date"
@@ -146,9 +173,10 @@ class ClassCreateController: FormViewController {
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
+                    cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                 })
             <<< ColorPickerRow("colors") { (row) in
-                row.title = "Color"
+                row.title = "Pick Color"
                 row.isCircular = true
                 row.showsCurrentSwatch = true
                 row.showsPaletteNames = false
@@ -156,6 +184,7 @@ class ClassCreateController: FormViewController {
                 }
                 .cellSetup { (cell, row) in
                     cell.palettes = [ColorPalette(name: "All", palette: Gradient.gradients.map { ColorSpec(hex: $0.darkColor.hexString(), name: "") })]
+                    
                 }.onChange({ (picker) in
                     guard let newDarkColor = picker.value else {
                         return
@@ -166,16 +195,25 @@ class ClassCreateController: FormViewController {
                             self.gradient = grad
                         }
                     }
-                }).cellUpdate({ (cell, row) in
-                    cell.textLabel?.textColor = .white
                 })
-        
-        for row in form.allRows {
-            row.baseCell.backgroundColor = UIColor.white.withAlphaComponent(0.2)
-        }
-        
+    
         self.view.backgroundColor = .white
         tableView.separatorColor = .clear
+
+        for row in form.allRows {
+            row.baseCell.backgroundColor = gradient.darkColor
+            
+            for view in row.baseCell.contentView.subviews {
+                if let label = view as? UILabel {
+                    label.textColor = .white
+                }
+                if let textField = view as? UITextField {
+                    textField.textColor = .white
+                }
+            }
+        }
+        
+        
     }
     
     func presentMissingInfoAlert(input: String) {

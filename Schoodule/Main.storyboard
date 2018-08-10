@@ -10,14 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Today-->
+        <!--Schedules-->
         <scene sceneID="UYF-l8-cat">
             <objects>
                 <tableViewController id="cXc-2f-czI" customClass="MainTableViewController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qTg-6w-Jfe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1647058824" green="0.18823529410000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="40" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodCell" rowHeight="83" id="XJV-Yc-aEX" customClass="CourseCell" customModule="Schoodule" customModuleProvider="target">
@@ -33,7 +33,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-37-Kaz">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="73"/>
                                                     <subviews>
-                                                        <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tal-Dz-QOp">
+                                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tal-Dz-QOp">
                                                             <rect key="frame" x="0.0" y="-1" width="335" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="qGg-FM-dqC">
@@ -131,7 +131,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" red="0.16470588235294117" green="0.18823529411764706" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="2vg-19-mly" secondAttribute="trailing" constant="20" id="HFd-ty-o2S"/>
                                         <constraint firstItem="2vg-19-mly" firstAttribute="top" secondItem="rT1-Vv-XuO" secondAttribute="top" constant="5" id="UzQ-Yg-5Z4"/>
@@ -139,6 +139,7 @@
                                         <constraint firstItem="2vg-19-mly" firstAttribute="leading" secondItem="rT1-Vv-XuO" secondAttribute="leading" constant="20" id="v07-vZ-f2y"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="courseEndTime" destination="eOP-Ut-1iU" id="nhj-jU-Tbg"/>
@@ -156,13 +157,9 @@
                             <outlet property="delegate" destination="cXc-2f-czI" id="e5e-Y1-pUQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Today" id="D6o-d6-xQM">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="cp7-ys-g9B">
-                            <connections>
-                                <action selector="clearAll:" destination="cXc-2f-czI" id="qlL-Fh-hlo"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Schedules" largeTitleDisplayMode="always" id="D6o-d6-xQM">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" systemItem="add" id="4Lk-Ts-yJN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="UcH-RH-iIb"/>
                             </connections>
@@ -178,7 +175,7 @@
             <objects>
                 <viewController storyboardIdentifier="ClassCreate" id="7ah-qV-6a7" customClass="ClassCreateController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aJX-WS-fOI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
                     </view>
@@ -199,16 +196,18 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ldN-72-zR2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="rSQ-n1-hRr">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="rSQ-n1-hRr">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.81760919089999995" green="0.37871810789999999" blue="0.21966002879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NJx-Gi-KKf">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="cXc-2f-czI" kind="relationship" relationship="rootViewController" id="G8H-kW-FZ0"/>
                     </connections>
@@ -219,6 +218,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UcH-RH-iIb"/>
+        <segue reference="QdR-Ul-tgB"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,7 +13,7 @@ class MainTableViewController: UITableViewController {
     
     var storage = Storage(defaults: UserDefaults())
     var session: WCSession? = nil
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -24,6 +24,9 @@ class MainTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
+        
+        navigationController?.navigationBar.barTintColor = nil
+        navigationController?.navigationBar.isTranslucent = true 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,22 +64,19 @@ class MainTableViewController: UITableViewController {
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let title: String?
-//        switch section {
-//        case 0:
-//            title = storage.scheduleList.todayCourses.isEmpty ? "No Classes Today" : nil
-//        case 1:
-//            title = storage.scheduleList.schedules.isEmpty ? "No Schedules" : storage.scheduleList.schedules[section - 1].title
-//        case _:
-//            title = storage.scheduleList.schedules[section - 1].title
-//        }
-//
-//        let label = UILabel(frame: CGRect(x: 30, y: 0, width: self.view.frame.width, height: 40))
-//        label.text = title
-//        label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
-//        return label
+        let schedule: Schedule?
+        switch section {
+        case 0:
+            schedule = nil
+        case 1:
+            schedule = storage.scheduleList.schedules.isEmpty ? nil : storage.scheduleList.schedules[section - 1]
+        case _:
+            schedule = storage.scheduleList.schedules[section - 1]
+        }
         
-        return UINib(nibName: "ScheduleHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView
+        let header = UINib(nibName: "ScheduleHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? ScheduleHeaderView
+        header?.schedule = schedule
+        return header
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

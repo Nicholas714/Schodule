@@ -40,7 +40,7 @@ struct Schedule: Codable {
     var term: Term
     
     var title: String {
-        return "\(scheduleType.title) \t\t\t\t\t\t\t\t\t\t\t\(term.title)"
+        return "\(scheduleType.title)"
     }
     
     init(scheduleType: ScheduleType, term: Term) {

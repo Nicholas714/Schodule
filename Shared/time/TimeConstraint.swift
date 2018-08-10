@@ -86,7 +86,11 @@ protocol TimeConstraint: Codable {
     func isInConstraint(_ date: Date) -> Bool
 }
 
-typealias ScheduleType = TimeConstraint
+protocol ScheduleType: TimeConstraint {
+    
+    var subtitle: String { get }
+    
+}
 
 extension ScheduleType {
     
@@ -177,6 +181,10 @@ struct EvenDay: DynamicStartConstraint {
     
     var title = "Even Days"
     
+    var subtitle: String {
+        return "Mon Tue Wed Thu Fri Sat Sun" // TOOD: return attributed string which highlights the days for this week
+    }
+    
     func isInConstraint(_ date: Date) -> Bool {
         print("EVEN DAY: \(daysInBetween(date)) % 2 == 0 \(daysInBetween(date) % 2 == 0)")
         return daysInBetween(date) % 2 == 0
@@ -200,8 +208,13 @@ struct OddDay: DynamicStartConstraint {
         return daysInBetween(date) % 2 != 0
     }
     
+    var subtitle: String {
+        return "Mon Tue Wed Thu Fri Sat Sun" // TOOD: return attributed string which highlights the days for this week
+    }
+    
 }
 
+// TODO: hold only 1 day and break up into multiple schedules instead of days array
 struct SpecificDay: ScheduleType {
 
     var days = [Day]()
@@ -232,6 +245,12 @@ struct SpecificDay: ScheduleType {
             }.joined(separator: ", ")
     }
     
+    var subtitle: String {
+        return days.count == 1 ? "" : days.map { (day) -> String in
+            return day.shortName
+            }.joined(separator: ", ")
+    }
+    
     func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
             return days.contains(today)
@@ -249,5 +268,9 @@ struct Repeating: DynamicStartConstraint {
     var title: String {
         return "Every \(daysUntilRepeat) \(daysUntilRepeat == 1 ? "day" : "days")"
     }
-
+    
+    var subtitle: String {
+        return "Mon Tue Wed Thu Fri Sat Sun" // TOOD: return attributed string which highlights the days for this week
+    }
+    
 }

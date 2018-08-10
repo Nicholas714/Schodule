@@ -16,6 +16,8 @@
 		43307DE321010FD5004B0B76 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DEB21010FD5004B0B76 /* Assets.xcassets */; };
 		434050FC2112A70D00F120F0 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434050FB2112A70D00F120F0 /* CourseCell.swift */; };
+		435C0E6B211D373600FF03C6 /* TextHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435C0E6A211D373600FF03C6 /* TextHeaderView.xib */; };
+		435C0E6D211D37EA00FF03C6 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */; };
 		435CF07B211C992500288BE8 /* ScheduleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */; };
 		4377FDAD21178F59003D97B8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377FDAC21178F59003D97B8 /* GradientView.swift */; };
 		4379988D2111E3390005E948 /* Array+remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379988C2111E3390005E948 /* Array+remove.swift */; };
@@ -48,6 +50,7 @@
 		43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81521011081003904E8 /* ClassCreateController.swift */; };
 		43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81721011086003904E8 /* MainTableViewController.swift */; };
 		43C3B81A2101108C003904E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C3B8192101108C003904E8 /* Main.storyboard */; };
+		43D51E87211CE04F00931326 /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D51E86211CE04F00931326 /* ScheduleHeaderView.swift */; };
 		43F64EA82117C0A100BE3D88 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F64EA72117C0A100BE3D88 /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +110,8 @@
 		43307DEB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43307DED21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		434050FB2112A70D00F120F0 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		435C0E6A211D373600FF03C6 /* TextHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextHeaderView.xib; sourceTree = "<group>"; };
+		435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
 		435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleHeaderView.xib; sourceTree = "<group>"; };
 		4377FDAC21178F59003D97B8 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		4379988C2111E3390005E948 /* Array+remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+remove.swift"; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 		43C3B81521011081003904E8 /* ClassCreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassCreateController.swift; sourceTree = "<group>"; };
 		43C3B81721011086003904E8 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		43C3B8192101108C003904E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		43D51E86211CE04F00931326 /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
 		43F64EA72117C0A100BE3D88 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		E676FAAF4A68433D48AD9A3E /* Pods-Schoodule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.debug.xcconfig"; sourceTree = "<group>"; };
 		EEC63B40CCE16178B62B73CF /* Pods-Schoodule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schoodule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schoodule/Pods-Schoodule.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 				435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */,
 				434050FB2112A70D00F120F0 /* CourseCell.swift */,
 				4377FDAC21178F59003D97B8 /* GradientView.swift */,
+				43D51E86211CE04F00931326 /* ScheduleHeaderView.swift */,
+				435C0E6A211D373600FF03C6 /* TextHeaderView.xib */,
+				435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -391,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435CF07B211C992500288BE8 /* ScheduleHeaderView.xib in Resources */,
+				435C0E6B211D373600FF03C6 /* TextHeaderView.xib in Resources */,
 				43307DCF21010FD4004B0B76 /* LaunchScreen.storyboard in Resources */,
 				43307DCC21010FD4004B0B76 /* Assets.xcassets in Resources */,
 				43C3B81A2101108C003904E8 /* Main.storyboard in Resources */,
@@ -470,6 +480,7 @@
 				43BB8E1C211244F20036105B /* ScheduleFormHandler.swift in Sources */,
 				43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */,
 				43C3B81021011077003904E8 /* Day.swift in Sources */,
+				43D51E87211CE04F00931326 /* ScheduleHeaderView.swift in Sources */,
 				43F64EA82117C0A100BE3D88 /* Gradient.swift in Sources */,
 				4379988D2111E3390005E948 /* Array+remove.swift in Sources */,
 				43C3B81621011081003904E8 /* ClassCreateController.swift in Sources */,
@@ -481,6 +492,7 @@
 				43C3B80D21011077003904E8 /* Course.swift in Sources */,
 				43C3B80C21011077003904E8 /* Schedule.swift in Sources */,
 				43C3B81221011077003904E8 /* UIColor+Themes.swift in Sources */,
+				435C0E6D211D37EA00FF03C6 /* TextHeaderView.swift in Sources */,
 				43C3B80E21011077003904E8 /* ScheduleList.swift in Sources */,
 				43C3B80B21011077003904E8 /* Storage.swift in Sources */,
 			);
