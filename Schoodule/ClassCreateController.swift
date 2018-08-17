@@ -125,6 +125,7 @@ class ClassCreateController: FormViewController {
                 header.onSetupView = { view, _ in
                     view.textLabel.text = "Schedule"
                 }
+                
                 section.header = header
             }
             <<< PickerInlineRow<String>() {
@@ -140,13 +141,16 @@ class ClassCreateController: FormViewController {
                         }
                     }
                 }
+                
                 }.onExpandInlineRow({ (cell, inlineRow, pickerRow) in
                     pickerRow.baseCell.backgroundColor = self.gradient.darkColor
+                    print(pickerRow is DatePickerRow)
                 }).cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
                     cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
                     cell.tintColor = UIColor.white.withAlphaComponent(0.7)
                 })
+            
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Days"
                 $0.options = avaiableDays
