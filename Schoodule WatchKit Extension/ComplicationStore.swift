@@ -32,6 +32,7 @@ struct ComplicationStore {
     var family: CLKComplicationFamily
     var course: Course?
     var dateProvider: CLKRelativeDateTextProvider?
+    var location: String?
     var type: PeriodComplication
     
     var dateTextProvider: CLKTextProvider {
@@ -99,7 +100,11 @@ struct ComplicationStore {
             if let location = course?.location {
                 template.body2TextProvider = CLKSimpleTextProvider(text: location)
             } else {
-                template.body2TextProvider = CLKSimpleTextProvider(text: "")
+                if let location = location {
+                    template.body2TextProvider = CLKSimpleTextProvider(text: location)
+                } else {
+                    template.body2TextProvider = CLKSimpleTextProvider(text: "")
+                }
             }
             
         } else if let template = template as? CLKComplicationTemplateModularSmallStackText {

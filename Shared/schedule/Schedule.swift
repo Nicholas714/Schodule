@@ -28,8 +28,12 @@ struct Schedule: Codable {
                 return alternatingEven
             case .alternatingOdd(let alternatingOdd):
                 return alternatingOdd
-            case .specificDays(let alternatingOdd):
+            case .specificDay(let alternatingOdd):
                 return alternatingOdd
+            case .everyday(let everyday):
+                return everyday
+            case .weekdays(let weekdays):
+                return weekdays
             }
         }
         set {

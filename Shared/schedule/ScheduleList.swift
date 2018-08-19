@@ -54,6 +54,12 @@ struct ScheduleList: Codable {
         })
     }
     
+    func remove(course: Course) {
+        for var schedule in schedules {
+            schedule.classList.remove(element: course)
+        }
+    }
+    
     func classFrom(date: Date) -> Course? {
         return todayCourses.first { (course) -> Bool in
             return date <= course.timeframe.end.date && date >= course.timeframe.start.date

@@ -34,7 +34,7 @@ enum Day: Int, Codable {
         case .wednesday:
             return "Wednesday"
         case .thursday:
-            return "Thuesday"
+            return "Thursday"
         case .friday:
             return "Friday"
         case .saturday:

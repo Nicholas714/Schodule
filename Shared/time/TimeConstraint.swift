@@ -20,12 +20,16 @@ enum ScheduleConstraintType: Codable {
         case alternatingEven
         case alternatingOdd
         case specificDays
+        case everyday
+        case weekdays
     }
     
     case repeating(Repeating)
     case alternatingEven(EvenDay)
     case alternatingOdd(OddDay)
-    case specificDays(SpecificDay)
+    case specificDay(SpecificDay)
+    case everyday(Everyday)
+    case weekdays(Weekdays)
     
     init(_ constraint: TimeConstraint) {
         if let item = constraint as? Repeating {
@@ -35,8 +39,12 @@ enum ScheduleConstraintType: Codable {
         } else if let item = constraint as? OddDay {
             self = .alternatingOdd(item)
         } else if let item = constraint as? SpecificDay {
-            self = .specificDays(item)
-        }else {
+            self = .specificDay(item)
+        } else if let item = constraint as? Everyday {
+            self = .everyday(item)
+        } else if let item = constraint as? Weekdays {
+            self = .weekdays(item)
+        } else {
             fatalError()
         }
     }
@@ -56,7 +64,13 @@ enum ScheduleConstraintType: Codable {
             self = .alternatingOdd(payload)
         case .specificDays:
             let payload = try container.decode(SpecificDay.self, forKey: .payload)
-            self = .specificDays(payload)
+            self = .specificDay(payload)
+        case .everyday:
+            let payload = try container.decode(Everyday.self, forKey: .payload)
+            self = .everyday(payload)
+        case .weekdays:
+            let payload = try container.decode(Weekdays.self, forKey: .payload)
+            self = .weekdays(payload)
         }
     }
     
@@ -72,8 +86,14 @@ enum ScheduleConstraintType: Codable {
         case .alternatingOdd(let payload):
             try container.encode(Values.alternatingOdd, forKey: .value)
             try container.encode(payload, forKey: .payload)
-        case .specificDays(let payload):
+        case .specificDay(let payload):
             try container.encode(Values.specificDays, forKey: .value)
+            try container.encode(payload, forKey: .payload)
+        case .everyday(let payload):
+            try container.encode(Values.everyday, forKey: .value)
+            try container.encode(payload, forKey: .payload)
+        case .weekdays(let payload):
+            try container.encode(Values.weekdays, forKey: .value)
             try container.encode(payload, forKey: .payload)
         }
     }
@@ -97,9 +117,9 @@ extension ScheduleType {
     static func scheduleFromValue(_ value: String, _ extra: Any? = nil) -> ScheduleType? {
         switch value {
         case "Everyday":
-            return SpecificDay(days: Day.everyday)
+            return Everyday()
         case "Weekdays":
-            return SpecificDay(days: Day.weekdays)
+            return Weekdays()
         case "Even Days":
             if let date = extra as? Date {
                 return EvenDay(startDate: date)
@@ -111,7 +131,7 @@ extension ScheduleType {
             }
             return nil
         case "Specific Day":
-            return SpecificDay(days: [.monday])
+            return SpecificDay(day: .monday)
         default:
             return nil 
         }
@@ -217,38 +237,59 @@ struct OddDay: DynamicStartConstraint {
 // TODO: hold only 1 day and break up into multiple schedules instead of days array
 struct SpecificDay: ScheduleType {
 
-    var days = [Day]()
-
+    var day: Day
+    
     var title: String {
-        if days.count == 7 {
-            return "Everyday"
-        }
-    
-        if days.count == 1 {
-            return days.first!.name
-        }
-    
-        if Set(Day.weekdays) == Set(days) {
-            return "Weekdays"
-        }
-        
-        return days.map { (day) -> String in
-            return day.shortName
-            }.joined(separator: ", ")
+        return day.name
     }
     
     var subtitle: String {
-        return days.count == 1 ? "" : days.map { (day) -> String in
+        return ""
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
+            return day == today
+        }
+        return false
+    }
+    
+}
+
+struct Weekdays: ScheduleType {
+    
+    var title: String = "Weekdays"
+    
+    var subtitle: String {
+        return Day.weekdays.map { (day) -> String in
             return day.shortName
             }.joined(separator: ", ")
     }
     
     func isInConstraint(_ date: Date) -> Bool {
         if let today = Day(rawValue: Calendar.current.component(.weekday, from: date)) {
-            return days.contains(today)
+            return Day.weekdays.contains(today)
         }
         return false
     }
+    
+    
+}
+
+struct Everyday: ScheduleType {
+
+    var title: String = "Everyday"
+    
+    var subtitle: String {
+        return Day.everyday.map { (day) -> String in
+            return day.shortName
+            }.joined(separator: ", ")
+    }
+    
+    func isInConstraint(_ date: Date) -> Bool {
+        return true
+    }
+    
     
 }
 

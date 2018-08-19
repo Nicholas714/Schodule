@@ -46,6 +46,9 @@ class ClassCreateController: FormViewController {
         let scheduleTypeCondition = Condition.function(["schedule-type"], { form in
             return ((form.rowBy(tag: "schedule-type") as? PickerInlineRow)?.value ?? "") != "Specific Day"
         })
+        let deleteRowCondition = Condition.function(["delete-course"]) { form -> Bool in
+            return self.initialCourse == nil
+        }
         
         form +++ Section("Course") { section in
             var header = HeaderFooterView<TextHeaderView>(.nibFile(name: "TextHeaderView", bundle: nil))
@@ -144,7 +147,6 @@ class ClassCreateController: FormViewController {
                 
                 }.onExpandInlineRow({ (cell, inlineRow, pickerRow) in
                     pickerRow.baseCell.backgroundColor = self.gradient.darkColor
-                    print(pickerRow is DatePickerRow)
                 }).cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
                     cell.detailTextLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
@@ -155,7 +157,7 @@ class ClassCreateController: FormViewController {
                 $0.title = "Days"
                 $0.options = avaiableDays
                 if let specificDay = initialSchedule?.scheduleType as? SpecificDay {
-                    $0.value = Set(specificDay.days.map { $0.shortName })
+                    $0.value = Set([specificDay.day.shortName])
                 } else {
                     $0.value = Set(Day.weekdays.map { $0.shortName })
                 }
@@ -189,7 +191,7 @@ class ClassCreateController: FormViewController {
                 if let scheduleEndDate = initialSchedule?.term.end {
                     $0.value = scheduleEndDate
                 } else {
-                    $0.value = Date()
+                    $0.value = nil
                 }
                 }.cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .white
@@ -215,6 +217,15 @@ class ClassCreateController: FormViewController {
                             self.gradient = grad
                         }
                     }
+                })
+            <<< ButtonRow() { (row) in
+                row.title = "Delete"
+                row.value = "Delete"
+                row.hidden = deleteRowCondition
+                
+                }.onCellSelection({ (cell, row) in
+                    print("DELETE")
+                    self.delete()
                 })
         
         self.view.backgroundColor = .white
@@ -243,6 +254,45 @@ class ClassCreateController: FormViewController {
     
     @IBAction func save(_ sender: UIButton) {
         save()
+    }
+    
+    func delete() {
+        let scheduleType: ScheduleType
+        let term: Term
+        
+        // remove oldSchedule and replace with same schedule but without the initial course
+        if var oldSchedule = self.initialSchedule, let index = scheduleList.schedules.firstIndex(of: oldSchedule) {
+            oldSchedule.classList.remove(element: initialCourse)
+            scheduleList.schedules[index] = oldSchedule
+            
+            scheduleType = oldSchedule.scheduleType
+            term = oldSchedule.term
+        } else {
+            preconditionFailure("Schedule not found.")
+        }
+        
+        var newSchedule: Schedule
+        if let foundSchedule = scheduleList.getScheduleWith(scheduleType: scheduleType, term: term) {
+            // if found, remove from scheduleList to be replaced with new one
+            scheduleList.schedules.remove(element: foundSchedule)
+            newSchedule = foundSchedule
+        } else {
+            newSchedule = Schedule(scheduleType: scheduleType, term: term)
+        }
+        
+        if let schedule = initialSchedule, schedule.classList.count == 1 {
+            scheduleList.schedules.remove(element: initialSchedule)
+        }
+        
+        if !newSchedule.classList.isEmpty {
+            scheduleList.schedules.append(newSchedule)
+        }
+        
+        if let root = navigationController?.viewControllers.first as? MainTableViewController {
+            root.storage.scheduleList = scheduleList
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     func save() {
@@ -276,7 +326,7 @@ class ClassCreateController: FormViewController {
         
         let timeframe = Timeframe(start: Time(from: startTimeRow.value!), end: Time(from: endTimeRow.value!))
         let course = Course(name: courseName, gradient: gradient, timeframe: timeframe, teacher: instructorRow.value, location: locationRow.value)
-        let term = Term(start: startDateRow.value!, end: endDateRow.value!)
+        let term = Term(start: startDateRow.value!, end: endDateRow.value)
         
         guard var scheduleType = SpecificDay.scheduleFromValue(scheduleTypeRow.value!, startDateRow.value) else {
             return
@@ -284,7 +334,31 @@ class ClassCreateController: FormViewController {
         
         if scheduleType is SpecificDay, let rawDays = specificDaysPicker.value {
             let days = Day.everyday.filter { rawDays.contains($0.shortName) }
-            scheduleType = SpecificDay(days: days)
+            
+            for scheduleType in days.map({ SpecificDay(day: $0) }) {
+                var newSchedule: Schedule
+                if let foundSchedule = scheduleList.getScheduleWith(scheduleType: scheduleType, term: term) {
+                    // if found, remove from scheduleList to be replaced with new one
+                    scheduleList.schedules.remove(element: foundSchedule)
+                    newSchedule = foundSchedule
+                } else {
+                    newSchedule = Schedule(scheduleType: scheduleType, term: term)
+                }
+                
+                if let schedule = initialSchedule, schedule.classList.count == 1 {
+                    scheduleList.schedules.remove(element: initialSchedule)
+                }
+                
+                newSchedule.classList.append(course)
+                scheduleList.schedules.append(newSchedule)
+            }
+            if let root = navigationController?.viewControllers.first as? MainTableViewController {
+                root.storage.scheduleList = scheduleList
+            }
+            
+            navigationController?.popViewController(animated: true)
+            
+            return
         }
         
         // remove oldSchedule and replace with same schedule but without the initial course
@@ -315,6 +389,7 @@ class ClassCreateController: FormViewController {
         
         navigationController?.popViewController(animated: true)
     }
+    
 }
 
 

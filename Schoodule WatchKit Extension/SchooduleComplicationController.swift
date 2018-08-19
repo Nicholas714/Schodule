@@ -41,6 +41,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         var complicationType: ComplicationStore.PeriodComplication = .blank
         var dateProvider: CLKRelativeDateTextProvider? = nil
         var courseProvider: Course? = nil
+        var location: String? = nil
         
         if let date = date {
             if let period = storage.scheduleList.classFrom(date: date) {
@@ -56,22 +57,25 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                     
                     dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .first
+                    location = nextClass.location
                     
                 } else if nextClassIndex == todaySchedule.count - 1 {
                     
                     dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .last
+                    location = nextClass.location
                     
                 } else {
                     
                     dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
                     complicationType = .next
+                    location = nextClass.location
                     
                 }
             }
         }
 
-        return ComplicationStore(family: complication.family, course: courseProvider, dateProvider: dateProvider, type: complicationType).template
+        return ComplicationStore(family: complication.family, course: courseProvider, dateProvider: dateProvider, location: location, type: complicationType).template
     }
     
     
@@ -106,7 +110,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // returns the sample template with default values when first installing complication
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        handler(ComplicationStore(family: complication.family, course: nil, dateProvider: nil, type: .placeholder).template)
+        handler(ComplicationStore(family: complication.family, course: nil, dateProvider: nil, location: "Location", type: .placeholder).template)
     }
     
     // returns the template for the current date
