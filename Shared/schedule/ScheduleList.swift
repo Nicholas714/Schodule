@@ -27,7 +27,7 @@ struct ScheduleList: Codable {
     }
     
     var todaySchedules: [Schedule] {
-        return getSchedulesIn(date: Date()).sorted()
+        return schedules.filter { $0.isScheduleIn(date: Date()) }.sorted()
     }
     
     var todayCourses: [Course] {
@@ -46,12 +46,6 @@ struct ScheduleList: Codable {
             }
         }
         return nil
-    }
-    
-    func getSchedulesIn(date: Date) -> [Schedule] {
-        return schedules.filter({ (schedule) -> Bool in
-            return schedule.isScheduleIn(date: date)
-        })
     }
     
     func remove(course: Course) {

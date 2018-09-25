@@ -29,7 +29,6 @@ class Storage {
         self.defaults = defaults
         
         loadScheudle()
-        print(scheduleList.todayCourses.count)
     }
     
     func saveSchedule() {
@@ -44,7 +43,7 @@ class Storage {
         let encoder = JSONEncoder()
 
         do {
-            return try encoder.encode(scheduleList.schedules)
+            return try encoder.encode(scheduleList)
         } catch {
             fatalError("Error loading schedules.")
         }
@@ -52,15 +51,13 @@ class Storage {
     
     func loadSchedule(data: Data) {
         loadedScheduleList.schedules.removeAll()
-
-        let decoder = JSONDecoder()
         
-        do {
-            for classList in try decoder.decode([Schedule].self, from: data) {
-                loadedScheduleList.schedules.append(classList)
-            }
-        } catch {
-            fatalError("Error decoding schedules.")
+        let decoder = JSONDecoder()
+
+        if let schedules = try? decoder.decode(ScheduleList.self, from: data) {
+            scheduleList = schedules
+        } else {
+            print("none.")
         }
     }
     
