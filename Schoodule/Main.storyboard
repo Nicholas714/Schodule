@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ldN-72-zR2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ldN-72-zR2">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +25,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-19-mly" customClass="GradientView" customModule="Schoodule" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-19-mly">
                                             <rect key="frame" x="20" y="5" width="335" height="73"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-37-Kaz">
@@ -91,44 +89,6 @@
                                                 <constraint firstItem="RUy-37-Kaz" firstAttribute="leading" secondItem="2vg-19-mly" secondAttribute="leading" id="ggO-YR-016"/>
                                                 <constraint firstAttribute="bottom" secondItem="RUy-37-Kaz" secondAttribute="bottom" id="zaQ-43-0vo"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                    <color key="value" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                    <color key="value" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="0.50214041095890416" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                                    <real key="value" value="3"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiuss">
-                                                    <real key="value" value="20"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.16470588235294117" green="0.18823529411764706" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -147,8 +107,6 @@
                                     <outlet property="courseName" destination="5I6-R4-Edm" id="6vk-Yt-ttZ"/>
                                     <outlet property="courseStartTime" destination="Qon-vc-i4I" id="RU1-rh-32V"/>
                                     <outlet property="courseTeacher" destination="Ydc-bC-5Nw" id="Igo-1Y-mNb"/>
-                                    <outlet property="gradientView" destination="2vg-19-mly" id="mmp-ow-sTo"/>
-                                    <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="QdR-Ul-tgB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -158,38 +116,54 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Schedules" largeTitleDisplayMode="always" id="D6o-d6-xQM">
-                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" systemItem="add" id="4Lk-Ts-yJN">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="7ah-qV-6a7" kind="show" identifier="ClassCreateSegue" id="UcH-RH-iIb"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" style="plain" systemItem="add" id="4Lk-Ts-yJN">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="addNewEvent:" destination="cXc-2f-czI" id="Aeg-qc-00h"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="bookmarks" id="3ZK-Io-gqV">
+                                <connections>
+                                    <segue destination="CWD-lV-IRH" kind="show" identifier="CalendarEventListViewController" id="Unc-Wd-kEZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHX-Jc-zFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="872.79999999999995" y="-219.45812807881774"/>
         </scene>
-        <!--Course-->
-        <scene sceneID="jNh-E7-G1U">
+        <!--Calendar Event List View Controller-->
+        <scene sceneID="9Se-wU-vj7">
             <objects>
-                <viewController storyboardIdentifier="ClassCreate" id="7ah-qV-6a7" customClass="ClassCreateController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aJX-WS-fOI">
+                <tableViewController id="CWD-lV-IRH" customClass="CalendarEventListViewController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cV1-Ot-qab">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ic7-qI-2cg"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Course" largeTitleDisplayMode="never" id="d4C-TG-ecY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DWb-f2-7SW">
-                            <connections>
-                                <action selector="save:" destination="7ah-qV-6a7" id="goa-fb-Yfa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DSi-rb-RHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" id="pLx-e9-yVl">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pLx-e9-yVl" id="KwQ-y3-7x6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="CWD-lV-IRH" id="5j9-zE-xbT"/>
+                            <outlet property="delegate" destination="CWD-lV-IRH" id="gE4-hh-GYy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="6ZL-2k-L0y"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fal-TJ-CBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="-219.45812807881774"/>
+            <point key="canvasLocation" x="1714" y="-219"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dN8-Th-VSm">
@@ -217,7 +191,4 @@
             <point key="canvasLocation" x="-69.599999999999994" y="-219.45812807881774"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="QdR-Ul-tgB"/>
-    </inferredMetricsTieBreakers>
 </document>

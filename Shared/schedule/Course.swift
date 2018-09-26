@@ -6,35 +6,31 @@
 //  Copyright © 2018 Nicholas Grana. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import EventKit
 
-struct Course: Equatable, Comparable, Codable {
+class Course: Equatable, Comparable, Codable {
     
-    private var uuid: UUID
+    var eventIdentifier: String
     
-    var name: String
-    var gradient: Gradient
-    var timeframe: Timeframe
-    var location: String?
-    var instructor: String?
+    lazy var event: EKEvent = {
+        return EKEventStore().event(withIdentifier: self.eventIdentifier)!
+    }()
     
-    init(name: String, gradient: Gradient, timeframe: Timeframe, teacher: String? = nil, location: String? = nil) {
-        self.name = name
-        self.gradient = gradient
-        self.timeframe = timeframe
-        self.instructor = teacher
-        self.location = location
-        
-        self.uuid = UUID()
+    var name: String {
+        return event.title 
+    }
+    
+    init(eventIdentifier: String) {
+        self.eventIdentifier = eventIdentifier
     }
     
     static func ==(lhs: Course, rhs: Course) -> Bool {
-        return lhs.uuid == rhs.uuid
+        return lhs.eventIdentifier == rhs.eventIdentifier
     }
     
     static func <(lhs: Course, rhs: Course) -> Bool {
-        return lhs.timeframe.start < rhs.timeframe.start 
+        return lhs.event.startDate < rhs.event.startDate
     }
     
 }

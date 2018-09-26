@@ -25,15 +25,15 @@ class ConnectivityController: NSObject {
         
         sendRefreshRequest(type: "refreshRequest", replyHandler: { (period) in
             print("watch: i got it")
-            let pastScheduleList = ExtensionDelegate.storage.scheduleList
+            let pastSchedule = ExtensionDelegate.storage.schedule
             
             let decoder = JSONDecoder()
 
-            if let schedules = try? decoder.decode(ScheduleList.self, from: period["courses"] as! Data) {
-                ExtensionDelegate.storage.scheduleList = schedules
+            if let schedule = try? decoder.decode(Schedule.self, from: period["courses"] as! Data) {
+                ExtensionDelegate.storage.schedule = schedule
             }
             
-            if ExtensionDelegate.storage.scheduleList.schedules != pastScheduleList.schedules {
+            if ExtensionDelegate.storage.schedule != pastSchedule {
                 ExtensionDelegate.storage.saveSchedule()
                 DispatchQueue.main.async {
                     print("asyc create table")

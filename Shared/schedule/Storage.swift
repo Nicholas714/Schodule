@@ -8,18 +8,23 @@
 
 import Foundation
 
-class Storage {
+class Storage: Equatable {
+    
+    static func == (lhs: Storage, rhs: Storage) -> Bool {
+        return lhs.loadedSchedule == rhs.loadedSchedule
+    }
+    
 
-    private var loadedScheduleList = ScheduleList()
+    private var loadedSchedule = Schedule()
 
     var defaults: UserDefaults
 
-    var scheduleList: ScheduleList {
+    var schedule: Schedule {
         get {
-            return loadedScheduleList
+            return loadedSchedule
         }
         set {
-            loadedScheduleList = newValue
+            loadedSchedule = newValue
             print("schedule has been set")
             saveSchedule()
         }
@@ -32,7 +37,7 @@ class Storage {
     }
     
     func saveSchedule() {
-        defaults.setValue(encoded, forKey: "schedules")
+        defaults.setValue(encoded, forKey: "schedule")
     }
     
     var transfer: [String: Data] {
@@ -43,19 +48,17 @@ class Storage {
         let encoder = JSONEncoder()
 
         do {
-            return try encoder.encode(scheduleList)
+            return try encoder.encode(schedule)
         } catch {
             fatalError("Error loading schedules.")
         }
     }
     
     func loadSchedule(data: Data) {
-        loadedScheduleList.schedules.removeAll()
-        
         let decoder = JSONDecoder()
 
-        if let schedules = try? decoder.decode(ScheduleList.self, from: data) {
-            scheduleList = schedules
+        if let schedule = try? decoder.decode(Schedule.self, from: data) {
+            self.schedule = schedule
         } else {
             print("none.")
         }
@@ -63,9 +66,11 @@ class Storage {
     
     private func loadScheudle() {
         print("INITIAL LOADING")
-        if let data = defaults.value(forKey: "schedules") as? Data {
+        if let data = defaults.value(forKey: "schedule") as? Data {
             loadSchedule(data: data)
         }
     }
+    
+    
     
 }

@@ -6,66 +6,41 @@
 //  Copyright © 2018 Nicholas Grana. All rights reserved.
 //
 
-import Foundation
+import EventKit
 
-struct Schedule: Codable {
-    
-    var classList = [Course]() {
-        didSet {
-            print("classList set")
-            classList.sort()
-        }
-    }
-    
-    private var _scheduleType: ScheduleConstraintType
-    
-    var scheduleType: ScheduleType {
-        get {
-            switch _scheduleType {
-            case .repeating(let repeating):
-                return repeating
-            case .alternatingEven(let alternatingEven):
-                return alternatingEven
-            case .alternatingOdd(let alternatingOdd):
-                return alternatingOdd
-            case .specificDay(let alternatingOdd):
-                return alternatingOdd
-            case .everyday(let everyday):
-                return everyday
-            case .weekdays(let weekdays):
-                return weekdays
-            }
-        }
-        set {
-            _scheduleType = ScheduleConstraintType(newValue)
-        }
-    }
-    
-    var term: Term
-    
-    var title: String {
-        return "\(scheduleType.title)"
-    }
-    
-    init(scheduleType: ScheduleType, term: Term) {
-        self._scheduleType = ScheduleConstraintType(scheduleType)
-        self.term = term
-    }
-    
-    func isScheduleIn(date: Date) -> Bool {
-        return term.isInConstraint(date) && scheduleType.isInConstraint(date)
-    }
-    
-}
-
-extension Schedule: Equatable, Comparable {
-    
-    static func < (lhs: Schedule, rhs: Schedule) -> Bool {
-        return lhs.term.start < rhs.term.start
-    }
+class Schedule: Codable, Equatable {
     
     static func ==(lhs: Schedule, rhs: Schedule) -> Bool {
-        return lhs.title == rhs.title && lhs.term == rhs.term
+        return lhs.courses == rhs.courses
+    }
+    
+    var courses = [Course]() {
+        didSet {
+            print("classList set")
+            courses.sort()
+        }
+    }
+    
+    var todayCourses: [Course] { 
+        let calendar = Calendar.current
+        let now = Date()
+        let start = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: now)!
+        let end = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: now)!
+        let predicate = EKEventStore().predicateForEvents(withStart: start, end: end, calendars: nil)
+        print(courses)
+        return EKEventStore().events(matching: predicate).map { Course(eventIdentifier: $0.eventIdentifier) }.filter { courses.contains($0) }
+    }
+    
+    func classFrom(date: Date) -> Course? {
+        return todayCourses.first { (course) -> Bool in
+            return date <= course.event.endDate && date >= course.event.startDate
+        }
+    }
+    
+    func nextClassFrom(date: Date) -> Course? {
+        return todayCourses.first { (course) -> Bool in
+            return date < course.event.startDate
+        }
     }
     
 }

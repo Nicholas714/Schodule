@@ -85,7 +85,7 @@ struct ComplicationStore {
             return nil
         }
         
-        template.tintColor = course?.gradient.lightColor 
+        template.tintColor = UIColor.green //course?.gradient.lightColor
     
         if let template = template as? CLKComplicationTemplateCircularSmallStackText {
             
@@ -105,7 +105,7 @@ struct ComplicationStore {
             template.headerTextProvider = periodNameProvider
             template.body1TextProvider = dateTextProvider
             
-            if let location = course?.location {
+            if let location = course?.event.location {
                 template.body2TextProvider = CLKSimpleTextProvider(text: location)
             } else {
                 if let location = location {
@@ -137,7 +137,7 @@ struct ComplicationStore {
             template.textProvider = periodNameProvider
             let gauge = CLKComplicationTemplateGraphicCircularClosedGaugeText()
             gauge.centerTextProvider = dateTextProvider
-            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: course?.timeframe.start.date ?? Date(), end: course?.timeframe.end.date ?? Date().addingTimeInterval(60 * 60))
+            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: course?.event.startDate ?? Date(), end: course?.event.endDate ?? Date().addingTimeInterval(60 * 60))
             template.circularTemplate = gauge
             
         } else if let template = template as? CLKComplicationTemplateGraphicCornerStackText {

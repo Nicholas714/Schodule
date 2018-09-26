@@ -17,21 +17,19 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     var todaySchedule: [Course] {
-        return storage.scheduleList.todayCourses
+        return storage.schedule.todayCourses
     }
     
     var sortedSchedule: [Course] {
         return todaySchedule.sorted()
     }
     
-    // shorthand for first period time of the day
     var scheduleStart: Date? {
-        return sortedSchedule.first?.timeframe.start.date//.addingTimeInterval(initialClassWarning)
+        return sortedSchedule.first?.event.startDate
     }
     
-    // shorthand for last period time of the day
     var scheduleEnd: Date? {
-        return sortedSchedule.last?.timeframe.end.date
+        return sortedSchedule.last?.event.endDate
     }
     
     // given a date and compliation type, this will send back the current complication template
@@ -44,32 +42,32 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         var location: String? = nil
         
         if let date = date {
-            if let period = storage.scheduleList.classFrom(date: date) {
+            if let course = storage.schedule.classFrom(date: date) {
                 
-                dateProvider = CLKRelativeDateTextProvider(date: period.timeframe.end.date, style: .naturalAbbreviated, units: [.minute, .hour])
-                courseProvider = period
+                dateProvider = CLKRelativeDateTextProvider(date: course.event.endDate, style: .naturalAbbreviated, units: [.minute, .hour])
+                courseProvider = course
                 complicationType = .current
                 
-            } else if let nextClass = storage.scheduleList.nextClassFrom(date: date) {
+            } else if let nextClass = storage.schedule.nextClassFrom(date: date) {
                 let nextClassIndex = sortedSchedule.firstIndex(of: nextClass)
                 
                 if nextClassIndex == 0 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.event.startDate, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .first
-                    location = nextClass.location
+                    location = nextClass.event.location
                     
                 } else if nextClassIndex == todaySchedule.count - 1 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.event.startDate, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .last
-                    location = nextClass.location
+                    location = nextClass.event.location
                     
                 } else {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.event.startDate, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .next
-                    location = nextClass.location
+                    location = nextClass.event.location
                     
                 }
             }
@@ -120,8 +118,8 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         let now = Date()
 
         if let template = complicationTemplate(complication, from: now), let end = scheduleEnd, let start = scheduleStart, now > start && now < end {
-            if let period = storage.scheduleList.classFrom(date: Date()) {
-                handler(CLKComplicationTimelineEntry(date: period.timeframe.start.date, complicationTemplate: template))
+            if let course = storage.schedule.classFrom(date: Date()) {
+                handler(CLKComplicationTimelineEntry(date: course.event.startDate, complicationTemplate: template))
             } else {
                 handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
             }
@@ -158,15 +156,15 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         }
         
         for course in sortedSchedule {
-            let current = storage.scheduleList.classFrom(date: Date())
+            let current = storage.schedule.classFrom(date: Date())
             
-            if let template = complicationTemplate(complication, from: course.timeframe.start.date) {
-                if (!comparision(date, course.timeframe.start.date) && !comparision(date, course.timeframe.end.date)) {
+            if let template = complicationTemplate(complication, from: course.event.startDate) {
+                if (!comparision(date, course.event.startDate) && !comparision(date, course.event.endDate)) {
 
                     if sendNext && current == course {
-                        if scheduleEnd != course.timeframe.end.date {
+                        if scheduleEnd != course.event.endDate {
                             // do not add class, but add next class entry
-                            let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: course.timeframe.end.date, complicationTemplate: complicationTemplate(complication, from: course.timeframe.end.date.addingTimeInterval(5))!)
+                            let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: course.event.endDate, complicationTemplate: complicationTemplate(complication, from: course.event.endDate.addingTimeInterval(5))!)
                             timelineEntires.append(nextClassTimelineEntry)
                         }
                     }
@@ -176,12 +174,12 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 
                 let timelineEntry: CLKComplicationTimelineEntry
                 
-                timelineEntry = CLKComplicationTimelineEntry(date: course.timeframe.start.date, complicationTemplate: template)
+                timelineEntry = CLKComplicationTimelineEntry(date: course.event.startDate, complicationTemplate: template)
                 timelineEntires.append(timelineEntry)
                 
                 // if not the last class, put an entry to tell the time until the next class
-                if scheduleEnd != course.timeframe.end.date {
-                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: course.timeframe.end.date, complicationTemplate: complicationTemplate(complication, from: course.timeframe.end.date.addingTimeInterval(5))!)
+                if scheduleEnd != course.event.endDate {
+                    let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: course.event.endDate, complicationTemplate: complicationTemplate(complication, from: course.event.endDate.addingTimeInterval(5))!)
                     timelineEntires.append(nextClassTimelineEntry)
                 }
             } else {

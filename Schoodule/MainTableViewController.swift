@@ -8,6 +8,8 @@
 
 import UIKit
 import WatchConnectivity
+import EventKit
+import EventKitUI
 
 class MainTableViewController: UITableViewController {
     
@@ -31,23 +33,9 @@ class MainTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "ClassCreateSegue":
-            if let destination = segue.destination as? ClassCreateController {
-                destination.scheduleList = storage.scheduleList
-
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let scheduleIndex = indexPath.section - 1
-                    let courseIndex = indexPath.row
-                    
-                    if scheduleIndex == -1 {
-                        let entry = storage.scheduleList.todayCourseEntries[courseIndex]
-                        destination.initialCourse = entry.0
-                        destination.initialSchedule = entry.1
-                    } else {
-                        destination.initialSchedule = storage.scheduleList.schedules[scheduleIndex]
-                        destination.initialCourse = destination.initialSchedule!.classList[courseIndex]
-                    }
-                }
+        case "CalendarEventListViewController":
+            if let destination = segue.destination as? CalendarEventListViewController {
+                destination.storage = storage
             }
         default:
             return
@@ -55,45 +43,20 @@ class MainTableViewController: UITableViewController {
         
     }
     
-    @IBAction func clearAll(_ sender: UIBarButtonItem) {
-        storage.scheduleList = ScheduleList()
-        tableView.reloadData()
+    @IBAction func addNewEvent(_ sender: UIBarButtonItem) {
+        let editEventViewController = EKEventEditViewController()
+        editEventViewController.event = EKEvent(eventStore: EKEventStore())
+        editEventViewController.editViewDelegate = self
+        self.present(editEventViewController, animated: true, completion: nil)
     }
 }
 
 extension MainTableViewController {
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let schedule: Schedule?
-        switch section {
-        case 0:
-            schedule = nil
-        case 1:
-            schedule = storage.scheduleList.schedules.isEmpty ? nil : storage.scheduleList.schedules[section - 1]
-        case _:
-            schedule = storage.scheduleList.schedules[section - 1]
-        }
-        
-        let header = UINib(nibName: "ScheduleHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? ScheduleHeaderView
-        header?.schedule = schedule
-        return header
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")! as! CourseCell
         
-        let course: Course
-        if indexPath.section == 0 {
-            course = storage.scheduleList.todayCourses[indexPath.row]
-        } else {
-            course = storage.scheduleList.schedules[indexPath.section - 1].classList[indexPath.row]
-        }
-        
-        cell.course = course
+        cell.course = storage.schedule.todayCourses[indexPath.row]
         
         return cell
     }
@@ -103,16 +66,11 @@ extension MainTableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return storage.scheduleList.schedules.isEmpty ? 2 : storage.scheduleList.schedules.count + 1
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return storage.scheduleList.todayCourses.count
-        case _:
-            return storage.scheduleList.schedules.isEmpty ? 0 : storage.scheduleList.schedules[section - 1].classList.count
-        }
+        return storage.schedule.todayCourses.count
     }
     
 }
@@ -155,4 +113,12 @@ extension MainTableViewController: WCSessionDelegate {
             }
         }
     }
+}
+
+extension MainTableViewController: EKEventEditViewDelegate {
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        print(action.rawValue)
+    }
+    
 }
