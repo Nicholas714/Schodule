@@ -46,7 +46,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         if let date = date {
             if let period = storage.scheduleList.classFrom(date: date) {
                 
-                dateProvider = CLKRelativeDateTextProvider(date: period.timeframe.end.date, style: .natural, units: [.minute, .hour])
+                dateProvider = CLKRelativeDateTextProvider(date: period.timeframe.end.date, style: .naturalAbbreviated, units: [.minute, .hour])
                 courseProvider = period
                 complicationType = .current
                 
@@ -55,19 +55,19 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
                 
                 if nextClassIndex == 0 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .first
                     location = nextClass.location
                     
                 } else if nextClassIndex == todaySchedule.count - 1 {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .last
                     location = nextClass.location
                     
                 } else {
                     
-                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .natural, units: [.minute, .hour])
+                    dateProvider = CLKRelativeDateTextProvider(date: nextClass.timeframe.start.date, style: .naturalAbbreviated, units: [.minute, .hour])
                     complicationType = .next
                     location = nextClass.location
                     

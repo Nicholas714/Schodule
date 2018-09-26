@@ -22,11 +22,19 @@ struct ComplicationStore {
     static var familyTemplates: Dictionary<CLKComplicationFamily, CLKComplicationTemplate> = [
         .circularSmall: CLKComplicationTemplateCircularSmallStackText(),
         .extraLarge: CLKComplicationTemplateExtraLargeStackText(),
+        
         .modularLarge: CLKComplicationTemplateModularLargeStandardBody(),
         .modularSmall: CLKComplicationTemplateModularSmallStackText(),
+        
         .utilitarianLarge: CLKComplicationTemplateUtilitarianLargeFlat(),
         .utilitarianSmall: CLKComplicationTemplateUtilitarianSmallFlat(),
-        .utilitarianSmallFlat: CLKComplicationTemplateUtilitarianSmallFlat()
+        .utilitarianSmallFlat: CLKComplicationTemplateUtilitarianSmallFlat(),
+        
+        // TODO: implement
+        .graphicBezel: CLKComplicationTemplateGraphicBezelCircularText(),
+        //.graphicCorner: CLKComplicationTemplateGraphicCornerStackText(),
+        //.graphicCircular: CLKComplicationTemplateGraphicCircularClosedGaugeText(),
+        //.graphicRectangular: CLKComplicationTemplateGraphicRectangularStandardBody()
     ]
     
     var family: CLKComplicationFamily
@@ -122,6 +130,27 @@ struct ComplicationStore {
 
             // utilitarianSmall with only the time
             template.textProvider = dateTextProvider
+            
+        } else if let template = template as? CLKComplicationTemplateGraphicBezelCircularText {
+            
+            // TODO: implement
+            template.textProvider = periodNameProvider
+            let gauge = CLKComplicationTemplateGraphicCircularClosedGaugeText()
+            gauge.centerTextProvider = dateTextProvider
+            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: course?.timeframe.start.date ?? Date(), end: course?.timeframe.end.date ?? Date().addingTimeInterval(60 * 60))
+            template.circularTemplate = gauge
+            
+        } else if let template = template as? CLKComplicationTemplateGraphicCornerStackText {
+            
+            // TODO: implement
+            
+        } else if let template = template as? CLKComplicationTemplateGraphicCircularClosedGaugeText {
+            
+            
+            
+        } else if let template = template as? CLKComplicationTemplateGraphicRectangularStandardBody {
+            
+            // TODO: implement
             
         }
         
