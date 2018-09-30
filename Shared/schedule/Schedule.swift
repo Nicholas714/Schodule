@@ -16,6 +16,9 @@ class Schedule: Codable, Equatable {
     
     var courses = [Course]() {
         didSet {
+            
+            courses = courses.filter { EKEventStore().event(withIdentifier: $0.eventIdentifier) != nil }
+            
             print("classList set")
             courses.sort()
         }
