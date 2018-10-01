@@ -56,13 +56,13 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")! as! CourseCell
         
-        cell.course = storage.schedule.todayCourses[indexPath.row]
+        cell.event = storage.schedule.todayCourses[indexPath.row].event 
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 80
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

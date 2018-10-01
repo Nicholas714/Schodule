@@ -16,22 +16,18 @@ class Schedule: Codable, Equatable {
     
     var courses = [Course]() {
         didSet {
-            
-            courses = courses.filter { EKEventStore().event(withIdentifier: $0.eventIdentifier) != nil }
-            
-            print("classList set")
             courses.sort()
         }
     }
     
-    var todayCourses: [Course] { 
-        let calendar = Calendar.current
-        let now = Date()
-        let start = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: now)!
-        let end = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: now)!
-        let predicate = EKEventStore().predicateForEvents(withStart: start, end: end, calendars: nil)
-        print(courses)
-        return EKEventStore().events(matching: predicate).map { Course(eventIdentifier: $0.eventIdentifier) }.filter { courses.contains($0) }
+    var todayCourses: [Course] {
+        var todayCourses = [Course]()
+        for course in courses {
+            if course.eventsForDate(date: Date()).title != "" {
+                todayCourses.append(course)
+            }
+        }
+        return todayCourses
     }
     
     func classFrom(date: Date) -> Course? {

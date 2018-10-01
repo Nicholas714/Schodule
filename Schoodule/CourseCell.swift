@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 class CourseCell: UITableViewCell {
     
@@ -16,17 +17,17 @@ class CourseCell: UITableViewCell {
     @IBOutlet weak var courseTeacher: UILabel!
     @IBOutlet weak var courseLocation: UILabel!
     
-    var course: Course? {
+    var event: EKEvent? {
         didSet {
-            guard let course = course else {
+            guard let event = event else {
                 return
             }
             
-            courseName.text = course.name
-            courseStartTime.text = course.event.startDate.timeString
-            courseEndTime.text = course.event.endDate.timeString
-            courseTeacher.text = course.event.notes ?? ""
-            courseLocation.text = course.event.location ?? ""
+            courseName.text = event.title 
+            courseStartTime.text = event.startDate.timeString
+            courseEndTime.text = event.endDate.timeString
+            courseTeacher.text = event.notes ?? ""
+            courseLocation.text = event.location ?? ""
         }
     }
     

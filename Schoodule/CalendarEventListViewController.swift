@@ -26,12 +26,17 @@ class CalendarEventListViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         requestAccess {
-            let year = 3.15576e7
+            let year: TimeInterval = 604800
             let predicate = self.eventStore.predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
             
-            let foundEvents = Set(self.eventStore.events(matching: predicate).filter { !self.storage.schedule.courses.contains(Course(eventIdentifier: $0.eventIdentifier)) }.map { $0.eventIdentifier! })
-            self.events = foundEvents.map { self.eventStore.event(withIdentifier: $0)! }
-            print("\(foundEvents.count) to \(self.events.count)")
+            let es = self.eventStore.events(matching: predicate)
+            let found = Set(es.map { $0.title }).map({ (value) -> EKEvent in
+                return es.first(where: { (event) -> Bool in
+                    return event.title == value
+                }) ?? EKEvent()
+            })
+            
+            self.events = found
         }
     }
     
@@ -62,9 +67,11 @@ extension CalendarEventListViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newCourse = Course(eventIdentifier: events[indexPath.row].eventIdentifier!)
-        if !storage.schedule.courses.contains(newCourse) {
-            storage.schedule.courses.append(newCourse)
+        let event = events[indexPath.row]
+                
+        let course = Course(name: event.title!)
+        if !storage.schedule.courses.contains(course) {
+                storage.schedule.courses.append(course)
         }
         storage.saveSchedule()
     }
