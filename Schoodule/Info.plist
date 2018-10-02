@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSContactsUsageDescription</key>
+	<string>Assign an event to attendees which are found in your contacts</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to conveniently set the location of the event to where you are</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Access and edit courses inside your calendar</string>
 	<key>CFBundleDevelopmentRegion</key>

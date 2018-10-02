@@ -11,7 +11,7 @@ import WatchConnectivity
 import EventKit
 import EventKitUI
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: BubbleTableViewController {
     
     var storage = Storage(defaults: UserDefaults())
     var session: WCSession? = nil
@@ -24,6 +24,8 @@ class MainTableViewController: UITableViewController {
             session?.delegate = self
             session?.activate()
         }
+        
+        events = storage.schedule.todayCourses.map { $0.event }
         
         tableView.reloadData()
         
@@ -45,34 +47,14 @@ class MainTableViewController: UITableViewController {
     
     @IBAction func addNewEvent(_ sender: UIBarButtonItem) {
         let editEventViewController = EKEventEditViewController()
-        editEventViewController.event = EKEvent(eventStore: EKEventStore())
+        let event = EKEvent(eventStore: Course.eventStore)
+        editEventViewController.eventStore = Course.eventStore
+        // TODO: change calendar to Schoodule?
+        event.calendar = Course.eventStore.defaultCalendarForNewEvents
+        editEventViewController.event = event
         editEventViewController.editViewDelegate = self
         self.present(editEventViewController, animated: true, completion: nil)
     }
-}
-
-extension MainTableViewController {
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell")! as! CourseCell
-        
-        cell.event = storage.schedule.todayCourses[indexPath.row].event 
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storage.schedule.todayCourses.count
-    }
-    
 }
 
 extension MainTableViewController: WCSessionDelegate {
@@ -118,7 +100,29 @@ extension MainTableViewController: WCSessionDelegate {
 extension MainTableViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-        print(action.rawValue)
+        switch action {
+        case .deleted:
+            if let event = controller.event {
+                if let indexToRemove = storage.schedule.courses.firstIndex(of: Course(name: event.title)) {
+                    storage.schedule.courses.remove(at: indexToRemove)
+                    storage.saveSchedule()
+                }
+            }
+            
+            controller.dismiss(animated: true, completion: nil)
+        case .saved:
+            if let event = controller.event {
+                let course = Course(name: event.title!)
+                if !storage.schedule.courses.contains(course) {
+                    storage.schedule.courses.append(course)
+                }
+                storage.saveSchedule()
+            }
+            
+            controller.dismiss(animated: true, completion: nil)
+        default:
+            controller.dismiss(animated: true, completion: nil)
+        }
     }
     
 }

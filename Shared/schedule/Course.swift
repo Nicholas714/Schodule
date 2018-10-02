@@ -11,26 +11,33 @@ import EventKit
 
 class Course: Equatable, Comparable, Codable {
     
+    static var eventStore = EKEventStore()
+    
+    static var events: [EKEvent]!
+    
     static func == (lhs: Course, rhs: Course) -> Bool {
         return lhs.name == rhs.name
     }
     
     lazy var events: [EKEvent] = {
-        let year = 3.15576e7
-        let predicate = EKEventStore().predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
+        if Course.events == nil {
+            let year: TimeInterval = 3.15576e7
+            let predicate = Course.eventStore.predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
+            print("looking...")
+            Course.events = Course.eventStore.events(matching: predicate)
+        }
         
-        let foundEvents = EKEventStore().events(matching: predicate)
-        return foundEvents.filter { $0.title == self.name }
+        return Course.events.filter { $0.title == self.name }
     }()
     
-    var event: EKEvent {
+    lazy var event: EKEvent = {
         return eventsForDate(date: Date())
-    }
+    }()
     
     var name: String
     
     init(name: String) {
-        self.name = name 
+        self.name = name
     }
     
     func eventsForDate(date: Date) -> EKEvent {
@@ -47,9 +54,9 @@ class Course: Equatable, Comparable, Codable {
     }
     
     func blankEvent() -> EKEvent {
-        let newEvent = EKEvent(eventStore: EKEventStore())
+        let newEvent = EKEvent(eventStore: Course.eventStore)
         
-        newEvent.calendar = EKEventStore().defaultCalendarForNewEvents!
+        newEvent.calendar = Course.eventStore.defaultCalendarForNewEvents!
         newEvent.title = ""
         newEvent.startDate = Date().addingTimeInterval(-1000000)
         newEvent.endDate = Date().addingTimeInterval(-1000000)
@@ -58,3 +65,5 @@ class Course: Equatable, Comparable, Codable {
     }
     
 }
+
+

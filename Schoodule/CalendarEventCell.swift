@@ -1,5 +1,5 @@
 //
-//  CourseCell.swift
+//  CalendarEventCell
 //  Schoodule
 //
 //  Created by Nicholas Grana on 8/1/18.
@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class CourseCell: UITableViewCell {
+class CalendarEventCell: UITableViewCell {
     
     @IBOutlet weak var courseName: UILabel!
     @IBOutlet weak var courseStartTime: UILabel!
