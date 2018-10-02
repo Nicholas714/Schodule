@@ -25,7 +25,7 @@ class MainTableViewController: BubbleTableViewController {
             session?.activate()
         }
         
-        events = storage.schedule.todayCourses.map { $0.event }
+        courses = storage.schedule.todayCourses
         
         tableView.reloadData()
         

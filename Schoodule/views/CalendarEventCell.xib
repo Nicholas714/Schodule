@@ -100,6 +100,7 @@
                 <outlet property="courseName" destination="vi7-vz-6eM" id="6SY-l8-Cn4"/>
                 <outlet property="courseStartTime" destination="arm-sX-fv7" id="dnF-19-lO4"/>
                 <outlet property="courseTeacher" destination="dCH-Oi-fIT" id="YeI-nZ-oCP"/>
+                <outlet property="eventBackgroundView" destination="DIv-Oi-liT" id="Wdt-5q-p2k"/>
             </connections>
         </tableViewCell>
     </objects>

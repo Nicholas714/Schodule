@@ -11,7 +11,15 @@ import EventKit
 
 class BubbleTableViewController: UITableViewController {
     
-    var events = [EKEvent]() {
+    var events: [EKEvent]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    var courses: [Course]? {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -29,7 +37,11 @@ class BubbleTableViewController: UITableViewController {
         
         let eventCell = cell as! CalendarEventCell
         
-        eventCell.event = events[indexPath.row]
+        if let courses = courses {
+            eventCell.course = courses[indexPath.row]
+        } else if let events = events {
+            eventCell.event = events[indexPath.row]
+        }
         
         return eventCell
     }
@@ -43,7 +55,7 @@ class BubbleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return courses?.count ?? events?.count ?? 0 
     }
 
 }

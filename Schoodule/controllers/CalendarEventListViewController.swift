@@ -44,13 +44,26 @@ class CalendarEventListViewController: BubbleTableViewController {
 extension CalendarEventListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event = events[indexPath.row]
-                
-        let course = Course(name: event.title!)
-        if !storage.schedule.courses.contains(course) {
-                storage.schedule.courses.append(course)
+        if events == nil && courses == nil {
+            return
         }
-        storage.saveSchedule()
+        
+        if let courses = courses {
+            let course = courses[indexPath.row]
+            
+            print("selected a course")
+            
+            // TODO: when click on courses
+        } else if let events = events {
+            let event = events[indexPath.row]
+            
+            let course = Course(name: event.title!, color: (tableView.cellForRow(at: indexPath) as? CalendarEventCell)?.color)
+            if !storage.schedule.courses.contains(course) {
+                storage.schedule.courses.append(course)
+            }
+            storage.saveSchedule()
+        }
+        
     }
     
 }
