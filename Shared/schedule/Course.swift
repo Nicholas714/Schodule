@@ -11,61 +11,56 @@ import EventKit
 
 // TODO: go through each event, and convert all events into CourseEvent which this will store as a list
 
-class Course: Equatable, Comparable, Codable {
+class Course: Equatable, Codable {
     
-    static var eventStore = EKEventStore()
-    
-    static var events: [EKEvent]!
-    
-    static func == (lhs: Course, rhs: Course) -> Bool {
-        return lhs.name == rhs.name
-    }
-    
-    lazy var events: [EKEvent] = {
-        if Course.events == nil {
-            let year: TimeInterval = 3.15576e7
-            let predicate = Course.eventStore.predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
-            print("looking...")
-            Course.events = Course.eventStore.events(matching: predicate)
-        }
-        
-        return Course.events.filter { $0.title == self.name }
-    }()
-    
-    lazy var event: EKEvent = {
+    var todayEvents: [Event] {
         return eventsForDate(date: Date())
-    }()
+    }
     
     var color: Color
     var name: String
+    var events = [Event]()
     
-    init(name: String, color: Color? = nil) {
-        self.name = name
-        self.color = color ?? Color.randomBackground
+    init(event: EKEvent, color: Color) {
+        self.name = event.title
+        self.color = color
     }
     
-    func eventsForDate(date: Date) -> EKEvent {
+    func eventsForDate(date: Date) -> [Event] {
+        var dateEvents = [Event]()
+        let today = Date()
+        
         for event in events {
-            if event.startDate.dayString == date.dayString {
-                return event
+            if date.areComponenetsEqual(componenets: [.day, .month, .weekday], with: today) {
+                dateEvents.append(event)
             }
         }
-        return blankEvent()
+        
+        return dateEvents
     }
     
-    static func <(lhs: Course, rhs: Course) -> Bool {
-        return lhs.event.startDate < rhs.event.startDate
+    static func ==(lhs: Course, rhs: Course) -> Bool {
+        return lhs.name == rhs.name
     }
     
-    func blankEvent() -> EKEvent {
-        let newEvent = EKEvent(eventStore: Course.eventStore)
-        
-        newEvent.calendar = Course.eventStore.defaultCalendarForNewEvents!
-        newEvent.title = ""
-        newEvent.startDate = Date().addingTimeInterval(-1000000)
-        newEvent.endDate = Date().addingTimeInterval(-1000000)
-        
-        return newEvent
+}
+
+struct Event: Codable, Equatable, Comparable {
+    
+    let course: Course
+    let location: String
+    let startDate: Date
+    let endDate: Date
+    
+    init(course: Course, event: EKEvent) {
+        self.course = course
+        self.location = event.location ?? ""
+        self.startDate = event.startDate
+        self.endDate = event.endDate
+    }
+    
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        return lhs.startDate < rhs.startDate
     }
     
 }

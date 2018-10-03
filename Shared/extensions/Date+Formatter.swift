@@ -33,4 +33,13 @@ extension Date {
         return dayFormatter.string(from: self)
     }
     
+    func areComponenetsEqual(componenets: [Calendar.Component], with date: Date) -> Bool {
+        for componenet in componenets {
+            if Calendar.current.component(componenet, from: self) != Calendar.current.component(componenet, from: date) {
+                return false
+            }
+        }
+        return true 
+    }
+    
 }

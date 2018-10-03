@@ -14,7 +14,6 @@ class Storage: Equatable {
         return lhs.loadedSchedule == rhs.loadedSchedule
     }
     
-
     private var loadedSchedule = Schedule()
 
     var defaults: UserDefaults

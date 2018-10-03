@@ -21,6 +21,7 @@
 		435C0E6B211D373600FF03C6 /* TextHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435C0E6A211D373600FF03C6 /* TextHeaderView.xib */; };
 		435C0E6D211D37EA00FF03C6 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */; };
 		435CF07B211C992500288BE8 /* ScheduleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */; };
+		436754E9216509000074C4BD /* EKEvent+matchingName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436754E8216509000074C4BD /* EKEvent+matchingName.swift */; };
 		4392142C215927BD00ED49F4 /* SingleClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392142B215927BD00ED49F4 /* SingleClassViewController.swift */; };
 		4392142E2159297F00ED49F4 /* ScheduleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392142D2159297F00ED49F4 /* ScheduleTable.swift */; };
 		43BF69D2211A82BC00C9A8B4 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BF69D1211A82BC00C9A8B4 /* Interface.storyboard */; };
@@ -106,6 +107,7 @@
 		435C0E6A211D373600FF03C6 /* TextHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextHeaderView.xib; sourceTree = "<group>"; };
 		435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
 		435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleHeaderView.xib; sourceTree = "<group>"; };
+		436754E8216509000074C4BD /* EKEvent+matchingName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+matchingName.swift"; sourceTree = "<group>"; };
 		4392142B215927BD00ED49F4 /* SingleClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleClassViewController.swift; sourceTree = "<group>"; };
 		4392142D2159297F00ED49F4 /* ScheduleTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTable.swift; sourceTree = "<group>"; };
 		43BF69D1211A82BC00C9A8B4 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				43C3B80921011077003904E8 /* Date+Formatter.swift */,
+				436754E8216509000074C4BD /* EKEvent+matchingName.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */,
+				436754E9216509000074C4BD /* EKEvent+matchingName.swift in Sources */,
 				43D9B821215BEEDC00A30BAB /* CalendarEventListViewController.swift in Sources */,
 				43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */,
 				43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */,

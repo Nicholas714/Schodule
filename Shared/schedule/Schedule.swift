@@ -14,31 +14,21 @@ class Schedule: Codable, Equatable {
         return lhs.courses == rhs.courses
     }
     
-    var courses = [Course]() {
-        didSet {
-            courses.sort()
+    var courses = [Course]()
+    
+    var todayEvents: [Event] {
+        return courses.flatMap { $0.events }.sorted()
+    }
+    
+    func eventFrom(date: Date) -> Event? {
+        return todayEvents.first { (event) -> Bool in
+            return date <= event.endDate && date >= event.startDate
         }
     }
     
-    var todayCourses: [Course] {
-        var todayCourses = [Course]()
-        for course in courses {
-            if course.eventsForDate(date: Date()).title != "" {
-                todayCourses.append(course)
-            }
-        }
-        return todayCourses
-    }
-    
-    func classFrom(date: Date) -> Course? {
-        return todayCourses.first { (course) -> Bool in
-            return date <= course.event.endDate && date >= course.event.startDate
-        }
-    }
-    
-    func nextClassFrom(date: Date) -> Course? {
-        return todayCourses.first { (course) -> Bool in
-            return date < course.event.startDate
+    func nextClassFrom(date: Date) -> Event? {
+        return todayEvents.first { (event) -> Bool in
+            return date < event.startDate
         }
     }
     

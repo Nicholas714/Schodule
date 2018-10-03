@@ -85,7 +85,11 @@ struct ComplicationStore {
             return nil
         }
         
-        template.tintColor = UIColor.green //course?.gradient.lightColor
+        if let course = course {
+            template.tintColor = UIColor(color: course.color)
+        } else {
+            template.tintColor = UIColor(color: Color.randomBackground)
+        }
     
         if let template = template as? CLKComplicationTemplateCircularSmallStackText {
             

@@ -22,6 +22,8 @@ class CalendarEventCell: UITableViewCell {
         }
     }
     
+    var selectionCompletionHandler: (() -> ())? = nil
+    
     private lazy var randomColor: Color = {
         return Color.randomBackground
     }()
@@ -57,6 +59,12 @@ class CalendarEventCell: UITableViewCell {
             courseEndTime.text = event.endDate.timeString
             courseTeacher.text = event.notes ?? ""
             courseLocation.text = event.location ?? ""
+        }
+    }
+    
+    @IBAction func selected(_ sender: UITapGestureRecognizer) {
+        if let handler = selectionCompletionHandler {
+            handler()
         }
     }
     

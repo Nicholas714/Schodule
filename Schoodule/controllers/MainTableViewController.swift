@@ -25,7 +25,7 @@ class MainTableViewController: BubbleTableViewController {
             session?.activate()
         }
         
-        courses = storage.schedule.todayCourses
+        courses = storage.schedule.todayEvents.compactMap { $0.course }
         
         tableView.reloadData()
         
@@ -46,11 +46,13 @@ class MainTableViewController: BubbleTableViewController {
     }
     
     @IBAction func addNewEvent(_ sender: UIBarButtonItem) {
+        let store = EKEventStore()
+        
         let editEventViewController = EKEventEditViewController()
-        let event = EKEvent(eventStore: Course.eventStore)
-        editEventViewController.eventStore = Course.eventStore
+        let event = EKEvent(eventStore: store)
+        editEventViewController.eventStore = store
         // TODO: change calendar to Schoodule?
-        event.calendar = Course.eventStore.defaultCalendarForNewEvents
+        event.calendar = store.defaultCalendarForNewEvents
         editEventViewController.event = event
         editEventViewController.editViewDelegate = self
         self.present(editEventViewController, animated: true, completion: nil)
@@ -100,29 +102,29 @@ extension MainTableViewController: WCSessionDelegate {
 extension MainTableViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-        switch action {
-        case .deleted:
-            if let event = controller.event {
-                if let indexToRemove = storage.schedule.courses.firstIndex(of: Course(name: event.title)) {
-                    storage.schedule.courses.remove(at: indexToRemove)
-                    storage.saveSchedule()
-                }
-            }
-            
-            controller.dismiss(animated: true, completion: nil)
-        case .saved:
-            if let event = controller.event {
-                let course = Course(name: event.title!)
-                if !storage.schedule.courses.contains(course) {
-                    storage.schedule.courses.append(course)
-                }
-                storage.saveSchedule()
-            }
-            
-            controller.dismiss(animated: true, completion: nil)
-        default:
-            controller.dismiss(animated: true, completion: nil)
-        }
+//        switch action {
+//        case .deleted:
+//            if let event = controller.event {
+//                if let indexToRemove = storage.schedule.courses.firstIndex(of: Course(name: event.title)) {
+//                    storage.schedule.courses.remove(at: indexToRemove)
+//                    storage.saveSchedule()
+//                }
+//            }
+//
+//            controller.dismiss(animated: true, completion: nil)
+//        case .saved:
+//            if let event = controller.event {
+//                let course = Course(name: event.title!)
+//                if !storage.schedule.courses.contains(course) {
+//                    storage.schedule.courses.append(course)
+//                }
+//                storage.saveSchedule()
+//            }
+//
+//            controller.dismiss(animated: true, completion: nil)
+//        default:
+//            controller.dismiss(animated: true, completion: nil)
+//        }
     }
     
 }
