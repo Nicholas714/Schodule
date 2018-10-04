@@ -14,7 +14,7 @@ class CalendarEventListViewController: BubbleTableViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var storage: Storage!
-    let store = EKEventStore()
+    let store = EKEventStore.store
     
     var selectedPaths = [IndexPath]() {
         didSet {
@@ -111,7 +111,7 @@ class CalendarEventListViewController: BubbleTableViewController {
 }
 
 extension CalendarEventListViewController: UISearchResultsUpdating, UISearchControllerDelegate {
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
             return
@@ -126,13 +126,10 @@ extension CalendarEventListViewController: UISearchResultsUpdating, UISearchCont
         }
         
         entries = newEntries
-        
-        tableView.reloadData()
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
         entries = allEntries
-        tableView.reloadData()
     }
     
 }

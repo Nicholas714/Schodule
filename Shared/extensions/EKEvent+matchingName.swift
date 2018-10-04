@@ -10,6 +10,8 @@ import EventKit
 
 extension EKEventStore {
     
+    static var store = EKEventStore()
+    
     func allCoursesInCalendar() -> [Course] {
         let year: TimeInterval = 604800
         let predicate = predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
@@ -28,10 +30,19 @@ extension EKEventStore {
         return courses
     }
     
-    func eventsMatching(course: Course, in foundEvents: [EKEvent]) -> [Event] {
+    func eventsMatching(course: Course, in foundEvents: [EKEvent]?) -> [Event] {
         var events = [Event]()
+        var loopEvents: [EKEvent]
         
-        for event in foundEvents {
+        if foundEvents == nil {
+            let year: TimeInterval = 604800
+            let predicate = predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
+            loopEvents = self.events(matching: predicate)
+        } else {
+            loopEvents = foundEvents!
+        }
+        
+        for event in loopEvents {
             let newEvent = Event(event: event, color: course.color)
             if event.title == course.name {
                 events.append(newEvent)

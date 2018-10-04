@@ -25,16 +25,33 @@ class MainTableViewController: BubbleTableViewController {
             session?.activate()
         }
         
-        self.cellTapped = { cell in
+        self.cellTapped = { indexPath in
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? CalendarEventCell, let eventEntry = cell.entry as? EventBubbleEntry else {
+                return
+            }
+            
+            let event = EKEvent(eventStore: EKEventStore.store)
+            event.title = eventEntry.name
+            event.startDate = eventEntry.startDate
+            event.endDate = eventEntry.endDate
+            event.location = eventEntry.location
+            
+            self.editEvent(event: event)
             
         }
         
-        entries = storage.schedule.todayCourses.compactMap { EventBubbleEntry(course: $0, event: $0.events.first!) }
+        var found = [EventBubbleEntry]()
+        for todayCourse in storage.schedule.todayCourses {
+            for event in todayCourse.todayEvents {
+                found.append(EventBubbleEntry(course: todayCourse, event: event))
+            }
+        }
         
         tableView.reloadData()
         
         navigationController?.navigationBar.barTintColor = nil
-        navigationController?.navigationBar.isTranslucent = true 
+        navigationController?.navigationBar.isTranslucent = true
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,17 +68,23 @@ class MainTableViewController: BubbleTableViewController {
     }
     
     @IBAction func addNewEvent(_ sender: UIBarButtonItem) {
-        let store = EKEventStore()
-        
+        editEvent(event: nil)
+    }
+    
+    func editEvent(event editingEvent: EKEvent?) {
+        let event = editingEvent ?? EKEvent(eventStore: EKEventStore.store)
+        let store = EKEventStore.store
+
         let editEventViewController = EKEventEditViewController()
-        let event = EKEvent(eventStore: store)
         editEventViewController.eventStore = store
         // TODO: change calendar to Schoodule?
         event.calendar = store.defaultCalendarForNewEvents
         editEventViewController.event = event
         editEventViewController.editViewDelegate = self
+        
         self.present(editEventViewController, animated: true, completion: nil)
     }
+    
 }
 
 extension MainTableViewController: WCSessionDelegate {
@@ -107,29 +130,46 @@ extension MainTableViewController: WCSessionDelegate {
 extension MainTableViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-//        switch action {
-//        case .deleted:
-//            if let event = controller.event {
-//                if let indexToRemove = storage.schedule.courses.firstIndex(of: Course(name: event.title)) {
-//                    storage.schedule.courses.remove(at: indexToRemove)
-//                    storage.saveSchedule()
-//                }
-//            }
-//
-//            controller.dismiss(animated: true, completion: nil)
-//        case .saved:
-//            if let event = controller.event {
-//                let course = Course(name: event.title!)
-//                if !storage.schedule.courses.contains(course) {
-//                    storage.schedule.courses.append(course)
-//                }
-//                storage.saveSchedule()
-//            }
-//
-//            controller.dismiss(animated: true, completion: nil)
-//        default:
-//            controller.dismiss(animated: true, completion: nil)
-//        }
+        guard let event = controller.event else {
+            controller.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        switch action {
+        case .deleted:
+            if let course = storage.schedule.courses.first(where: { (course) -> Bool in
+                return course.name == event.title
+            }) {
+                if let index = storage.schedule.courses.firstIndex(of: course) {
+                    storage.schedule.courses.remove(at: index)
+                    storage.saveSchedule()
+                }
+            }
+            
+        case .saved:
+            if let course = storage.schedule.courses.first(where: { (course) -> Bool in
+                return course.name == event.title
+            }) {
+                if !storage.schedule.courses.contains(course) {
+                    storage.schedule.courses.append(course)
+                    storage.saveSchedule()
+                }
+            } else {
+                let course = Course(event: event, color: Color.randomBackground)
+                course.events = EKEventStore.store.eventsMatching(course: course, in: nil)
+                storage.schedule.courses.append(course)
+                storage.saveSchedule()
+                for todayEvent in course.todayEvents {
+                    entries.append(EventBubbleEntry(course: course, event: todayEvent))
+                }
+                entries.sort()
+            }
+            
+        default: break
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+        tableView.reloadData()
     }
     
 }

@@ -39,6 +39,11 @@ class BubbleEntry: Equatable, Comparable {
     }
     
     static func < (lhs: BubbleEntry, rhs: BubbleEntry) -> Bool {
+        if let lhsEvent = lhs as? EventBubbleEntry, let rhsEvent = rhs as? EventBubbleEntry {
+            print("\(lhsEvent.name) \(lhsEvent.startDate.dayString)")
+            print("date")
+            return lhsEvent.startDate < rhsEvent.startDate
+        }
         return lhs.sortPriority > rhs.sortPriority
     }
     
@@ -65,6 +70,5 @@ class EventBubbleEntry: BubbleEntry {
         eventCell.courseStartTime.text = startDate.timeString
         eventCell.courseEndTime.text = endDate.timeString
     }
-    
     
 }
