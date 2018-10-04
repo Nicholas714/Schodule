@@ -11,8 +11,12 @@ import EventKit
 
 class BubbleTableViewController: UITableViewController {
     
-    var courses: [Course]? {
+    var cellTapped: ((_ indexPath: IndexPath) -> ())? = nil
+    
+    var entries = [BubbleEntry]() {
         didSet {
+            entries.sort()
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -29,11 +33,20 @@ class BubbleTableViewController: UITableViewController {
         
         let eventCell = cell as! CalendarEventCell
         
-        if let courses = courses {
-            eventCell.course = courses[indexPath.row]
-        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapCell(_:)))
+        eventCell.addGestureRecognizer(tap)
+        
+        eventCell.entry = entries[indexPath.row]
         
         return eventCell
+    }
+    
+    @objc func tapCell(_ gesture: UITapGestureRecognizer) {
+        if let cellTapped = cellTapped {
+            if let cell = gesture.view as? CalendarEventCell, let indexPath = tableView.indexPath(for: cell) {
+                cellTapped(indexPath)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -45,7 +58,7 @@ class BubbleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courses?.count ?? 0
+        return entries.count
     }
-
+    
 }

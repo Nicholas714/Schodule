@@ -40,9 +40,6 @@
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="lY9-ze-86j" appends="YES" id="MoD-H9-usW"/>
-                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvn-BP-xXq">
                                 <rect key="frame" x="16" y="1.6666666666666665" width="148.33333333333331" height="20.333333333333332"/>
@@ -54,6 +51,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mr Grana" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-Oi-fIT">
                                 <rect key="frame" x="256" y="2" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -107,10 +105,5 @@
                 <outlet property="eventBackgroundView" destination="DIv-Oi-liT" id="Wdt-5q-p2k"/>
             </connections>
         </tableViewCell>
-        <tapGestureRecognizer id="lY9-ze-86j">
-            <connections>
-                <action selector="selected:" destination="P98-7C-65E" id="KHG-vj-UvP"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
 </document>

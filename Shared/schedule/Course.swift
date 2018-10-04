@@ -11,27 +11,26 @@ import EventKit
 
 // TODO: go through each event, and convert all events into CourseEvent which this will store as a list
 
-class Course: Equatable, Codable {
+class Course: Codable, Equatable {
     
     var todayEvents: [Event] {
         return eventsForDate(date: Date())
     }
     
-    var color: Color
     var name: String
+    var color: Color
     var events = [Event]()
     
     init(event: EKEvent, color: Color) {
         self.name = event.title
-        self.color = color
+        self.color = color 
     }
     
     func eventsForDate(date: Date) -> [Event] {
         var dateEvents = [Event]()
-        let today = Date()
         
         for event in events {
-            if date.areComponenetsEqual(componenets: [.day, .month, .weekday], with: today) {
+            if date.dayString == event.startDate.dayString {
                 dateEvents.append(event)
             }
         }
@@ -39,21 +38,23 @@ class Course: Equatable, Codable {
         return dateEvents
     }
     
-    static func ==(lhs: Course, rhs: Course) -> Bool {
-        return lhs.name == rhs.name
+    static func == (lhs: Course, rhs: Course) -> Bool {
+        return lhs.name == rhs.name 
     }
     
 }
 
 struct Event: Codable, Equatable, Comparable {
     
-    let course: Course
+    var name: String
+    var color: Color
     let location: String
     let startDate: Date
     let endDate: Date
     
-    init(course: Course, event: EKEvent) {
-        self.course = course
+    init(event: EKEvent, color: Color) {
+        self.name = event.title 
+        self.color = color
         self.location = event.location ?? ""
         self.startDate = event.startDate
         self.endDate = event.endDate
@@ -65,7 +66,7 @@ struct Event: Codable, Equatable, Comparable {
     
 }
 
-struct Color: Codable {
+struct Color: Codable, Equatable {
     
     var red: CGFloat
     var green: CGFloat
@@ -75,6 +76,8 @@ struct Color: Codable {
 }
 
 extension Color {
+    
+    static var unselected = Color(red: 119/255.0, green: 119/255.0, blue: 119/255.0, alpha: 1.0)
     
     static var backgrounds: [Color] {
         get {

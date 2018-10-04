@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Schedules-->
+        <!--Schedule-->
         <scene sceneID="UYF-l8-cat">
             <objects>
                 <tableViewController id="cXc-2f-czI" customClass="MainTableViewController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                             <outlet property="delegate" destination="cXc-2f-czI" id="e5e-Y1-pUQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedules" largeTitleDisplayMode="always" id="D6o-d6-xQM">
+                    <navigationItem key="navigationItem" title="Schedule" largeTitleDisplayMode="always" id="D6o-d6-xQM">
                         <rightBarButtonItems>
                             <barButtonItem title="Item" style="plain" systemItem="add" id="4Lk-Ts-yJN">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,11 +42,11 @@
             </objects>
             <point key="canvasLocation" x="872.79999999999995" y="-219.45812807881774"/>
         </scene>
-        <!--Calendar Event List View Controller-->
+        <!--Events-->
         <scene sceneID="9Se-wU-vj7">
             <objects>
                 <tableViewController id="CWD-lV-IRH" customClass="CalendarEventListViewController" customModule="Schoodule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cV1-Ot-qab">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cV1-Ot-qab">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1647058824" green="0.18823529410000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,7 +57,16 @@
                             <outlet property="delegate" destination="CWD-lV-IRH" id="gE4-hh-GYy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6ZL-2k-L0y"/>
+                    <navigationItem key="navigationItem" title="Events" largeTitleDisplayMode="always" id="6ZL-2k-L0y">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="rSh-Sv-ay9">
+                            <connections>
+                                <action selector="saveCourses:" destination="CWD-lV-IRH" id="K8Q-Rl-TEb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="rSh-Sv-ay9" id="eJB-tp-atF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fal-TJ-CBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

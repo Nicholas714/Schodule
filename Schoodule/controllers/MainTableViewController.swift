@@ -25,7 +25,11 @@ class MainTableViewController: BubbleTableViewController {
             session?.activate()
         }
         
-        courses = storage.schedule.todayEvents.compactMap { $0.course }
+        self.cellTapped = { cell in
+            
+        }
+        
+        entries = storage.schedule.todayCourses.compactMap { EventBubbleEntry(course: $0, event: $0.events.first!) }
         
         tableView.reloadData()
         
@@ -37,6 +41,7 @@ class MainTableViewController: BubbleTableViewController {
         switch segue.identifier {
         case "CalendarEventListViewController":
             if let destination = segue.destination as? CalendarEventListViewController {
+                print("storage set in segue")
                 destination.storage = storage
             }
         default:

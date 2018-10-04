@@ -18,50 +18,33 @@ class CalendarEventCell: UITableViewCell {
     @IBOutlet weak var courseLocation: UILabel!
     @IBOutlet weak private var eventBackgroundView: UIView! {
         didSet {
-            color = randomColor
+            color = Color.randomBackground
         }
     }
     
     var selectionCompletionHandler: (() -> ())? = nil
     
-    private lazy var randomColor: Color = {
-        return Color.randomBackground
-    }()
+    var entry: BubbleEntry? {
+        didSet {
+            guard let entry = entry else {
+                return
+            }
+            
+            entry.populateCell(eventCell: self)
+        }
+    }
     
     var color: Color {
         get {
-            return course?.color ?? randomColor
+            return entry?.color ?? Color.randomBackground
         }
         set {
+            entry?.course.color = newValue
+            entry?.color = newValue
             eventBackgroundView.backgroundColor = UIColor(color: newValue)
         }
     }
-    
-    var course: Course? {
-        didSet {
-            guard let course = course else {
-                return
-            }
-            
-            event = course.event
-            color = course.color
-        }
-    }
-    
-    var event: EKEvent? {
-        didSet {
-            guard let event = event else {
-                return
-            }
-            
-            courseName.text = event.title
-            courseStartTime.text = event.startDate.timeString
-            courseEndTime.text = event.endDate.timeString
-            courseTeacher.text = event.notes ?? ""
-            courseLocation.text = event.location ?? ""
-        }
-    }
-    
+        
     @IBAction func selected(_ sender: UITapGestureRecognizer) {
         if let handler = selectionCompletionHandler {
             handler()

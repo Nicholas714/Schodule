@@ -11,17 +11,16 @@ import EventKit
 extension EKEventStore {
     
     func allCoursesInCalendar() -> [Course] {
-        let year: TimeInterval = 3.15576e07
+        let year: TimeInterval = 604800
         let predicate = predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
         let eventsFound = events(matching: predicate)
         
         var courses = [Course]()
         
         for event in eventsFound {
-            // TODO: don't load events
-            let newCourse = Course(event: event, color: Color.randomBackground)
+            let newCourse = Course(event: event, color: Color.unselected)
             if !courses.contains(newCourse) {
-                newCourse.events = eventsMatching(course: course, in: eventsFound)
+                newCourse.events = eventsMatching(course: newCourse, in: eventsFound)
                 courses.append(newCourse)
             }
         }
@@ -33,8 +32,9 @@ extension EKEventStore {
         var events = [Event]()
         
         for event in foundEvents {
+            let newEvent = Event(event: event, color: course.color)
             if event.title == course.name {
-                events.append(Event(course: course, event: event))
+                events.append(newEvent)
             }
         }
         

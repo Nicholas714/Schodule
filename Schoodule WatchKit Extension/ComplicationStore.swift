@@ -38,7 +38,7 @@ struct ComplicationStore {
     ]
     
     var family: CLKComplicationFamily
-    var course: Course?
+    var event: Event?
     var dateProvider: CLKRelativeDateTextProvider?
     var location: String?
     var type: PeriodComplication
@@ -66,13 +66,13 @@ struct ComplicationStore {
         case .last:
             return CLKSimpleTextProvider(text: "Last Class", shortText: "Last")
         case .current:
-            let name = course!.name
+            let name = event!.name
             
             if name.count > 5 {
                 let shortIndex = name.index(name.startIndex, offsetBy: 5)
                 return CLKSimpleTextProvider(text: name, shortText: String(name[..<shortIndex]))
             }
-            return CLKSimpleTextProvider(text: course!.name)
+            return CLKSimpleTextProvider(text: event!.name)
         case .placeholder:
             return CLKSimpleTextProvider(text: "Class")
         case .blank:
@@ -85,8 +85,8 @@ struct ComplicationStore {
             return nil
         }
         
-        if let course = course {
-            template.tintColor = UIColor(color: course.color)
+        if let event = event {
+            template.tintColor = UIColor(color: event.color)
         } else {
             template.tintColor = UIColor(color: Color.randomBackground)
         }
@@ -109,7 +109,7 @@ struct ComplicationStore {
             template.headerTextProvider = periodNameProvider
             template.body1TextProvider = dateTextProvider
             
-            if let location = course?.event.location {
+            if let location = event?.location {
                 template.body2TextProvider = CLKSimpleTextProvider(text: location)
             } else {
                 if let location = location {
@@ -141,7 +141,7 @@ struct ComplicationStore {
             template.textProvider = periodNameProvider
             let gauge = CLKComplicationTemplateGraphicCircularClosedGaugeText()
             gauge.centerTextProvider = dateTextProvider
-            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: course?.event.startDate ?? Date(), end: course?.event.endDate ?? Date().addingTimeInterval(60 * 60))
+            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: event?.startDate ?? Date(), end: event?.endDate ?? Date().addingTimeInterval(60 * 60))
             template.circularTemplate = gauge
             
         } else if let template = template as? CLKComplicationTemplateGraphicCornerStackText {
