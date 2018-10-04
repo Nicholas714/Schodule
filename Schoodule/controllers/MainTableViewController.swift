@@ -16,8 +16,13 @@ class MainTableViewController: BubbleTableViewController {
     var storage = Storage(defaults: UserDefaults())
     var session: WCSession? = nil
     
+    var editingEvent: Event?
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        navigationController?.tabBarController?.tabBar.isHidden = true
+        navigationController?.hidesBottomBarWhenPushed = true
         
         if WCSession.isSupported() && session == nil {
             session = WCSession.default
@@ -31,6 +36,7 @@ class MainTableViewController: BubbleTableViewController {
             }
             
             if let event = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
+                self.editingEvent = Event(event: event, color: cell.color)
                 self.editEvent(event: event)
             } else {
                 let event = EKEvent(eventStore: EKEventStore.store)
@@ -74,21 +80,31 @@ class MainTableViewController: BubbleTableViewController {
     }
     
     @IBAction func addNewEvent(_ sender: UIBarButtonItem) {
-        editEvent(event: nil)
+        createEvent()
+    }
+    
+    func createEvent() {
+        let editEventViewController = EKEventEditViewController()
+        let store = EKEventStore.store
+        let event = EKEvent(eventStore: store)
+        
+        editEventViewController.event = event
+        editEventViewController.editViewDelegate = self
+
+        self.present(editEventViewController, animated: true, completion: nil)
     }
     
     func editEvent(event editingEvent: EKEvent?) {
-        let event = editingEvent ?? EKEvent(eventStore: EKEventStore.store)
+        let editEventViewController = EKEventViewController()
         let store = EKEventStore.store
-
-        let editEventViewController = EKEventEditViewController()
-        editEventViewController.eventStore = store
-        // TODO: change calendar to Schoodule?
-        event.calendar = store.defaultCalendarForNewEvents
-        editEventViewController.event = event
-        editEventViewController.editViewDelegate = self
+        let event = editingEvent ?? EKEvent(eventStore: store)
         
-        self.present(editEventViewController, animated: true, completion: nil)
+        editEventViewController.event = event
+        editEventViewController.allowsCalendarPreview = true
+        editEventViewController.allowsEditing = true
+        editEventViewController.delegate = self
+        
+        self.navigationController?.pushViewController(editEventViewController, animated: true)
     }
     
 }
@@ -133,9 +149,12 @@ extension MainTableViewController: WCSessionDelegate {
     }
 }
 
-extension MainTableViewController: EKEventEditViewDelegate {
+extension MainTableViewController: EKEventViewDelegate {
     
-    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        
+        // TODO: when editing, remove the editingEvent from all courses and regen everything
+        
         guard let event = controller.event else {
             controller.dismiss(animated: true, completion: nil)
             return
@@ -152,7 +171,7 @@ extension MainTableViewController: EKEventEditViewDelegate {
                 }
             }
             
-        case .saved:
+        case .done:
             if let course = storage.schedule.courses.first(where: { (course) -> Bool in
                 return course.name == event.title
             }) {
@@ -174,8 +193,26 @@ extension MainTableViewController: EKEventEditViewDelegate {
         default: break
         }
         
-        controller.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+        navigationController?.tabBarController?.tabBar.isHidden = true
         tableView.reloadData()
+    }
+    
+}
+
+extension MainTableViewController: EKEventEditViewDelegate {
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        
+        // TOOD: add new EKEvent to calendar, regen everything and reload table
+        switch action {
+        case .saved:
+            break
+        default:
+            break
+        }
+        
+        controller.dismiss(animated: true)
     }
     
 }
