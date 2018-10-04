@@ -44,7 +44,11 @@ class Course: Codable, Equatable {
     
 }
 
-struct Event: Codable, Equatable, Comparable {
+struct Event: Codable, Equatable, Comparable, Hashable {
+    
+    var hashValue: Int {
+        return name.hashValue
+    }
     
     var name: String
     var color: Color

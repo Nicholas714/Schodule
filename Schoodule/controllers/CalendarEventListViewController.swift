@@ -16,15 +16,6 @@ class CalendarEventListViewController: BubbleTableViewController {
     var storage: Storage!
     let store = EKEventStore.store
     
-    var selectedPaths = [IndexPath]() {
-        didSet {
-            saveButton.isEnabled = !selectedPaths.isEmpty
-            saveButton.title = selectedPaths.isEmpty ? "Save" : "Save \(selectedPaths.count)"
-        }
-    }
-    
-    var selectedEntries = [BubbleEntry]()
-    
     var isFiltering: Bool {
         if let searchController = navigationItem.searchController {
             return searchController.isActive && searchController.searchBar.text?.isEmpty ?? false
@@ -34,9 +25,63 @@ class CalendarEventListViewController: BubbleTableViewController {
     
     var allEntries = [BubbleEntry]()
     
+    var initialColoredEntries = [String: Color]()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupSearchController()
+        
+        for course in self.storage.schedule.courses {
+            initialColoredEntries[course.name] = course.color
+        }
+        
+        requestAccess {
+            
+            self.entries = self.store.allCoursesInCalendar().map {
+                let entry = BubbleEntry(course: $0)
+                if let entryCourse = self.storage.schedule.courses.first(where: { $0.name == entry.name }) {
+                    entry.course = entryCourse
+                }
+                return entry
+            }
+            self.allEntries = self.entries
+            
+        }
+        
+        
+        self.cellTapped = { (indexPath) in
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? CalendarEventCell, let entry = cell.entry else {
+                return
+            }
+            
+            let course = entry.course
+            
+            if self.storage.schedule.courses.contains(course) {
+                cell.color = Color.unselected
+                if let index = self.storage.schedule.courses.firstIndex(of: course) {
+                    self.storage.schedule.courses.remove(at: index)
+                    self.storage.saveSchedule()
+                }
+            } else {
+                cell.color = self.initialColoredEntries[entry.name] ?? Color.randomBackground
+                self.initialColoredEntries[entry.name] = cell.color
+                entry.course.color = cell.color
+                self.storage.schedule.courses.append(entry.course)
+                self.storage.saveSchedule()
+            }
+            
+        }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
+    func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search for a course"
@@ -48,43 +93,6 @@ class CalendarEventListViewController: BubbleTableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         
         self.navigationItem.searchController = searchController
-        
-        self.cellTapped = { (indexPath) in
-            guard let cell = self.tableView.cellForRow(at: indexPath) as? CalendarEventCell, let entry = cell.entry else {
-                return
-            }
-                
-            if self.selectedPaths.contains(indexPath) {
-                if let index = self.selectedPaths.firstIndex(of: indexPath) {
-                    self.selectedPaths.remove(at: index)
-                }
-                
-                if let index = self.selectedEntries.firstIndex(of: entry) {
-                    self.selectedEntries.remove(at: index)
-                }
-                
-                cell.color = Color.unselected
-            } else {
-                self.selectedPaths.append(indexPath)
-                self.selectedEntries.append(entry)
-                
-                cell.color = Color.randomBackground
-            }
-        }
-        
-        requestAccess {
-            self.entries = self.store.allCoursesInCalendar()
-                .filter { !self.storage.schedule.courses.contains($0) }
-                .map { BubbleEntry(course: $0) }
-            self.allEntries = self.entries
-        }
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        navigationItem.hidesSearchBarWhenScrolling = true 
     }
     
     func requestAccess(done: @escaping () -> ()) {
@@ -95,19 +103,6 @@ class CalendarEventListViewController: BubbleTableViewController {
         })
     }
     
-    @IBAction func saveCourses(_ sender: UIBarButtonItem) {
-        for entry in selectedEntries {
-            let course = entry.course
-            
-            if !storage.schedule.courses.contains(course) {
-                storage.schedule.courses.append(course)
-            }
-        }
-        
-        storage.saveSchedule()
-        
-        navigationController?.popViewController(animated: true)
-    }
 }
 
 extension CalendarEventListViewController: UISearchResultsUpdating, UISearchControllerDelegate {

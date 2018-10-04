@@ -30,13 +30,17 @@ class MainTableViewController: BubbleTableViewController {
                 return
             }
             
-            let event = EKEvent(eventStore: EKEventStore.store)
-            event.title = eventEntry.name
-            event.startDate = eventEntry.startDate
-            event.endDate = eventEntry.endDate
-            event.location = eventEntry.location
-            
-            self.editEvent(event: event)
+            if let event = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
+                self.editEvent(event: event)
+            } else {
+                let event = EKEvent(eventStore: EKEventStore.store)
+                event.title = eventEntry.name
+                event.startDate = eventEntry.startDate
+                event.endDate = eventEntry.endDate
+                event.location = eventEntry.location
+                
+                self.editEvent(event: event)
+            }
             
         }
         
@@ -46,6 +50,8 @@ class MainTableViewController: BubbleTableViewController {
                 found.append(EventBubbleEntry(course: todayCourse, event: event))
             }
         }
+        
+        self.entries = found
         
         tableView.reloadData()
         

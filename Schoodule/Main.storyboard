@@ -65,16 +65,7 @@
                             <outlet property="delegate" destination="CWD-lV-IRH" id="gE4-hh-GYy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Events" largeTitleDisplayMode="always" id="6ZL-2k-L0y">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="rSh-Sv-ay9">
-                            <connections>
-                                <action selector="saveCourses:" destination="CWD-lV-IRH" id="K8Q-Rl-TEb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="saveButton" destination="rSh-Sv-ay9" id="eJB-tp-atF"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Events" largeTitleDisplayMode="always" id="6ZL-2k-L0y"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fal-TJ-CBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

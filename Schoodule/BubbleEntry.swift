@@ -8,11 +8,14 @@
 
 import Foundation
 
-class BubbleEntry: Equatable, Comparable {
+class BubbleEntry: Equatable, Comparable, Hashable {
+    
+    var hashValue: Int {
+        return name.hashValue
+    }
     
     var course: Course
     var name: String
-    var color: Color
     
     var sortPriority: Int {
         return course.events.count 
@@ -21,12 +24,11 @@ class BubbleEntry: Equatable, Comparable {
     init(course: Course) {
         self.course = course
         self.name = course.name
-        self.color = course.color
     }
     
     func populateCell(eventCell: CalendarEventCell) {
         eventCell.courseName.text = name
-        eventCell.color = color
+        eventCell.color = course.color
         
         eventCell.courseTeacher.text = nil 
         eventCell.courseLocation.text = nil

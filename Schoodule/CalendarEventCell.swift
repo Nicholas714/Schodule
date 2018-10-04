@@ -16,11 +16,7 @@ class CalendarEventCell: UITableViewCell {
     @IBOutlet weak var courseEndTime: UILabel!
     @IBOutlet weak var courseTeacher: UILabel!
     @IBOutlet weak var courseLocation: UILabel!
-    @IBOutlet weak private var eventBackgroundView: UIView! {
-        didSet {
-            color = Color.randomBackground
-        }
-    }
+    @IBOutlet weak private var eventBackgroundView: UIView!
     
     var selectionCompletionHandler: (() -> ())? = nil
     
@@ -34,14 +30,9 @@ class CalendarEventCell: UITableViewCell {
         }
     }
     
-    var color: Color {
-        get {
-            return entry?.color ?? Color.randomBackground
-        }
-        set {
-            entry?.course.color = newValue
-            entry?.color = newValue
-            eventBackgroundView.backgroundColor = UIColor(color: newValue)
+    var color: Color = Color.unselected {
+        didSet {
+            eventBackgroundView.backgroundColor = UIColor(color: color)
         }
     }
         

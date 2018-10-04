@@ -49,7 +49,21 @@ extension EKEventStore {
             }
         }
         
-        return events
+        return Array(Set(events))
+    }
+    
+    func eventsForDate(date: Date) -> [Date: EKEvent] {
+        let morning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
+        let night = morning.addingTimeInterval(86399)
+        let predicate = predicateForEvents(withStart: morning, end: night, calendars: nil)
+        let events = self.events(matching: predicate)
+        
+        var startTimeToEvents = [Date: EKEvent]()
+        for event in events {
+            startTimeToEvents[event.startDate] = event
+        }
+        
+        return startTimeToEvents
     }
     
 }
