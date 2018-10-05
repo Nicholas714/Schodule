@@ -1,0 +1,110 @@
+//
+//  InterfaceController.swift
+//  Schoodule
+//
+//  Created by Nicholas Grana on 10/4/18.
+//  Copyright © 2018 Schoodule. All rights reserved.
+//
+
+import WatchKit
+
+class InterfaceController: WKInterfaceController {
+    
+    @IBOutlet var infoLabel: WKInterfaceLabel!
+    @IBOutlet var scheduleTable: WKInterfaceTable!
+    
+    var storage: Storage {
+        return ExtensionDelegate.storage
+    }
+    
+    var todayEvents: [Event]!
+    
+    override func willActivate() {
+        infoLabel.setHidden(false)
+        
+        createTable()
+        
+        ExtensionDelegate.connectivityController.sendRefresh {
+            self.createTable()
+        }
+    }
+    
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+        return todayEvents[rowIndex]
+    }
+    
+    func createTable() {
+        todayEvents = storage.schedule.todayEvents
+        
+        scheduleTable.setNumberOfRows(todayEvents.count, withRowType: "classRow")
+        
+        for (index, event) in todayEvents.enumerated() {
+            loadRow(index: index, event: event)
+        }
+        
+        reloadCurrent()
+        showInfo()
+    }
+    
+    func reloadCurrent() {
+        let currentClass = storage.schedule.eventFrom(date: Date())
+        let nextClass = storage.schedule.nextEventFrom(date: Date())
+        
+        for (index, period) in todayEvents.enumerated() {
+            let row = scheduleTable.rowController(at: index) as! ClassRow
+            if period == currentClass || (period == nextClass && currentClass == nil) {
+                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+            } else {
+                row.group.setBackgroundColor(UIColor.clear)
+            }
+        }
+    }
+    
+    func loadRow(index: Int, event: Event) {
+        let row = scheduleTable.rowController(at: index) as! ClassRow
+        
+        row.durationLabel?.setText("\(event.startDate.timeString)")
+        row.indexLabel?.setText("\(index + 1)")
+        row.nameLabel?.setText("\(event.name)")
+        
+        let color = UIColor(color: event.color)
+        row.seperator?.setColor(color)
+        row.indexLabel?.setTextColor(color)
+        row.nameLabel?.setTextColor(color)
+        row.durationLabel.setTextColor(UIColor.white)
+        
+        if event.location == "" {
+            row.locationLabel.setHidden(true)
+        } else {
+            row.locationLabel.setText(event.location)
+            row.locationLabel.setHidden(false)
+        }
+    }
+    
+    func showInfo() {
+        if storage.schedule.courses.isEmpty {
+            infoLabel.setText("Loading courses from iPhone...")
+            infoLabel.setHidden(false)
+        } else {
+            if storage.schedule.todayEvents.isEmpty {
+                infoLabel.setText("No courses today.")
+                infoLabel.setHidden(false)
+            } else {
+                infoLabel.setHidden(true)
+            }
+        }
+        
+        scheduleTable.setHidden(false)
+    }
+    
+}
+
+extension Int {
+    
+    var indexSet: IndexSet {
+        return IndexSet(integer: self)
+    }
+    
+    
+}

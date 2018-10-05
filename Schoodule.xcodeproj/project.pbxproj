@@ -7,78 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4311F94E215AA28200E5B578 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4311F94D215AA28200E5B578 /* ConnectivityController.swift */; };
-		43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307DC421010FD3004B0B76 /* AppDelegate.swift */; };
-		43307DCC21010FD4004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DCB21010FD4004B0B76 /* Assets.xcassets */; };
-		43307DCF21010FD4004B0B76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */; };
-		43307DD421010FD4004B0B76 /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */; };
-		43307DDC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DDB21010FD5004B0B76 /* Assets.xcassets */; };
-		43307DE321010FD5004B0B76 /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43307DEB21010FD5004B0B76 /* Assets.xcassets */; };
-		434050FC2112A70D00F120F0 /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434050FB2112A70D00F120F0 /* CalendarEventCell.swift */; };
-		435349A22163E63F00085C21 /* BubbleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435349A12163E63F00085C21 /* BubbleTableViewController.swift */; };
-		435349A72163E89900085C21 /* CalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435349A62163E89900085C21 /* CalendarEventCell.xib */; };
-		435C0E6B211D373600FF03C6 /* TextHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435C0E6A211D373600FF03C6 /* TextHeaderView.xib */; };
-		435C0E6D211D37EA00FF03C6 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */; };
-		435CF07B211C992500288BE8 /* ScheduleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */; };
-		436754E9216509000074C4BD /* EKEvent+matchingName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436754E8216509000074C4BD /* EKEvent+matchingName.swift */; };
-		438B67A8216557E600AD2A60 /* BubbleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B67A7216557E600AD2A60 /* BubbleEntry.swift */; };
-		4392142C215927BD00ED49F4 /* SingleClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392142B215927BD00ED49F4 /* SingleClassViewController.swift */; };
-		43BF69D2211A82BC00C9A8B4 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BF69D1211A82BC00C9A8B4 /* Interface.storyboard */; };
-		43BF69D4211A83BC00C9A8B4 /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF69D3211A83BC00C9A8B4 /* ClassRow.swift */; };
-		43BF69D6211A83EE00C9A8B4 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF69D5211A83EE00C9A8B4 /* InterfaceController.swift */; };
-		43BF69D7211A842B00C9A8B4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B7FF21011077003904E8 /* Storage.swift */; };
-		43BF69D8211A842E00C9A8B4 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80021011077003904E8 /* Schedule.swift */; };
-		43BF69D9211A843100C9A8B4 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80121011077003904E8 /* Course.swift */; };
-		43BF69DF211A844600C9A8B4 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80921011077003904E8 /* Date+Formatter.swift */; };
-		43BF69E4211A872000C9A8B4 /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF69E3211A872000C9A8B4 /* ComplicationStore.swift */; };
-		43BF69E6211A877C00C9A8B4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF69E5211A877C00C9A8B4 /* ExtensionDelegate.swift */; };
-		43BF69E8211A882E00C9A8B4 /* SchooduleComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF69E7211A882E00C9A8B4 /* SchooduleComplicationController.swift */; };
-		43C3B80B21011077003904E8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B7FF21011077003904E8 /* Storage.swift */; };
-		43C3B80C21011077003904E8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80021011077003904E8 /* Schedule.swift */; };
-		43C3B80D21011077003904E8 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80121011077003904E8 /* Course.swift */; };
-		43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B80921011077003904E8 /* Date+Formatter.swift */; };
-		43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B81721011086003904E8 /* MainTableViewController.swift */; };
-		43C3B81A2101108C003904E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C3B8192101108C003904E8 /* Main.storyboard */; };
-		43D9B821215BEEDC00A30BAB /* CalendarEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9B820215BEEDC00A30BAB /* CalendarEventListViewController.swift */; };
+		43C76D432166F68F003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D422166F68F003D8C2E /* Assets.xcassets */; };
+		43C76D462166F68F003D8C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */; };
+		43C76D4B2166F68F003D8C2E /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */; };
+		43C76D532166F68F003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D522166F68F003D8C2E /* Assets.xcassets */; };
+		43C76D5A2166F68F003D8C2E /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43C76D652166F690003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D642166F690003D8C2E /* Assets.xcassets */; };
+		43C76D812166F6CA003D8C2E /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */; };
+		43C76D822166F6CA003D8C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D752166F6C9003D8C2E /* Main.storyboard */; };
+		43C76D832166F6CA003D8C2E /* TextHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D772166F6C9003D8C2E /* TextHeaderView.xib */; };
+		43C76D842166F6CA003D8C2E /* CalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D782166F6C9003D8C2E /* CalendarEventCell.xib */; };
+		43C76D852166F6CA003D8C2E /* ScheduleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D792166F6C9003D8C2E /* ScheduleHeaderView.xib */; };
+		43C76D862166F6CA003D8C2E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D7B2166F6C9003D8C2E /* MainTableViewController.swift */; };
+		43C76D872166F6CA003D8C2E /* CalendarEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D7C2166F6C9003D8C2E /* CalendarEventListViewController.swift */; };
+		43C76D882166F6CA003D8C2E /* BubbleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D7D2166F6C9003D8C2E /* BubbleTableViewController.swift */; };
+		43C76D892166F6CA003D8C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D7E2166F6CA003D8C2E /* AppDelegate.swift */; };
+		43C76D8A2166F6CA003D8C2E /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D7F2166F6CA003D8C2E /* TextHeaderView.swift */; };
+		43C76D8B2166F6CA003D8C2E /* BubbleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D802166F6CA003D8C2E /* BubbleEntry.swift */; };
+		43C76D8D2166F70C003D8C2E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D8C2166F70C003D8C2E /* Interface.storyboard */; };
+		43C76D932166F739003D8C2E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D8E2166F739003D8C2E /* ComplicationController.swift */; };
+		43C76D942166F739003D8C2E /* ComplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D8F2166F739003D8C2E /* ComplicationStore.swift */; };
+		43C76D952166F739003D8C2E /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D902166F739003D8C2E /* ClassRow.swift */; };
+		43C76D962166F739003D8C2E /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D912166F739003D8C2E /* ConnectivityController.swift */; };
+		43C76D972166F739003D8C2E /* SingleClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D922166F739003D8C2E /* SingleClassViewController.swift */; };
+		43C76DA02166F74D003D8C2E /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9A2166F74D003D8C2E /* Storage.swift */; };
+		43C76DA12166F74D003D8C2E /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9A2166F74D003D8C2E /* Storage.swift */; };
+		43C76DA22166F74D003D8C2E /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9B2166F74D003D8C2E /* Schedule.swift */; };
+		43C76DA32166F74D003D8C2E /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9B2166F74D003D8C2E /* Schedule.swift */; };
+		43C76DA42166F74D003D8C2E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9C2166F74D003D8C2E /* Course.swift */; };
+		43C76DA52166F74D003D8C2E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9C2166F74D003D8C2E /* Course.swift */; };
+		43C76DA62166F74D003D8C2E /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */; };
+		43C76DA72166F74D003D8C2E /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */; };
+		43C76DA82166F74D003D8C2E /* EKEvent+matchingName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9F2166F74D003D8C2E /* EKEvent+matchingName.swift */; };
+		43C76DA92166F74D003D8C2E /* EKEvent+matchingName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9F2166F74D003D8C2E /* EKEvent+matchingName.swift */; };
+		43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */; };
+		43C76DAF2166F930003D8C2E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAD2166F930003D8C2E /* InterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		43307DD521010FD4004B0B76 /* PBXContainerItemProxy */ = {
+		43C76D4C2166F68F003D8C2E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 43307DB921010FD3004B0B76 /* Project object */;
+			containerPortal = 43C76D302166F68E003D8C2E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 43307DD221010FD4004B0B76;
+			remoteGlobalIDString = 43C76D492166F68F003D8C2E;
 			remoteInfo = "Schoodule WatchKit App";
 		};
-		43307DE421010FD5004B0B76 /* PBXContainerItemProxy */ = {
+		43C76D5B2166F68F003D8C2E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 43307DB921010FD3004B0B76 /* Project object */;
+			containerPortal = 43C76D302166F68E003D8C2E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 43307DE121010FD5004B0B76;
+			remoteGlobalIDString = 43C76D582166F68F003D8C2E;
 			remoteInfo = "Schoodule WatchKit Extension";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		43307DF321010FD5004B0B76 /* Embed App Extensions */ = {
+		43C76D6C2166F690003D8C2E /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				43307DE321010FD5004B0B76 /* Schoodule WatchKit Extension.appex in Embed App Extensions */,
+				43C76D5A2166F68F003D8C2E /* Schoodule WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43307DF721010FD5004B0B76 /* Embed Watch Content */ = {
+		43C76D702166F690003D8C2E /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				43307DD421010FD4004B0B76 /* Schoodule WatchKit App.app in Embed Watch Content */,
+				43C76D4B2166F68F003D8C2E /* Schoodule WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,60 +87,51 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4311F949215AA11900E5B578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4311F94B215AA13E00E5B578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		4311F94D215AA28200E5B578 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
-		43307DC121010FD3004B0B76 /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		43307DC421010FD3004B0B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43307DCB21010FD4004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43307DCE21010FD4004B0B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		43307DD021010FD4004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43307DDB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43307DDD21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43307DEB21010FD5004B0B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43307DED21010FD5004B0B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		434050FB2112A70D00F120F0 /* CalendarEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
-		435349A12163E63F00085C21 /* BubbleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTableViewController.swift; sourceTree = "<group>"; };
-		435349A62163E89900085C21 /* CalendarEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventCell.xib; sourceTree = "<group>"; };
-		435C0E6A211D373600FF03C6 /* TextHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextHeaderView.xib; sourceTree = "<group>"; };
-		435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
-		435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleHeaderView.xib; sourceTree = "<group>"; };
-		436754E8216509000074C4BD /* EKEvent+matchingName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+matchingName.swift"; sourceTree = "<group>"; };
-		438B67A7216557E600AD2A60 /* BubbleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleEntry.swift; sourceTree = "<group>"; };
-		4392142B215927BD00ED49F4 /* SingleClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleClassViewController.swift; sourceTree = "<group>"; };
-		43BF69D1211A82BC00C9A8B4 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
-		43BF69D3211A83BC00C9A8B4 /* ClassRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
-		43BF69D5211A83EE00C9A8B4 /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterfaceController.swift; path = "../../Schoodule App/Schoodule/Schoodule WatchKit Extension/controllers/InterfaceController.swift"; sourceTree = "<group>"; };
-		43BF69E3211A872000C9A8B4 /* ComplicationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
-		43BF69E5211A877C00C9A8B4 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionDelegate.swift; path = "../../Schoodule App/Schoodule/Schoodule WatchKit Extension/ExtensionDelegate.swift"; sourceTree = "<group>"; };
-		43BF69E7211A882E00C9A8B4 /* SchooduleComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchooduleComplicationController.swift; sourceTree = "<group>"; };
-		43C3B7FF21011077003904E8 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		43C3B80021011077003904E8 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		43C3B80121011077003904E8 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		43C3B80921011077003904E8 /* Date+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
-		43C3B81721011086003904E8 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		43C3B8192101108C003904E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		43D9B820215BEEDC00A30BAB /* CalendarEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListViewController.swift; sourceTree = "<group>"; };
+		43C76D382166F68E003D8C2E /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C76D422166F68F003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43C76D452166F68F003D8C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		43C76D472166F68F003D8C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C76D522166F68F003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43C76D542166F68F003D8C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C76D642166F690003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43C76D662166F690003D8C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
+		43C76D752166F6C9003D8C2E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		43C76D772166F6C9003D8C2E /* TextHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextHeaderView.xib; sourceTree = "<group>"; };
+		43C76D782166F6C9003D8C2E /* CalendarEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarEventCell.xib; sourceTree = "<group>"; };
+		43C76D792166F6C9003D8C2E /* ScheduleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleHeaderView.xib; sourceTree = "<group>"; };
+		43C76D7B2166F6C9003D8C2E /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		43C76D7C2166F6C9003D8C2E /* CalendarEventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventListViewController.swift; sourceTree = "<group>"; };
+		43C76D7D2166F6C9003D8C2E /* BubbleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTableViewController.swift; sourceTree = "<group>"; };
+		43C76D7E2166F6CA003D8C2E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43C76D7F2166F6CA003D8C2E /* TextHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
+		43C76D802166F6CA003D8C2E /* BubbleEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleEntry.swift; sourceTree = "<group>"; };
+		43C76D8C2166F70C003D8C2E /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
+		43C76D8E2166F739003D8C2E /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		43C76D8F2166F739003D8C2E /* ComplicationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationStore.swift; sourceTree = "<group>"; };
+		43C76D902166F739003D8C2E /* ClassRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
+		43C76D912166F739003D8C2E /* ConnectivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
+		43C76D922166F739003D8C2E /* SingleClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleClassViewController.swift; sourceTree = "<group>"; };
+		43C76D9A2166F74D003D8C2E /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		43C76D9B2166F74D003D8C2E /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		43C76D9C2166F74D003D8C2E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
+		43C76D9F2166F74D003D8C2E /* EKEvent+matchingName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEvent+matchingName.swift"; sourceTree = "<group>"; };
+		43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		43C76DAD2166F930003D8C2E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		43307DBE21010FD3004B0B76 /* Frameworks */ = {
+		43C76D352166F68E003D8C2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43307DDF21010FD5004B0B76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5B2D10202E7BCBFD7C121960 /* Frameworks */ = {
+		43C76D562166F68F003D8C2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,175 +141,164 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43307DB821010FD3004B0B76 = {
+		43C76D2F2166F68E003D8C2E = {
 			isa = PBXGroup;
 			children = (
-				43C3B7FD21011077003904E8 /* Shared */,
-				43307DC321010FD3004B0B76 /* Schoodule */,
-				43307DD721010FD4004B0B76 /* Schoodule WatchKit App */,
-				43307DE621010FD5004B0B76 /* Schoodule WatchKit Extension */,
-				43307DC221010FD3004B0B76 /* Products */,
-				A32B2B6EE65E00CC025B9257 /* Frameworks */,
+				43C76D982166F74D003D8C2E /* Shared */,
+				43C76D3A2166F68E003D8C2E /* Schoodule */,
+				43C76D4E2166F68F003D8C2E /* Schoodule WatchKit App */,
+				43C76D5D2166F68F003D8C2E /* Schoodule WatchKit Extension */,
+				43C76D392166F68E003D8C2E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		43307DC221010FD3004B0B76 /* Products */ = {
+		43C76D392166F68E003D8C2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43307DC121010FD3004B0B76 /* Schoodule.app */,
-				43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */,
-				43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */,
+				43C76D382166F68E003D8C2E /* Schoodule.app */,
+				43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */,
+				43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43307DC321010FD3004B0B76 /* Schoodule */ = {
+		43C76D3A2166F68E003D8C2E /* Schoodule */ = {
 			isa = PBXGroup;
 			children = (
-				43307DC421010FD3004B0B76 /* AppDelegate.swift */,
-				43C3B8192101108C003904E8 /* Main.storyboard */,
-				43307DCB21010FD4004B0B76 /* Assets.xcassets */,
-				43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */,
-				43307DD021010FD4004B0B76 /* Info.plist */,
-				435349A32163E84B00085C21 /* controllers */,
-				43D9B81F215BED2200A30BAB /* views */,
-				434050FB2112A70D00F120F0 /* CalendarEventCell.swift */,
-				435C0E6C211D37EA00FF03C6 /* TextHeaderView.swift */,
-				438B67A7216557E600AD2A60 /* BubbleEntry.swift */,
+				43C76D7E2166F6CA003D8C2E /* AppDelegate.swift */,
+				43C76D802166F6CA003D8C2E /* BubbleEntry.swift */,
+				43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */,
+				43C76D7A2166F6C9003D8C2E /* controllers */,
+				43C76D752166F6C9003D8C2E /* Main.storyboard */,
+				43C76D7F2166F6CA003D8C2E /* TextHeaderView.swift */,
+				43C76D762166F6C9003D8C2E /* views */,
+				43C76D422166F68F003D8C2E /* Assets.xcassets */,
+				43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */,
+				43C76D472166F68F003D8C2E /* Info.plist */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
 		};
-		43307DD721010FD4004B0B76 /* Schoodule WatchKit App */ = {
+		43C76D4E2166F68F003D8C2E /* Schoodule WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				43BF69D1211A82BC00C9A8B4 /* Interface.storyboard */,
-				43307DDB21010FD5004B0B76 /* Assets.xcassets */,
-				43307DDD21010FD5004B0B76 /* Info.plist */,
+				43C76D8C2166F70C003D8C2E /* Interface.storyboard */,
+				43C76D522166F68F003D8C2E /* Assets.xcassets */,
+				43C76D542166F68F003D8C2E /* Info.plist */,
 			);
 			path = "Schoodule WatchKit App";
 			sourceTree = "<group>";
 		};
-		43307DE621010FD5004B0B76 /* Schoodule WatchKit Extension */ = {
+		43C76D5D2166F68F003D8C2E /* Schoodule WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				43BF69E3211A872000C9A8B4 /* ComplicationStore.swift */,
-				43BF69D5211A83EE00C9A8B4 /* InterfaceController.swift */,
-				43BF69E5211A877C00C9A8B4 /* ExtensionDelegate.swift */,
-				43BF69E7211A882E00C9A8B4 /* SchooduleComplicationController.swift */,
-				43BF69D3211A83BC00C9A8B4 /* ClassRow.swift */,
-				43307DEB21010FD5004B0B76 /* Assets.xcassets */,
-				43307DED21010FD5004B0B76 /* Info.plist */,
-				4392142B215927BD00ED49F4 /* SingleClassViewController.swift */,
-				4311F94D215AA28200E5B578 /* ConnectivityController.swift */,
+				43C76D902166F739003D8C2E /* ClassRow.swift */,
+				43C76D8E2166F739003D8C2E /* ComplicationController.swift */,
+				43C76D8F2166F739003D8C2E /* ComplicationStore.swift */,
+				43C76D912166F739003D8C2E /* ConnectivityController.swift */,
+				43C76D922166F739003D8C2E /* SingleClassViewController.swift */,
+				43C76D642166F690003D8C2E /* Assets.xcassets */,
+				43C76D662166F690003D8C2E /* Info.plist */,
+				43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */,
+				43C76DAD2166F930003D8C2E /* InterfaceController.swift */,
 			);
 			path = "Schoodule WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		435349A32163E84B00085C21 /* controllers */ = {
+		43C76D762166F6C9003D8C2E /* views */ = {
 			isa = PBXGroup;
 			children = (
-				43C3B81721011086003904E8 /* MainTableViewController.swift */,
-				43D9B820215BEEDC00A30BAB /* CalendarEventListViewController.swift */,
-				435349A12163E63F00085C21 /* BubbleTableViewController.swift */,
-			);
-			path = controllers;
-			sourceTree = "<group>";
-		};
-		43C3B7FD21011077003904E8 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				43C3B7FE21011077003904E8 /* schedule */,
-				43C3B80721011077003904E8 /* extensions */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		43C3B7FE21011077003904E8 /* schedule */ = {
-			isa = PBXGroup;
-			children = (
-				43C3B7FF21011077003904E8 /* Storage.swift */,
-				43C3B80021011077003904E8 /* Schedule.swift */,
-				43C3B80121011077003904E8 /* Course.swift */,
-			);
-			path = schedule;
-			sourceTree = "<group>";
-		};
-		43C3B80721011077003904E8 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				43C3B80921011077003904E8 /* Date+Formatter.swift */,
-				436754E8216509000074C4BD /* EKEvent+matchingName.swift */,
-			);
-			path = extensions;
-			sourceTree = "<group>";
-		};
-		43D9B81F215BED2200A30BAB /* views */ = {
-			isa = PBXGroup;
-			children = (
-				435CF07A211C992500288BE8 /* ScheduleHeaderView.xib */,
-				435C0E6A211D373600FF03C6 /* TextHeaderView.xib */,
-				435349A62163E89900085C21 /* CalendarEventCell.xib */,
+				43C76D772166F6C9003D8C2E /* TextHeaderView.xib */,
+				43C76D782166F6C9003D8C2E /* CalendarEventCell.xib */,
+				43C76D792166F6C9003D8C2E /* ScheduleHeaderView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
 		};
-		A32B2B6EE65E00CC025B9257 /* Frameworks */ = {
+		43C76D7A2166F6C9003D8C2E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4311F949215AA11900E5B578 /* Foundation.framework */,
-				4311F94B215AA13E00E5B578 /* Foundation.framework */,
+				43C76D7B2166F6C9003D8C2E /* MainTableViewController.swift */,
+				43C76D7C2166F6C9003D8C2E /* CalendarEventListViewController.swift */,
+				43C76D7D2166F6C9003D8C2E /* BubbleTableViewController.swift */,
 			);
-			name = Frameworks;
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		43C76D982166F74D003D8C2E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				43C76D992166F74D003D8C2E /* schedule */,
+				43C76D9D2166F74D003D8C2E /* extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		43C76D992166F74D003D8C2E /* schedule */ = {
+			isa = PBXGroup;
+			children = (
+				43C76D9A2166F74D003D8C2E /* Storage.swift */,
+				43C76D9B2166F74D003D8C2E /* Schedule.swift */,
+				43C76D9C2166F74D003D8C2E /* Course.swift */,
+			);
+			path = schedule;
+			sourceTree = "<group>";
+		};
+		43C76D9D2166F74D003D8C2E /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */,
+				43C76D9F2166F74D003D8C2E /* EKEvent+matchingName.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43307DC021010FD3004B0B76 /* Schoodule */ = {
+		43C76D372166F68E003D8C2E /* Schoodule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43307DF821010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule" */;
+			buildConfigurationList = 43C76D712166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule" */;
 			buildPhases = (
-				43307DBD21010FD3004B0B76 /* Sources */,
-				43307DBE21010FD3004B0B76 /* Frameworks */,
-				43307DBF21010FD3004B0B76 /* Resources */,
-				43307DF721010FD5004B0B76 /* Embed Watch Content */,
+				43C76D342166F68E003D8C2E /* Sources */,
+				43C76D352166F68E003D8C2E /* Frameworks */,
+				43C76D362166F68E003D8C2E /* Resources */,
+				43C76D702166F690003D8C2E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				43307DD621010FD4004B0B76 /* PBXTargetDependency */,
+				43C76D4D2166F68F003D8C2E /* PBXTargetDependency */,
 			);
 			name = Schoodule;
 			productName = Schoodule;
-			productReference = 43307DC121010FD3004B0B76 /* Schoodule.app */;
+			productReference = 43C76D382166F68E003D8C2E /* Schoodule.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43307DD221010FD4004B0B76 /* Schoodule WatchKit App */ = {
+		43C76D492166F68F003D8C2E /* Schoodule WatchKit App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43307DF421010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */;
+			buildConfigurationList = 43C76D6D2166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */;
 			buildPhases = (
-				43307DD121010FD4004B0B76 /* Resources */,
-				43307DF321010FD5004B0B76 /* Embed App Extensions */,
-				5B2D10202E7BCBFD7C121960 /* Frameworks */,
+				43C76D482166F68F003D8C2E /* Resources */,
+				43C76D6C2166F690003D8C2E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				43307DE521010FD5004B0B76 /* PBXTargetDependency */,
+				43C76D5C2166F68F003D8C2E /* PBXTargetDependency */,
 			);
 			name = "Schoodule WatchKit App";
 			productName = "Schoodule WatchKit App";
-			productReference = 43307DD321010FD4004B0B76 /* Schoodule WatchKit App.app */;
+			productReference = 43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */ = {
+		43C76D582166F68F003D8C2E /* Schoodule WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43307DF021010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */;
+			buildConfigurationList = 43C76D692166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */;
 			buildPhases = (
-				43307DDE21010FD5004B0B76 /* Sources */,
-				43307DDF21010FD5004B0B76 /* Frameworks */,
-				43307DE021010FD5004B0B76 /* Resources */,
+				43C76D552166F68F003D8C2E /* Sources */,
+				43C76D562166F68F003D8C2E /* Frameworks */,
+				43C76D572166F68F003D8C2E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -325,32 +306,33 @@
 			);
 			name = "Schoodule WatchKit Extension";
 			productName = "Schoodule WatchKit Extension";
-			productReference = 43307DE221010FD5004B0B76 /* Schoodule WatchKit Extension.appex */;
+			productReference = 43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		43307DB921010FD3004B0B76 /* Project object */ = {
+		43C76D302166F68E003D8C2E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Nicholas Grana";
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Schoodule;
 				TargetAttributes = {
-					43307DC021010FD3004B0B76 = {
-						CreatedOnToolsVersion = 9.4.1;
+					43C76D372166F68E003D8C2E = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
-					43307DD221010FD4004B0B76 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+					43C76D492166F68F003D8C2E = {
+						CreatedOnToolsVersion = 10.1;
 					};
-					43307DE121010FD5004B0B76 = {
-						CreatedOnToolsVersion = 9.4.1;
+					43C76D582166F68F003D8C2E = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
-			buildConfigurationList = 43307DBC21010FD3004B0B76 /* Build configuration list for PBXProject "Schoodule" */;
+			buildConfigurationList = 43C76D332166F68E003D8C2E /* Build configuration list for PBXProject "Schoodule" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -358,109 +340,110 @@
 				en,
 				Base,
 			);
-			mainGroup = 43307DB821010FD3004B0B76;
-			productRefGroup = 43307DC221010FD3004B0B76 /* Products */;
+			mainGroup = 43C76D2F2166F68E003D8C2E;
+			productRefGroup = 43C76D392166F68E003D8C2E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43307DC021010FD3004B0B76 /* Schoodule */,
-				43307DD221010FD4004B0B76 /* Schoodule WatchKit App */,
-				43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */,
+				43C76D372166F68E003D8C2E /* Schoodule */,
+				43C76D492166F68F003D8C2E /* Schoodule WatchKit App */,
+				43C76D582166F68F003D8C2E /* Schoodule WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43307DBF21010FD3004B0B76 /* Resources */ = {
+		43C76D362166F68E003D8C2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				435CF07B211C992500288BE8 /* ScheduleHeaderView.xib in Resources */,
-				435C0E6B211D373600FF03C6 /* TextHeaderView.xib in Resources */,
-				43307DCF21010FD4004B0B76 /* LaunchScreen.storyboard in Resources */,
-				43307DCC21010FD4004B0B76 /* Assets.xcassets in Resources */,
-				435349A72163E89900085C21 /* CalendarEventCell.xib in Resources */,
-				43C3B81A2101108C003904E8 /* Main.storyboard in Resources */,
+				43C76D832166F6CA003D8C2E /* TextHeaderView.xib in Resources */,
+				43C76D842166F6CA003D8C2E /* CalendarEventCell.xib in Resources */,
+				43C76D822166F6CA003D8C2E /* Main.storyboard in Resources */,
+				43C76D462166F68F003D8C2E /* LaunchScreen.storyboard in Resources */,
+				43C76D852166F6CA003D8C2E /* ScheduleHeaderView.xib in Resources */,
+				43C76D432166F68F003D8C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43307DD121010FD4004B0B76 /* Resources */ = {
+		43C76D482166F68F003D8C2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43BF69D2211A82BC00C9A8B4 /* Interface.storyboard in Resources */,
-				43307DDC21010FD5004B0B76 /* Assets.xcassets in Resources */,
+				43C76D8D2166F70C003D8C2E /* Interface.storyboard in Resources */,
+				43C76D532166F68F003D8C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43307DE021010FD5004B0B76 /* Resources */ = {
+		43C76D572166F68F003D8C2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43307DEC21010FD5004B0B76 /* Assets.xcassets in Resources */,
+				43C76D652166F690003D8C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43307DBD21010FD3004B0B76 /* Sources */ = {
+		43C76D342166F68E003D8C2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43C3B81321011077003904E8 /* Date+Formatter.swift in Sources */,
-				436754E9216509000074C4BD /* EKEvent+matchingName.swift in Sources */,
-				438B67A8216557E600AD2A60 /* BubbleEntry.swift in Sources */,
-				43D9B821215BEEDC00A30BAB /* CalendarEventListViewController.swift in Sources */,
-				43307DC521010FD3004B0B76 /* AppDelegate.swift in Sources */,
-				43C3B81821011086003904E8 /* MainTableViewController.swift in Sources */,
-				434050FC2112A70D00F120F0 /* CalendarEventCell.swift in Sources */,
-				43C3B80D21011077003904E8 /* Course.swift in Sources */,
-				43C3B80C21011077003904E8 /* Schedule.swift in Sources */,
-				435349A22163E63F00085C21 /* BubbleTableViewController.swift in Sources */,
-				435C0E6D211D37EA00FF03C6 /* TextHeaderView.swift in Sources */,
-				43C3B80B21011077003904E8 /* Storage.swift in Sources */,
+				43C76D872166F6CA003D8C2E /* CalendarEventListViewController.swift in Sources */,
+				43C76DA62166F74D003D8C2E /* Date+Formatter.swift in Sources */,
+				43C76DA82166F74D003D8C2E /* EKEvent+matchingName.swift in Sources */,
+				43C76D882166F6CA003D8C2E /* BubbleTableViewController.swift in Sources */,
+				43C76DA42166F74D003D8C2E /* Course.swift in Sources */,
+				43C76D862166F6CA003D8C2E /* MainTableViewController.swift in Sources */,
+				43C76DA22166F74D003D8C2E /* Schedule.swift in Sources */,
+				43C76D892166F6CA003D8C2E /* AppDelegate.swift in Sources */,
+				43C76D8B2166F6CA003D8C2E /* BubbleEntry.swift in Sources */,
+				43C76DA02166F74D003D8C2E /* Storage.swift in Sources */,
+				43C76D8A2166F6CA003D8C2E /* TextHeaderView.swift in Sources */,
+				43C76D812166F6CA003D8C2E /* CalendarEventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43307DDE21010FD5004B0B76 /* Sources */ = {
+		43C76D552166F68F003D8C2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43BF69D9211A843100C9A8B4 /* Course.swift in Sources */,
-				4392142C215927BD00ED49F4 /* SingleClassViewController.swift in Sources */,
-				43BF69D4211A83BC00C9A8B4 /* ClassRow.swift in Sources */,
-				4311F94E215AA28200E5B578 /* ConnectivityController.swift in Sources */,
-				43BF69D7211A842B00C9A8B4 /* Storage.swift in Sources */,
-				43BF69DF211A844600C9A8B4 /* Date+Formatter.swift in Sources */,
-				43BF69E4211A872000C9A8B4 /* ComplicationStore.swift in Sources */,
-				43BF69E6211A877C00C9A8B4 /* ExtensionDelegate.swift in Sources */,
-				43BF69D6211A83EE00C9A8B4 /* InterfaceController.swift in Sources */,
-				43BF69E8211A882E00C9A8B4 /* SchooduleComplicationController.swift in Sources */,
-				43BF69D8211A842E00C9A8B4 /* Schedule.swift in Sources */,
+				43C76DA52166F74D003D8C2E /* Course.swift in Sources */,
+				43C76D952166F739003D8C2E /* ClassRow.swift in Sources */,
+				43C76DA92166F74D003D8C2E /* EKEvent+matchingName.swift in Sources */,
+				43C76D932166F739003D8C2E /* ComplicationController.swift in Sources */,
+				43C76D962166F739003D8C2E /* ConnectivityController.swift in Sources */,
+				43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */,
+				43C76D942166F739003D8C2E /* ComplicationStore.swift in Sources */,
+				43C76D972166F739003D8C2E /* SingleClassViewController.swift in Sources */,
+				43C76DA32166F74D003D8C2E /* Schedule.swift in Sources */,
+				43C76DAF2166F930003D8C2E /* InterfaceController.swift in Sources */,
+				43C76DA72166F74D003D8C2E /* Date+Formatter.swift in Sources */,
+				43C76DA12166F74D003D8C2E /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		43307DD621010FD4004B0B76 /* PBXTargetDependency */ = {
+		43C76D4D2166F68F003D8C2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43307DD221010FD4004B0B76 /* Schoodule WatchKit App */;
-			targetProxy = 43307DD521010FD4004B0B76 /* PBXContainerItemProxy */;
+			target = 43C76D492166F68F003D8C2E /* Schoodule WatchKit App */;
+			targetProxy = 43C76D4C2166F68F003D8C2E /* PBXContainerItemProxy */;
 		};
-		43307DE521010FD5004B0B76 /* PBXTargetDependency */ = {
+		43C76D5C2166F68F003D8C2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43307DE121010FD5004B0B76 /* Schoodule WatchKit Extension */;
-			targetProxy = 43307DE421010FD5004B0B76 /* PBXContainerItemProxy */;
+			target = 43C76D582166F68F003D8C2E /* Schoodule WatchKit Extension */;
+			targetProxy = 43C76D5B2166F68F003D8C2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		43307DCD21010FD4004B0B76 /* LaunchScreen.storyboard */ = {
+		43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				43307DCE21010FD4004B0B76 /* Base */,
+				43C76D452166F68F003D8C2E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -468,10 +451,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		43307DEE21010FD5004B0B76 /* Debug */ = {
+		43C76D672166F690003D8C2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -520,8 +502,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -529,10 +512,9 @@
 			};
 			name = Debug;
 		};
-		43307DEF21010FD5004B0B76 /* Release */ = {
+		43C76D682166F690003D8C2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -575,8 +557,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -584,145 +567,126 @@
 			};
 			name = Release;
 		};
-		43307DF121010FD5004B0B76 /* Debug */ = {
+		43C76D6A2166F690003D8C2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
-				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
-			};
-			name = Debug;
-		};
-		43307DF221010FD5004B0B76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
-				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
-			};
-			name = Release;
-		};
-		43307DF521010FD5004B0B76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
-				IBSC_MODULE = Schoodule_WatchKit_Extension;
-				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
+				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
-		43307DF621010FD5004B0B76 /* Release */ = {
+		43C76D6B2166F690003D8C2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
+				INFOPLIST_FILE = "Schoodule WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		43C76D6E2166F690003D8C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
 				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		43C76D6F2166F690003D8C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
+				IBSC_MODULE = Schoodule_WatchKit_Extension;
+				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
-		43307DF921010FD5004B0B76 /* Debug */ = {
+		43C76D722166F690003D8C2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		43307DFA21010FD5004B0B76 /* Release */ = {
+		43C76D732166F690003D8C2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -730,43 +694,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43307DBC21010FD3004B0B76 /* Build configuration list for PBXProject "Schoodule" */ = {
+		43C76D332166F68E003D8C2E /* Build configuration list for PBXProject "Schoodule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43307DEE21010FD5004B0B76 /* Debug */,
-				43307DEF21010FD5004B0B76 /* Release */,
+				43C76D672166F690003D8C2E /* Debug */,
+				43C76D682166F690003D8C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43307DF021010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */ = {
+		43C76D692166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43307DF121010FD5004B0B76 /* Debug */,
-				43307DF221010FD5004B0B76 /* Release */,
+				43C76D6A2166F690003D8C2E /* Debug */,
+				43C76D6B2166F690003D8C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43307DF421010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */ = {
+		43C76D6D2166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43307DF521010FD5004B0B76 /* Debug */,
-				43307DF621010FD5004B0B76 /* Release */,
+				43C76D6E2166F690003D8C2E /* Debug */,
+				43C76D6F2166F690003D8C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43307DF821010FD5004B0B76 /* Build configuration list for PBXNativeTarget "Schoodule" */ = {
+		43C76D712166F690003D8C2E /* Build configuration list for PBXNativeTarget "Schoodule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43307DF921010FD5004B0B76 /* Debug */,
-				43307DFA21010FD5004B0B76 /* Release */,
+				43C76D722166F690003D8C2E /* Debug */,
+				43C76D732166F690003D8C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 43307DB921010FD3004B0B76 /* Project object */;
+	rootObject = 43C76D302166F68E003D8C2E /* Project object */;
 }
