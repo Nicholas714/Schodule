@@ -8,7 +8,7 @@
 
 import ClockKit
 
-class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
+class ComplicationController: NSObject, CLKComplicationDataSource {
     
     //let initialClassWarning: TimeInterval = -3600
     
@@ -16,7 +16,9 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         return ExtensionDelegate.storage
     }
     
-    var todayEvents = [Event]()
+    var todayEvents: [Event] {
+        return ExtensionDelegate.storage.schedule.todayEvents
+    }
     
     var scheduleStart: Date? {
         return todayEvents.first?.startDate
@@ -34,8 +36,6 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         var dateProvider: CLKRelativeDateTextProvider? = nil
         var eventProvider: Event? = nil
         var location: String? = nil
-        
-        todayEvents = storage.schedule.todayEvents
         
         if let date = date {
             if let event = storage.schedule.eventFrom(date: date) {
@@ -138,6 +138,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         var timelineEntires = [CLKComplicationTimelineEntry]()
 
         guard let scheduleStart = self.scheduleStart, let scheduleEnd = self.scheduleEnd else {
+            print("nil handler")
             handler(nil)
             return
         }

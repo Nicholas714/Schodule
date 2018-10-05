@@ -26,6 +26,13 @@ class InterfaceController: WKInterfaceController {
         
         ExtensionDelegate.connectivityController.sendRefresh {
             self.createTable()
+            
+            if self.storage.schedule.todayEvents.isEmpty {
+                self.infoLabel.setText("No courses today.")
+                self.infoLabel.setHidden(false)
+            } else {
+                self.infoLabel.setHidden(true)
+            }
         }
     }
     

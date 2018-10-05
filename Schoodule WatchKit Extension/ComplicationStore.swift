@@ -51,7 +51,7 @@ struct ComplicationStore {
         case .placeholder:
             return CLKSimpleTextProvider(text: "Time", shortText: "--")
         case .blank:
-            return CLKSimpleTextProvider(text: "", shortText: "")
+            return CLKSimpleTextProvider(text: "", shortText: "None")
         default:
             return CLKSimpleTextProvider(text: "Time", shortText: "--")
         }
@@ -74,9 +74,9 @@ struct ComplicationStore {
             }
             return CLKSimpleTextProvider(text: event!.name)
         case .placeholder:
-            return CLKSimpleTextProvider(text: "Class")
+            return CLKSimpleTextProvider(text: "Course")
         case .blank:
-            return CLKSimpleTextProvider(text: "")
+            return CLKSimpleTextProvider(text: "No Courses")
         }
     }
     
@@ -88,7 +88,7 @@ struct ComplicationStore {
         if let event = event {
             template.tintColor = UIColor(color: event.color)
         } else {
-            template.tintColor = UIColor(color: Color.randomBackground)
+            template.tintColor = UIColor.white 
         }
     
         if let template = template as? CLKComplicationTemplateCircularSmallStackText {
