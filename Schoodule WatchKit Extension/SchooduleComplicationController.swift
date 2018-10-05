@@ -35,6 +35,8 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
         var eventProvider: Event? = nil
         var location: String? = nil
         
+        todayEvents = storage.schedule.todayEvents
+        
         if let date = date {
             if let event = storage.schedule.eventFrom(date: date) {
                 
@@ -89,8 +91,7 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     // block time travel for anything before the start of the schedule
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(nil)
-       //handler(scheduleStart?.addingTimeInterval(-62))
+        handler(scheduleStart?.addingTimeInterval(-62))
     }
     
     
@@ -135,8 +136,9 @@ class SchooduleComplicationController: NSObject, CLKComplicationDataSource {
     
     func allTimelineEntries(complication: CLKComplication, for date: Date, handler: ([CLKComplicationTimelineEntry]?) -> Void, with comparision: ((Date, Date) -> Bool), sendNext: Bool) {
         var timelineEntires = [CLKComplicationTimelineEntry]()
-        print(#function)
+
         guard let scheduleStart = self.scheduleStart, let scheduleEnd = self.scheduleEnd else {
+            handler(nil)
             return
         }
         

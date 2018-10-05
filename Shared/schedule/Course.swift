@@ -18,7 +18,15 @@ class Course: Codable, Equatable {
     }
     
     var name: String
-    var color: Color
+    var color: Color {
+        didSet {
+            for i in 0..<events.count {
+                var newEvent = events[i]
+                newEvent.color = color
+                events[i] = newEvent
+            }
+        }
+    }
     var events = [Event]()
     
     init(event: EKEvent, color: Color) {

@@ -72,12 +72,11 @@
                         <label alignment="left" text="Name" textAlignment="left" numberOfLines="2" id="850-Um-mg1">
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
-                        <separator alignment="left" id="ANT-XE-EUY"/>
                         <label alignment="left" text="Timeframe" textAlignment="left" id="Tbg-Q8-vZF">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                         <label alignment="left" text="Location" textAlignment="left" numberOfLines="2" id="pqS-lm-c6q">
-                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                         <label alignment="left" id="kpw-nx-5X3"/>
                     </items>
