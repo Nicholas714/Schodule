@@ -138,7 +138,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         var timelineEntires = [CLKComplicationTimelineEntry]()
 
         guard let scheduleStart = self.scheduleStart, let scheduleEnd = self.scheduleEnd else {
-            print("nil handler")
             handler(nil)
             return
         }

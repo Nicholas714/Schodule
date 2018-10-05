@@ -9,8 +9,6 @@
 import UIKit
 import EventKit
 
-// TODO: go through each event, and convert all events into CourseEvent which this will store as a list
-
 class Course: Codable, Equatable {
     
     var todayEvents: [Event] {
@@ -28,6 +26,7 @@ class Course: Codable, Equatable {
         }
     }
     var events = [Event]()
+    // var homeworks = [Homework]()
     
     init(event: EKEvent, color: Color) {
         self.name = event.title

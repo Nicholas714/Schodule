@@ -20,9 +20,13 @@ class MainTableViewController: BubbleTableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTodaySchedule), name: UIApplication.didBecomeActiveNotification, object: nil)
 
         navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.hidesBottomBarWhenPushed = true
+        navigationController?.navigationBar.barTintColor = nil
+        navigationController?.navigationBar.isTranslucent = true
         
         if WCSession.isSupported() && session == nil {
             session = WCSession.default
@@ -30,6 +34,7 @@ class MainTableViewController: BubbleTableViewController {
             session?.activate()
         }
         
+
         self.cellTapped = { indexPath in
             guard let cell = self.tableView.cellForRow(at: indexPath) as? CalendarEventCell, let eventEntry = cell.entry as? EventBubbleEntry else {
                 return
@@ -50,6 +55,10 @@ class MainTableViewController: BubbleTableViewController {
             
         }
         
+        reloadTodaySchedule()
+    }
+    
+    @objc func reloadTodaySchedule() {
         var found = [EventBubbleEntry]()
         for todayCourse in storage.schedule.todayCourses {
             for event in todayCourse.todayEvents {
@@ -58,12 +67,7 @@ class MainTableViewController: BubbleTableViewController {
         }
         
         self.entries = found
-        
         tableView.reloadData()
-        
-        navigationController?.navigationBar.barTintColor = nil
-        navigationController?.navigationBar.isTranslucent = true
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -199,6 +203,8 @@ extension MainTableViewController: EKEventViewDelegate {
     }
     
 }
+
+// MARK:- EKEventViewDelegate
 
 extension MainTableViewController: EKEventEditViewDelegate {
     

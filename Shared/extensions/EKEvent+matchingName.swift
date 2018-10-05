@@ -13,7 +13,7 @@ extension EKEventStore {
     static var store = EKEventStore()
     
     func allCoursesInCalendar() -> [Course] {
-        let year: TimeInterval = 604800
+        let year: TimeInterval = 3.15576E+07
         let predicate = predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
         let eventsFound = events(matching: predicate)
         
@@ -35,7 +35,7 @@ extension EKEventStore {
         var loopEvents: [EKEvent]
         
         if foundEvents == nil {
-            let year: TimeInterval = 604800
+            let year: TimeInterval = 3.15576E+07
             let predicate = predicateForEvents(withStart: Date().addingTimeInterval(-year), end: Date().addingTimeInterval(year), calendars: nil)
             loopEvents = self.events(matching: predicate)
         } else {
