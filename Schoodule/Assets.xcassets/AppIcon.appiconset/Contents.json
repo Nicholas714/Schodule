@@ -149,7 +149,6 @@
     {
       "size" : "44x44",
       "idiom" : "watch",
-      "filename" : "88.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "40mm"
@@ -189,6 +188,14 @@
       "idiom" : "watch-marketing",
       "filename" : "1024.png",
       "scale" : "1x"
+    },
+    {
+      "size" : "44x44",
+      "idiom" : "watch",
+      "filename" : "88.png",
+      "scale" : "2x",
+      "role" : "longLook",
+      "subtype" : "42mm"
     }
   ],
   "info" : {

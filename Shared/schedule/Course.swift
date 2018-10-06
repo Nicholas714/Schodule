@@ -33,6 +33,11 @@ class Course: Codable, Equatable {
         self.color = color 
     }
     
+    init(course: Course) {
+        self.name = course.name
+        self.color = course.color 
+    }
+    
     func eventsForDate(date: Date) -> [Event] {
         var dateEvents = [Event]()
         
@@ -54,7 +59,7 @@ class Course: Codable, Equatable {
 struct Event: Codable, Equatable, Comparable, Hashable {
     
     var hashValue: Int {
-        return name.hashValue
+        return startDate.hashValue
     }
     
     var name: String
@@ -66,7 +71,7 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     init(event: EKEvent, color: Color) {
         self.name = event.title 
         self.color = color
-        self.location = event.location ?? ""
+        self.location = event.location ?? event.structuredLocation?.title ?? ""
         self.startDate = event.startDate
         self.endDate = event.endDate
     }

@@ -92,6 +92,7 @@ class MainTableViewController: BubbleTableViewController {
         let store = EKEventStore.store
         let event = EKEvent(eventStore: store)
         
+        editEventViewController.eventStore = store
         editEventViewController.event = event
         editEventViewController.editViewDelegate = self
 
@@ -166,33 +167,23 @@ extension MainTableViewController: EKEventViewDelegate {
         
         switch action {
         case .deleted:
-            if let course = storage.schedule.courses.first(where: { (course) -> Bool in
-                return course.name == event.title
-            }) {
-                if let index = storage.schedule.courses.firstIndex(of: course) {
-                    storage.schedule.courses.remove(at: index)
-                    storage.saveSchedule()
-                }
+            if let deleted = editingEvent {
+                self.storage.schedule.courses.removeAll(where: { $0.name == deleted.name })
+                storage.saveSchedule()
+            }
+        case .done:
+            if let old = editingEvent {
+                self.storage.schedule.courses.removeAll(where: { $0.name == old.name })
+                storage.saveSchedule()
             }
             
-        case .done:
-            if let course = storage.schedule.courses.first(where: { (course) -> Bool in
-                return course.name == event.title
-            }) {
-                if !storage.schedule.courses.contains(course) {
-                    storage.schedule.courses.append(course)
-                    storage.saveSchedule()
-                }
-            } else {
-                let course = Course(event: event, color: Color.randomBackground)
-                course.events = EKEventStore.store.eventsMatching(course: course, in: nil)
-                storage.schedule.courses.append(course)
-                storage.saveSchedule()
-                for todayEvent in course.todayEvents {
-                    entries.append(EventBubbleEntry(course: course, event: todayEvent))
-                }
-                entries.sort()
-            }
+            let course = Course(event: event, color: Color.randomBackground)
+            
+            self.storage.schedule.courses.append(course)
+            
+            EventStore.reloadYear()
+            course.events = EventStore.shared.eventsMatching(course: course)
+            self.storage.saveSchedule()
             
         default: break
         }
@@ -210,14 +201,27 @@ extension MainTableViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         
-        // TOOD: add new EKEvent to calendar, regen everything and reload table
         switch action {
         case .saved:
+            guard let event = controller.event, let _ = event.title else {
+                controller.dismiss(animated: true)
+                return
+            }
+            
+            let course = Course(event: event, color: Color.randomBackground)
+            
+            self.storage.schedule.courses.append(course)
+            
+            EventStore.reloadYear()
+            course.events = EventStore.shared.eventsMatching(course: course)
+            self.storage.saveSchedule()
+
             break
         default:
             break
         }
-        
+
+        tableView.reloadData()
         controller.dismiss(animated: true)
     }
     

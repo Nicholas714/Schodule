@@ -38,13 +38,13 @@ class CalendarEventListViewController: BubbleTableViewController {
         
         requestAccess {
             
-            self.entries = self.store.allCoursesInCalendar().map {
+            self.entries = EventStore.shared.coursesInYear.map {
                 let entry = BubbleEntry(course: $0)
                 if let entryCourse = self.storage.schedule.courses.first(where: { $0.name == entry.name }) {
                     entry.course = entryCourse
                 }
                 return entry
-            }
+            }.sorted()
             self.allEntries = self.entries
             
         }
@@ -56,13 +56,12 @@ class CalendarEventListViewController: BubbleTableViewController {
             }
             
             let course = entry.course
-            
+            print(course.events.count)
             if self.storage.schedule.courses.contains(course) {
                 cell.color = Color.unselected
-                if let index = self.storage.schedule.courses.firstIndex(of: course) {
-                    self.storage.schedule.courses.remove(at: index)
-                    self.storage.saveSchedule()
-                }
+                entry.course.color = Color.unselected
+                self.storage.schedule.courses.removeAll(where: { $0 == course })
+                self.storage.saveSchedule()
             } else {
                 cell.color = self.initialColoredEntries[entry.name] ?? Color.randomBackground
                 self.initialColoredEntries[entry.name] = cell.color
@@ -70,7 +69,6 @@ class CalendarEventListViewController: BubbleTableViewController {
                 self.storage.schedule.courses.append(entry.course)
                 self.storage.saveSchedule()
             }
-            
         }
         
     }
@@ -79,6 +77,12 @@ class CalendarEventListViewController: BubbleTableViewController {
         super.viewDidAppear(animated)
         
         navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        initialColoredEntries.removeAll()
     }
     
     func setupSearchController() {
@@ -120,11 +124,11 @@ extension CalendarEventListViewController: UISearchResultsUpdating, UISearchCont
             }
         }
         
-        entries = newEntries
+        entries = newEntries.sorted()
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        entries = allEntries
+        entries = allEntries.sorted()
     }
     
 }
