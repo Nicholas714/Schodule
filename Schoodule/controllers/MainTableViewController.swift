@@ -41,6 +41,9 @@ class MainTableViewController: BubbleTableViewController {
             }
             
             if let event = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
+                print("\(event.title) first start is \(event.occurrenceDate.dayString)")
+                event.rrules
+                
                 self.editingEvent = Event(event: event, color: cell.color)
                 self.editEvent(event: event)
             } else {

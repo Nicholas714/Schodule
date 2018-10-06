@@ -43,6 +43,9 @@
 		43C76DB22167A71C003D8C2E /* Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB12167A71C003D8C2E /* Homework.swift */; };
 		43C76DB32167A71C003D8C2E /* Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB12167A71C003D8C2E /* Homework.swift */; };
 		43C76DB72167DA27003D8C2E /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB62167DA27003D8C2E /* EventStore.swift */; };
+		43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
+		43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
+		43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +126,8 @@
 		43C76DAD2166F930003D8C2E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		43C76DB12167A71C003D8C2E /* Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homework.swift; sourceTree = "<group>"; };
 		43C76DB62167DA27003D8C2E /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
+		43C76DB821686EBB003D8C2E /* RRRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRRule.swift; sourceTree = "<group>"; };
+		43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+RRule.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +183,7 @@
 				43C76D422166F68F003D8C2E /* Assets.xcassets */,
 				43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */,
 				43C76D472166F68F003D8C2E /* Info.plist */,
+				43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 				43C76D9B2166F74D003D8C2E /* Schedule.swift */,
 				43C76D9C2166F74D003D8C2E /* Course.swift */,
 				43C76DB12167A71C003D8C2E /* Homework.swift */,
+				43C76DB821686EBB003D8C2E /* RRRule.swift */,
 			);
 			path = schedule;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C76D872166F6CA003D8C2E /* CalendarEventListViewController.swift in Sources */,
+				43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */,
 				43C76DA62166F74D003D8C2E /* Date+Formatter.swift in Sources */,
 				43C76DB22167A71C003D8C2E /* Homework.swift in Sources */,
 				43C76D882166F6CA003D8C2E /* BubbleTableViewController.swift in Sources */,
@@ -403,6 +411,7 @@
 				43C76D892166F6CA003D8C2E /* AppDelegate.swift in Sources */,
 				43C76D8B2166F6CA003D8C2E /* BubbleEntry.swift in Sources */,
 				43C76DB72167DA27003D8C2E /* EventStore.swift in Sources */,
+				43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */,
 				43C76DA02166F74D003D8C2E /* Storage.swift in Sources */,
 				43C76D8A2166F6CA003D8C2E /* TextHeaderView.swift in Sources */,
 				43C76D812166F6CA003D8C2E /* CalendarEventCell.swift in Sources */,
@@ -416,6 +425,7 @@
 				43C76DA52166F74D003D8C2E /* Course.swift in Sources */,
 				43C76D952166F739003D8C2E /* ClassRow.swift in Sources */,
 				43C76DB32167A71C003D8C2E /* Homework.swift in Sources */,
+				43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */,
 				43C76D932166F739003D8C2E /* ComplicationController.swift in Sources */,
 				43C76D962166F739003D8C2E /* ConnectivityController.swift in Sources */,
 				43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */,
