@@ -17,6 +17,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         return todayEvents ?? [Event]()
     }
     
+    static func reloadTodayEvents() {
+        todayEvents = storage.schedule.todayEvents
+    }
+    
     var root: InterfaceController? {
         return WKExtension.shared().rootInterfaceController as? InterfaceController
     }

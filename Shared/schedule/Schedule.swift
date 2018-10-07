@@ -17,25 +17,39 @@ class Schedule: Codable, Equatable {
     var courses = [Course]()
     
     var todayCourses: [Course] {
-        return courses.filter { !$0.todayEvents.isEmpty }
+        var today = [Course]()
+        
+        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, event) in
+            if let index = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
+                today.append(courses[index])
+            }
+        }
+        
+        return today
     }
     
     var todayEvents: [Event] {
-        return courses.flatMap { $0.todayEvents }.sorted()
+        var today = [Event]()
+        
+        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, event) in
+            if let course = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
+                today.append(Event(event: event, color: courses[course].color))
+            }
+        }
+        
+        return today
     }
     
     func eventFrom(date: Date) -> Event? {
-        return nil
-//        return todayEvents.first { (event) -> Bool in
-//            return date <= event.endDate && date >= event.startDate
-//        }
+        return todayEvents.first { (event) -> Bool in
+            return date <= event.endDate && date >= event.startDate
+        }
     }
     
     func nextEventFrom(date: Date) -> Event? {
-        return nil 
-//        return todayEvents.first { (event) -> Bool in
-//            return date < event.startDate
-//        }
+        return todayEvents.first { (event) -> Bool in
+            return date < event.startDate
+        }
     }
     
 }

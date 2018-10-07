@@ -23,7 +23,6 @@ class InterfaceController: WKInterfaceController {
     
     override func willActivate() {
         infoLabel.setHidden(false)
-        
 
         createTable()
         
@@ -45,6 +44,8 @@ class InterfaceController: WKInterfaceController {
     }
     
     func createTable() {
+        ExtensionDelegate.reloadTodayEvents()
+        
         scheduleTable.setNumberOfRows(todayEvents.count, withRowType: "classRow")
         
         for (index, event) in todayEvents.enumerated() {

@@ -34,7 +34,8 @@ class ConnectivityController: NSObject {
             }
             
             if ExtensionDelegate.storage.schedule != pastSchedule {
-
+                ExtensionDelegate.reloadTodayEvents()
+                
                 ExtensionDelegate.storage.saveSchedule()
                 DispatchQueue.main.async {
                     print("asyc create table")

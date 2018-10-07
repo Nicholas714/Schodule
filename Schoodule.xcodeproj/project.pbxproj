@@ -45,6 +45,7 @@
 		43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
 		43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
 		43C76DBD21688353003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
+		43E9C51A216A899B008C0950 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB62167DA27003D8C2E /* EventStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +171,6 @@
 		43C76D3A2166F68E003D8C2E /* Schoodule */ = {
 			isa = PBXGroup;
 			children = (
-				43C76DB62167DA27003D8C2E /* EventStore.swift */,
 				43C76D7E2166F6CA003D8C2E /* AppDelegate.swift */,
 				43C76D802166F6CA003D8C2E /* BubbleEntry.swift */,
 				43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */,
@@ -255,6 +255,7 @@
 		43C76D9D2166F74D003D8C2E /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				43C76DB62167DA27003D8C2E /* EventStore.swift */,
 				43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */,
 			);
 			path = extensions;
@@ -428,6 +429,7 @@
 				43C76D942166F739003D8C2E /* ComplicationStore.swift in Sources */,
 				43C76D972166F739003D8C2E /* SingleClassViewController.swift in Sources */,
 				43C76DA32166F74D003D8C2E /* Schedule.swift in Sources */,
+				43E9C51A216A899B008C0950 /* EventStore.swift in Sources */,
 				43C76DAF2166F930003D8C2E /* InterfaceController.swift in Sources */,
 				43C76DA72166F74D003D8C2E /* Date+Formatter.swift in Sources */,
 				43C76DA12166F74D003D8C2E /* Storage.swift in Sources */,

@@ -11,10 +11,6 @@ import EventKit
 
 class Course: Codable, Equatable {
     
-    var todayEvents: [Event] {
-        return eventsForDate(date: Date())
-    }
-    
     var name: String
     var color: Color {
         didSet {
@@ -35,21 +31,6 @@ class Course: Codable, Equatable {
     init(course: Course) {
         self.name = course.name
         self.color = course.color 
-    }
-    
-    func eventsForDate(date: Date) -> [Event] {
-        var dateEvents = [Event]()
-        
-        for event in events {
-            for rule in event.rules {
-                if !rule.getOccurrencesBetween(start: date, and: date).isEmpty {
-                    dateEvents.append(event)
-                    continue 
-                }
-            }
-        }
-        
-        return Array(Set(dateEvents))
     }
     
     static func == (lhs: Course, rhs: Course) -> Bool {

@@ -60,9 +60,13 @@ class MainTableViewController: BubbleTableViewController {
     
     @objc func reloadTodaySchedule() {
         var found = [EventBubbleEntry]()
+        
         for todayCourse in storage.schedule.todayCourses {
-            for event in todayCourse.todayEvents {
-                found.append(EventBubbleEntry(course: todayCourse, event: event))
+            for var event in storage.schedule.todayEvents {
+                if event.name == todayCourse.name {
+                    event.color = todayCourse.color 
+                    found.append(EventBubbleEntry(course: todayCourse, event: event))
+                }
             }
         }
         
