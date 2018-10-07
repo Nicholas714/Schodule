@@ -17,7 +17,9 @@ class InterfaceController: WKInterfaceController {
         return ExtensionDelegate.storage
     }
     
-    var todayEvents: [Event]!
+    var todayEvents: [Event] {
+       return ExtensionDelegate.storage.schedule.todayEvents
+    }
     
     override func willActivate() {
         infoLabel.setHidden(false)
@@ -27,7 +29,7 @@ class InterfaceController: WKInterfaceController {
         ExtensionDelegate.connectivityController.sendRefresh {
             self.createTable()
             
-            if self.storage.schedule.todayEvents.isEmpty {
+            if self.todayEvents.isEmpty {
                 self.infoLabel.setText("No courses today.")
                 self.infoLabel.setHidden(false)
             } else {
@@ -42,8 +44,6 @@ class InterfaceController: WKInterfaceController {
     }
     
     func createTable() {
-        todayEvents = storage.schedule.todayEvents
-        
         scheduleTable.setNumberOfRows(todayEvents.count, withRowType: "classRow")
         
         for (index, event) in todayEvents.enumerated() {
@@ -94,7 +94,7 @@ class InterfaceController: WKInterfaceController {
             infoLabel.setText("Loading courses from iPhone...")
             infoLabel.setHidden(false)
         } else {
-            if storage.schedule.todayEvents.isEmpty {
+            if todayEvents.isEmpty {
                 infoLabel.setText("No courses today.")
                 infoLabel.setHidden(false)
             } else {

@@ -18,7 +18,7 @@ class BubbleEntry: Equatable, Comparable, Hashable {
     var name: String
     
     var sortPriority: Int {
-        return course.events.count 
+        return EventStore.shared.namesToCounts[name] ?? 0
     }
     
     init(course: Course) {

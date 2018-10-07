@@ -25,15 +25,17 @@ class Schedule: Codable, Equatable {
     }
     
     func eventFrom(date: Date) -> Event? {
-        return todayEvents.first { (event) -> Bool in
-            return date <= event.endDate && date >= event.startDate
-        }
+        return nil
+//        return todayEvents.first { (event) -> Bool in
+//            return date <= event.endDate && date >= event.startDate
+//        }
     }
     
     func nextEventFrom(date: Date) -> Event? {
-        return todayEvents.first { (event) -> Bool in
-            return date < event.startDate
-        }
+        return nil 
+//        return todayEvents.first { (event) -> Bool in
+//            return date < event.startDate
+//        }
     }
     
 }

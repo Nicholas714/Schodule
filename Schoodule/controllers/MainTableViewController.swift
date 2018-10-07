@@ -41,9 +41,6 @@ class MainTableViewController: BubbleTableViewController {
             }
             
             if let event = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
-                print("\(event.title) first start is \(event.occurrenceDate.dayString)")
-                event.rrules
-                
                 self.editingEvent = Event(event: event, color: cell.color)
                 self.editEvent(event: event)
             } else {
@@ -185,7 +182,7 @@ extension MainTableViewController: EKEventViewDelegate {
             self.storage.schedule.courses.append(course)
             
             EventStore.reloadYear()
-            course.events = EventStore.shared.eventsMatching(course: course)
+            // course.events = EventStore.shared.eventsMatching(course: course)
             self.storage.saveSchedule()
             
         default: break
@@ -212,11 +209,11 @@ extension MainTableViewController: EKEventEditViewDelegate {
             }
             
             let course = Course(event: event, color: Color.randomBackground)
-            
+            let e = Event(event: event, color: course.color)
+            course.events = [e]
             self.storage.schedule.courses.append(course)
             
             EventStore.reloadYear()
-            course.events = EventStore.shared.eventsMatching(course: course)
             self.storage.saveSchedule()
 
             break

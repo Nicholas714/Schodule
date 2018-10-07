@@ -24,7 +24,6 @@ class Storage: Equatable {
         }
         set {
             loadedSchedule = newValue
-            print("schedule has been set")
             saveSchedule()
         }
     }
@@ -36,39 +35,20 @@ class Storage: Equatable {
     }
     
     func saveSchedule() {
+        print("saving \(schedule.courses.count) courses with \(schedule.courses.flatMap { $0.events }.count)")
+        
         defaults.setValue(encoded, forKey: "schedule")
     }
     
     var transfer: [String: Data] {
-        return ["courses": appleWatchEncoded]
+        return ["courses": encoded]
     }
     
     private var encoded: Data {
         let encoder = JSONEncoder()
 
         do {
-            return try encoder.encode(schedule)
-        } catch {
-            fatalError("Error loading schedules.")
-        }
-    }
-    
-    private var appleWatchEncoded: Data {
-        let encoder = JSONEncoder()
-        
-        do {
-            // only send watch 1 week worth of classes
-            let schedule = Schedule()
-            var courses = [Course]()
-            for course in self.schedule.courses {
-                let newEvents = course.events.filter { $0.startDate.timeIntervalSinceNow < 604800 }
-                if !newEvents.isEmpty {
-                    let newCourse = Course(course: course)
-                    newCourse.events = newEvents
-                    courses.append(newCourse)
-                }
-            }
-            schedule.courses = courses
+            print("encoding \(schedule.courses.flatMap { $0.events }.count)")
             return try encoder.encode(schedule)
         } catch {
             fatalError("Error loading schedules.")

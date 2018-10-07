@@ -38,7 +38,7 @@ class CalendarEventListViewController: BubbleTableViewController {
         
         requestAccess {
             
-            self.entries = EventStore.shared.coursesInYear.map {
+            self.entries = EventStore.shared.namesToCourse.values.map {
                 let entry = BubbleEntry(course: $0)
                 if let entryCourse = self.storage.schedule.courses.first(where: { $0.name == entry.name }) {
                     entry.course = entryCourse
@@ -56,7 +56,7 @@ class CalendarEventListViewController: BubbleTableViewController {
             }
             
             let course = entry.course
-            print(course.events.count)
+
             if self.storage.schedule.courses.contains(course) {
                 cell.color = Color.unselected
                 entry.course.color = Color.unselected

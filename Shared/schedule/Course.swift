@@ -26,7 +26,6 @@ class Course: Codable, Equatable {
         }
     }
     var events = [Event]()
-    // var homeworks = [Homework]()
     
     init(event: EKEvent, color: Color) {
         self.name = event.title
@@ -42,16 +41,19 @@ class Course: Codable, Equatable {
         var dateEvents = [Event]()
         
         for event in events {
-            if date.dayString == event.startDate.dayString {
-                dateEvents.append(event)
+            for rule in event.rules {
+                if !rule.getOccurrencesBetween(start: date, and: date).isEmpty {
+                    dateEvents.append(event)
+                    continue 
+                }
             }
         }
         
-        return dateEvents
+        return Array(Set(dateEvents))
     }
     
     static func == (lhs: Course, rhs: Course) -> Bool {
-        return lhs.name == rhs.name 
+        return lhs.name == rhs.name
     }
     
 }
@@ -63,13 +65,15 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     }
     
     var name: String
+    var rules: [RRule]
     var color: Color
     let location: String
     let startDate: Date
     let endDate: Date
     
     init(event: EKEvent, color: Color) {
-        self.name = event.title 
+        self.name = event.title
+        self.rules = event.rrules
         self.color = color
         self.location = event.location ?? event.structuredLocation?.title ?? ""
         self.startDate = event.startDate
@@ -78,6 +82,10 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     
     static func < (lhs: Event, rhs: Event) -> Bool {
         return lhs.startDate < rhs.startDate
+    }
+    
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return lhs.rules == rhs.rules
     }
     
 }

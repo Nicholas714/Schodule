@@ -66,7 +66,7 @@ private struct DateMask {
     var yeardayIsInWeekno: [Int:Bool] = [:]
 }
 
-struct RRule: Codable {
+struct RRule: Codable, Equatable {
     var frequency: RruleFrequency
     var dtstart: Date?
     var until: Date?
@@ -97,9 +97,28 @@ struct RRule: Codable {
         return r.getOccurrencesBetween(beginDate: start, endDate: end)
     }
     
+    static func == (lhs: RRule, rhs: RRule) -> Bool {
+        return lhs.frequency == rhs.frequency
+                && lhs.until == rhs.until
+                && lhs.count == rhs.count
+                && lhs.interval == rhs.interval
+                && lhs.wkst == rhs.wkst
+                && lhs.bysetpos == rhs.bysetpos
+                && lhs.bymonth == rhs.bymonth
+                && lhs.bymonthday == rhs.bymonthday
+                && lhs.byyearday == rhs.byyearday
+                && lhs.byweekno == rhs.byweekno
+                && lhs.byweekday == rhs.byweekday
+                && lhs.byhour == rhs.byhour
+                && lhs.byminute == rhs.byminute
+                && lhs.bysecond == rhs.bysecond
+                && lhs.exclusionDates == rhs.exclusionDates
+                && lhs.inclusionDates == rhs.inclusionDates
+    }
+    
 }
 
-private class rrule {
+class rrule {
     
     var frequency: RruleFrequency
     var interval = 1

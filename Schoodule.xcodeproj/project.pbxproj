@@ -40,12 +40,11 @@
 		43C76DA72166F74D003D8C2E /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */; };
 		43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */; };
 		43C76DAF2166F930003D8C2E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAD2166F930003D8C2E /* InterfaceController.swift */; };
-		43C76DB22167A71C003D8C2E /* Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB12167A71C003D8C2E /* Homework.swift */; };
-		43C76DB32167A71C003D8C2E /* Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB12167A71C003D8C2E /* Homework.swift */; };
 		43C76DB72167DA27003D8C2E /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB62167DA27003D8C2E /* EventStore.swift */; };
 		43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
 		43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
 		43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
+		43C76DBD21688353003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +123,6 @@
 		43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		43C76DAD2166F930003D8C2E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		43C76DB12167A71C003D8C2E /* Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homework.swift; sourceTree = "<group>"; };
 		43C76DB62167DA27003D8C2E /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		43C76DB821686EBB003D8C2E /* RRRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRRule.swift; sourceTree = "<group>"; };
 		43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+RRule.swift"; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				43C76D9A2166F74D003D8C2E /* Storage.swift */,
 				43C76D9B2166F74D003D8C2E /* Schedule.swift */,
 				43C76D9C2166F74D003D8C2E /* Course.swift */,
-				43C76DB12167A71C003D8C2E /* Homework.swift */,
 				43C76DB821686EBB003D8C2E /* RRRule.swift */,
 			);
 			path = schedule;
@@ -403,7 +400,6 @@
 				43C76D872166F6CA003D8C2E /* CalendarEventListViewController.swift in Sources */,
 				43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */,
 				43C76DA62166F74D003D8C2E /* Date+Formatter.swift in Sources */,
-				43C76DB22167A71C003D8C2E /* Homework.swift in Sources */,
 				43C76D882166F6CA003D8C2E /* BubbleTableViewController.swift in Sources */,
 				43C76DA42166F74D003D8C2E /* Course.swift in Sources */,
 				43C76D862166F6CA003D8C2E /* MainTableViewController.swift in Sources */,
@@ -424,9 +420,9 @@
 			files = (
 				43C76DA52166F74D003D8C2E /* Course.swift in Sources */,
 				43C76D952166F739003D8C2E /* ClassRow.swift in Sources */,
-				43C76DB32167A71C003D8C2E /* Homework.swift in Sources */,
 				43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */,
 				43C76D932166F739003D8C2E /* ComplicationController.swift in Sources */,
+				43C76DBD21688353003D8C2E /* EKEvent+RRule.swift in Sources */,
 				43C76D962166F739003D8C2E /* ConnectivityController.swift in Sources */,
 				43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */,
 				43C76D942166F739003D8C2E /* ComplicationStore.swift in Sources */,

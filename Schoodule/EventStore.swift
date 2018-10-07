@@ -41,63 +41,34 @@ class EventStore {
             }
             
             DispatchQueue.global(qos: .background).async {
-                shared.eventsInYear = shared.eventsInYearSpan()
-                shared.coursesInYear = shared.allCoursesInCalendar()
+                shared.loadCourses()
             }
         }
     }
     
-    private var namesToEvents = [String: [EKEvent]]()
-    
-    var eventsInYear = [EKEvent]()
-    var coursesInYear = [Course]()
+    var namesToCourse = [String: Course]()
+    var namesToCounts = [String: Int]()
     
     private init() { }
     
-    func eventsMatching(course: Course) -> [Event] {
-        let ekEvents = namesToEvents[course.name] ?? [EKEvent]()
-        var events = [Event]()
-        
-        for ekEvent in ekEvents {
-            let event = Event(event: ekEvent, color: course.color)
-            events.append(event)
-        }
-        
-        return Array(Set(events))
-    }
-    
-    private func allCoursesInCalendar() -> [Course] {
-        var courses = [Course]()
-        
-        for event in eventsInYear {
-            let newCourse = Course(event: event, color: Color.unselected)
-            if !courses.contains(newCourse) {
-                newCourse.events = eventsMatching(course: newCourse)
-                courses.append(newCourse)
-            }
-        }
-        
-        print("into \(courses.count)")
-        
-        return courses
-    }
-    
-    private func eventsInYearSpan() -> [EKEvent] {
+    private func loadCourses() {
         let year: TimeInterval = 3.15576E+07
         let todayStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         
         let predicate = EKEventStore.store.predicateForEvents(withStart: todayStart, end: todayStart.addingTimeInterval(year), calendars: nil)
         let events = EKEventStore.store.events(matching: predicate)
-        print("loaded \(events.count)")
         
         for event in events {
-            var eventList = namesToEvents[event.title] ?? [EKEvent]()
-            eventList.append(event)
-            namesToEvents[event.title] = eventList
+            let course = namesToCourse[event.title] ?? Course(event: event, color: Color.unselected)
+            let event = Event(event: event, color: course.color)
+            if !course.events.contains(event) {
+                course.events.append(event)
+            }
+            namesToCourse[event.name] = course
+            
+            let newCount = (namesToCounts[event.name] ?? 0) + 1
+            namesToCounts[event.name] = newCount
         }
-        
-        print("went through all")
-        return events
     }
     
 }

@@ -73,10 +73,10 @@
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
                         <label alignment="left" text="Timeframe" textAlignment="left" id="Tbg-Q8-vZF">
-                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
                         <label alignment="left" text="Location" textAlignment="left" numberOfLines="2" id="pqS-lm-c6q">
-                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
                         <label alignment="left" id="kpw-nx-5X3"/>
                     </items>
