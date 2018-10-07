@@ -162,8 +162,6 @@ extension MainTableViewController: EKEventViewDelegate {
     
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         
-        // TODO: when editing, remove the editingEvent from all courses and regen everything
-        
         guard let event = controller.event else {
             controller.dismiss(animated: true, completion: nil)
             return

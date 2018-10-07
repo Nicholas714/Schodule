@@ -57,17 +57,17 @@ class InterfaceController: WKInterfaceController {
     }
     
     func reloadCurrent() {
-        let currentClass = storage.schedule.eventFrom(date: Date())
-        let nextClass = storage.schedule.nextEventFrom(date: Date())
-        
-        for (index, period) in todayEvents.enumerated() {
-            let row = scheduleTable.rowController(at: index) as! ClassRow
-            if period == currentClass || (period == nextClass && currentClass == nil) {
-                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
-            } else {
-                row.group.setBackgroundColor(UIColor.clear)
-            }
-        }
+//        let currentClass = storage.schedule.eventFrom(date: Date())
+//        let nextClass = storage.schedule.nextEventFrom(date: Date())
+//        
+//        for (index, period) in todayEvents.enumerated() {
+//            let row = scheduleTable.rowController(at: index) as! ClassRow
+//            if period == currentClass || (period == nextClass && currentClass == nil) {
+//                row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+//            } else {
+//                row.group.setBackgroundColor(UIColor.clear)
+//            }
+//        }
     }
     
     func loadRow(index: Int, event: Event) {
@@ -89,6 +89,12 @@ class InterfaceController: WKInterfaceController {
             row.locationLabel.setText(event.location)
             row.locationLabel.setHidden(false)
         }
+        
+        let now = Date()
+        if now > event.startDate && now < event.endDate {
+            row.group.setBackgroundColor(UIColor.white.withAlphaComponent(0.14))
+        }
+        
     }
     
     func showInfo() {

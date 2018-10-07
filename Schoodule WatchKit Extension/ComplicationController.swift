@@ -9,9 +9,7 @@
 import ClockKit
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    
-    //let initialClassWarning: TimeInterval = -3600
-    
+        
     var storage: Storage {
         return ExtensionDelegate.storage
     }
