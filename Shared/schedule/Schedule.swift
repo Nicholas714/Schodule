@@ -37,7 +37,7 @@ class Schedule: Codable, Equatable {
             }
         }
         
-        return today
+        return today.sorted()
     }
     
     func eventFrom(date: Date) -> Event? {
