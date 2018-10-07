@@ -18,12 +18,13 @@ class InterfaceController: WKInterfaceController {
     }
     
     var todayEvents: [Event] {
-       return ExtensionDelegate.storage.schedule.todayEvents
+        return ExtensionDelegate.getTodayEvents()
     }
     
     override func willActivate() {
         infoLabel.setHidden(false)
         
+
         createTable()
         
         ExtensionDelegate.connectivityController.sendRefresh {

@@ -11,6 +11,12 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
+    private static var todayEvents: [Event]?
+    
+    static func getTodayEvents() -> [Event] {
+        return todayEvents ?? [Event]()
+    }
+    
     var root: InterfaceController? {
         return WKExtension.shared().rootInterfaceController as? InterfaceController
     }

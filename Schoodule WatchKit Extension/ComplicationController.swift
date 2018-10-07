@@ -17,7 +17,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     var todayEvents: [Event] {
-        return ExtensionDelegate.storage.schedule.todayEvents
+        return ExtensionDelegate.getTodayEvents()
     }
     
     var scheduleStart: Date? {
