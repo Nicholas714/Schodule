@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		437D6DFC216AEB5200A2C354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437D6DFB216AEB5200A2C354 /* Assets.xcassets */; };
 		43C76D432166F68F003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D422166F68F003D8C2E /* Assets.xcassets */; };
 		43C76D462166F68F003D8C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */; };
 		43C76D4B2166F68F003D8C2E /* Schoodule WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */; };
-		43C76D532166F68F003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D522166F68F003D8C2E /* Assets.xcassets */; };
 		43C76D5A2166F68F003D8C2E /* Schoodule WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		43C76D652166F690003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D642166F690003D8C2E /* Assets.xcassets */; };
 		43C76D812166F6CA003D8C2E /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */; };
@@ -91,12 +91,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		437D6DFB216AEB5200A2C354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43C76D382166F68E003D8C2E /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C76D422166F68F003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43C76D452166F68F003D8C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43C76D472166F68F003D8C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43C76D4A2166F68F003D8C2E /* Schoodule WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schoodule WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C76D522166F68F003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43C76D542166F68F003D8C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43C76D592166F68F003D8C2E /* Schoodule WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Schoodule WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C76D642166F690003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				43C76D8C2166F70C003D8C2E /* Interface.storyboard */,
-				43C76D522166F68F003D8C2E /* Assets.xcassets */,
 				43C76D542166F68F003D8C2E /* Info.plist */,
+				437D6DFB216AEB5200A2C354 /* Assets.xcassets */,
 			);
 			path = "Schoodule WatchKit App";
 			sourceTree = "<group>";
@@ -378,8 +378,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437D6DFC216AEB5200A2C354 /* Assets.xcassets in Resources */,
 				43C76D8D2166F70C003D8C2E /* Interface.storyboard in Resources */,
-				43C76D532166F68F003D8C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = WatchIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
@@ -649,7 +649,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = WatchIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;

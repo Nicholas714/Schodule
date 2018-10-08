@@ -141,7 +141,7 @@
     {
       "size" : "40x40",
       "idiom" : "watch",
-      "filename" : "80.png",
+      "filename" : "80-1.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "38mm"
@@ -149,6 +149,7 @@
     {
       "size" : "44x44",
       "idiom" : "watch",
+      "filename" : "SchooduleIcon1.3 2.jpg",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "40mm"
@@ -156,6 +157,7 @@
     {
       "size" : "50x50",
       "idiom" : "watch",
+      "filename" : "SchooduleIcon1.3 2-1.jpg",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "44mm"
@@ -179,7 +181,7 @@
     {
       "size" : "108x108",
       "idiom" : "watch",
-      "filename" : "88.png",
+      "filename" : "SchooduleIcon1.3 2-2.jpg",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "44mm"

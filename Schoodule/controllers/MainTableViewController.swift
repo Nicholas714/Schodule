@@ -16,18 +16,28 @@ class MainTableViewController: BubbleTableViewController {
     var storage = Storage(defaults: UserDefaults())
     var session: WCSession? = nil
     
-    var editingEvent: Event?
+    var editingEvent: Event? {
+        didSet {
+            if let _ = editingEvent {
+                navigationController?.navigationBar.barTintColor = UIColor.black
+                navigationController?.navigationBar.isTranslucent = false
+            } else {
+                navigationController?.navigationBar.barTintColor = nil
+                navigationController?.navigationBar.isTranslucent = true
+            }
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTodaySchedule), name: UIApplication.didBecomeActiveNotification, object: nil)
-
         navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.barTintColor = nil
         navigationController?.navigationBar.isTranslucent = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTodaySchedule), name: UIApplication.didBecomeActiveNotification, object: nil)
+
         if WCSession.isSupported() && session == nil {
             session = WCSession.default
             session?.delegate = self
@@ -58,6 +68,7 @@ class MainTableViewController: BubbleTableViewController {
     }
     
     @objc func reloadTodaySchedule() {
+        navigationController?.setToolbarHidden(true, animated: false)
         var found = [EventBubbleEntry]()
         let todayCourses = storage.schedule.todayCourses
         for todayCourse in todayCourses {
@@ -189,9 +200,9 @@ extension MainTableViewController: EKEventViewDelegate {
             let course = Course(event: event, color: Color.randomBackground)
             
             self.storage.schedule.courses.append(course)
-            
-            EventStore.reloadYear()
             self.storage.saveSchedule()
+
+            EventStore.reloadYear()
             
         default: break
         }
@@ -217,8 +228,6 @@ extension MainTableViewController: EKEventEditViewDelegate {
             }
             
             let course = Course(event: event, color: Color.randomBackground)
-            let e = Event(event: event, color: course.color)
-            course.events = [e]
             self.storage.schedule.courses.append(course)
             
             EventStore.reloadYear()
