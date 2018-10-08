@@ -74,9 +74,9 @@ struct ComplicationStore {
             }
             return CLKSimpleTextProvider(text: event!.name)
         case .placeholder:
-            return CLKSimpleTextProvider(text: "Course")
+            return CLKSimpleTextProvider(text: "Class")
         case .blank:
-            return CLKSimpleTextProvider(text: "No Courses")
+            return CLKSimpleTextProvider(text: "No Classes")
         }
     }
     

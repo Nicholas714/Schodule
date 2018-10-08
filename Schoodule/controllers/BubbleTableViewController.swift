@@ -11,6 +11,9 @@ import EventKit
 
 class BubbleTableViewController: UITableViewController {
     
+    var cellHeight: CGFloat = 80
+    var infoLabel: UILabel?
+    
     var cellTapped: ((_ indexPath: IndexPath) -> ())? = nil
     
     var entries = [BubbleEntry]() {
@@ -37,6 +40,7 @@ class BubbleTableViewController: UITableViewController {
         eventCell.addGestureRecognizer(tap)
         
         eventCell.entry = entries[indexPath.row]
+        infoLabel?.isHidden = true
         
         return eventCell
     }
@@ -50,7 +54,7 @@ class BubbleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return cellHeight
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,6 +63,25 @@ class BubbleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entries.count
+    }
+    
+    func createInfoLabel(withText text: String) {
+        let tableViewHeight = self.tableView.bounds.size.height
+        var calc = (tableViewHeight / cellHeight) / 2
+        calc = calc - 3;
+        
+        if infoLabel == nil {
+            infoLabel = UILabel(frame: CGRect(x: 0, y: calc * cellHeight, width: self.tableView.bounds.size.width, height: cellHeight))
+        }
+ 
+        infoLabel?.isHidden = false
+        infoLabel?.textColor = .white
+        infoLabel?.numberOfLines = 10
+        infoLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        infoLabel?.textAlignment = .center
+        infoLabel?.text = text
+        
+        tableView.addSubview(infoLabel!)
     }
     
 }

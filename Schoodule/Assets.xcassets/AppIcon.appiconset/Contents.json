@@ -179,6 +179,7 @@
     {
       "size" : "108x108",
       "idiom" : "watch",
+      "filename" : "88.png",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "44mm"
@@ -188,14 +189,6 @@
       "idiom" : "watch-marketing",
       "filename" : "1024.png",
       "scale" : "1x"
-    },
-    {
-      "size" : "44x44",
-      "idiom" : "watch",
-      "filename" : "88.png",
-      "scale" : "2x",
-      "role" : "longLook",
-      "subtype" : "42mm"
     }
   ],
   "info" : {

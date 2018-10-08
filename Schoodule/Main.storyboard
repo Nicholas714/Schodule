@@ -29,7 +29,8 @@
                                     <action selector="addNewEvent:" destination="cXc-2f-czI" id="Aeg-qc-00h"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="bookmarks" id="3ZK-Io-gqV">
+                            <barButtonItem systemItem="search" id="3ZK-Io-gqV">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="CWD-lV-IRH" kind="show" identifier="CalendarEventListViewController" id="Unc-Wd-kEZ"/>
                                 </connections>

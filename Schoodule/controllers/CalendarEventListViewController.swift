@@ -30,6 +30,10 @@ class CalendarEventListViewController: BubbleTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if EventStore.shared.namesToCounts.isEmpty {
+            createInfoLabel(withText: "No Calendar events")
+        }
+        
         setupSearchController()
         
         for course in self.storage.schedule.courses {

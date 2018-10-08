@@ -30,7 +30,7 @@ class InterfaceController: WKInterfaceController {
             self.createTable()
             
             if self.todayEvents.isEmpty {
-                self.infoLabel.setText("No courses today.")
+                self.infoLabel.setText("No classes today.")
                 self.infoLabel.setHidden(false)
             } else {
                 self.infoLabel.setHidden(true)
@@ -59,7 +59,7 @@ class InterfaceController: WKInterfaceController {
     func reloadCurrent() {
 //        let currentClass = storage.schedule.eventFrom(date: Date())
 //        let nextClass = storage.schedule.nextEventFrom(date: Date())
-//        
+//
 //        for (index, period) in todayEvents.enumerated() {
 //            let row = scheduleTable.rowController(at: index) as! ClassRow
 //            if period == currentClass || (period == nextClass && currentClass == nil) {
@@ -99,11 +99,11 @@ class InterfaceController: WKInterfaceController {
     
     func showInfo() {
         if storage.schedule.courses.isEmpty {
-            infoLabel.setText("Loading courses from iPhone...")
+            infoLabel.setText("Loading classes from iPhone...")
             infoLabel.setHidden(false)
         } else {
             if todayEvents.isEmpty {
-                infoLabel.setText("No courses today.")
+                infoLabel.setText("No classes today.")
                 infoLabel.setHidden(false)
             } else {
                 infoLabel.setHidden(true)

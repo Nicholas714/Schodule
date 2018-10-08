@@ -33,7 +33,6 @@ class MainTableViewController: BubbleTableViewController {
             session?.delegate = self
             session?.activate()
         }
-        
 
         self.cellTapped = { indexPath in
             guard let cell = self.tableView.cellForRow(at: indexPath) as? CalendarEventCell, let eventEntry = cell.entry as? EventBubbleEntry else {
@@ -60,8 +59,8 @@ class MainTableViewController: BubbleTableViewController {
     
     @objc func reloadTodaySchedule() {
         var found = [EventBubbleEntry]()
-        
-        for todayCourse in storage.schedule.todayCourses {
+        let todayCourses = storage.schedule.todayCourses
+        for todayCourse in todayCourses {
             for var event in storage.schedule.todayEvents {
                 if event.name == todayCourse.name {
                     event.color = todayCourse.color 
@@ -72,6 +71,13 @@ class MainTableViewController: BubbleTableViewController {
         
         self.entries = found
         tableView.reloadData()
+        
+        if storage.schedule.courses.isEmpty {
+            createInfoLabel(withText: "Create a class or add one from Calendar")
+        } else if todayCourses.isEmpty {
+            createInfoLabel(withText: "No classes today")
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -171,6 +177,7 @@ extension MainTableViewController: EKEventViewDelegate {
         case .deleted:
             if let deleted = editingEvent {
                 self.storage.schedule.courses.removeAll(where: { $0.name == deleted.name })
+                EventStore.reloadYear()
                 storage.saveSchedule()
             }
         case .done:
@@ -184,7 +191,6 @@ extension MainTableViewController: EKEventViewDelegate {
             self.storage.schedule.courses.append(course)
             
             EventStore.reloadYear()
-            // course.events = EventStore.shared.eventsMatching(course: course)
             self.storage.saveSchedule()
             
         default: break
