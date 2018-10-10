@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class CalendarEventListViewController: BubbleTableViewController {
+class CalendarEventListViewController: BubbleTableViewController, Actable {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -33,7 +33,7 @@ class CalendarEventListViewController: BubbleTableViewController {
         if EventStore.shared.namesToCounts.isEmpty {
             createInfoLabel(withText: "No Calendar events")
         }
-        
+                
         setupSearchController()
         
         for course in self.storage.schedule.courses {
@@ -41,16 +41,9 @@ class CalendarEventListViewController: BubbleTableViewController {
         }
         
         requestAccess {
-            
-            self.entries = EventStore.shared.namesToCourse.values.map {
-                let entry = BubbleEntry(course: $0)
-                if let entryCourse = self.storage.schedule.courses.first(where: { $0.name == entry.name }) {
-                    entry.course = entryCourse
-                }
-                return entry
-            }.sorted()
-            self.allEntries = self.entries
-            
+            DispatchQueue.main.async {
+                self.setupEntries()
+            }
         }
         
         
@@ -74,7 +67,6 @@ class CalendarEventListViewController: BubbleTableViewController {
                 self.storage.saveSchedule()
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +79,21 @@ class CalendarEventListViewController: BubbleTableViewController {
         super.viewWillDisappear(animated)
         
         initialColoredEntries.removeAll()
+    }
+    
+    func didBecomeActive() {
+        setupEntries()
+    }
+    
+    func setupEntries() {
+        self.entries = EventStore.shared.namesToCourse.values.map {
+            let entry = BubbleEntry(course: $0)
+            if let entryCourse = self.storage.schedule.courses.first(where: { $0.name == entry.name }) {
+                entry.course = entryCourse
+            }
+            return entry
+            }.sorted()
+        self.allEntries = self.entries
     }
     
     func setupSearchController() {

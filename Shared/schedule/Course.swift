@@ -46,7 +46,6 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     }
     
     var name: String
-    var rules: [RRule]
     var color: Color
     let location: String
     let startDate: Date
@@ -54,7 +53,6 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     
     init(event: EKEvent, color: Color) {
         self.name = event.title
-        self.rules = event.rrules
         self.color = color
         self.location = event.location ?? event.structuredLocation?.title ?? ""
         self.startDate = event.startDate
@@ -66,7 +64,7 @@ struct Event: Codable, Equatable, Comparable, Hashable {
     }
     
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.rules == rhs.rules
+        return lhs.name == rhs.name
     }
     
 }

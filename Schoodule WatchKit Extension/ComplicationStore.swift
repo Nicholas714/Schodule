@@ -31,7 +31,7 @@ struct ComplicationStore {
         .utilitarianSmallFlat: CLKComplicationTemplateUtilitarianSmallFlat(),
         
         // TODO: implement
-        .graphicBezel: CLKComplicationTemplateGraphicBezelCircularText(),
+        //.graphicBezel: CLKComplicationTemplateGraphicBezelCircularText(),
         //.graphicCorner: CLKComplicationTemplateGraphicCornerStackText(),
         //.graphicCircular: CLKComplicationTemplateGraphicCircularClosedGaugeText(),
         //.graphicRectangular: CLKComplicationTemplateGraphicRectangularStandardBody()
@@ -135,28 +135,29 @@ struct ComplicationStore {
             // utilitarianSmall with only the time
             template.textProvider = dateTextProvider
             
-        } else if let template = template as? CLKComplicationTemplateGraphicBezelCircularText {
-            
-            // TODO: implement
-            template.textProvider = periodNameProvider
-            let gauge = CLKComplicationTemplateGraphicCircularClosedGaugeText()
-            gauge.centerTextProvider = dateTextProvider
-            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: event?.startDate ?? Date(), end: event?.endDate ?? Date().addingTimeInterval(60 * 60))
-            template.circularTemplate = gauge
-            
-        } else if let template = template as? CLKComplicationTemplateGraphicCornerStackText {
-            
-            // TODO: implement
-            
-        } else if let template = template as? CLKComplicationTemplateGraphicCircularClosedGaugeText {
-            
-            
-            
-        } else if let template = template as? CLKComplicationTemplateGraphicRectangularStandardBody {
-            
-            // TODO: implement
-            
         }
+//        else if let template = template as? CLKComplicationTemplateGraphicBezelCircularText {
+//
+//            // TODO: implement
+//            template.textProvider = periodNameProvider
+//            let gauge = CLKComplicationTemplateGraphicCircularClosedGaugeText()
+//            gauge.centerTextProvider = dateTextProvider
+//            gauge.gaugeProvider = CLKTimeIntervalGaugeProvider(style: .fill, gaugeColors: [.red, .green], gaugeColorLocations: [0.5, 1.0], start: event?.startDate ?? Date(), end: event?.endDate ?? Date().addingTimeInterval(60 * 60))
+//            template.circularTemplate = gauge
+//
+//        } else if let template = template as? CLKComplicationTemplateGraphicCornerStackText {
+//
+//            // TODO: implement
+//
+//        } else if let template = template as? CLKComplicationTemplateGraphicCircularClosedGaugeText {
+//
+//
+//
+//        } else if let template = template as? CLKComplicationTemplateGraphicRectangularStandardBody {
+//
+//            // TODO: implement
+//
+//        }
         
         return template
     }

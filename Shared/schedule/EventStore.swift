@@ -34,7 +34,7 @@ class EventStore {
     
     static var shared = EventStore()
     
-    static func reloadYear() {
+    static func reloadYear(compleition: (() -> ())? = nil) {
         EKEventStore.store.requestAccess(to: .event) { (accepted, error) in
             if !accepted || error != nil {
                 return
@@ -42,6 +42,14 @@ class EventStore {
             
             DispatchQueue.global(qos: .background).async {
                 shared.loadCourses()
+                
+                DispatchQueue.main.async {
+                    if let compleition = compleition {
+                        compleition()
+                    }
+                }
+                
+                
             }
         }
     }

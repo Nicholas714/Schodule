@@ -9,6 +9,12 @@
 import UIKit
 import EventKit
 
+protocol Actable {
+    
+    func didBecomeActive()
+    
+}
+
 class BubbleTableViewController: UITableViewController {
     
     var cellHeight: CGFloat = 80

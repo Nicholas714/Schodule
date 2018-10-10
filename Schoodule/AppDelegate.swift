@@ -12,9 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        EventStore.reloadYear()
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        EventStore.reloadYear {
+            if let nav = self.window?.rootViewController as? UINavigationController {
+                if let top = nav.topViewController as? Actable {
+                    top.didBecomeActive()
+                }
+            }
+        }
     }
 
 }

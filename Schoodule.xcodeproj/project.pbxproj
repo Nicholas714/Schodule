@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4333E61C216E46FE00E36D71 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333E61B216E46FE00E36D71 /* CourseViewController.swift */; };
 		437D6DFC216AEB5200A2C354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437D6DFB216AEB5200A2C354 /* Assets.xcassets */; };
 		43C76D432166F68F003D8C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D422166F68F003D8C2E /* Assets.xcassets */; };
 		43C76D462166F68F003D8C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */; };
@@ -41,10 +42,6 @@
 		43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */; };
 		43C76DAF2166F930003D8C2E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DAD2166F930003D8C2E /* InterfaceController.swift */; };
 		43C76DB72167DA27003D8C2E /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB62167DA27003D8C2E /* EventStore.swift */; };
-		43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
-		43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
-		43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB821686EBB003D8C2E /* RRRule.swift */; };
-		43C76DBD21688353003D8C2E /* EKEvent+RRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */; };
 		43E9C51A216A899B008C0950 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C76DB62167DA27003D8C2E /* EventStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4333E61B216E46FE00E36D71 /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		437D6DFB216AEB5200A2C354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43C76D382166F68E003D8C2E /* Schoodule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schoodule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C76D422166F68F003D8C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,8 +123,6 @@
 		43C76DAA2166F903003D8C2E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		43C76DAD2166F930003D8C2E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		43C76DB62167DA27003D8C2E /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
-		43C76DB821686EBB003D8C2E /* RRRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRRule.swift; sourceTree = "<group>"; };
-		43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+RRule.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,14 +170,13 @@
 				43C76D7E2166F6CA003D8C2E /* AppDelegate.swift */,
 				43C76D802166F6CA003D8C2E /* BubbleEntry.swift */,
 				43C76D742166F6C9003D8C2E /* CalendarEventCell.swift */,
-				43C76D7A2166F6C9003D8C2E /* controllers */,
 				43C76D752166F6C9003D8C2E /* Main.storyboard */,
+				43C76D7A2166F6C9003D8C2E /* controllers */,
 				43C76D7F2166F6CA003D8C2E /* TextHeaderView.swift */,
 				43C76D762166F6C9003D8C2E /* views */,
 				43C76D422166F68F003D8C2E /* Assets.xcassets */,
 				43C76D442166F68F003D8C2E /* LaunchScreen.storyboard */,
 				43C76D472166F68F003D8C2E /* Info.plist */,
-				43C76DBA21687649003D8C2E /* EKEvent+RRule.swift */,
 			);
 			path = Schoodule;
 			sourceTree = "<group>";
@@ -228,6 +223,7 @@
 				43C76D7B2166F6C9003D8C2E /* MainTableViewController.swift */,
 				43C76D7C2166F6C9003D8C2E /* CalendarEventListViewController.swift */,
 				43C76D7D2166F6C9003D8C2E /* BubbleTableViewController.swift */,
+				4333E61B216E46FE00E36D71 /* CourseViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -247,7 +243,7 @@
 				43C76D9A2166F74D003D8C2E /* Storage.swift */,
 				43C76D9B2166F74D003D8C2E /* Schedule.swift */,
 				43C76D9C2166F74D003D8C2E /* Course.swift */,
-				43C76DB821686EBB003D8C2E /* RRRule.swift */,
+				43C76DB62167DA27003D8C2E /* EventStore.swift */,
 			);
 			path = schedule;
 			sourceTree = "<group>";
@@ -255,7 +251,6 @@
 		43C76D9D2166F74D003D8C2E /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				43C76DB62167DA27003D8C2E /* EventStore.swift */,
 				43C76D9E2166F74D003D8C2E /* Date+Formatter.swift */,
 			);
 			path = extensions;
@@ -399,16 +394,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C76D872166F6CA003D8C2E /* CalendarEventListViewController.swift in Sources */,
-				43C76DB921686EBB003D8C2E /* RRRule.swift in Sources */,
 				43C76DA62166F74D003D8C2E /* Date+Formatter.swift in Sources */,
 				43C76D882166F6CA003D8C2E /* BubbleTableViewController.swift in Sources */,
 				43C76DA42166F74D003D8C2E /* Course.swift in Sources */,
 				43C76D862166F6CA003D8C2E /* MainTableViewController.swift in Sources */,
 				43C76DA22166F74D003D8C2E /* Schedule.swift in Sources */,
 				43C76D892166F6CA003D8C2E /* AppDelegate.swift in Sources */,
+				4333E61C216E46FE00E36D71 /* CourseViewController.swift in Sources */,
 				43C76D8B2166F6CA003D8C2E /* BubbleEntry.swift in Sources */,
 				43C76DB72167DA27003D8C2E /* EventStore.swift in Sources */,
-				43C76DBB21687649003D8C2E /* EKEvent+RRule.swift in Sources */,
 				43C76DA02166F74D003D8C2E /* Storage.swift in Sources */,
 				43C76D8A2166F6CA003D8C2E /* TextHeaderView.swift in Sources */,
 				43C76D812166F6CA003D8C2E /* CalendarEventCell.swift in Sources */,
@@ -421,9 +415,7 @@
 			files = (
 				43C76DA52166F74D003D8C2E /* Course.swift in Sources */,
 				43C76D952166F739003D8C2E /* ClassRow.swift in Sources */,
-				43C76DBC216876C4003D8C2E /* RRRule.swift in Sources */,
 				43C76D932166F739003D8C2E /* ComplicationController.swift in Sources */,
-				43C76DBD21688353003D8C2E /* EKEvent+RRule.swift in Sources */,
 				43C76D962166F739003D8C2E /* ConnectivityController.swift in Sources */,
 				43C76DAC2166F903003D8C2E /* ExtensionDelegate.swift in Sources */,
 				43C76D942166F739003D8C2E /* ComplicationStore.swift in Sources */,
@@ -592,14 +584,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -616,13 +608,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -635,13 +627,13 @@
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
 				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -654,13 +646,13 @@
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				IBSC_MODULE = Schoodule_WatchKit_Extension;
 				INFOPLIST_FILE = "Schoodule WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -672,12 +664,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -693,12 +685,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VG8HJ8DZBZ;
 				INFOPLIST_FILE = Schoodule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.Schoodule;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasgrana.schooodule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

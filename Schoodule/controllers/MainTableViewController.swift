@@ -11,7 +11,7 @@ import WatchConnectivity
 import EventKit
 import EventKitUI
 
-class MainTableViewController: BubbleTableViewController {
+class MainTableViewController: BubbleTableViewController, Actable {
     
     var storage = Storage(defaults: UserDefaults())
     var session: WCSession? = nil
@@ -28,16 +28,14 @@ class MainTableViewController: BubbleTableViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.barTintColor = nil
         navigationController?.navigationBar.isTranslucent = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTodaySchedule), name: UIApplication.didBecomeActiveNotification, object: nil)
-
         if WCSession.isSupported() && session == nil {
             session = WCSession.default
             session?.delegate = self
@@ -64,24 +62,28 @@ class MainTableViewController: BubbleTableViewController {
             
         }
         
-        reloadTodaySchedule()
+        createEntries()
     }
     
-    @objc func reloadTodaySchedule() {
+    func didBecomeActive() {
+        createEntries()
+    }
+    
+    func createEntries() {
         navigationController?.setToolbarHidden(true, animated: false)
+
         var found = [EventBubbleEntry]()
         let todayCourses = storage.schedule.todayCourses
         for todayCourse in todayCourses {
             for var event in storage.schedule.todayEvents {
                 if event.name == todayCourse.name {
-                    event.color = todayCourse.color 
+                    event.color = todayCourse.color
                     found.append(EventBubbleEntry(course: todayCourse, event: event))
                 }
             }
         }
         
         self.entries = found
-        tableView.reloadData()
         
         if storage.schedule.courses.isEmpty {
             createInfoLabel(withText: "Create a class or add one from Calendar")
@@ -89,6 +91,7 @@ class MainTableViewController: BubbleTableViewController {
             createInfoLabel(withText: "No classes today")
         }
         
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
