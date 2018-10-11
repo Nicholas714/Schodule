@@ -23,14 +23,17 @@ class Course: Codable, Equatable {
     }
     var events = [Event]()
     
-    init(event: EKEvent, color: Color) {
-        self.name = event.title
-        self.color = color 
+    convenience init(event: EKEvent, color: Color) {
+        self.init(name: event.title, color: color)
     }
     
-    init(course: Course) {
-        self.name = course.name
-        self.color = course.color 
+    convenience init(course: Course) {
+        self.init(name: course.name, color: course.color)
+    }
+    
+    required init(name: String, color: Color) {
+        self.name = name
+        self.color = color
     }
     
     static func == (lhs: Course, rhs: Course) -> Bool {

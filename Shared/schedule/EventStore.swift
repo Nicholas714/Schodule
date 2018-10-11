@@ -12,16 +12,19 @@ extension EKEventStore {
     
     static var store = EKEventStore()
     
-    func eventsForDate(date: Date) -> [Date: EKEvent] {
+    func eventsForDate(date: Date) -> [Date: [EKEvent]] {
         let morning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
         let night = morning.addingTimeInterval(86399)
         
         let predicate = predicateForEvents(withStart: morning, end: night, calendars: nil)
         let events = self.events(matching: predicate)
-        
-        var startTimeToEvents = [Date: EKEvent]()
+
+        var startTimeToEvents = [Date: [EKEvent]]()
+
         for event in events {
-            startTimeToEvents[event.startDate] = event
+            var eventArray = startTimeToEvents[event.startDate] ?? [EKEvent]()
+            eventArray.append(event)
+            startTimeToEvents[event.startDate] = eventArray
         }
         
         return startTimeToEvents
@@ -60,6 +63,9 @@ class EventStore {
     private init() { }
     
     private func loadCourses() {
+        namesToCourse = [String: Course]()
+        namesToCounts = [String: Int]()
+        
         let year: TimeInterval = 3.15576E+07
         let todayStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         

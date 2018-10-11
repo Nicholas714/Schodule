@@ -19,9 +19,11 @@ class Schedule: Codable, Equatable {
     var todayCourses: [Course] {
         var today = [Course]()
         
-        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, event) in
-            if let index = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
-                today.append(courses[index])
+        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, events) in
+            for event in events {
+                if let index = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
+                    today.append(courses[index])
+                }
             }
         }
         
@@ -31,9 +33,11 @@ class Schedule: Codable, Equatable {
     var todayEvents: [Event] {
         var today = [Event]()
         
-        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, event) in
-            if let course = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
-                today.append(Event(event: event, color: courses[course].color))
+        EKEventStore.store.eventsForDate(date: Date()).forEach { (date, events) in
+            for event in events {
+                if let course = courses.firstIndex(of: Course(event: event, color: Color.unselected)) {
+                    today.append(Event(event: event, color: courses[course].color))
+                }
             }
         }
         

@@ -47,9 +47,14 @@ class MainTableViewController: BubbleTableViewController, Actable {
                 return
             }
             
-            if let event = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
-                self.editingEvent = Event(event: event, color: cell.color)
-                self.editEvent(event: event)
+            if let events = EKEventStore.store.eventsForDate(date: Date())[eventEntry.startDate] {
+                for event in events {
+                    if event.title == eventEntry.name {
+                        self.editingEvent = Event(event: event, color: cell.color)
+                        self.editEvent(event: event)
+                    }
+                    break
+                }
             } else {
                 let event = EKEvent(eventStore: EKEventStore.store)
                 event.title = eventEntry.name
@@ -72,22 +77,11 @@ class MainTableViewController: BubbleTableViewController, Actable {
     func createEntries() {
         navigationController?.setToolbarHidden(true, animated: false)
 
-        var found = [EventBubbleEntry]()
-        let todayCourses = storage.schedule.todayCourses
-        for todayCourse in todayCourses {
-            for var event in storage.schedule.todayEvents {
-                if event.name == todayCourse.name {
-                    event.color = todayCourse.color
-                    found.append(EventBubbleEntry(course: todayCourse, event: event))
-                }
-            }
-        }
-        
-        self.entries = found
+        self.entries = storage.schedule.todayEvents.map { EventBubbleEntry(event: $0) }
         
         if storage.schedule.courses.isEmpty {
             createInfoLabel(withText: "Create a class or add one from Calendar")
-        } else if todayCourses.isEmpty {
+        } else if storage.schedule.todayCourses.isEmpty {
             createInfoLabel(withText: "No classes today")
         }
         
@@ -116,6 +110,10 @@ class MainTableViewController: BubbleTableViewController, Actable {
         let store = EKEventStore.store
         let event = EKEvent(eventStore: store)
         
+        if event.calendar == nil {
+            event.calendar = calendarForEvent(event: event)
+        }
+        
         editEventViewController.eventStore = store
         editEventViewController.event = event
         editEventViewController.editViewDelegate = self
@@ -127,6 +125,10 @@ class MainTableViewController: BubbleTableViewController, Actable {
         let editEventViewController = EKEventViewController()
         let store = EKEventStore.store
         let event = editingEvent ?? EKEvent(eventStore: store)
+    
+        if editingEvent == nil {
+            event.calendar = calendarForEvent(event: event)
+        }
         
         editEventViewController.event = event
         editEventViewController.allowsCalendarPreview = true
@@ -134,6 +136,85 @@ class MainTableViewController: BubbleTableViewController, Actable {
         editEventViewController.delegate = self
         
         self.navigationController?.pushViewController(editEventViewController, animated: true)
+    }
+    
+    func calendarForEvent(event: EKEvent) -> EKCalendar {
+        let store = EKEventStore.store
+        let newCalendar: EKCalendar
+        
+        if let defaultCalendar = store.defaultCalendarForNewEvents {
+            newCalendar = defaultCalendar
+            
+        } else {
+            let schooduleCalendar = store.calendars(for: .event).filter { $0.title == "Schoodule" }.first
+            if let cal = schooduleCalendar {
+                newCalendar = cal
+            } else {
+                newCalendar = EKCalendar(for: .event, eventStore: store)
+                newCalendar.title = "Schoodule"
+                let source = store.sources.filter { $0.sourceType.rawValue == EKSourceType.local.rawValue }.first
+                if let source = source {
+                    newCalendar.source = source
+                }
+                
+                try? store.saveCalendar(newCalendar, commit: true)
+            }
+        }
+        
+        return newCalendar
+    }
+    
+}
+
+extension MainTableViewController: EKEventViewDelegate {
+    
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        print("TESING!!! WHY NOT CALLED?")
+        
+        switch action {
+        case .deleted:
+            if let deleted = editingEvent {
+                self.storage.schedule.courses.removeAll(where: { $0.name == deleted.name })
+                storage.saveSchedule()
+                EventStore.reloadYear()
+            }
+        default: break
+        }
+
+        navigationController?.popViewController(animated: true)
+        navigationController?.tabBarController?.tabBar.isHidden = true
+        tableView.reloadData()
+    }
+    
+}
+
+// MARK:- EKEventViewDelegate
+
+extension MainTableViewController: EKEventEditViewDelegate {
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        print("hello...?")
+        
+        switch action {
+        case .saved:
+            guard let event = controller.event, let _ = event.title else {
+                controller.dismiss(animated: true)
+                return
+            }
+            
+            let course = Course(event: event, color: Color.randomBackground)
+            self.storage.schedule.courses.append(course)
+            
+            EventStore.reloadYear()
+            self.storage.saveSchedule()
+
+            break
+        default:
+            break
+        }
+
+        tableView.reloadData()
+        controller.dismiss(animated: true)
     }
     
 }
@@ -176,73 +257,4 @@ extension MainTableViewController: WCSessionDelegate {
             }
         }
     }
-}
-
-extension MainTableViewController: EKEventViewDelegate {
-    
-    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
-        
-        guard let event = controller.event else {
-            controller.dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        switch action {
-        case .deleted:
-            if let deleted = editingEvent {
-                self.storage.schedule.courses.removeAll(where: { $0.name == deleted.name })
-                EventStore.reloadYear()
-                storage.saveSchedule()
-            }
-        case .done:
-            if let old = editingEvent {
-                self.storage.schedule.courses.removeAll(where: { $0.name == old.name })
-                storage.saveSchedule()
-            }
-            
-            let course = Course(event: event, color: Color.randomBackground)
-            
-            self.storage.schedule.courses.append(course)
-            self.storage.saveSchedule()
-
-            EventStore.reloadYear()
-            
-        default: break
-        }
-        
-        navigationController?.popViewController(animated: true)
-        navigationController?.tabBarController?.tabBar.isHidden = true
-        tableView.reloadData()
-    }
-    
-}
-
-// MARK:- EKEventViewDelegate
-
-extension MainTableViewController: EKEventEditViewDelegate {
-    
-    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-        
-        switch action {
-        case .saved:
-            guard let event = controller.event, let _ = event.title else {
-                controller.dismiss(animated: true)
-                return
-            }
-            
-            let course = Course(event: event, color: Color.randomBackground)
-            self.storage.schedule.courses.append(course)
-            
-            EventStore.reloadYear()
-            self.storage.saveSchedule()
-
-            break
-        default:
-            break
-        }
-
-        tableView.reloadData()
-        controller.dismiss(animated: true)
-    }
-    
 }

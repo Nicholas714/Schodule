@@ -55,11 +55,12 @@ class EventBubbleEntry: BubbleEntry {
     var startDate: Date
     var endDate: Date
     
-    init(course: Course, event: Event) {
+    init(event: Event) {
         self.location = event.location
         self.startDate = event.startDate
         self.endDate = event.endDate
         
+        let course = Course(name: event.name, color: event.color)
         super.init(course: course)
     }
     
