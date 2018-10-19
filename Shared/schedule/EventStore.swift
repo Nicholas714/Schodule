@@ -13,8 +13,8 @@ extension EKEventStore {
     static var store = EKEventStore()
     
     func eventsForDate(date: Date) -> [Date: [EKEvent]] {
-        let morning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
-        let night = morning.addingTimeInterval(86399)
+        let morning = date.morning
+        let night = date.night
         
         let predicate = predicateForEvents(withStart: morning, end: night, calendars: nil)
         let events = self.events(matching: predicate)
@@ -67,9 +67,9 @@ class EventStore {
         namesToCounts = [String: Int]()
         
         let year: TimeInterval = 3.15576E+07
-        let todayStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        let today = Date()
         
-        let predicate = EKEventStore.store.predicateForEvents(withStart: todayStart, end: todayStart.addingTimeInterval(year), calendars: nil)
+        let predicate = EKEventStore.store.predicateForEvents(withStart: today.morning, end: today.addingTimeInterval(year), calendars: nil)
         let events = EKEventStore.store.events(matching: predicate)
         
         for event in events {

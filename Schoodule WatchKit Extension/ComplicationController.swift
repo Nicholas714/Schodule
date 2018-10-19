@@ -18,14 +18,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return ExtensionDelegate.getTodayEvents()
     }
     
-    var scheduleStart: Date? {
-        return todayEvents.first?.startDate
-    }
-    
-    var scheduleEnd: Date? {
-        return todayEvents.last?.endDate
-    }
-    
     // given a date and compliation type, this will send back the current complication template
     func complicationTemplate(_ complication: CLKComplication, from date: Date? = nil) -> CLKComplicationTemplate? {
         print("UPDATING COMPLICATIONS")
@@ -82,15 +74,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler([.backward, .forward])
     }
     
-    // block time travel for anything after the last schedule entry
-    func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(scheduleEnd?.addingTimeInterval(62))
-    }
-    
     // block time travel for anything before the start of the schedule
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(scheduleStart?.addingTimeInterval(-62))
+        handler(Date().morning)
     }
+    
+    // block time travel for anything after the last schedule entry
+    func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
+        handler(Date().night)
+    }
+    
     
     
 
@@ -110,7 +103,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // send current template as long as it is within range of the schedule, otherwise send a blank one
         let now = Date()
 
-        if let template = complicationTemplate(complication, from: now), let end = scheduleEnd, let start = scheduleStart, now > start && now < end {
+        if let template = complicationTemplate(complication, from: now) {
             if let event = storage.schedule.eventFrom(date: Date()) {
                 handler(CLKComplicationTimelineEntry(date: event.startDate, complicationTemplate: template))
             } else {
@@ -135,20 +128,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func allTimelineEntries(complication: CLKComplication, for date: Date, handler: ([CLKComplicationTimelineEntry]?) -> Void, with comparision: ((Date, Date) -> Bool), sendNext: Bool) {
         var timelineEntires = [CLKComplicationTimelineEntry]()
 
-        guard let scheduleStart = self.scheduleStart, let scheduleEnd = self.scheduleEnd else {
-            handler(nil)
-            return
+        if comparision(date, Date().morning) {
+            // "No Class" morning entry
+            timelineEntires.append(CLKComplicationTimelineEntry(date: Date().morning, complicationTemplate: complicationTemplate(complication, from: Date().morning)!))
         }
         
-        if comparision(date, scheduleStart.addingTimeInterval(-61)) {
-            // adds start entry to disable timer when it goes before
-            timelineEntires.append(CLKComplicationTimelineEntry(date: scheduleStart.addingTimeInterval(-61), complicationTemplate: complicationTemplate(complication)!))
-        }
-        if comparision(date, scheduleStart) {
-            // first class
-            timelineEntires.append(CLKComplicationTimelineEntry(date: scheduleStart, complicationTemplate: complicationTemplate(complication, from: scheduleStart)!))
-        }
-        
+        // place each event
         for event in todayEvents {
             let current = storage.schedule.eventFrom(date: Date())
             
@@ -156,7 +141,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 if (!comparision(date, event.startDate) && !comparision(date, event.endDate)) {
 
                     if sendNext && current == event {
-                        if scheduleEnd != event.endDate {
+                        if todayEvents.last != event {
                             // do not add class, but add next class entry
                             let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: event.endDate, complicationTemplate: complicationTemplate(complication, from: event.endDate.addingTimeInterval(5))!)
                             timelineEntires.append(nextClassTimelineEntry)
@@ -172,7 +157,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 timelineEntires.append(timelineEntry)
                 
                 // if not the last class, put an entry to tell the time until the next class
-                if scheduleEnd != event.endDate {
+                if todayEvents.last != event {
                     let nextClassTimelineEntry = CLKComplicationTimelineEntry(date: event.endDate, complicationTemplate: complicationTemplate(complication, from: event.endDate.addingTimeInterval(5))!)
                     timelineEntires.append(nextClassTimelineEntry)
                 }
@@ -181,9 +166,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             }
         }
         
-        if comparision(date, scheduleEnd.addingTimeInterval(61)) {
+        if comparision(date, Date().night) {
             // adds final entry to disable timer when it goes past
-            timelineEntires.append(CLKComplicationTimelineEntry(date: scheduleEnd.addingTimeInterval(61), complicationTemplate: complicationTemplate(complication)!))
+            if let end = todayEvents.last?.endDate {
+                timelineEntires.append(CLKComplicationTimelineEntry(date: end.addingTimeInterval(61), complicationTemplate: complicationTemplate(complication)!))
+            }
         }
         
         handler(timelineEntires)

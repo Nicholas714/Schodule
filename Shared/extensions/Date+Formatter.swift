@@ -10,6 +10,14 @@ import Foundation
 
 extension Date {
     
+    var morning: Date {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self) ?? self
+    }
+    
+    var night: Date {
+        return morning.addingTimeInterval(86399)
+    }
+    
     var timeFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
